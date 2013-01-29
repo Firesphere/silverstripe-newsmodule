@@ -12,6 +12,9 @@ class News extends DataObject implements IOGObject{
 
 	public static $db = array(
 		'Title' => 'Varchar(255)',
+		// Author is a troublemaker. Please tell me, 
+		// should I either auto-set the username from currentmember, 
+		// or use the textfield I'm using now (LAZY!)
 		'Author' => 'Varchar(255)',
 		'URLSegment' => 'Varchar(255)',
 		'Content' => 'HTMLText',
@@ -65,7 +68,7 @@ class News extends DataObject implements IOGObject{
 		$summaryFields = array(
 			'Title' => 'Titel',
 			'Author' => 'Author',
-			'Created' => 'Aangemaakt',
+			'Created' => 'Created',
 		);
 		if(array_search('Translatable', SiteTree::$extensions)){
 			$summaryFields['getLocale'] = _t($this->class . '.LANG', 'Taal');
@@ -161,11 +164,15 @@ class News extends DataObject implements IOGObject{
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content *NYT*')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Gepubliceerd')),
+				// Hey, $uplo? START WORKING and please stop ignoring this field addition?
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
 			)
 		);
+		
 		/**
 		* add searcher tab, this is beta!
+		* It's connected to another, SS2.4.x module of me. You can ignore it for now.
+		* @todo Fix the searcher :'( That's gonna be a hell of a job :'(
 		*/
 		$fields->addFieldToTab(
 			'Root',
@@ -189,6 +196,7 @@ class News extends DataObject implements IOGObject{
 	
 	/**
 	 * Setup available locales.
+	 * Yes, again, this is beta and not working yet :(
 	 * @return type 
 	 */
 	public function getLocale(){
@@ -201,6 +209,9 @@ class News extends DataObject implements IOGObject{
 		}
 	}
 
+	/**
+	 * Free guess on what this button does.
+	 */
 	public function Link() {
 		if ($newsHolderPage = SiteTree::get()->filter(array("ClassName" => 'NewsHolderPage'))->first()) {
 			return($newsHolderPage->Link('show').'/'.$this->URLSegment);
@@ -209,7 +220,8 @@ class News extends DataObject implements IOGObject{
 
 	/**
 	 * This is a funny one... why did I do this again?
-	 * Anyway, setup URLSegment. Note, IT DOES NOT CHECK FOR DOUBLES! (Sorry!)
+	 * Anyway, setup URLSegment. Note, IT DOES NOT CHECK FOR DOUBLES! WHY NOT?!
+	 * I don't know actually... I think I forgot :(
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
 	 */
 	public function onBeforeWrite(){
@@ -241,6 +253,9 @@ class News extends DataObject implements IOGObject{
 		$siteConfig = SiteConfig::current_site_config();
 		/**
 		 * Should we tweet (and even more important, CAN we tweet?) 
+		 * This is related to another module, which I'm building. It'll auto-tweet on new posts etc.
+		 * But with new Twitter guidelines, it's kinda sucky to get it to work as it did in 2.4.x
+		 * Have no fear! Unless you are impatient, then, be very afraid.
 		 */
 		if($this->Live && !$this->Tweeted && $siteConfig->TweetOnPost){
 			if($siteConfig->ConsumerKey && $siteConfig->ConsumerSecret && $siteConfig->OAuthToken && $siteConfig->OAuthTokenSecret){
