@@ -21,7 +21,10 @@ class NewsHolderPage extends Page {
 	 */
 	public function MetaTags($includeTitle = true) {
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
+			//Someone please tell me I didn't forget the actual frikkin' MetaTags function?
 			return $record->MetaTags($includeTitle);
+			// Crap. Ok, working on it!
+			// Note, this requires the OpenGraph Module!
 		}
 		return parent::MetaTags($includeTitle);
 	}
