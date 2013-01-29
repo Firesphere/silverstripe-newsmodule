@@ -1,0 +1,59 @@
+/**
+ * 't is fijner om deze kolom iets breder te maken
+ */
+body.ModelAdmin #left {
+    width: 400px;
+}
+
+/**
+ * datepickerfield has an extra div for dateformat, and thus gets a clear and double margin
+ * we don't want that
+ */
+.field.datepicker .middleColumn .datepicker.field {
+    clear: none;
+    margin-left: 0;
+    padding: 0;
+}
+
+table.data tr.forced {
+    font-weight: bold;
+}
+
+table.data tr.passedUntil a {
+    color: #999999;
+}
+
+.toggleForceToFrontPage,
+.toggleForceToFrontPage:hover {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(./../images/check-disabled.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+    .toggleForceToFrontPage img {
+        width: 16px;
+        height: 16px;
+    }
+    .forced .toggleForceToFrontPage,
+    .forced .toggleForceToFrontPage:hover {
+        background-image: url(./../images/check.png) !important;
+    }
+.togglePublishNow,
+.togglePublishNow:hover {
+    display: block;
+    width: 16px;
+    height: 16px;
+	    background-image: url(./../images/check-disabled.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+    .togglePublishNow img {
+        width: 16px;
+        height: 16px;
+    }
+    .liveset .togglePublishNow,
+    .liveset .togglePublishNow:hover {
+	background-image: url(./../images/check.png) !important;
+    }
