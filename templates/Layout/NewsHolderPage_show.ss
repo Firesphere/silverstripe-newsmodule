@@ -17,19 +17,6 @@
 	<br />
 	<div class="fb-like" data-href="$BaseHref{$Up.URLSegment}/show/$URLSegment" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
 	<br />
-<div class="advert">
-	<script type="text/javascript"><!--
-google_ad_client = "ca-pub-8070811811760534";
-/* New Site bar */
-google_ad_slot = "8445263458";
-google_ad_width = 468;
-google_ad_height = 15;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-</div>
 	<% if AllowComments %>
 	<hr />
 	<% if Comments %>
