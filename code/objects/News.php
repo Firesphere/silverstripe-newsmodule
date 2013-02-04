@@ -231,16 +231,16 @@ class News extends DataObject implements IOGObject{
 			$this->NewsHolderPageID = $page->ID;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
+			$Renamed = new Renamed();
+			$Renamed->OldLink = $this->URLSegment;
+			$Renamed->NewsID = $this->ID;
+			$Renamed->write();
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if(strpos($this->URLSegment, 'page-') === false){
 				$nr = 1;
 				while($this->LookForExistingURLSegment($this->URLSegment)){
 					$this->URLSegment .= '-'.$nr++;
 				}
-				$Renamed = new Renamed();
-				$Renamed->OldLink = $this->URLSegment;
-				$Renamed->NewsID = $this->ID;
-				$Renamed->write();
 			}
 		}
 	}
