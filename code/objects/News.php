@@ -346,7 +346,7 @@ class News extends DataObject implements IOGObject{
 	 * @return boolean if urlsegment already exists yes or no.
 	 */
 	public function LookForExistingURLSegment($URLSegment) {
-		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() == 0);
+		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 	
 	/**
