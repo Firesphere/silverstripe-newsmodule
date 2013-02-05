@@ -20,13 +20,13 @@ Strange code and undocumented features are probably due to my cat sleeping on th
 ## Features
 
 * Handle news and impressions besides the news.
-* Support for OG-data on some servers (some servers refuse)
-* History of URL-segments
-* Support for custom comments
-* Akismet support
-* Globally available NewsArchive function
-* Configurable from the SiteConfig
-* GridField overview, less clutter in the SiteTree
+* Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: `https://github.com/tractorcow/silverstripe-opengraph`
+* History of URL-segments.
+* Support for custom comments.
+* Akismet support.
+* Globally available NewsArchive function.
+* Configurable from the SiteConfig.
+* GridField overview, less clutter in the SiteTree.
 
 ## Lacks
 
