@@ -53,7 +53,10 @@ Strange code and undocumented features are probably due to my cat sleeping on th
 
 * Integrate Facebook/Twitter OAuth to automagically post when a new item is created.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
-* 
+* Add smiley/BB-code support to comments and items.
+* Add a "Fetch me a beer" function. Should be useful I think.
+* Implement what I wrote here: `http://casa-laguna.net/all-the-news/show/geshi-and-tweet-rendering-in-silverstripe`
+* More to come, but I can't think of it right now :(
 
 ## Known Issues
 
