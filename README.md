@@ -70,7 +70,7 @@ This module is published under BSD 2-clause license, although these are not in t
 
 http://www.opensource.org/licenses/BSD-2-Clause
 
-Copyright (c) 2012, Simon "Sphere" Erkelens
+Copyright (c) 2013, Simon "Sphere" Erkelens
 
 All rights reserved.
 
