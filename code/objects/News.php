@@ -2,6 +2,7 @@
 /**
  * The news.
  * Sit back and relax, this might take a while.
+ * History is NOT supported. Only the URLSegment is being tracked. This makes it a bit more simplistic.
  * 
  * Ow, yes, translatable... Can I ponder on that please?
  * 
@@ -246,7 +247,7 @@ class News extends DataObject implements IOGObject{
 	}
 	
 	/**
-	 * Ehhhh, oops? 
+	 * Ehhhh, we kinda need to include the tweeting-system here. 
 	 */
 	public function onAfterWrite(){
 		parent::onAfterWrite();
@@ -299,6 +300,7 @@ class News extends DataObject implements IOGObject{
 	}
 		
 	/**
+	 * All the upcoming OG-functions are related to the OG module.
 	 * This bugs in live, works in development. Shoot me?
 	 * @return type image, or, if not available, it's holder-page's image.
 	 */
@@ -342,7 +344,7 @@ class News extends DataObject implements IOGObject{
 	}
 	
 	/**
-	 * test whether the URLSegment exists already on another PortfolioItem
+	 * test whether the URLSegment exists already on another Newsitem
 	 * @return boolean if urlsegment already exists yes or no.
 	 */
 	public function LookForExistingURLSegment($URLSegment) {

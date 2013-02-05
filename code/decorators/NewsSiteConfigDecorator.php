@@ -2,6 +2,7 @@
 /**
  * Add some settings to the siteconfig. Pretty easy, right?
  *
+ * TweetOnPost requires a new module I'm busy writing. To connect Silverstripe admin to Twitter.
  * @package News/blog module
  * @author Sphere
  */

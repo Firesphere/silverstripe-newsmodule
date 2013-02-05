@@ -7,6 +7,10 @@
  */
 class NewsExtension extends DataExtension {
 
+	/**
+	 * Get all, or a limited, set of items.
+	 * @param $limit integer with chosen limit. Called from template via <% loop NewsArchive(5) %> for the 5 latest items.
+	 */
 	public function NewsArchive($limit = null) {
 		if ($limit) {
 			$news = News::get()->filter(array('Live' => 1))->limit($limit);

@@ -109,11 +109,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * Just return this. currentNewsItem should fix it. This one is for show.
-	 * @return object this. Forreal!
+	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
 		if($this->getNews()){
 			return $this;
+		}
+		else{
+			$this->redirect($this->Link());
 		}
 	}
 	
@@ -147,12 +150,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function CommentForm(){
 		$siteconfig = SiteConfig::current_site_config();
+		/**
+		 * Are comments allowed? 
+		 */
 		if(!$siteconfig->Comments){
 			return false;
 		}
 		$params = $this->getURLParams();
 		$return = 'CommentForm';
 		$field = array();
+		/**
+		 * I should really use
+		 * $this->request->postVar('NewsID')
+		 * But, this is for checks, we need the ID to store the comment correctly.
+		 */
 		if(!isset($_POST['NewsID'])){
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
 			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
