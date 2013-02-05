@@ -64,6 +64,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$this->MetaDescription .= ' '.$news->Title;
 		}		
 	}
+	
+	public function MetaTags(){
+		return $this->MetaTags();
+	}
 
 	/**
 	 * Annoying date features. Override! 
@@ -178,7 +182,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$field
 		);
 		
-		 $actions = new FieldList(
+		 $actions = FieldList::create(
 			FormAction::create('CommentStore', 'Send')
 		);
 		$required_fields = array(
