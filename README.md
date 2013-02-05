@@ -9,6 +9,8 @@ Mainly to keep the SiteTree uncluttered.
 It works. Pretty much. Has some missing features. Please read my comments on the functions and such. It should make everything clear.
 If it doesn't... Then... wait a bit until I update this, ok?
 
+Ow, and the default template is based on HTML5 features and my own website. Functional frontend demo can also be found on my website. `http://casa-laguna.net/all-the-news`
+
 ## Maintainer Contacts
 
 * Simon "Sphere" Erkelens `simon[at]casa-laguna[dot]net`
