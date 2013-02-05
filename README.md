@@ -62,7 +62,9 @@ If it doesn't... Then... wait a bit until I update this, ok?
 
 ## Other
 
-This module is given "as is" and I am not responsible for any damage it might do to your brain, dog, cat, house, computer or website.
+* This module is given "as is" and I am not responsible for any damage it might do to your brain, dog, cat, house, computer or website.
+* Code Comments should not be taken too seriously, since I'm bad at writing serious code-comments.
+* Please use the Issue-tracker, otherwise I get lost too.
 
 ## Actual license
 
