@@ -101,9 +101,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 				return $news->first();
 			}
 			else{
-				$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']))->first();
+				$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']));
 				if($renamed->count() > 0){
-					$link = ($this->Link('show/').$renamed->News()->first()->URLSegment);
+					$link = ($renamed->first()->News()->Link());
 					$this->redirect($link, 301);
 				}
 			}
