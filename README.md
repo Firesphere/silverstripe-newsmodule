@@ -34,6 +34,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 
 * History of changes in the items
 * 
+(Indeed, that second bullet means it only lacks history, nothing else)
 
 ## Installation
 
@@ -62,7 +63,6 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 
 ## Known Issues
 
-* I think the renamer is broken at the moment.
 * The MD5-Email field, required if you want Gravatar-support, is named "MD5Comment". Don't ask.
 
 ## Requests
@@ -75,6 +75,8 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 * This module is given "as is" and I am not responsible for any damage it might do to your brain, dog, cat, house, computer or website.
 * Code Comments should not be taken too seriously, since I'm bad at writing serious code-comments.
 * Please use the Issue-tracker, otherwise I get lost too.
+* This ModelAdmin method is chosen to declutter the SiteTree.
+* This is a port of a non-released SS2.4 newsmodule I wrote. It might not be entirely "up to code" yet.
 
 ## Actual license
 
@@ -92,4 +94,7 @@ Redistribution and use in source and binary forms, with or without modification,
     Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+(I shouldn't scream, should I? This is copy-paste from BSD-2 license...)
 
