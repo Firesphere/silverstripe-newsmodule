@@ -13,6 +13,8 @@ Ow, and the default template is based on HTML5 features and my own website. Func
 
 Strange code and undocumented features are probably due to my cat sleeping on the keyboard.
 
+I strongly advice to read my inline comments. I've worked hard to make them both functional as funny. Feedback appreciated.
+
 ## Maintainer Contacts
 
 * Simon "Sphere" Erkelens `simon[at]casa-laguna[dot]net`
@@ -61,6 +63,7 @@ Strange code and undocumented features are probably due to my cat sleeping on th
 ## Known Issues
 
 * I think the renamer is broken at the moment.
+* The MD5-Email field, required if you want Gravatar-support, is named "MD5Comment". Don't ask.
 
 ## Requests
 

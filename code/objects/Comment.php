@@ -34,8 +34,6 @@ class Comment extends DataObject {
 	/**
 	 * Setup the visibility and check the URI, because ppl forget about it.
 	 * Also, check Akismet.
-	 * 
-	 * @todo Send e-mail when new comment is posted and awaiting approval OR is marked as spam. 
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
@@ -63,8 +61,29 @@ class Comment extends DataObject {
 				}
 
 			} catch (Exception $e) {
-			// Akismet didn't work, most likely the service is down.
+				// Akismet didn't work, most likely the service is down.
+				// Suggested options:
+				// Do absolutely nothing
+				// $this->Visible = false;
 			}
 		}
 	}
+	
+	/**
+	 * I would actually advice to change a few things here, personally.
+	 * Examples:
+	 * Add an info e-mail field to your siteconfig, and use that field as your reference for the setTo.
+	 * Also, the From could be $this->Email, so you could reply if needed. (Unless you decided E-mail is not required)
+	 * Besides that, you could add an if-method to only e-mail when a comment is marked by Akismet. 
+	 */
+	public function onAfterWrite(){
+		$mail = new Email();
+		$mail->setTo('you@your-domain.com');
+		$mail->setSubject('New post titled: ' .$this->Title);
+		$mail->setFrom('info@your-domain.com');
+		$mail->setTemplate('CommentPost');
+		$mail->populateTemplate($this);
+		$mail->send();
+	}
+	
 }
