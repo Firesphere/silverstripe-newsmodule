@@ -35,6 +35,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 
 * History of changes in the items
 * 
+
 (Indeed, that second bullet means it only lacks history, nothing else)
 
 ## Installation
@@ -44,7 +45,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
  3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  4.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-This method is preferred, because you can add features and do pull-requests. 
+This method is preferred, because you can add features and do pull-requests to improve this module. 
 
 ### Other methods (These work just as well)
 If you don't have a github account, or don't want to contribute, just download:
