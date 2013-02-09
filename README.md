@@ -44,7 +44,10 @@ I strongly advice to read my inline comments. I've worked hard to make them both
  3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  4.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-This method is preferred, because you can add features and do pull-requests. If you don't have a github account, or don't want to contribute, just download:
+This method is preferred, because you can add features and do pull-requests. 
+
+### Other methods (These work just as well)
+If you don't have a github account, or don't want to contribute, just download:
  1. Click on the big "ZIP" button at the top.
  2. Extract the zip to your site-root
 
