@@ -40,22 +40,23 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 
 ## Installation
 
-If you don't have a github account, or don't want to contribute, just download:
+If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top.
  2. Extract the zip to your site-root
  3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  4. Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-Also, you could just clone my repo into your site-root. This is the same as the preferred method I mention below, but skipping point 1 and changing the URL that has to be cloned to:
-`https://github.com/Firesphere/silverstripe-newsmodule.git`
+Other option is to clone the repo into your site-root:
+ 1.  In your site-root, do `git clone `https://github.com/Firesphere/silverstripe-newsmodule.git`. 
+ 2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-### Preferred method:
+Although, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
  1.  Make a fork of this module.
  2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
  3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  4.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-This method is preferred, because it allows you to add features and do pull-requests to improve this module. 
 Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Best Practices
