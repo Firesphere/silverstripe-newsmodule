@@ -38,6 +38,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public static $allowed_actions = array(
 		'allNews',
 		'show',
+		'rss',
 		'CommentForm',
 		'CommentStore',
 	);
@@ -75,6 +76,23 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function init() {
 		parent::init();
 		setlocale(LC_ALL, i18n::get_locale());
+	}
+	
+	/**
+	 * Generate an RSS-feed.
+	 * @return type RSS-feed output.
+	 */
+	public function rss(){
+		$rss = new RSSFeed(
+			$list = $this->getRSSFeed(),
+			$link = $this->Link("rss"),
+			$title = "News feed"
+		);
+		return $rss->outputToBrowser();
+	}
+	
+	public function getRSSFeed() {
+		return News::get()->filter(array('Live' => 1))->sort("Created", "DESC")->limit(10);
 	}
 	
 	/**

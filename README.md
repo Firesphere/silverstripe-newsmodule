@@ -29,6 +29,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 * Globally available NewsArchive function.
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
+* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss`
 
 ## Lacks
 
