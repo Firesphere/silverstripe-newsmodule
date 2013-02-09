@@ -39,10 +39,10 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 
 ## Installation
 
- 1.  Make a fork of this module.
- 2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
- 3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
- 4.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
+ 1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git newsmodule` or if you wish to add it as git submodule `git submodule add https://github.com/Firesphere/silverstripe-newsmodule.git newsmodule` 
+ 2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
+ 4.  Got improvements or bugfixes? [fork it on github](https://github.com/Firesphere/silverstripe-newsmodule/fork_select)!
 
 ## Best Practices
 
