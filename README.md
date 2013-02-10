@@ -47,7 +47,7 @@ If you don't have a github account, just download:
  4. Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
 Other option is to clone the repo into your site-root:
- 1.  In your site-root, do `git clone `https://github.com/Firesphere/silverstripe-newsmodule.git`. 
+ 1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git`. 
  2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  3.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
