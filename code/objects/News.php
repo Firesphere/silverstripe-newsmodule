@@ -72,7 +72,7 @@ class News extends DataObject implements IOGObject{
 			'Created' => 'Created',
 		);
 		if(array_search('Translatable', SiteTree::$extensions)){
-			$summaryFields['getLocale'] = _t($this->class . '.LANG', 'Taal');
+			$summaryFields['getLocale'] = _t($this->class . '.LANG', 'Language');
 		}
 		$this->extend('summary_fields', $summaryFields);
 
@@ -88,13 +88,13 @@ class News extends DataObject implements IOGObject{
 			'Title' => array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
-				'title'  => _t($this->class . '.TITLE','Titel')
+				'title'  => _t($this->class . '.TITLE','Title')
 			),
 		);
 		if(array_search('Translatable', SiteTree::$extensions)){
 			$searchableFields['NewsHolderPageID'] = array(
 				'field' => 'DropdownField',
-				'title' => _t($this->class . '.LOCALE', 'Taal'),
+				'title' => _t($this->class . '.LOCALE', 'Language'),
 				'filter' => 'ExactMatchFilter',
 
 			);
@@ -124,7 +124,7 @@ class News extends DataObject implements IOGObject{
 			if(count($array) > 0){
 				if(count($array->map()) > 1){
 					$locales = i18n::get_common_locales();
-					$return = array('' => _t($this->class . '.SELECTSOME', '--Selecteer een Locale--'));
+					$return = array('' => _t($this->class . '.SELECTSOME', '--Select a locale--'));
 					$array = $array->map('ID', 'Locale');
 					foreach($array as $key => $value){
 						if(substr($value, 0, 2) != '--'){
@@ -161,12 +161,12 @@ class News extends DataObject implements IOGObject{
 		 */
 		$fields->addFieldsToTab('Root.Main', 
 			array(
-				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title *NYT*')),
-				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content *NYT*')),
+				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
+				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Gepubliceerd')),
+				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Published')),
 				// Hey, $uplo? START WORKING and please stop ignoring this field addition?
-				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
+				$uplo = UploadField::create('ImpressionID', _t($this->class . '.IMPRESSION', 'Impression')),
 			)
 		);
 		
@@ -264,13 +264,14 @@ class News extends DataObject implements IOGObject{
 			if($siteConfig->ConsumerKey && $siteConfig->ConsumerSecret && $siteConfig->OAuthToken && $siteConfig->OAuthTokenSecret){
 				$TweetText = $siteConfig->TweetText;
 				$TweetText = str_replace('$Title', $this->Title, $TweetText);
-				$TweetText .= ' ' . Director::absoluteBaseURL() . substr(Page::getURL('NewsHolderPage'), 1) . 'show/' . $this->ID;
-				if(strlen($TweetText) > 140){
-					$tmp = str_replace('$Title', $this->Title, $siteConfig->TweetText);
-					$tmp = substr($tmp, 0, strlen(Director::absoluteBaseURL() . substr(Page::getURL('NewsHolderPage'), 1) . 'show/' . $this->ID) + 4);
-					$TweetText = $tmp . '... ' . Director::absoluteBaseURL() . substr(Page::getURL('NewsHolderPage'), 1) . 'show/' . $this->ID;
+				// Max length is 120 characters, since the URL will be 20 characters long with t.co, 
+				// so, let's make that happen.
+				if(strlen($TweetText) > 120){
+					$TweetText = substr($TweetText, 0, 116).'... '.$this->AbsoluteLink();
 				}
-				fb(substr(Page::getURL('NewsHolderPage'), 1));
+				else{
+					$TweetText = $TweetText.' '.$this->AbsoluteLink();
+				}
 				/**
 				 * I don't think I have Twitter Oauth module included here, do I? 
 				 */

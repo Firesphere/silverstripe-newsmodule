@@ -39,23 +39,25 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 (Indeed, that second bullet means it only lacks history, nothing else)
 
 ## Installation
-### Preferred method:
+
+If you don't have a github account, just download:
+ 1. Click on the big "ZIP" button at the top.
+ 2. Extract the zip to your site-root
+ 3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 4. Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
+
+Other option is to clone the repo into your site-root:
+ 1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git`. 
+ 2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
+
+Although, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
  1.  Make a fork of this module.
  2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
  3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
  4.  Create a NewsHolderPage type in your Pages Admin (todo, autocreate this page)
 
-This method is preferred, because you can add features and do pull-requests to improve this module. 
-
-### Other methods (These work just as well)
-If you don't have a github account, or don't want to contribute, just download:
- 1. Click on the big "ZIP" button at the top.
- 2. Extract the zip to your site-root
-
-3 & 4 are the same as mentioned above from this point on.
-
-Also, you could just clone my repo into your site-root. This is the same as the preferred method, but skipping point 1 and changing the URL that has to be cloned to:
-`https://github.com/Firesphere/silverstripe-newsmodule.git`
+Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Best Practices
 
@@ -78,6 +80,7 @@ Also, you could just clone my repo into your site-root. This is the same as the 
 ## Known Issues
 
 * The MD5-Email field, required if you want Gravatar-support, is named "MD5Comment". Don't ask.
+* The Impression is at the top. It should be at the bottom. I haven't looked into that yet.
 
 ## Requests
 
@@ -111,4 +114,3 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 
 (I shouldn't scream, should I? This is copy-paste from BSD-2 license...)
-
