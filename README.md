@@ -30,6 +30,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
 * RSS Feed, can be found under `http://yoursite.com/yournewspage/rss`
+* If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter
 
 ## Lacks
 
@@ -70,7 +71,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Plans
 
-* Integrate Facebook/Twitter OAuth to automagically post when a new item is created.
+* Integrate Facebook OAuth to automagically post when a new item is created.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add smiley/BB-code support to comments and items.
 * Add a "Fetch me a beer" function. Should be useful I think.
