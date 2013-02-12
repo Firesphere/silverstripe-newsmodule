@@ -9,7 +9,7 @@
  * @package News/blog module
  * @author Simon 'Sphere' 
  */
-class News extends DataObject implements IOGObject{
+class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
 	public static $db = array(
 		'Title' => 'Varchar(255)',
