@@ -13,7 +13,7 @@ class Comment extends DataObject {
 		'Title' => 'Varchar(255)',
 		'Name' => 'Varchar(255)',
 		'Email' => 'Varchar(255)',
-		'MD5Comment' => 'Varchar(255)',
+		'MD5Email' => 'Varchar(255)',
 		'URL' => 'Varchar(255)',
 		'Comment' => 'HTMLText',
 		'AkismetMarked' => 'boolean(false)',
@@ -30,6 +30,16 @@ class Comment extends DataObject {
 		'Created',
 		'AkismetMarked',
 	);
+	
+	/**
+	 * For translations, we need a few updates here, but at least we hide the md5 of the e-mail.
+	 * @return type FieldList
+	 */
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$fields->removeByName('MD5Email');
+		return $fields;
+	}
 	
 	/**
 	 * Setup the visibility and check the URI, because ppl forget about it.
@@ -77,13 +87,16 @@ class Comment extends DataObject {
 	 * Besides that, you could add an if-method to only e-mail when a comment is marked by Akismet. 
 	 */
 	public function onAfterWrite(){
-		$mail = new Email();
-		$mail->setTo('you@your-domain.com');
-		$mail->setSubject('New post titled: ' .$this->Title);
-		$mail->setFrom('info@your-domain.com');
-		$mail->setTemplate('CommentPost');
-		$mail->populateTemplate($this);
-		$mail->send();
+		$SiteConfig = SiteConfig::current_site_config();
+		if($this->AkismetMarked == true || $SiteConfig->MustApprove == true){
+			$mail = new Email();
+			$mail->setTo('you@your-domain.com');
+			$mail->setSubject('New post titled: ' .$this->Title);
+			$mail->setFrom('info@your-domain.com');
+			$mail->setTemplate('CommentPost');
+			$mail->populateTemplate($this);
+			$mail->send();
+		}
 	}
 	
 }
