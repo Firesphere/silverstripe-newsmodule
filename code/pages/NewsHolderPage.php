@@ -28,6 +28,64 @@ class NewsHolderPage extends Page {
 		}
 		return parent::MetaTags($includeTitle);
 	}
+	
+	/**
+	 * The following three functions are global once enabled!
+	 * @param type $arguments
+	 * @return null 
+	 */
+	public static function TweetHandler($arguments) {
+		if(!isset($arguments['id'])){
+			return null;
+		}
+		if(substr($arguments['id'], 0, 4) == 'http'){
+			$id = explode('/status/', $arguments['id']);
+			$id = $id[1];
+		}
+		else{
+			$id = $arguments['id'];
+		}
+		$data = json_decode(file_get_contents('https://api.twitter.com/1/statuses/oembed.json?id='.$id.'&omit_script=true&lang=en'), 1);
+		return ($data['html']);
+	}
+	
+	public static function GeshiParser($arguments, $caption){
+		if(!isset($arguments['type'])){
+			$arguments['type'] = 'php';
+		}
+		$geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $caption)), $arguments['type']);
+		$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+		return $geshi->parse_code();
+	}
+	
+	public static function YouTubeHandler($arguments,$caption = null,$parser = null) {
+		// first things first, if we dont have a video ID, then we don't need to
+		// go any further
+		if (empty($arguments['id'])) {
+			return;
+		}
+
+		$customise = array();
+		/*** SET DEFAULTS ***/
+		$customise['YouTubeID'] = $arguments['id'];
+		//play the video on page load
+		$customise['autoplay'] = false;
+		//set the caption
+		$customise['caption'] = $caption ? Convert::raw2xml($caption) : false;
+		//set dimensions
+		$customise['width'] = 640;
+		$customise['height'] = 385;
+
+		//overide the defaults with the arguments supplied
+		$customise = array_merge($customise,$arguments);
+
+		//get our YouTube template
+		$template = new SSViewer('YouTube');
+
+		//return the customised template
+		return $template->process(new ArrayData($customise));
+	}
+
 }
 
 /**

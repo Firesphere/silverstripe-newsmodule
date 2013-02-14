@@ -14,6 +14,7 @@ Ow, and the default template is based on HTML5 features and my own website. Func
 Strange code and undocumented features are probably due to my cat sleeping on the keyboard.
 
 I strongly advice to read my inline comments. I've worked hard to make them both functional as funny. Feedback appreciated.
+And keep an eye on my issues, those are issues I want to fix or features I want to add. Feel free to add suggestions!
 
 ## Maintainer Contacts
 
@@ -29,7 +30,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 * Globally available NewsArchive function.
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
-* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss`
+* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly in the RSS-entry builder!)
 * If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter
 
 ## Lacks
@@ -37,7 +38,7 @@ I strongly advice to read my inline comments. I've worked hard to make them both
 * History of changes in the items
 * 
 
-(Indeed, that second bullet means it only lacks history, nothing else)
+(Indeed, that second bullet means it only lacks history, nothing else :P )
 
 ## Installation
 
@@ -82,6 +83,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 * The MD5-Email field, required if you want Gravatar-support, is named "MD5Comment". Don't ask.
 * The Impression is at the top. It should be at the bottom. I haven't looked into that yet.
+* RSS Feed is breaking content-links!
 
 ## Requests
 
