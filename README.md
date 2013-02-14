@@ -23,7 +23,7 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 ## Features
 
 * Handle news and impressions besides the news.
-* Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: `https://github.com/tractorcow/silverstripe-opengraph`
+* Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: [`OpenGraph module`](https://github.com/tractorcow/silverstripe-opengraph)
 * History of URL-segments.
 * Support for custom comments.
 * Akismet support.
@@ -92,7 +92,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Other
 
-* This module is given "as is" and I am not responsible for any damage it might do to your brain, dog, cat, house, computer or website.
+* **This module is given "as is" and I am not responsible for any damage it might do to your brain, dog, cat, house, computer or website.**
 * Code Comments should not be taken too seriously, since I'm bad at writing serious code-comments.
 * Please use the Issue-tracker, otherwise I get lost too.
 * This ModelAdmin method is chosen to declutter the SiteTree.
