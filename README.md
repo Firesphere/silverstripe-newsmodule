@@ -9,7 +9,7 @@ Mainly to keep the SiteTree uncluttered.
 It works. Pretty much. Has some missing features. Please read my comments on the functions and such. It should make everything clear.
 If it doesn't... Then... wait a bit until I update this, ok?
 
-Ow, and the default template is based on HTML5 features and my own website. Functional frontend demo can also be found on my website. `http://casa-laguna.net/all-the-news`
+Ow, and the default template is based on HTML5 features and my own website. Functional frontend demo can also be found on my website. [`Casa Laguna`](http://casa-laguna.net/all-the-news)
 
 Strange code and undocumented features are probably due to my cat sleeping on the keyboard.
 
@@ -76,7 +76,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add smiley/BB-code support to comments and items.
 * Add a "Fetch me a beer" function. Should be useful I think.
-* Implement what I wrote here: `http://casa-laguna.net/all-the-news/show/geshi-and-tweet-rendering-in-silverstripe`
+* Implement what I wrote here: [`GeSHi and Tweet rendering'](http://casa-laguna.net/all-the-news/show/geshi-and-tweet-rendering-in-silverstripe)
 * More to come, but I can't think of it right now :(
 
 ## Known Issues
