@@ -69,12 +69,13 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 ## Configuration
 
 * In the SiteConfig, set your wished configuration in the News-tab.
+* To enable the OpenGraph features, include the og-module and uncomment the implementation on the News-class.
+* To enable smilies, change in templates/Layout, the to-parse files. Add ```.Parse(BBCodeParser)``` To the items you want parsed.
 
 ## Plans
 
 * Integrate Facebook OAuth to automagically post when a new item is created.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
-* Add smiley/BB-code support to comments and items.
 * Add a "Fetch me a beer" function. Should be useful I think.
 * Implement what I wrote here: [`GeSHi and Tweet rendering'](http://casa-laguna.net/all-the-news/show/geshi-and-tweet-rendering-in-silverstripe)
 * More to come, but I can't think of it right now :(
