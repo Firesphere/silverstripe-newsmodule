@@ -10,6 +10,7 @@ SSAkismet::setAPIKey('YOURAPIKEY');
 
 /**
  * Remove or comment the following lines to disable features.
+ * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
  */
 ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
 ShortcodeParser::get()->register('code',array('NewsHolderPage','GeshiParser'));
