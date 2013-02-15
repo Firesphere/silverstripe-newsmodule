@@ -77,7 +77,6 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * Integrate Facebook OAuth to automagically post when a new item is created.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add a "Fetch me a beer" function. Should be useful I think.
-* Implement what I wrote here: [`GeSHi and Tweet rendering`](http://casa-laguna.net/all-the-news/show/geshi-and-tweet-rendering-in-silverstripe)
 * More to come, but I can't think of it right now :(
 
 ## Known Issues
