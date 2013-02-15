@@ -71,6 +71,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * In the SiteConfig, set your wished configuration in the News-tab.
 * To enable the OpenGraph features, include the og-module and uncomment the implementation on the News-class.
 * To enable smilies, change in templates/Layout, the to-parse files. Add ```.Parse(BBCodeParser)``` To the items you want parsed. To enable smilies, in your config, set BBCodeParser::enable_smilies() (If I'm not mistaken)
+* In _config, you can disable, edit or change parsers. Note, the parsers are **GLOBAL**, so $Content from pages will be parsed too!
 
 ## Plans
 
