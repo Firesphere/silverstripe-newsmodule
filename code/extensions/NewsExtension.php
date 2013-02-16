@@ -10,6 +10,7 @@ class NewsExtension extends DataExtension {
 	/**
 	 * Get all, or a limited, set of items.
 	 * @param $limit integer with chosen limit. Called from template via <% loop NewsArchive(5) %> for the 5 latest items.
+	 * @todo fix an admin-like feature. If the user has the correct permissions, show all posts, not only live ones.
 	 */
 	public function NewsArchive($limit = null) {
 		if ($limit) {
