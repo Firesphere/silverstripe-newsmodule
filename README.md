@@ -34,6 +34,14 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 
+
+## Demo of frontend
+
+* [`General news overview`](http://casa-laguna.net/all-the-news)
+* [`Tagcloud`](http://casa-laguna.net/all-the-news/tags)
+* [`Specific tag`](http://casa-laguna.net/all-the-news/tag/sphere)
+* [`Redirect to urlsegment`](http://casa-laguna.net/all-the-news/show/1)
+
 ## Lacks
 
 * History of changes in the items
@@ -81,6 +89,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add a "Fetch me a beer" function. Should be useful I think.
 * More to come, but I can't think of it right now :(
+* Only show related (via tag) newsitems below a specific newsitem.
 
 ## Known Issues
 
