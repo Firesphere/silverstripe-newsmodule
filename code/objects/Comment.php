@@ -17,7 +17,8 @@ class Comment extends DataObject {
 		'URL' => 'Varchar(255)',
 		'Comment' => 'HTMLText',
 		'AkismetMarked' => 'boolean(false)',
-		'Visible' => 'boolean(true)'
+		'Visible' => 'boolean(true)',
+		'ShowGravatar' => 'Boolean(true)',
 	);
 
 	public static $has_one = array(
