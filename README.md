@@ -31,8 +31,8 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
 * RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly in the RSS-entry builder!)
-* If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter
-
+* If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
+* Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 ## Lacks
 
 * History of changes in the items
@@ -72,6 +72,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * To enable the OpenGraph features, include the og-module and uncomment the implementation on the News-class.
 * To enable smilies, change in templates/Layout, the to-parse files. Add ```.Parse(BBCodeParser)``` To the items you want parsed. To enable smilies, in your config, set BBCodeParser::enable_smilies() (If I'm not mistaken)
 * In _config, you can disable, edit or change parsers. Note, the parsers are **GLOBAL**, so $Content from pages will be parsed too!
+* In javascript/newsmodule.js, you can configure the tagcloud. Which element it should trigger on, etc.
 
 ## Plans
 
