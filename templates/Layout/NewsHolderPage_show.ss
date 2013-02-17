@@ -11,6 +11,15 @@
 	<h3>$Author on $Created.Format(d-m-Y)</h3>
 	<br />
         $Content
+	  <% if Tags.Count > 0 %>
+	  <br />
+	  <div class="small">
+		<% loop Tags %>
+		<a href="{$Up.URLSegment}/tag/$URLSegment">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
+		<% end_loop %>
+	  </div>
+	  <br />
+	  <% end_if %>
 	<br />
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="Casa_Laguna" data-dnt="true">Tweet</a>
 	<br />

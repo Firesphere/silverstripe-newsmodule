@@ -96,6 +96,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public static $allowed_actions = array(
 		'allNews',
 		'show',
+		'tag',
+		'tags',
 		'rss',
 		'CommentForm',
 		'CommentStore',
@@ -107,8 +109,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * All just setting, no returning needed since it's $this.
 	 */
 	public function MetaTitle(){
+		$Params = $this->getURLParams();
 		if($news = $this->getNews()){      
 			$this->Title = $news->Title . ' - ' . $this->Title;
+		}
+		elseif($Params['Action'] == 'tags'){
+			$this->Title = 'All tags - ' . $this->Title;
+		}
+		elseif($tags = $this->getTags()){
+			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
 	
@@ -116,12 +125,24 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if($news = $this->getNews()){      
 			$this->MetaKeywords .= implode(', ', explode(' ', $news->Title));
 		}		
+		elseif($Params['Action'] == 'tags'){
+			$this->MetaKeywords .= ', All, tags';
+		}
+		elseif($tags = $this->getTags()){
+			$this->MetaKeywords .= $tags->Title;
+		}
 	}
 	
 	public function MetaDescription(){
 		if($news = $this->getNews()){      
 			$this->MetaDescription .= ' '.$news->Title;
-		}		
+		}
+		elseif($Params['Action'] == 'tags'){
+			$this->MetaDescription .= ' All tags';
+		}
+		elseif($tags = $this->getTags()){
+			$this->MetaDescription .= ' ' . $tags->Title;
+		}
 	}
 	
 	public function MetaTags(){
@@ -133,6 +154,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
+		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
+
 		setlocale(LC_ALL, i18n::get_locale());
 	}
 	
@@ -187,6 +210,24 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return false;
 	}
 
+	public function getTags($news = false){
+		$Params = $this->getURLParams();
+		if(isset($Params['ID']) && $Params['ID'] != null){
+			$tagItems = Tag::get()->filter(array('URLSegment' => $Params['ID']))->first();
+			if($tagItems->News()->count() > 0 && !$news){
+				return $tagItems;
+			}
+			elseif($tagItems->News()->count() > 0 && $news){
+				return $tagItems->News();
+			}				
+			else{
+				$this->redirect('tag');
+			}
+		}
+		$return = Tag::get();
+		return $return;
+	}
+	
 	/**
 	 * Just return this. currentNewsItem should fix it. This one is for show.
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
@@ -200,6 +241,18 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 	}
 	
+	public function tag(){
+		if($this->getTags()){
+			return $this;
+		}
+	}
+	
+	public function tags(){
+		if($this->getTags()){
+			return $this;
+		}
+	}
+	
 	/**
 	 * If we're on a newspage, we need to get the news, or else.... OOOHHHH!
 	 * @return object of the item.
@@ -210,6 +263,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$newsItem->AllowComments = $siteConfig->Comments;
 			return($newsItem);
 		}	
+	}
+	
+	public function currentTag(){
+		return $this->getTags();
 	}
 
 	/**

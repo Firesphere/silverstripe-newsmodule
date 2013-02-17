@@ -33,6 +33,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Comments' => 'Comment',
 		'Renamed' => 'Renamed',
 	);
+	
+	public static $belongs_many_many = array(
+		'Tags' => 'Tag',
+	);
 
 	public static $default_sort = 'Created DESC';
 
@@ -167,6 +171,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Published')),
 				// Hey, $uplo? START WORKING and please stop ignoring this field addition?
 				$uplo = UploadField::create('ImpressionID', _t($this->class . '.IMPRESSION', 'Impression')),
+				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title')),
 			)
 		);
 		
