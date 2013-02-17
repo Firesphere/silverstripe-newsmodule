@@ -1,6 +1,7 @@
 <?php
 /**
  * Make the news globally available. So you don't have to be on a NewsHolderPage.
+ * Same goes for tags. For if you want a tagcloud in your sidebar, for example.
  * 
  * @package News/blog module
  * @author Simon 'Sphere' 
@@ -24,6 +25,10 @@ class NewsExtension extends DataExtension {
 		return($news);
 	}
 
+	/**
+	 * Just get al tags.
+	 * @return type Datalist of all tags
+	 */
 	public function allTags() {
 		return Tag::get();
 	}
