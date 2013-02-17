@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is the Silverstripe 3 Newsmodule. It's a very basic newsmodule, separate from the SiteTree.
+This is the Silverstripe 3 Newsmodule. It's separate from the SiteTree.
 Mainly to keep the SiteTree uncluttered. 
 
 It works. Pretty much. Has some missing features. Please read my comments on the functions and such. It should make everything clear.

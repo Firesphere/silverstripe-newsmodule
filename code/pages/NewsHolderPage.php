@@ -106,6 +106,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Meta! This is so Meta!
 	 * Yes, Meta stuff here :)
+	 * Either for tags or news. I'm not entirely sure about the params check, this might be the wrong way around.
 	 * All just setting, no returning needed since it's $this.
 	 */
 	public function MetaTitle(){
@@ -150,6 +151,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
+	 * Include the tagcloud scripts. Configure in newsmodule.js!
 	 * Annoying date features. Override! 
 	 */
 	public function init() {
@@ -179,6 +181,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * General getter. Should this even be public?
+	 * We escape the tags here, otherwise things bug out with the meta-tags.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
 	public function getNews(){
@@ -213,6 +216,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 	}
 
+	/**
+	 * Get the correct tags.
+	 * It would be kinda weird to get the incorrect tags, would it?
+	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
+	 * @return type DataObject or DataList with tags or news.
+	 */
 	public function getTags($news = false){
 		$Params = $this->getURLParams();
 		if(isset($Params['ID']) && $Params['ID'] != null){
