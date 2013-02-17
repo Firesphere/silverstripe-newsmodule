@@ -8,13 +8,12 @@
 	      <% else %>
 	      <div class="noImage">
 	      <% end_if %>
-        <h1>$Title</h1>
+        <h1>Tag: <a href="{$Up.URLSegment}/tags">$Title</a></h1>
 	<br />
         $Description
 	<br />
-	<hr>
 	<a href="{$Up.URLSegment}/tags">All tags.</a>
-	<br />
+	<br />&nbsp;<br />
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{YOUR TWITTER ACCOUNT}" data-dnt="true">Tweet</a>
 	<br />
 	<div class="fb-like" data-href="$BaseHref{$Up.URLSegment}/show/$URLSegment" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
