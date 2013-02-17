@@ -23,4 +23,9 @@ class NewsExtension extends DataExtension {
 		}
 		return($news);
 	}
+
+	public function allTags() {
+		return Tag::get();
+	}
+	
 }
