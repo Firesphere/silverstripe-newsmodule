@@ -155,6 +155,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function init() {
 		parent::init();
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
+		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
 
 		setlocale(LC_ALL, i18n::get_locale());
 	}
