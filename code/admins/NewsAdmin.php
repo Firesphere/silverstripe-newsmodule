@@ -10,6 +10,7 @@ class NewsAdmin extends ModelAdmin {
 
 	public static $managed_models = array(
 		'News',
+		'Tag',
 	);
 
 	public static $url_segment = 'news';
