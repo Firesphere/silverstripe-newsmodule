@@ -182,32 +182,34 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
-		if(is_numeric($Params['ID'])){
-			$news = News::get()->filter(array(
-				'ID' => is_numeric($Params['ID']) ? $Params['ID'] : $id,
-				'Live' => 1
-			))->first();
-			$link = $this->Link('show/').$news->URLSegment;
-			$this->redirect($link, 301);
-			return false;
-		}
-		else{
-			$news = News::get()->filter(array(
-				'URLSegment' => $Params['ID'], // Oh the irony!
-				'Live' => 1
-			));
-			if($news->count() > 0){
-				return $news->first();
+		if($Params['Action'] == 'show'){
+			if(is_numeric($Params['ID'])){
+				$news = News::get()->filter(array(
+					'ID' => is_numeric($Params['ID']) ? $Params['ID'] : $id,
+					'Live' => 1
+				))->first();
+				$link = $this->Link('show/').$news->URLSegment;
+				$this->redirect($link, 301);
+				return false;
 			}
 			else{
-				$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']));
-				if($renamed->count() > 0){
-					$link = ($renamed->first()->News()->Link());
-					$this->redirect($link, 301);
+				$news = News::get()->filter(array(
+					'URLSegment' => $Params['ID'], // Oh the irony!
+					'Live' => 1
+				));
+				if($news->count() > 0){
+					return $news->first();
+				}
+				else{
+					$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']));
+					if($renamed->count() > 0){
+						$link = ($renamed->first()->News()->Link());
+						$this->redirect($link, 301);
+					}
 				}
 			}
+			return false;
 		}
-		return false;
 	}
 
 	public function getTags($news = false){

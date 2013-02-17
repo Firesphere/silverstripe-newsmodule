@@ -159,6 +159,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		$fields->removeFieldsFromTab('Root.Main', array_keys(self::$db));
 		$fields->removeFieldFromTab('Root.Main', 'NewsHolderPageID');
+		$fields->removeFieldFromTab('Root', 'Tags');
 		/**
 		 * and add what we need
 		 * LANGUAGES!
