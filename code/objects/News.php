@@ -268,9 +268,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$siteConfig = SiteConfig::current_site_config();
 		/**
 		 * Should we tweet (and even more important, CAN we tweet?) 
-		 * This is related to another module, which I'm building. It'll auto-tweet on new posts etc.
-		 * But with new Twitter guidelines, it's kinda sucky to get it to work as it did in 2.4.x
-		 * Have no fear! Unless you are impatient, then, be very afraid.
+		 * This is related to another module of mine.
+		 * Check it at my repos: Silverstripe-Social
+		 * @todo move this feature to the Social-module and address it from here. Cleaner code.
 		 */
 		if($this->Live && !$this->Tweeted && $siteConfig->TweetOnPost){
 			if($siteConfig->ConsumerKey && $siteConfig->ConsumerSecret && $siteConfig->OAuthToken && $siteConfig->OAuthTokenSecret){
@@ -284,9 +284,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				else{
 					$TweetText = $TweetText.' '.$this->AbsoluteLink();
 				}
-				/**
-				 * I don't think I have Twitter Oauth module included here, do I? 
-				 */
 				$conn = new TwitterOAuth(
 					$siteConfig->ConsumerKey,
 					$siteConfig->ConsumerSecret,
