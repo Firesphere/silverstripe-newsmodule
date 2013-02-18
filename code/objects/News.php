@@ -113,7 +113,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Why do I have to do this???
 	 * We can't feed an array directly into the searchfields, so, we have to make a workaround.
 	 * Buh...
-	 * 
+	 * @todo cleanup and make it working.
 	 * @param type $_params
 	 * @return type 
 	 */
@@ -157,21 +157,27 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		/**
 		 * remove all, we want translatable fieldlabels, and specific inputtypes
 		 */
-		$fields->removeFieldsFromTab('Root.Main', array_keys(self::$db));
-		$fields->removeFieldFromTab('Root.Main', 'NewsHolderPageID');
+		$fields->removeFieldsFromTab(
+			'Root.Main', 
+			array_keys(
+				self::$db
+			)
+		);
+		$fields->removeFieldsFromTab(
+			'Root.Main', 
+			array(
+				'NewsHolderPageID',
+				'Impression',
+			)
+		);
 		$fields->removeFieldFromTab('Root', 'Tags');
-		/**
-		 * and add what we need
-		 * LANGUAGES!
-		 */
 		$fields->addFieldsToTab('Root.Main', 
 			array(
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Published')),
-				// Hey, $uplo? START WORKING and please stop ignoring this field addition?
-				$uplo = UploadField::create('ImpressionID', _t($this->class . '.IMPRESSION', 'Impression')),
+				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
 				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title')),
 			)
 		);
