@@ -233,8 +233,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * This is a funny one... why did I do this again?
-	 * Anyway, setup URLSegment. Note, IT DOES NOT CHECK FOR DOUBLES! WHY NOT?!
-	 * I don't know actually... I think I forgot :(
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
 	 */
 	public function onBeforeWrite(){
@@ -260,40 +258,17 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 	}
 	
-	/**
-	 * Ehhhh, we kinda need to include the tweeting-system here. 
-	 */
 	public function onAfterWrite(){
 		parent::onAfterWrite();
 		$siteConfig = SiteConfig::current_site_config();
 		/**
-		 * Should we tweet (and even more important, CAN we tweet?) 
 		 * This is related to another module of mine.
-		 * Check it at my repos: Silverstripe-Social
-		 * @todo move this feature to the Social-module and address it from here. Cleaner code.
+		 * Check it at my repos: Silverstripe-Social.
+		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 */
 		if($this->Live && !$this->Tweeted && $siteConfig->TweetOnPost){
-			if($siteConfig->ConsumerKey && $siteConfig->ConsumerSecret && $siteConfig->OAuthToken && $siteConfig->OAuthTokenSecret){
-				$TweetText = $siteConfig->TweetText;
-				$TweetText = str_replace('$Title', $this->Title, $TweetText);
-				// Max length is 120 characters, since the URL will be 20 characters long with t.co, 
-				// so, let's make that happen.
-				if(strlen($TweetText) > 120){
-					$TweetText = substr($TweetText, 0, 116).'... '.$this->AbsoluteLink();
-				}
-				else{
-					$TweetText = $TweetText.' '.$this->AbsoluteLink();
-				}
-				$conn = new TwitterOAuth(
-					$siteConfig->ConsumerKey,
-					$siteConfig->ConsumerSecret,
-					$siteConfig->OAuthToken,
-					$siteConfig->OAuthTokenSecret
-				);
-				$tweetData = array(
-					'status' => $TweetText,
-				);
-				$postResult = $conn->post('statuses/update', $tweetData);
+			if(class_exists('TwitterController')){
+				TwitterController::postTweet($this->Title, $this->AbsoluteLink());
 				$this->Tweeted = true;
 				$this->write();
 			}
