@@ -22,6 +22,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Lang' => 'Boolean(false)',
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
+		'Commenting' => 'Boolean(true)',
 	);
 	
 	public static $has_one = array(
@@ -39,6 +40,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 
 	public static $default_sort = 'Created DESC';
+	
+	public static $defaults = array(
+		'Commenting' => true,
+	);
+	
+	public static $indexes = array(
+		'URLSegment' => true,
+	);
 
 	/**
 	 * Define singular name translatable
@@ -177,6 +186,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Published')),
+				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTS', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
 				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title')),
 			)

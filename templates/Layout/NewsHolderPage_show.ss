@@ -27,7 +27,7 @@
 	<br />
 	<% if AllowComments %>
 	<hr />
-	<% if Comments %>
+	<% if Comments && Commenting %>
 	<h3>Comments</h3>
 	<section id="comments">
 	<ul>
