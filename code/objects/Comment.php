@@ -78,6 +78,7 @@ class Comment extends DataObject {
 				// $this->Visible = false;
 			}
 		}
+		$this->Comment = nl2br($this->Comment);
 	}
 	
 	/**
