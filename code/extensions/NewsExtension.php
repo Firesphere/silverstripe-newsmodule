@@ -21,14 +21,10 @@ class NewsExtension extends DataExtension {
 			$news = News::get()
 				->leftJoin('Tag_News', 'Tag_News.NewsID = News.ID')
 				->where('Tag_News.TagID IN ('. implode(',',$item).')')
-				->sort('RAND()');
+				->sort('RAND()')->limit($limit);
 		} else {
-			$news = News::get()->filter(array('Live' => 1));
+			$news = News::get()->filter(array('Live' => 1))->limit($limit);
 		}
-		if ($limit) {
-			// crap, limit doesn't work like this? :(
-			$news->limit($limit);
-		} else
 		if($news->count() == 0){
 			return null;
 		}
