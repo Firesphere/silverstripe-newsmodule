@@ -16,12 +16,13 @@ class NewsExtension extends DataExtension {
 	public function NewsArchive($limit = null) {
 		$Params = $this->owner->getURLParams();
 		if($Params['Action'] == 'show') {
-			$item = News::get()->filter(array('URLSegment' => $Params['ID']))->first()->Tags();
-			$item = $item->column('ID');
+			$otherNews = News::get()
+				->filter(array('URLSegment' => $Params['ID']))
+				->first();
 			$news = News::get()
-				->leftJoin('Tag_News', 'Tag_News.NewsID = News.ID')
-				->where('Tag_News.TagID IN ('. implode(',',$item).')')
-				->sort('RAND()')->limit($limit);
+				->filter('Tags.ID', $otherNews->Tags()->column('ID'))
+				->sort('RAND()')
+				->limit($limit);
 		} else {
 			$news = News::get()->filter(array('Live' => 1))->limit($limit);
 		}
@@ -30,6 +31,7 @@ class NewsExtension extends DataExtension {
 		}
 		return($news);
 	}
+
 
 	/**
 	 * Just get al tags.
