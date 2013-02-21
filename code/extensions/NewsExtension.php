@@ -20,7 +20,7 @@ class NewsExtension extends DataExtension {
 				->filter(array('URLSegment' => $Params['ID']))
 				->first();
 			$news = News::get()
-				->filter('Tags.ID', $otherNews->Tags()->column('ID'))
+				->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 				->sort('RAND()')
 				->limit($limit);
 		} else {
