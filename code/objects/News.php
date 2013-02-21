@@ -41,10 +41,18 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	public static $default_sort = 'Created DESC';
 	
+	/**
+	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
+	 * @var type 
+	 */
 	public static $defaults = array(
 		'Commenting' => true,
 	);
 	
+	/**
+	 * And I forgot the index. On large databases, this is a small performance improvement.
+	 * @var type 
+	 */
 	public static $indexes = array(
 		'URLSegment' => true,
 	);
