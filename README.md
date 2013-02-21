@@ -33,6 +33,7 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly in the RSS-entry builder!)
 * If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
+* Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 
 
 ## Demo of frontend
@@ -85,7 +86,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Plans
 
-* Integrate Facebook OAuth to automagically post when a new item is created.
+* Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add a "Fetch me a beer" function. Should be useful I think.
 * More to come, but I can't think of it right now :(
