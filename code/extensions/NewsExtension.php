@@ -26,6 +26,7 @@ class NewsExtension extends DataExtension {
 			$news = News::get()->filter(array('Live' => 1));
 		}
 		if ($limit) {
+			// crap, limit doesn't work like this? :(
 			$news->limit($limit);
 		} else
 		if($news->count() == 0){
