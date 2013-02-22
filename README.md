@@ -35,7 +35,6 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 
-
 ## Demo of frontend
 
 * [`General news overview`](http://casa-laguna.net/all-the-news)
@@ -90,13 +89,10 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
 * Add a "Fetch me a beer" function. Should be useful I think.
 * More to come, but I can't think of it right now :(
-* Only show related (via tag) newsitems below a specific newsitem.
 
 ## Known Issues
 
-* The MD5-Email field, required if you want Gravatar-support, is named "MD5Comment". Don't ask.
-* The Impression is at the top. It should be at the bottom. I haven't looked into that yet.
-* RSS Feed is breaking content-links!
+* No serious issues known at this point.
 
 ## Requests
 
