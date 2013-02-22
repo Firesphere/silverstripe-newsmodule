@@ -31,8 +31,8 @@ class NewsHolderPage extends Page {
 	
 	/**
 	 * The following three functions are global once enabled!
-	 * @param type $arguments
-	 * @return null 
+	 * @param type $arguments from Content.
+	 * @return HTML block with the parsed code.
 	 */
 	public static function TweetHandler($arguments) {
 		if(!isset($arguments['id'])){
@@ -156,6 +156,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
+		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
 
@@ -295,9 +296,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I'm tired of writing comments!
 	 * Ok, well, here, I build a form. Nice, huh?
-	 * @return boolean 
+	 * @todo add a very, very, very left aligned field to detect spambots? Saves on akismet maybe?
+	 * @return form for Comments
 	 */
 	public function CommentForm(){
+		// I don't know if this is needed, I think it's handled in the template already.
+		// But it's not bad for safety.
 		$siteconfig = SiteConfig::current_site_config();
 		/**
 		 * Are comments allowed? 
@@ -308,12 +312,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$params = $this->getURLParams();
 		$return = 'CommentForm';
 		$field = array();
+
 		/**
-		 * I should really use
-		 * $this->request->postVar('NewsID')
-		 * But, this is for checks, we need the ID to store the comment correctly.
+		 * Include the ID of the current item. Otherwise we can't link correctly. 
 		 */
-		if(!isset($_POST['NewsID'])){
+		$NewsID = $this->request->postVar('NewsID');
+		if($NewsID == null){
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
 			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
 		}
@@ -344,6 +348,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I put it in a zakje!
 	 * And also check if it's no double-post. Limited to 60 seconds, but it can be differed.
+	 * I wonder if this is XSS safe? The saveInto does this for me, right?
 	 * @param array $data
 	 * @param object $form 
 	 */
