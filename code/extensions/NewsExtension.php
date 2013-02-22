@@ -11,20 +11,50 @@ class NewsExtension extends DataExtension {
 	/**
 	 * Get all, or a limited, set of items.
 	 * @param $limit integer with chosen limit. Called from template via <% loop NewsArchive(5) %> for the 5 latest items.
+	 * @param $random boolean Called from template. e.g. <% loop NewsArchive(5,1) %> to show randomly related posts via the tags.
+	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 items.
+	 *	Or, to show 5 random items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
+	 *	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
 	 * @todo fix an admin-like feature. If the user has the correct permissions, show all posts, not only live ones.
 	 */
-	public function NewsArchive($limit = null) {
+	public function NewsArchive($limit = null, $random = null, $related = null) {
+		if($limit == 0){
+			$limit = null;
+		}
 		$Params = $this->owner->getURLParams();
-		if($Params['Action'] == 'show') {
+		if($Params['Action'] == 'show' && $related) {
 			$otherNews = News::get()
 				->filter(array('URLSegment' => $Params['ID']))
 				->first();
-			$news = News::get()
-				->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
-				->sort('RAND()')
-				->limit($limit);
+			if($random){
+				$news = News::get()
+					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
+					->filter(array('Live' => 1))
+					->exclude(array('ID' => $otherNews->ID))
+					->sort('RAND()')
+					->limit($limit);
+			}
+			else{
+				$news = News::get()
+					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
+					->filter(array('Live' => 1))
+					->exclude(array('ID' => $otherNews->ID))
+					->limit($limit);
+			}
 		} else {
-			$news = News::get()->filter(array('Live' => 1))->limit($limit);
+			if($random){
+				$news = News::get()
+					->filter(array('Live' => 1))
+					->exclude(array('ID' => $otherNews->ID))
+					->sort('RAND()')
+					->limit($limit);
+			}
+			else{
+				$news = News::get()
+					->filter(array('Live' => 1))
+					->exclude(array('ID' => $otherNews->ID))
+					->limit($limit);				
+			}
 		}
 		if($news->count() == 0){
 			return null;

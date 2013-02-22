@@ -66,3 +66,4 @@
 <% end_with %>
   </section>
 </div>
+<%-- If you want newsitems below this, include NewsItems.ss --%>
