@@ -189,7 +189,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if($Params['Action'] == 'show'){
 			if(is_numeric($Params['ID'])){
 				$news = News::get()->filter(array(
-					'ID' => is_numeric($Params['ID']) ? $Params['ID'] : $id,
+					'ID' => $Params['ID'],
 					'Live' => 1
 				))->first();
 				$link = $this->Link('show/').$news->URLSegment;
