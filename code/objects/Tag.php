@@ -52,7 +52,6 @@ class Tag extends DataObject {
 	
 	public function getCMSFields() {
 		$fields = FieldList::create(TabSet::create('Root'));
-
 		$fields->addFieldsToTab('Root.Main', 
 			array(
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
