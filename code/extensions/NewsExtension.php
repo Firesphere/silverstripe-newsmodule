@@ -45,14 +45,12 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter(array('Live' => 1))
-					->exclude(array('ID' => $otherNews->ID))
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
 					->filter(array('Live' => 1))
-					->exclude(array('ID' => $otherNews->ID))
 					->limit($limit);				
 			}
 		}
