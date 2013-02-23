@@ -55,10 +55,10 @@ class Comment extends DataObject {
 		else{
 			$this->Visible = true;
 		}
-		if((substr($this->URL,0,7)!='http://' || substr($this->URL,0,8)!='https://') && $this->URL != ''){
+		if(substr($this->URL,0,4) != 'http' && $this->URL != ''){
 			$this->URL = 'http://'.$this->URL;
 		}
-		$this->MD5Comment = md5($this->Email);
+		$this->MD5Email = md5($this->Email);
 		if(SSAkismet::isEnabled()) {
 			try {
 				$akismet = new SSAkismet();
