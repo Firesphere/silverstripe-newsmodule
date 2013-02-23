@@ -188,11 +188,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		);
 		$fields->addFieldToTab(
 			'Root.Comments',
-			new GridField(
+			GridField::create(
 				'Comment', 
 				_t($this->class . '.COMMENTS', 'Comments'),
 				$this->Comments(), 
-				new GridFieldConfig_RelationEditor()
+				GridFieldConfig_RelationEditor::create()
 			)
 		);
 		return($fields);
