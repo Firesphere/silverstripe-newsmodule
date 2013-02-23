@@ -26,11 +26,11 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: [`OpenGraph module`](https://github.com/tractorcow/silverstripe-opengraph)
 * History of URL-segments.
 * Support for custom comments.
-* Akismet support.
+* Akismet support. Requires [`this module`](https://github.com/i-lateral/silverstipe-akismet) (or, at least, the Akismet and SSAkismet classes)
 * Globally available NewsArchive function.
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
-* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly in the RSS-entry builder!)
+* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly by some versions of the HTTP class in the RSS-entry builder!)
 * If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
@@ -75,7 +75,6 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 * Write grammatically correct.
 * If you have Akismet, add your Akismet API-key to _config.php as exampled. It saves you from comment-spam
-* Check the templates, Replace placeholder texts!
 
 ## Configuration
 
@@ -84,6 +83,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * To enable smilies, change in templates/Layout, the to-parse files. Add ```.Parse(BBCodeParser)``` To the items you want parsed. To enable smilies, in your config, set BBCodeParser::enable_smilies() (If I'm not mistaken)
 * In _config, you can disable, edit or change parsers. Note, the parsers are **GLOBAL**, so $Content from pages will be parsed too!
 * In javascript/newsmodule.js, you can configure the tagcloud. Which element it should trigger on, etc.
+* Check the templates, Replace placeholder texts!
 
 ## Plans
 
