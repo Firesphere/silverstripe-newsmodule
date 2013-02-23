@@ -8,6 +8,7 @@
  * 
  * @package News/blog module
  * @author Simon 'Sphere' 
+ * @todo Order this. The order of the functions does not make sense.
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
@@ -223,8 +224,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	/**
-	 * This is a funny one... why did I do this again?
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
+	 * @todo Actually implement the translatable part :)
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();

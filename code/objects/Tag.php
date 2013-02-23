@@ -63,10 +63,8 @@ class Tag extends DataObject {
 	}
 	
 	/**
-	 * This is a funny one... why did I do this again?
-	 * Anyway, setup URLSegment. Note, IT DOES NOT CHECK FOR DOUBLES! WHY NOT?!
-	 * I don't know actually... I think I forgot :(
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
+	 * @todo I still have to fix that translatable, remember? ;)
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
