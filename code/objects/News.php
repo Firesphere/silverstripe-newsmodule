@@ -169,61 +169,34 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	public function getCMSFields() {
-		$fields = parent::getCMSFields();
+		$fields = FieldList::create(TabSet::create('Root'));
 		
-		/**
-		 * remove all, we want translatable fieldlabels, and specific inputtypes
-		 */
-		$fields->removeFieldsFromTab(
-			'Root.Main', 
-			array_keys(
-				self::$db
-			)
-		);
-		$fields->removeFieldsFromTab(
-			'Root.Main', 
-			array(
-				'NewsHolderPageID',
-				'Impression',
-			)
-		);
-		$fields->removeFieldFromTab('Root', 'Tags');
-		$fields->addFieldsToTab('Root.Main', 
-			array(
+		$fields->addFieldsToTab(
+			'Root',
+			Tab::create(
+				'Main',
+				_t('MAIN', 'Main'),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Published')),
+				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTS', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
-				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title')),
+				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title'))
 			)
 		);
-		
-		/**
-		* add searcher tab, this is beta!
-		* It's connected to another, SS2.4.x module of me. You can ignore it for now.
-		* @todo Fix the searcher :'( That's gonna be a hell of a job :'(
-		*/
 		$fields->addFieldToTab(
-			'Root',
-			new Tab(
-				'Searcher', // name
-				_t('SearcherDecorator.TAB_SEARCHER', 'Search *NYT*'), // title
-				LiteralField::create(
-					'SearcherIntro',
-					'<p>' . _t(
-						'SearcherDecorator.SEARCHER_INTRO',
-						'Specify keywords for the sitesearch *NYT*'
-					) . '</p>'
-				),
-				TextareaField::create('SearchKeywords', _t('SearcherDecorator.KEYWORDS', 'Keywords *NYT*'))
+			'Root.Comments',
+			new GridField(
+				'Comment', 
+				_t($this->class . '.COMMENTS', 'Comments'),
+				$this->Comments(), 
+				new GridFieldConfig_RelationEditor()
 			)
 		);
-
-
 		return($fields);
 	}
+
 	
 	/**
 	 * Setup available locales.
