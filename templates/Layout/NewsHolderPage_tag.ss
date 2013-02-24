@@ -8,11 +8,11 @@
 	      <% else %>
 	      <div class="noImage">
 	      <% end_if %>
-        <h1>Tag: <a href="{$Up.URLSegment}/tags">$Title</a></h1>
+        <h1><% _t('NewsHolderPage.TAG', Tag) %>: <a href="{$Up.URLSegment}/tags">$Title</a></h1>
 	<br />
         $Description
 	<br />
-	<a href="{$Up.URLSegment}/tags">All tags.</a>
+	<a href="{$Up.URLSegment}/tags"><% _t('NewsHolderPage_Tag.ALLTAGS', All tags) %>.</a>
 	<br />&nbsp;<br />
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{YOUR TWITTER ACCOUNT}" data-dnt="true">Tweet</a>
 	<br />

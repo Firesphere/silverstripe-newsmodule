@@ -332,11 +332,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
 			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
 		}
-		$field[] = TextField::create('Name', 'Name');
-		$field[] = TextField::create('Title', 'Comment title');
-		$field[] = TextField::create('Email', 'E-mail');
-		$field[] = TextField::create('URL', 'Website');
-		$field[] = TextareaField::create('Comment', 'Comment');
+		$field[] = TextField::create('Name', _t($this->class . '.COMMENT.NAME', 'Name'));
+		$field[] = TextField::create('Title', _t($this->class . '.COMMENT.TITLE', 'Comment title'));
+		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
+		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
+		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
 		
 		$fields = FieldList::create(
 			$field

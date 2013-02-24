@@ -28,7 +28,7 @@
 	<% if AllowComments %>
 	<hr />
 	<% if Comments && Commenting %>
-	<h3>Comments</h3>
+	<h3><% _t('NewsHolderPage_show.COMMENTS', 'Comments') %></h3>
 	<section id="comments">
 	<ul>
 	<% loop Comments %>

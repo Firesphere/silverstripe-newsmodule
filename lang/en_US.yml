@@ -39,3 +39,15 @@ en_US:
     TITLE: "Title"
     DESCRIPTION: "Description"
     IMPRESSION: "Impression-image"
+  NewsHolderPage_Controller:
+    COMMENT:
+      NAME: "Name"
+      TITLE: "Title"
+      EMAIL: "E-mailaddress"
+      WEBSITE: "Website"
+      COMMENT: "Comment"
+    NewsHolderPage_show.ss:
+      COMMENTS: "Comments"
+    NewsHolderPage_tag.ss:
+      TAG: "Tag"
+      ALLTAGS: "All tags"

@@ -39,3 +39,15 @@ nl_NL:
     TITLE: "Titel"
     DESCRIPTION: "Beschrijving"
     IMPRESSION: "Impressieafbeelding"
+  NewsHolderPage_Controller:
+    COMMENT:
+      NAME: "Naam"
+      TITLE: "Titel"
+      EMAIL: "E-mailadres"
+      WEBSITE: "Website"
+      COMMENT: "Reactie"
+    NewsHolderPage_show.ss:
+      COMMENTS: "Reacties"
+    NewsHolderPage_tag.ss:
+      TAG: "Tag"
+      ALLTAGS: "All tags"
