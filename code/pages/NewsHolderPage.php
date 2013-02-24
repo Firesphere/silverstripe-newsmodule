@@ -240,7 +240,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			elseif($tagItems->News()->count() > 0 && $news){
 				// This needs fixing for the new publishdate feature.
 				$news = News::get()
-					->filter('Tags.ID:ExactMatch', $this->getNews()->Tags()->column('ID'))
+					->filter('Tags.ID:ExactMatch', $tagItems->ID)
 					->filter(array('Live' => 1))
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				return $news;
