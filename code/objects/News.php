@@ -20,6 +20,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Author' => 'Varchar(255)',
 		'URLSegment' => 'Varchar(255)',
 		'Content' => 'HTMLText',
+		'PublishFrom' => 'Date',
 		'Lang' => 'Boolean(false)',
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
@@ -177,10 +178,12 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			Tab::create(
 				'Main',
 				_t('MAIN', 'Main'),
+				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish')),
+				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
+				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTS', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
 				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title'))
@@ -258,7 +261,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Check it at my repos: Silverstripe-Social.
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 */
-		if($this->Live && !$this->Tweeted && $siteConfig->TweetOnPost){
+		if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
 			if(class_exists('TwitterController')){
 				TwitterController::postTweet($this->Title, $this->AbsoluteLink());
 				$this->Tweeted = true;

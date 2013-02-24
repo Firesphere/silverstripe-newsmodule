@@ -35,6 +35,7 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
+* Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
 
 ## Demo of frontend
 

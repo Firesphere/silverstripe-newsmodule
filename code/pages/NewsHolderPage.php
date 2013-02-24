@@ -177,7 +177,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	public function getRSSFeed() {
-		return News::get()->filter(array('Live' => 1))->sort("Created", "DESC")->limit(10);
+		return News::get()
+			->filter(array('Live' => 1))
+			->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
+			->sort("Created", "DESC")
+			->limit(10);
 	}
 	
 	/**
@@ -198,10 +202,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 				return false;
 			}
 			else{
-				$news = News::get()->filter(array(
-					'URLSegment' => $Params['ID'], // Oh the irony!
-					'Live' => 1
-				));
+				$news = News::get()->filter(
+					array(
+						'URLSegment' => $Params['ID'], // Oh the irony!
+						'Live' => 1
+					)
+				)
+				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				if($news->count() > 0){
 					return $news->first();
 				}
@@ -231,7 +238,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 				return $tagItems;
 			}
 			elseif($tagItems->News()->count() > 0 && $news){
-				return $tagItems->News();
+				// This needs fixing for the new publishdate feature.
+				$news = News::get()
+					->filter('Tags.ID:ExactMatch', $this->getNews()->Tags()->column('ID'))
+					->filter(array('Live' => 1))
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+				return $news;
 			}				
 			else{
 				$this->redirect('tag');
@@ -287,7 +299,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
-		if($allEntries = News::get()->filter(array('Live' => 1))){
+		if($allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))){
 			return $allEntries;
 		}
 		return null;

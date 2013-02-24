@@ -30,6 +30,7 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter(array('Live' => 1))
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(array('ID' => $otherNews->ID))
 					->sort('RAND()')
 					->limit($limit);
@@ -38,6 +39,7 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter(array('Live' => 1))
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(array('ID' => $otherNews->ID))
 					->limit($limit);
 			}
@@ -45,12 +47,14 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter(array('Live' => 1))
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
 					->filter(array('Live' => 1))
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->limit($limit);				
 			}
 		}
