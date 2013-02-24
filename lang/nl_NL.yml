@@ -1,4 +1,6 @@
-en_US:
+nl_NL:
+  NewsAdmin:
+    MENUTITLE: "Nieuws"
   NewsSiteConfigDecorator:
     NEWSCOMMENTS: "Nieuwsinstellingen"
     COMMENTS: "Sta reacties to op items"

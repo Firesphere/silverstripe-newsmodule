@@ -1,4 +1,6 @@
 en_US:
+  NewsAdmin:
+    MENUTITLE: "News"
   NewsSiteConfigDecorator:
     NEWSCOMMENTS: "News settings"
     COMMENTS: "Allow comments on items"
