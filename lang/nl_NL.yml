@@ -1,6 +1,7 @@
 nl_NL:
   NewsAdmin:
     MENUTITLE: "Nieuws"
+    ActionAdd: "Nieuwsbericht toevoegen"
   NewsSiteConfigDecorator:
     NEWSCOMMENTS: "Nieuwsinstellingen"
     COMMENTS: "Sta reacties to op items"
