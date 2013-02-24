@@ -31,6 +31,30 @@ class Comment extends DataObject {
 		'Created',
 		'AkismetMarked',
 	);
+
+	/**
+	 * Define singular name translatable
+	 * @return type Singular name
+	 */
+	public function singular_name() {
+		if (_t($this->class . '.SINGULARNAME')) {
+			return _t($this->class . '.SINGULARNAME');
+		} else {
+			return parent::singular_name();
+		} 
+	}
+	
+	/**
+	 * Define plural name translatable
+	 * @return type Plural name
+	 */
+	public function plural_name() {
+		if (_t($this->class . '.PLURALNAME')) {
+			return _t($this->class . '.PLURALNAME');
+		} else {
+			return parent::plural_name();
+		}   
+	}
 	
 	/**
 	 * For translations, we need a few updates here, but at least we hide the md5 of the e-mail.

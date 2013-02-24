@@ -43,8 +43,8 @@ class Tag extends DataObject {
 	 * @return type Plural name
 	 */
 	public function plural_name() {
-		if (_t($this->class . '.SINGULARNAME')) {
-			return _t($this->class . '.SINGULARNAME');
+		if (_t($this->class . '.PLURALNAME')) {
+			return _t($this->class . '.PLURALNAME');
 		} else {
 			return parent::plural_name();
 		}   
@@ -52,11 +52,14 @@ class Tag extends DataObject {
 	
 	public function getCMSFields() {
 		$fields = FieldList::create(TabSet::create('Root'));
-		$fields->addFieldsToTab('Root.Main', 
-			array(
+		$fields->addFieldsToTab(
+			'Root', 
+			Tab::create(
+				'Main',
+				_t($this->class . '.MAIN', 'Main'),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Description', _t($this->class . '.DESCRIPTION', 'Content')),
-				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
+				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression'))
 			)
 		);
 		return($fields);

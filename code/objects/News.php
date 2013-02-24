@@ -76,8 +76,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return type Plural name
 	 */
 	public function plural_name() {
-		if (_t($this->class . '.SINGULARNAME')) {
-			return _t($this->class . '.SINGULARNAME');
+		if (_t($this->class . '.PLURALNAME')) {
+			return _t($this->class . '.PLURALNAME');
 		} else {
 			return parent::plural_name();
 		}   
@@ -90,12 +90,12 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function summaryFields() {
 		$summaryFields = array(
-			'Title' => 'Titel',
-			'Author' => 'Author',
-			'Created' => 'Created',
+			'Title' => _t($this->class . '.TITLE', 'Titel'),
+			'Author' => _t($this->class . '.AUTHOR', 'Author'),
+			'Created' => _t($this->class . '.CREATED', 'Created'),
 		);
 		if(array_search('Translatable', SiteTree::$extensions)){
-			$summaryFields['getLocale'] = _t($this->class . '.LANG', 'Language');
+			$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
 		}
 		$this->extend('summary_fields', $summaryFields);
 
@@ -177,25 +177,29 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Root',
 			Tab::create(
 				'Main',
-				_t('MAIN', 'Main'),
+				_t($this->class . '.MAIN', 'Main'),
 				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
-				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTS', 'Allow comments on this item')),
+				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
-				$tags = CheckboxSetField::create('Tags', 'Tags', Tag::get()->map('ID', 'Title'))
+				$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'))
 			)
 		);
 		$fields->addFieldToTab(
-			'Root.Comments',
-			GridField::create(
-				'Comment', 
+			'Root',
+			Tab::create(
+				'Comments',
 				_t($this->class . '.COMMENTS', 'Comments'),
-				$this->Comments(), 
-				GridFieldConfig_RelationEditor::create()
+				GridField::create(
+					'Comment', 
+					_t($this->class . '.COMMENTS', 'Comments'),
+					$this->Comments(), 
+					GridFieldConfig_RelationEditor::create()
+				)
 			)
 		);
 		return($fields);
