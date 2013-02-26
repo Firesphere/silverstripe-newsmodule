@@ -106,8 +106,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Meta! This is so Meta!
 	 * Yes, Meta stuff here :)
-	 * Either for tags or news. I'm not entirely sure about the params check, this might be the wrong way around.
 	 * All just setting, no returning needed since it's $this.
+	 * Note, Meta Title and Meta 
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();
@@ -122,12 +122,17 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 	}
 	
+	/**
+	 * These seem to be no longer picked up. Ah well.
+	 */
 	public function MetaKeywords(){
-		if($news = $this->getNews()){      
-			$this->MetaKeywords .= implode(', ', explode(' ', $news->Title));
+		if($news = $this->getNews()){
+			$tags = $news->Tags()->column('Title');
+			$this->MetaKeywords .= implode(', ', explode(' ', $news->Title)) . ', ' . implode(', ', $tags);
 		}		
 		elseif($Params['Action'] == 'tags'){
-			$this->MetaKeywords .= ', All, tags';
+			$tags = Tag::get()->column('Title');
+			$this->MetaKeywords .= implode(', ', $tags).' , All, tags';
 		}
 		elseif($tags = $this->getTags()){
 			$this->MetaKeywords .= $tags->Title;

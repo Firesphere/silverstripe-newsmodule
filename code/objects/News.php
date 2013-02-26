@@ -35,6 +35,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public static $has_many = array(
 		'Comments' => 'Comment',
 		'Renamed' => 'Renamed',
+		'SlideshowImages' => 'SlideshowImage',
 	);
 	
 	public static $belongs_many_many = array(
@@ -202,6 +203,24 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				)
 			)
 		);
+		$gridFieldConfig = GridFieldConfig_RecordEditor::create();
+		$gridFieldConfig->addComponent(new GridFieldBulkEditingTools());
+		$gridFieldConfig->addComponent(new GridFieldBulkImageUpload()); 
+		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+		$fields->addFieldToTab(
+			'Root',
+			Tab::create(
+				'SlideshowImages',
+				_t($this->class . '.SLIDE', 'Slideshow'),
+				$gridfield = GridField::create(
+					'SlideshowImage',
+					_t($this->class . '.IMAGES', 'Slideshow Images'),
+					$this->SlideshowImages()
+						->sort('SortOrder'), 
+					$gridFieldConfig)
+			)
+		);
+		
 		return($fields);
 	}
 
