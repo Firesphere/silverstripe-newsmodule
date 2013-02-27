@@ -1,0 +1,24 @@
+{
+	"name": "Firesphere/silverstripe-newsmodule",
+	"description": "A ModelAdmin based newsmodule to prevent clutter in the SiteTree",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "news", "blog", "slideshow"],
+	"authors": [
+	{
+		"name": "Simon 'Sphere' Erkelens",
+		"email": "simon@casa-laguna.net"
+	}
+	],
+	"support": {
+		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
+	},
+	"require": {
+		"silverstripe/framework": "3.*",
+		"composer/installers": "*",
+		"colymba/GridFieldBulkEditingTools" : "*",
+		"UndefinedOffset/SortableGridField" : "*"
+	},
+	"extra": {
+		"installer-name": "silverstripe-newsmodule"
+	}
+}
