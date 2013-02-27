@@ -8,7 +8,7 @@
 	      <div class="noImage">
 	      <% end_if %>
         <h1>$Title</h1>
-	<h3>$Author on $Created.Format(d-m-Y)</h3>
+	<h3>$Author on <% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
 	<br />
         $Content
 	  <% if Tags.Count > 0 %>

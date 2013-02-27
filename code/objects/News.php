@@ -42,7 +42,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Tags' => 'Tag',
 	);
 
-	public static $default_sort = 'Created DESC';
+	public static $default_sort = 'IF(PublishFrom, PublishFrom, Created) DESC';
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
@@ -93,7 +93,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$summaryFields = array(
 			'Title' => _t($this->class . '.TITLE', 'Titel'),
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
-			'Created' => _t($this->class . '.CREATED', 'Created'),
+			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
 		if(array_search('Translatable', SiteTree::$extensions)){
 			$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
@@ -128,6 +128,18 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		
 		return $searchableFields;
 	}
+	
+	/**
+	 * This is for sorting the newsitems by either one of them. Keep it clean!
+	 * @return type
+	 */
+	public function fetchPublish(){
+		if(!$this->PublishFrom){
+			return $this->Created;
+		}
+		return $this->PublishFrom;
+	}
+
 
 	/**
 	 * Why do I have to do this???
@@ -172,6 +184,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	public function getCMSFields() {
+		/**
+		 * This is to adress the Author-issue. As described in the db-field declaration
+		 */
+		if(!$this->ID){
+			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
+		}
+		
 		$fields = FieldList::create(TabSet::create('Root'));
 		
 		$fields->addFieldsToTab(
@@ -228,6 +247,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Setup available locales.
 	 * Yes, again, this is beta and not working yet :(
+	 * @todo Frikkin' fix multi-language support!
 	 * @return type 
 	 */
 	public function getLocale(){
@@ -283,6 +303,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * This is related to another module of mine.
 		 * Check it at my repos: Silverstripe-Social.
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
+		 * It doesn't auto-tweet if the publish-date is in the future. Also, it won't tweet when it's that date!
 		 */
 		if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
 			if(class_exists('TwitterController')){
@@ -291,6 +312,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$this->write();
 			}
 		}
+		/**
+		 * I should implement the Post To Facebook option here.
+		 */
 	}
 	
 	/**

@@ -86,6 +86,15 @@ class NewsHolderPage extends Page {
 		return $template->process(new ArrayData($customise));
 	}
 
+	public static function createSlideshow($arguments){
+		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
+			$SiteConfig = SiteConfig::current_site_config();
+			$record->Image = $record->SlideshowImages();
+			$template = new SSViewer('NewsSlideshow');
+			return($template->process($record));
+		}
+	}
+	
 }
 
 /**

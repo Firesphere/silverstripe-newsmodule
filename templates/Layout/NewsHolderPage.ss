@@ -8,7 +8,7 @@
 	      	      <div class="articleContainer">
 	      <% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a><% end_if %>
           <h2><a href="$Link">$Title</a></h2>
-	  <h3>$Created.Format(d-m-Y) by $Author</h3>
+	  <h3><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
           <p>$Content.Summary</p>
           <footer class="more"><a href="$Link">Read More &raquo;</a></footer>
 	</div>
