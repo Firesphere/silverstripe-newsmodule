@@ -42,7 +42,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Tags' => 'Tag',
 	);
 
-	public static $default_sort = 'IF(PublishFrom, PublishFrom, Created) DESC';
+//	public static $default_sort = 'IF(PublishFrom, PublishFrom, Created) DESC';
+	// This seems to bug out live. Uncomment to test. I can't put my finger on the problem yet.
+	public static $default_sort = 'Created DESC';
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
