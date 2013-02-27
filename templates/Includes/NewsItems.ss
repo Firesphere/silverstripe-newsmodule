@@ -3,7 +3,7 @@
       <article class="one_third $FirstLast"><% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a><% end_if %>
           <h2><a href="$Link">$Title</a></h2>
 	  <h3>$Author</h3>
-	<i><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</i>
+	<i><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %></i>
 	<p>$Content.Summary</p>
 	  <% if Tags.Count > 0 %>
 	  <br />
