@@ -17,6 +17,11 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'DefaultGravatar' => 'Varchar(255)',
 		'GravatarSize' => 'Int',
 		'TweetOnPost' => 'Boolean(false)',
+		/**
+		 * Preparing the slideshow integration!
+		 */
+		'SlideshowInitial' => 'Boolean(true)',
+		'SlideshowSize' => 'Int',
 	);
 	
 	public function updateCMSFields(FieldList $fields){
@@ -34,6 +39,19 @@ class NewsSiteConfigDecorator extends DataExtension {
 				NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size')),
 				TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
 				TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
+			),
+			'Access'
+		);
+		/**
+		 * This is in preparation of the slideshow-sizing and showing. It is NOT YET FUNCTIONAL!
+		 */
+		$fields->addFieldToTab(
+			'Root',
+			Tab::create(
+				'Slideshowsettings', // name
+				_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow in news settings'), // title
+				CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
+				TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank to control from CSS'))
 			),
 			'Access'
 		);

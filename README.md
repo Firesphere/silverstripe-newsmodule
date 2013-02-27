@@ -36,6 +36,8 @@ And keep an eye on my issues, those are issues I want to fix or features I want 
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
+* The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
+* Slideshow option. Just add pictures and use [slideshow] in your $Content
 
 ## Demo of frontend
 
@@ -89,7 +91,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 ## Plans
 
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
-* Add a slideshow feature. Currently, not available, but you can use your own by integrating a slideshow manually.
+* Fix the slideshow to listen to the SiteConfig settings.
 * Add a "Fetch me a beer" function. Should be useful I think.
 * More to come, but I can't think of it right now :(
 
