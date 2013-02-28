@@ -16,6 +16,9 @@ Strange code and undocumented features are probably due to my cat sleeping on th
 I strongly advice to read my inline comments. I've worked hard to make them both functional as funny. Feedback appreciated.
 And keep an eye on my issues, those are issues I want to fix or features I want to add. Feel free to add suggestions!
 
+This project is always in development. I will always add features or fix bugs. Although it is always in development, I won't leave a bugged out version here. It always works.
+All new features or fixes are backwards compatible unless stated in the commit-message.
+
 ## Maintainer Contacts
 
 * Simon "Sphere" Erkelens `simon[at]casa-laguna[dot]net`

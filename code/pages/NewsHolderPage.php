@@ -111,7 +111,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'CommentForm',
 		'CommentStore',
 	);
-	
+
+	/**
+	 * Include the tagcloud scripts. Configure in newsmodule.js!
+	 * Annoying date features. Override! 
+	 */
+	public function init() {
+		parent::init();
+		// I would advice to put these in a combined file, but it works this way too.
+		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
+		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
+
+		setlocale(LC_ALL, i18n::get_locale());
+	}
+
 	/**
 	 * Meta! This is so Meta!
 	 * Yes, Meta stuff here :)
@@ -164,19 +177,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return $this->MetaTags();
 	}
 
-	/**
-	 * Include the tagcloud scripts. Configure in newsmodule.js!
-	 * Annoying date features. Override! 
-	 */
-	public function init() {
-		parent::init();
-		// I would advice to put these in a combined file, but it works this way too.
-		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
-		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
-
-		setlocale(LC_ALL, i18n::get_locale());
-	}
-	
 	/**
 	 * Generate an RSS-feed.
 	 * @return type RSS-feed output.

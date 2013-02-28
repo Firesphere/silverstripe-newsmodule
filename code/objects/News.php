@@ -8,7 +8,6 @@
  * 
  * @package News/blog module
  * @author Simon 'Sphere' 
- * @todo Order this. The order of the functions does not make sense.
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
@@ -142,7 +141,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return $this->PublishFrom;
 	}
 
-
 	/**
 	 * Why do I have to do this???
 	 * We can't feed an array directly into the searchfields, so, we have to make a workaround.
@@ -245,7 +243,28 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return($fields);
 	}
 
-	
+	/**
+	 * Why does this, again, not work on live, but does it work on dev?
+	 * @param type $includeTitle boolean
+	 * @return string of a whole heap of meta-data
+	 */
+	public function MetaTags($includeTitle = true){
+		$tags = "";
+		$tags .= "<meta name=\"keywords\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaKeywords . ',' . str_replace(' ', ',',$this->Title)) . "\" />\n";
+		$tags .= "<meta name=\"description\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaDescription . ' ' . $this->Title) . "\" />\n";
+		
+		if($this->ExtraMeta) { 
+			$tags .= $this->ExtraMeta . "\n";
+		} 
+		
+		if(Permission::check('CMS_ACCESS_CMSMain') && in_array('CMSPreviewable', class_implements($this))) {
+			$tags .= "<meta name=\"x-page-id\" content=\"{$this->ID}\" />\n";
+			$tags .= "<meta name=\"x-cms-edit-link\" content=\"" . $this->CMSEditLink() . "\" />\n";
+		}
+		$this->extend('MetaTags', $tags);
+		return $tags;
+	}
+
 	/**
 	 * Setup available locales.
 	 * Yes, again, this is beta and not working yet :(
@@ -271,6 +290,40 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 	}
 
+
+	/**
+	 * This is quite handy, for meta-tags and such.
+	 * @param type $action string, the added URLSegment, the actual function that'll return the news.
+	 * @return type link. To the item.
+	 */
+	public function AbsoluteLink($action = 'show/'){
+		if($Page = $this->NewsHolderPage()){
+			return(Director::absoluteURL($Page->Link($action)). $this->URLSegment);
+		}		
+	}
+		
+	/**
+	 * All the upcoming OG-functions are related to the OG module.
+	 * This bugs in live, works in development. Shoot me?
+	 * @return type image, or, if not available, it's holder-page's image.
+	 */
+	public function getOGImage(){
+		if($this->Impression()->ID > 0){
+			return Director::getAbsFile($this->Impression()->Filename);
+		}
+		else{
+			return Director::getAbsFile($this->NewsHolderPage()->Impression()->Filename);
+		}
+	}
+	
+	/**
+	 * Guess
+	 * @return type String
+	 */
+	public function getOGTitle(){
+		return $this->Title;
+	}
+	
 	/**
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
 	 * @todo Actually implement the translatable part :)
@@ -318,62 +371,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * I should implement the Post To Facebook option here.
 		 */
 	}
-	
-	/**
-	 * This is quite handy, for meta-tags and such.
-	 * @param type $action string, the added URLSegment, the actual function that'll return the news.
-	 * @return type link. To the item.
-	 */
-	public function AbsoluteLink($action = 'show/'){
-		if($Page = $this->NewsHolderPage()){
-			return(Director::absoluteURL($Page->Link($action)). $this->URLSegment);
-		}		
-	}
-		
-	/**
-	 * All the upcoming OG-functions are related to the OG module.
-	 * This bugs in live, works in development. Shoot me?
-	 * @return type image, or, if not available, it's holder-page's image.
-	 */
-	public function getOGImage(){
-		if($this->Impression()->ID > 0){
-			return Director::getAbsFile($this->Impression()->Filename);
-		}
-		else{
-			return Director::getAbsFile($this->NewsHolderPage()->Impression()->Filename);
-		}
-	}
-	
-	/**
-	 * Guess
-	 * @return type String
-	 */
-	public function getOGTitle(){
-		return $this->Title;
-	}
-	
-	/**
-	 * Why does this, again, not work on live, but does it work on dev?
-	 * @param type $includeTitle boolean
-	 * @return string of a whole heap of meta-data
-	 */
-	public function MetaTags($includeTitle = true){
-		$tags = "";
-		$tags .= "<meta name=\"keywords\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaKeywords . ',' . str_replace(' ', ',',$this->Title)) . "\" />\n";
-		$tags .= "<meta name=\"description\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaDescription . ' ' . $this->Title) . "\" />\n";
-		
-		if($this->ExtraMeta) { 
-			$tags .= $this->ExtraMeta . "\n";
-		} 
-		
-		if(Permission::check('CMS_ACCESS_CMSMain') && in_array('CMSPreviewable', class_implements($this))) {
-			$tags .= "<meta name=\"x-page-id\" content=\"{$this->ID}\" />\n";
-			$tags .= "<meta name=\"x-cms-edit-link\" content=\"" . $this->CMSEditLink() . "\" />\n";
-		}
-		$this->extend('MetaTags', $tags);
-		return $tags;
-	}
-	
+
 	/**
 	 * test whether the URLSegment exists already on another Newsitem
 	 * @return boolean if urlsegment already exists yes or no.
