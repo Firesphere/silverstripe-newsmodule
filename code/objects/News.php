@@ -264,7 +264,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$this->extend('MetaTags', $tags);
 		return $tags;
 	}
-
+	
 	/**
 	 * Setup available locales.
 	 * Yes, again, this is beta and not working yet :(

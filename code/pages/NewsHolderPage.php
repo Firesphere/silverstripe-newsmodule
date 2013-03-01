@@ -240,7 +240,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * Get the correct tags.
-	 * It would be kinda weird to get the incorrect tags, would it? It bugs on the news items by a specific tag on sort
+	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
 	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
 	 * @return type DataObject or DataList with tags or news.
 	 */
