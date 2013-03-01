@@ -83,7 +83,7 @@ class Comment extends DataObject {
 			$this->URL = 'http://'.$this->URL;
 		}
 		$this->MD5Email = md5($this->Email);
-		if(SSAkismet::isEnabled()) {
+		if(class_exists(SSAkismet) && SSAkismet::isEnabled()) {
 			try {
 				$akismet = new SSAkismet();
 				$akismet->setCommentAuthor($this->Name);
