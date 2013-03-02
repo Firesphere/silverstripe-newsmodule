@@ -23,14 +23,22 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 * Simon "Sphere" Erkelens `simon[at]casa-laguna[dot]net`
 
+## Requirements
+
+* [`Silverstripe 3.x framework`](https://github.com/silverstripe/Sapphire)
+* [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
+* [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
+
 ## Features
 
 * Handle news and impressions besides the news.
 * Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: [`OpenGraph module`](https://github.com/tractorcow/silverstripe-opengraph)
 * History of URL-segments.
 * Support for custom comments.
-* Akismet support. Requires [`this module`](https://github.com/i-lateral/silverstipe-akismet) (or, at least, the Akismet and SSAkismet classes)
+* Akismet support. Akismet class included in thirdparty dir. Remove it if you have it included already.
 * Globally available NewsArchive function.
+* Geshi code-rendering support. use `[code type=php]your code here[/code]`
+* Tweet rendering by Twitter. Include the twitter widget JS and in your content, just do [tweet id=tweetID]
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
 * RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly by some versions of the HTTP class in the RSS-entry builder!)
@@ -94,9 +102,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 ## Plans
 
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
-* Fix the slideshow to listen to the SiteConfig settings.
 * Add a "Fetch me a beer" function. Should be useful I think.
-* More to come, but I can't think of it right now :(
 
 ## Known Issues
 

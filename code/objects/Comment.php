@@ -83,7 +83,7 @@ class Comment extends DataObject {
 			$this->URL = 'http://'.$this->URL;
 		}
 		$this->MD5Email = md5($this->Email);
-		if(class_exists(Akismet) && $SiteConfig->AkismetKey) {
+		if($SiteConfig->AkismetKey) {
 			try {
 				$akismet = new Akismet(Director::absoluteBaseURL(), $SiteConfig->AkismetKey);
 				$akismet->setCommentAuthor($this->Name);
