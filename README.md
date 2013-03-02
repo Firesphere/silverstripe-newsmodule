@@ -80,7 +80,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 ## Best Practices
 
 * Write grammatically correct.
-* If you have Akismet, add your Akismet API-key to _config.php as exampled. It saves you from comment-spam
+* If you have Akismet, add your Akismet API-key to the SiteConfig in News settings (It's in the Comments-section). It saves you from comment-spam
 
 ## Configuration
 
