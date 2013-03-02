@@ -224,7 +224,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 				)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				if($news->count() > 0){
-					return $news->first();
+					$news = $news->first();
+					$news->Visits = $news->Visits + 1;
+					$news->write();
+					return $news;
 				}
 				else{
 					$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']));
