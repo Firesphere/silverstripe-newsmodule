@@ -21,37 +21,34 @@ class NewsSiteConfigDecorator extends DataExtension {
 		 * Preparing the slideshow integration!
 		 */
 		'SlideshowInitial' => 'Boolean(true)',
-		'SlideshowSize' => 'Int',
+		'SlideshowSize' => 'Varchar(15)',
 	);
 	
 	public function updateCMSFields(FieldList $fields){
 
 		$fields->addFieldToTab(
 			'Root',
-			Tab::create(
+			TabSet::create(
 				'Newssettings', // name
 				_t($this->class . '.NEWSCOMMENTS', 'News settings'), // title
-				CheckboxField::create('Comments', _t($this->class . '.COMMENTS', 'Allow comments on newsitems')),
-				CheckboxField::create('MustApprove', _t($this->class . '.APPROVE', 'Comments must be approved')),
-				CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')),
-				CheckboxField::create('Gravatar', _t($this->class . '.GRAVATAR', 'Use Gravatar-Image')),
-				TextField::create('DefaultGravatar', _t($this->class . '.GRAVURL', 'Default Gravatar-image url')),
-				NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size')),
-				TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
-				TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
-			),
-			'Access'
-		);
-		/**
-		 * This is in preparation of the slideshow-sizing and showing. It is NOT YET FUNCTIONAL!
-		 */
-		$fields->addFieldToTab(
-			'Root',
-			Tab::create(
-				'Slideshowsettings', // name
-				_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow in news settings'), // title
-				CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
-				TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank to control from CSS'))
+				Tab::create(
+					'Comments',
+					_t($this->class . '.COMMENTS', 'News and Comments'),
+					CheckboxField::create('Comments', _t($this->class . '.COMMENTS', 'Allow comments on newsitems')),
+					CheckboxField::create('MustApprove', _t($this->class . '.APPROVE', 'Comments must be approved')),
+					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')),
+					CheckboxField::create('Gravatar', _t($this->class . '.GRAVATAR', 'Use Gravatar-Image')),
+					TextField::create('DefaultGravatar', _t($this->class . '.GRAVURL', 'Default Gravatar-image url')),
+					NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size')),
+					TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
+					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
+				),
+				Tab::create(
+					'Slideshowsettings', // name
+					_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow in news settings'), // title
+					CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
+					TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
+				)
 			),
 			'Access'
 		);

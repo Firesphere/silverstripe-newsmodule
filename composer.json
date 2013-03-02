@@ -3,10 +3,13 @@
 	"description": "A ModelAdmin based newsmodule to prevent clutter in the SiteTree",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "news", "blog", "slideshow"],
+	"license": "BSD-2-Clause",
 	"authors": [
 	{
 		"name": "Simon 'Sphere' Erkelens",
-		"email": "simon@casa-laguna.net"
+		"email": "simon@casa-laguna.net",
+		"homepage": "http://casa-laguna.net",
+		"role": "Developer"
 	}
 	],
 	"support": {
