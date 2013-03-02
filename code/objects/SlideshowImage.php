@@ -22,7 +22,7 @@ class SlideshowImage extends DataObject {
 	
 	public function getCMSFields($params = null) {
 		$fields = parent::getCMSFields($params);
-		$fields->removeFieldsFromTab('Root.Main', array('Image','News','Sortorder'));
+		$fields->removeFieldsFromTab('Root.Main', array('NewsID','SortOrder'));
 		return $fields;
 	}
 	
