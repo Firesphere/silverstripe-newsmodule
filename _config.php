@@ -6,8 +6,6 @@ Object::add_extension('ContentController', 'NewsExtension');
 Object::add_extension('SiteConfig', 'NewsSiteConfigDecorator');
 // Use an icon
 LeftAndMain::require_css('silverstripe-newsmodule/css/news_icon.css');
-// Setup Akismet. Disable when you don't have an Akismet API key.
-// SSAkismet::setAPIKey('YOURAPIKEY');
 
 /**
  * Remove or comment the following lines to disable features.
