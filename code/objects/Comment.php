@@ -83,14 +83,14 @@ class Comment extends DataObject {
 			$this->URL = 'http://'.$this->URL;
 		}
 		$this->MD5Email = md5($this->Email);
-		if(class_exists(SSAkismet) && SSAkismet::isEnabled()) {
+		if(class_exists(Akismet) && $SiteConfig->AkismetKey) {
 			try {
-				$akismet = new SSAkismet();
+				$akismet = new Akismet(Director::absoluteBaseURL(), $SiteConfig->AkismetKey);
 				$akismet->setCommentAuthor($this->Name);
 				$akismet->setCommentContent($this->Comment);
-
+				$akismet->setCommentAuthorEmail($this->Email);
+				$akismet->setCommentAuthorURL($this->URL);
 				$result = (int)$akismet->isCommentSpam();
-
 				if($result){
 					if(SSAkismet::getSaveSpam()) $this->AkismetMarked = true;
 				}
