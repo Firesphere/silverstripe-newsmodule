@@ -27,5 +27,26 @@
 
     </div>
         <div class="clear"></div>
+	      <div class='pagination'>
+<% if allNews.MoreThanOnePage %>
+    <% if allNews.NotFirstPage %>
+        <a class="prev" href="$allNews.PrevLink">Prev</a>
+    <% end_if %>
+    <% loop allNews.PaginationSummary %>
+        <% if CurrentBool %>
+            $PageNum
+        <% else %>
+            <% if Link %>
+                <a href="$Link">$PageNum</a>
+            <% else %>
+                ...
+            <% end_if %>
+        <% end_if %>
+        <% end_loop %>
+    <% if allNews.NotLastPage %>
+        <a class="next" href="$allNews.NextLink">Next</a>
+    <% end_if %>
+<% end_if %>
+	      </div>
   </div>
 </div>

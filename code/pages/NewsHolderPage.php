@@ -315,8 +315,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
-		if($allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))){
-			return $allEntries;
+		$SiteConfig = SiteConfig::current_site_config();
+		if($allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d')) && $SiteConfig->PPP){
+			$records = PaginatedList::create($allEntries,$this->request);
+			$records->setPageLength($SiteConfig->PPP);
+			return $records;
 		}
 		return null;
 	}
