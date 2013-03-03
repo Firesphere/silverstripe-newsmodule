@@ -49,6 +49,7 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
 * The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
+* Posts per Page and Pagination. If set to 0, it won't paginate.
 
 ## Demo of frontend
 
