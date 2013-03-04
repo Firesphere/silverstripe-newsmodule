@@ -190,6 +190,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return $rss->outputToBrowser();
 	}
 	
+	/**
+	 * I need to fix this sort for the publishfrom-date. See News Object for better sorting.
+	 */
 	public function getRSSFeed() {
 		return News::get()
 			->filter(array('Live' => 1))
