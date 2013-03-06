@@ -20,6 +20,9 @@ class SlideshowImage extends DataObject {
 		'News' => 'News',
 	);
 	
+	/**
+	 * @todo built a good fieldlist!
+	 */
 	public function getCMSFields($params = null) {
 		$fields = parent::getCMSFields($params);
 		$fields->removeFieldsFromTab('Root.Main', array('NewsID','SortOrder'));
