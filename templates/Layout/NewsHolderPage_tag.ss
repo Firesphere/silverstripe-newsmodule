@@ -1,5 +1,4 @@
 <div class="wrapper row1">
-<% include Header %>
   <section id="shout" class="clear">
 <% with currentTag %>
 	    <% if Impression %>
