@@ -172,10 +172,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$this->MetaDescription .= ' ' . $tags->Title;
 		}
 	}
-	
-	public function MetaTags(){
-		return $this->MetaTags();
-	}
 
 	/**
 	 * Generate an RSS-feed.
