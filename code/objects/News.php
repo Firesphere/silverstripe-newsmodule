@@ -203,7 +203,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
+//				Disabled temporarily since it seems to be a bit an issue.
+//				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$numb = ReadOnlyField::create('VisitsCount', _t($this->class . '.VISITS', 'Visits count indication'), $this->Visits / 5), // Appearantly, there's a total of 5 calls per request.
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
