@@ -95,6 +95,22 @@ class NewsHolderPage extends Page {
 		}
 	}
 	
+	public function requireDefaultRecords()	{
+		parent::requireDefaultRecords();
+		if(NewsHolderPage::get()->count() == 0){
+			$page = NewsHolderPage::create();
+			$page->Title = _t($this->class . '.DEFAULTPAGETITLE', 'Newspage');
+			$page->Content = '';
+			$page->URLSegment = 'news';
+			$page->Sort = 1;
+			$page->Status = 'Published';
+			$page->write();
+			$page->publish('Stage','Live');
+			$page->flushCache();
+			DB::alteration_message('Newsholder Page created', 'created');
+		}
+	}
+	
 }
 
 /**
@@ -174,6 +190,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
+	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
 	 * @return type RSS-feed output.
 	 */
@@ -186,6 +203,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return $rss->outputToBrowser();
 	}
 
+	/**
+	 * I'm guessing this PublishFrom value bugs out too.
+	 * @return type DataList with Newsitems
+	 */
 	public function getRSSFeed() {
 		return News::get()
 			->filter(array('Live' => 1))
@@ -197,6 +218,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public?
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
+	 * @todo clean this up. I'm not entirely happy with this procedure.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
 	public function getNews(){
@@ -221,7 +243,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				if($news->count() > 0){
 					$news = $news->first();
-					$news->Visits = $news->Visits + 1;
 					$news->write();
 					return $news;
 				}
@@ -240,6 +261,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Get the correct tags.
 	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
+	 * @todo Clean this mess too. It's far from optimal.
 	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
 	 * @return type DataObject or DataList with tags or news.
 	 */
@@ -267,6 +289,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Just return this. currentNewsItem should fix it. This one is for show.
+	 * @todo fix redundancy check. It makes 5 requests to the database. It should be 1, preferably.
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
@@ -275,18 +298,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		else{
 			$this->redirect($this->Link());
-		}
-	}
-	
-	public function tag(){
-		if($this->getTags()){
-			return $this;
-		}
-	}
-	
-	public function tags(){
-		if($this->getTags()){
-			return $this;
 		}
 	}
 	
@@ -302,6 +313,24 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}	
 	}
 	
+	/**
+	 * Tag functions. They always return this, so the template addressing can address the getTags function.
+	 * I wonder if it really needs to do the check, it's another redundancy-thing.
+	 * @todo Fix the redundant check. It's all extra operations now.
+	 * @return \NewsHolderPage_Controller
+	 */
+	public function tag(){
+		if($this->getTags()){
+			return $this;
+		}
+	}
+	
+	public function tags(){
+		if($this->getTags()){
+			return $this;
+		}
+	}
+
 	public function currentTag(){
 		return $this->getTags();
 	}
