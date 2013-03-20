@@ -89,6 +89,9 @@ class NewsHolderPage extends Page {
 	public static function createSlideshow($arguments){
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
+			/**
+			 * @todo ORM is not obeying the sortorder method. Fix available asap!
+			 */
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
 			$template = new SSViewer('NewsSlideshow');
 			return($template->process($record));

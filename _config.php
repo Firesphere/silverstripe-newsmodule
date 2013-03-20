@@ -13,13 +13,10 @@ LeftAndMain::require_css('silverstripe-newsmodule/css/news_icon.css');
  * 
  * To enable, just add a / directly after the star below this line
  *
-ShortcodeParser::get()->register(
-	array(
- 
-		'tweet' => array('NewsHolderPage','TweetHandler'),
-		'code' => array('NewsHolderPage','GeshiParser'),
-		'YT' => array('NewsHolderPage','YouTubeHandler'),
-		'slideshow' => array('NewsHolderPage','createSlideshow')
-	)
-);
+ * 
+// It seems an array bugs out :(
+ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
+ShortcodeParser::get()->register('code',array('NewsHolderPage','GeshiParser'));
+ShortcodeParser::get()->register('YT',array('NewsHolderPage','YouTubeHandler'));
+ShortcodeParser::get()->register('slideshow', array('NewsHolderPage','createSlideshow'));
 /*This comment is here to save you from WTF HAPPENED!*/
