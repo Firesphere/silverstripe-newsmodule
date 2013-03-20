@@ -24,7 +24,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
-		'Visits' => 'Int',
 	);
 	
 	public static $has_one = array(
@@ -206,7 +205,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 //				Disabled temporarily since it seems to be a bit an issue.
 //				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
-				$numb = ReadOnlyField::create('VisitsCount', _t($this->class . '.VISITS', 'Visits count indication'), $this->Visits / 5), // Appearantly, there's a total of 5 calls per request.
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
 				$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'))
