@@ -89,7 +89,7 @@ class NewsHolderPage extends Page {
 	public static function createSlideshow($arguments){
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
-			$record->Image = $record->SlideshowImages();
+			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
 			$template = new SSViewer('NewsSlideshow');
 			return($template->process($record));
 		}
