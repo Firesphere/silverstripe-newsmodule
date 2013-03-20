@@ -420,6 +420,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @param object $form 
 	 */
 	public function CommentStore($data, $form){
+		/**
+		 * If the "Extra" field is filled, we have a bot.
+		 */
 		if($data['Extra'] == ''){
 			$data['Comment'] = Convert::raw2sql($data['Comment']);
 			if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
