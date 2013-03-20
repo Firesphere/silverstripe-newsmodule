@@ -10,7 +10,16 @@ LeftAndMain::require_css('silverstripe-newsmodule/css/news_icon.css');
 /**
  * Remove or comment the following lines to disable features.
  * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
- */
-ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
-ShortcodeParser::get()->register('code',array('NewsHolderPage','GeshiParser'));
-ShortcodeParser::get()->register('YT',array('NewsHolderPage','YouTubeHandler'));
+ * 
+ * To enable, just add a / directly after the star below this line
+ *
+ShortcodeParser::get()->register(
+	array(
+ 
+		'tweet' => array('NewsHolderPage','TweetHandler'),
+		'code' => array('NewsHolderPage','GeshiParser'),
+		'YT' => array('NewsHolderPage','YouTubeHandler'),
+		'slideshow' => array('NewsHolderPage','createSlideshow')
+	)
+);
+/**/
