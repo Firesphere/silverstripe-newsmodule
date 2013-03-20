@@ -388,7 +388,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
 		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
 		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
-		
+		if($siteconfig->ExtraSecurity){
+			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
+		}
 		$fields = FieldList::create(
 			$field
 		);
@@ -415,12 +417,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @param object $form 
 	 */
 	public function CommentStore($data, $form){
-		$data['Comment'] = Convert::raw2sql($data['Comment']);
-		if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
-			$comment = new Comment();
-			$form->saveInto($comment);
-			$comment->NewsID = $data['NewsID'];
-			$comment->write();
+		if($data['Extra'] == ''){
+			$data['Comment'] = Convert::raw2sql($data['Comment']);
+			if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
+				$comment = new Comment();
+				$form->saveInto($comment);
+				$comment->NewsID = $data['NewsID'];
+				$comment->write();
+			}
 		}
 		$this->redirectBack();
 	}

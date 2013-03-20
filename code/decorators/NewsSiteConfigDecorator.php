@@ -13,6 +13,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'MustApprove' => 'boolean(true)',
 		'Gravatar' => 'boolean(true)',
 		'AkismetKey' => 'Varchar(255)',
+		'ExtraSecurity' => 'Boolean(true)',
 		'PostsPerPage' => 'Int',
 		'DefaultGravatar' => 'Varchar(255)',
 		'GravatarSize' => 'Int',
@@ -45,7 +46,8 @@ class NewsSiteConfigDecorator extends DataExtension {
 					CheckboxField::create('Gravatar', _t($this->class . '.GRAVATAR', 'Use Gravatar-Image')),
 					TextField::create('DefaultGravatar', _t($this->class . '.GRAVURL', 'Default Gravatar-image url')),
 					NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size')),
-					TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key'))
+					TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
+					CheckboxField::create('ExtraSecurity', _t($this->class . '.SPAMPROTECTION', 'Use an extra field for spamprotection'))
 				),
 				Tab::create(
 					'Slideshowsettings', // name

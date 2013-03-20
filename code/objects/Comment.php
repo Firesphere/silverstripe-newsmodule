@@ -110,19 +110,16 @@ class Comment extends DataObject {
 	 * Examples:
 	 * Add an info e-mail field to your siteconfig, and use that field as your reference for the setTo.
 	 * Also, the From could be $this->Email, so you could reply if needed. (Unless you decided E-mail is not required)
-	 * Besides that, you could add an if-method to only e-mail when a comment is marked by Akismet. 
 	 */
 	public function onAfterWrite(){
 		$SiteConfig = SiteConfig::current_site_config();
-		if($this->AkismetMarked == true || $SiteConfig->MustApprove == true){
-			$mail = new Email();
-			$mail->setTo('you@your-domain.com');
-			$mail->setSubject('New post titled: ' .$this->Title);
-			$mail->setFrom('info@your-domain.com');
-			$mail->setTemplate('CommentPost');
-			$mail->populateTemplate($this);
-			$mail->send();
-		}
+		$mail = new Email();
+		$mail->setTo('you@your-domain.com');
+		$mail->setSubject('New post titled: ' .$this->Title);
+		$mail->setFrom('info@your-domain.com');
+		$mail->setTemplate('CommentPost');
+		$mail->populateTemplate($this);
+		$mail->send();
 	}
 	
 }

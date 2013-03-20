@@ -36,6 +36,8 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * History of URL-segments.
 * Support for custom comments.
 * Akismet support. Akismet class included in thirdparty dir. Remove it if you have it included already.
+* Option to add an "Extra" titled field. If this field is not empty, the post is considered spam. In your CSS, position it absolute and very, very, very much outside the screen.
+* Preferred anti-spam method is NOT using a Captcha.
 * Globally available NewsArchive function.
 * Geshi code-rendering support. use `[code type=php]your code here[/code]`
 * Tweet rendering by Twitter. Include the twitter widget JS and in your content, just do [tweet id=tweetID]
@@ -99,6 +101,8 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * In _config, you can disable, edit or change parsers. Note, the parsers are **GLOBAL**, so $Content from pages will be parsed too!
 * In javascript/newsmodule.js, you can configure the tagcloud. Which element it should trigger on, etc.
 * Check the templates, Replace placeholder texts!
+* Set optional extra anti-spam methods in your SiteConfig
+If you set optional extra anti-spam method, the commentform will contain a field with the ID "Extra", position it "on the other side of the street", e.g. a position absolute with in your css #Extra.field{ left: -9000; }
 
 ## Plans
 
