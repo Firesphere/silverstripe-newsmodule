@@ -388,6 +388,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
 		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
 		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
+		/**
+		 * See the README.md about this!
+		 */
 		if($siteconfig->ExtraSecurity){
 			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
 		}
