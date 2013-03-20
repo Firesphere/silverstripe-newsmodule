@@ -22,4 +22,4 @@ ShortcodeParser::get()->register(
 		'slideshow' => array('NewsHolderPage','createSlideshow')
 	)
 );
-/**/
+/*This comment is here to save you from WTF HAPPENED!*/
