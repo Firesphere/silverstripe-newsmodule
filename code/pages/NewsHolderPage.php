@@ -89,15 +89,21 @@ class NewsHolderPage extends Page {
 	public static function createSlideshow($arguments){
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
-			/**
-			 * @todo ORM is not obeying the sortorder method. Fix available asap!
-			 */
+			if($SiteConfig->SlideshowInitial){
+				$template = 'NewsSlideShowFirst';
+			}
+			else{
+				$template = 'NewsSlideShowAll';
+			}
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
-			$template = new SSViewer('NewsSlideshow');
+			$template = new SSViewer($template);
 			return($template->process($record));
 		}
 	}
 	
+	/**
+	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
+	 */
 	public function requireDefaultRecords()	{
 		parent::requireDefaultRecords();
 		if(NewsHolderPage::get()->count() == 0){
