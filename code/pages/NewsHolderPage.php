@@ -158,13 +158,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();
-		if($news = $this->getNews()){      
+		if($news = $this->getNews() && $Params['Action'] == 'show'){
 			$this->Title = $news->Title . ' - ' . $this->Title;
 		}
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags()){
+		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -241,7 +241,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		else{
 			$live = 0;
 		}
-		fb($live);
 		if($Params['Action'] == 'show'){
 			if(is_numeric($Params['ID'])){
 				if($live){
