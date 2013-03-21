@@ -210,6 +210,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'))
 			)
 		);
+		if($this->ID){
+			$fields->addFieldToTab(
+				'Root.Main',
+				new LiteralField('Dummy',
+					'<div id="Dummy" class="field readonly">
+	<label class="left" for="Form_ItemEditForm_Dummy">Link</label>
+	<div class="middleColumn">
+	<span id="Form_ItemEditForm_Dummy" class="readonly">
+		<a href="'.$this->AbsoluteLink().'" target="_blank">'.$this->AbsoluteLink().'</a>
+	</span>
+	</div>
+	</div>'
+				),
+				'Title'
+			);
+		}
 		$fields->addFieldToTab(
 			'Root',
 			Tab::create(

@@ -232,27 +232,50 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
+		/**
+		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
+		 */
+		if(Member::currentUserID() != 0 && Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
+			$live = 1;
+		}
+		else{
+			$live = 0;
+		}
+		fb($live);
 		if($Params['Action'] == 'show'){
 			if(is_numeric($Params['ID'])){
-				$news = News::get()->filter(array(
-					'ID' => $Params['ID'],
-					'Live' => 1
-				))->first();
+				if($live){
+					$filter = array(
+						'ID' => $Params['ID'],
+					);
+				}
+				else{
+					$filter = array(
+						'ID' => $Params['ID'],
+						'Live' => 1
+					);
+				}
+				$news = News::get()->filter($filter)->first();
 				$link = $this->Link('show/').$news->URLSegment;
 				$this->redirect($link, 301);
 				return false;
 			}
 			else{
-				$news = News::get()->filter(
-					array(
+				if($live){
+					$filter = array(
+						'URLSegment' => $Params['ID'], // Oh the irony!
+					);
+				}
+				else{
+					$filter = array(
 						'URLSegment' => $Params['ID'], // Oh the irony!
 						'Live' => 1
-					)
-				)
+					);
+				}
+				$news = News::get()->filter($filter)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				if($news->count() > 0){
 					$news = $news->first();
-					$news->write();
 					return $news;
 				}
 				else{
@@ -361,7 +384,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return $records;
 		}
-		return null;
+		return false;
 	}
 	
 	/**

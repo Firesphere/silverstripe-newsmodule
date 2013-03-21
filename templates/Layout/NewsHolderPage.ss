@@ -2,6 +2,7 @@
   <div id="container">
     <div id="homepage">
       <section id="latest_work">
+	      <% if allNews %>
       <% loop allNews %>
       <article class="one_third $FirstLast <% if IsThird %>First<% end_if %>">
 	      	      <div class="articleContainer">
@@ -22,7 +23,7 @@
 	  <% end_if %>
         </article>
 	      <% end_loop %>
-   
+	      <% end_if %>
       </section>
 
     </div>
