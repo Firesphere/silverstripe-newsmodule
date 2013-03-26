@@ -20,7 +20,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'URLSegment' => 'Varchar(255)',
 		'Content' => 'HTMLText',
 		'PublishFrom' => 'Date',
-		'Locale' => 'Boolean(false)',
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
