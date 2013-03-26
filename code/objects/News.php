@@ -95,9 +95,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
 			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
-		$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
-		if(count($translatable) > 1){
-			$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
+		if(class_exists('Translatable')){
+			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
+			if(count($translatable) > 1){
+				$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
+			}
 		}
 		$this->extend('summary_fields', $summaryFields);
 
@@ -122,12 +124,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * For some reason, forcing a source fails :(
 		 * For now, just type the locales, ok?
 		 */
-		$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
-		if(count($translatable) > 1){
-			$searchableFields['NewsHolderPage.Locale'] = array(
-				'title' => _t($this->class . '.LOCALE', 'Language'),
-			);
-		}		
+		if(class_exists('Translatable')){
+			$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
+			if(count($translatable) > 1){
+				$searchableFields['NewsHolderPage.Locale'] = array(
+					'title' => _t($this->class . '.LOCALE', 'Language'),
+				);
+			}
+		}
 		return $searchableFields;
 	}
 	
@@ -153,9 +157,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * If there are multiple translations available, add the field.
 		 * This better not break?
 		 */
-		$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
-		if(count($translatable) > 1){
-			$translate = DropdownField::create('Lang', _t($this->class . '.LOCALE', 'Locale'), $translatable);
+		if(class_exists('Translatable')){
+			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
+			if(count($translatable) > 1){
+				$translate = DropdownField::create('Lang', _t($this->class . '.LOCALE', 'Locale'), $translatable);
+			}
 		}
 		else{
 			$translate = LiteralField::create('Doh', '');
@@ -322,9 +328,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			$this->NewsHolderPageID = $page->ID;
 		}
 		else{
-			fb($this->Lang);
 			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Lang);
-			fb($page->ID);exit;
 			$this->NewsHolderPage = $page->ID;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
