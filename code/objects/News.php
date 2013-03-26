@@ -20,7 +20,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'URLSegment' => 'Varchar(255)',
 		'Content' => 'HTMLText',
 		'PublishFrom' => 'Date',
-		'Lang' => 'Boolean(false)',
+		'Locale' => 'Boolean(false)',
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
@@ -37,7 +37,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	
-	public static $belongs_many_many = array(
+	public static $many_many = array(
 		'Tags' => 'Tag',
 	);
 
@@ -139,48 +139,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			return $this->Created;
 		}
 		return $this->PublishFrom;
-	}
-
-	/**
-	 * Why do I have to do this???
-	 * We can't feed an array directly into the searchfields, so, we have to make a workaround.
-	 * Buh...
-	 * @todo cleanup and make it working.
-	 * @param type $_params
-	 * @return type 
-	 */
-	public function scaffoldSearchFields($_params = null){
-		$fields = parent::scaffoldSearchFields();
-		if(array_search('Translatable', SiteTree::$extensions)){
-			$data = new SQLQuery();
-			$data->select(array('ID', 'Locale'));
-			$data->from = array('SiteTree');
-			$data->where = array('ClassName = \'NewsHolderPage\'', 'Status = \'Published\'');
-			$array = $data->execute();
-			if(count($array) > 0){
-				if(count($array->map()) > 1){
-					$locales = i18n::get_common_locales();
-					$return = array('' => _t($this->class . '.SELECTSOME', '--Select a locale--'));
-					$array = $array->map('ID', 'Locale');
-					foreach($array as $key => $value){
-						if(substr($value, 0, 2) != '--'){
-							$return[$key] = $locales[$value];
-						}
-					}
-					unset($value);
-				}
-			}
-
-
-			if(count($array) > 1){
-				foreach($fields->items as $item => $field){
-					if($field->name == 'NewsHolderPageID'){
-						$field->source = $return;
-					}
-				}
-			}
-		}
-		return $fields;
 	}
 	
 	public function getCMSFields() {

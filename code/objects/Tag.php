@@ -22,7 +22,7 @@ class Tag extends DataObject {
 		'Impression' => 'Image',
 	);
 	
-	public static $many_many = array(
+	public static $belongs_many_many = array(
 		'News' => 'News',
 	);
 
