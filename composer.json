@@ -21,6 +21,9 @@
 		"colymba/GridFieldBulkEditingTools" : "*",
 		"UndefinedOffset/SortableGridField" : "*"
 	},
+	"suggest": {
+		"silverstripe/translatable": "*"
+	},
 	"extra": {
 		"installer-name": "silverstripe-newsmodule"
 	}

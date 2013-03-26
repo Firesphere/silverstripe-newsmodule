@@ -95,7 +95,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
 			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
-		if(array_search('Translatable', SiteTree::$extensions)){
+		$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
+		if(count($translatable) > 1){
 			$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
 		}
 		$this->extend('summary_fields', $summaryFields);
@@ -108,6 +109,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return array Searchable Fields translatable
 	 */
 	public function searchableFields(){
+		$searchableFields = parent::searchableFields();
 		$searchableFields = array(
 			'Title' => array(
 				'field'  => 'TextField',
@@ -115,17 +117,17 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				'title'  => _t($this->class . '.TITLE','Title')
 			),
 		);
-		if(array_search('Translatable', SiteTree::$extensions)){
-			$searchableFields['NewsHolderPageID'] = array(
-				'field' => 'DropdownField',
+		/**
+		 * THIS DOES NOT WORK YET!
+		 * For some reason, forcing a source fails :(
+		 * For now, just type the locales, ok?
+		 */
+		$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
+		if(count($translatable) > 1){
+			$searchableFields['NewsHolderPage.Locale'] = array(
 				'title' => _t($this->class . '.LOCALE', 'Language'),
-				'filter' => 'ExactMatchFilter',
-
 			);
-		}
-
-		$this->extend('searchable_fields', $searchableFields);
-		
+		}		
 		return $searchableFields;
 	}
 	
@@ -147,6 +149,17 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
 		}
+		/**
+		 * If there are multiple translations available, add the field.
+		 * This better not break?
+		 */
+		$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
+		if(count($translatable) > 1){
+			$translate = DropdownField::create('Lang', _t($this->class . '.LOCALE', 'Locale'), $translatable);
+		}
+		else{
+			$translate = LiteralField::create('Doh', '');
+		}
 		
 		$fields = FieldList::create(TabSet::create('Root'));
 		
@@ -157,6 +170,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				_t($this->class . '.MAIN', 'Main'),
 				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
+				$translate,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 //				Disabled temporarily since it seems to be a bit an issue.
@@ -246,11 +260,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return type 
 	 */
 	public function getLocale(){
-		if($this->NewsHolderPage()->ID){
-			$parent = SiteTree::get()->filter(array('ID' => $this->NewsHolderPage()->ID))->first();
-			$locales = i18n::get_common_locales();
+		$parent = $this->NewsHolderPage();
+		if($parent && class_exists('Translatable')){
 			if($parent->Locale){
-				return $locales[$parent->Locale];
+				return $parent->Locale;
 			}
 		}
 	}
@@ -304,9 +317,15 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->NewsHolderPageID){
+		if(!$this->Lang){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
+		}
+		else{
+			fb($this->Lang);
+			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Lang);
+			fb($page->ID);exit;
+			$this->NewsHolderPage = $page->ID;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
