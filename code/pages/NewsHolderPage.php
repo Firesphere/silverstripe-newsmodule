@@ -214,6 +214,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * I'm guessing this PublishFrom value bugs out too.
+	 * @todo make language-specific versions
 	 * @return type DataList with Newsitems
 	 */
 	public function getRSSFeed() {
@@ -246,10 +247,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 				if($live){
 					$filter = array(
 						'ID' => $Params['ID'],
+						'NewsHolderPageID' => $this->ID,
 					);
 				}
 				else{
 					$filter = array(
+						'NewsHolderPageID' => $this->ID,
 						'ID' => $Params['ID'],
 						'Live' => 1
 					);
@@ -263,10 +266,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 				if($live){
 					$filter = array(
 						'URLSegment' => $Params['ID'], // Oh the irony!
+						'NewsHolderPageID' => $this->ID
 					);
 				}
 				else{
 					$filter = array(
+						'NewsHolderPageID' => $this->ID,
 						'URLSegment' => $Params['ID'], // Oh the irony!
 						'Live' => 1
 					);
@@ -288,7 +293,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			return false;
 		}
 	}
-
+	
 	/**
 	 * Get the correct tags.
 	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
@@ -324,6 +329,18 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
+		if($this->getNews()){
+			return $this;
+		}
+		else{
+			$this->redirect($this->Link());
+		}
+	}
+	/**
+	 * Handle the Archive, if needed.
+	 * @return \NewsHolderPage_Controller
+	 */
+	public function archive() {
 		if($this->getNews()){
 			return $this;
 		}
@@ -371,7 +388,16 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+		if(!$SiteConfig->ArchiveNews){
+			$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+		}
+		else{
+			/**
+			 * This should take into account, the PublishFrom value.
+			 * @todo fix this. It's not working yet
+			 */
+			$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));// . ' AND (PublishFrom DATEDIFF(\''.date('Y-m-d').'\',\''.date('Y-m-d', strtotime('PublishFrom')).'\') <= '.$SiteConfig->AutoArchiveDays);
+		}
 		if($allEntries->count() > 0){
 			$records = PaginatedList::create($allEntries,$this->request);
 			if($SiteConfig->PostsPerPage == 0){
