@@ -4,8 +4,6 @@
  * Sit back and relax, this might take a while.
  * History is NOT supported. Only the URLSegment is being tracked. This makes it a bit more simplistic.
  * 
- * Ow, yes, translatable... Can I ponder on that please?
- * 
  * @package News/blog module
  * @author Simon 'Sphere' 
  */
@@ -23,6 +21,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Tweeted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
+		'Locale' => 'Varchar(10)',
 	);
 	
 	public static $has_one = array(
@@ -160,7 +159,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
-				$translate = DropdownField::create('Lang', _t($this->class . '.LOCALE', 'Locale'), $translatable);
+				$translate = DropdownField::create('Locale', _t($this->class . '.LOCALE', 'Locale'), $translatable);
 			}
 		}
 		else{
@@ -323,7 +322,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->Lang){
+		if(!$this->Locale){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
