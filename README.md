@@ -1,6 +1,12 @@
 # silverstripe-newsmodule
 =======================
 
+### REQUEST
+
+If you can translate the yaml files into your native language, would be great.
+If you can't/wont push/fork, you can e-mail me the translations.
+(Issue #25 )
+
 ## Introduction
 
 This is the Silverstripe 3 Newsmodule. It's separate from the SiteTree.
