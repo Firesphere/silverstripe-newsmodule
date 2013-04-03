@@ -16,6 +16,8 @@ nl_NL:
     SLIDESHOWSETTINGS: "Fotoshow"
     SLIDEINITIAL: "Toon alleen de eerste afbeelding in het nieuwsitem"
     SLIDESIZE: "Maximum formaat full-size afbeeldingen. Bijvoorbeeld 1024x768"
+    AUTOARCHIVE: "Archiveer items automatisch"
+    AUTOARCHIVEDAYS: "Archiveer na X dagen"
   Commment:
     SINGULARNAME: "Reactie"
     PLURALNAME: "Reacties"
@@ -36,6 +38,13 @@ nl_NL:
     IMPRESSION: "Impressieafbeelding"
     TAGS: "Tags"
     COMMENTS: "Reacties"
+    SLIDE: "Slideshow"
+    IMAGES: "Slideshow afbeeldingen"
+  SlideshowImage:
+    SINGULARNAME: "Slideshow"
+    PLURALNAME: "Slideshows"
+    TITLE: "Titel"
+    DESCRIPTION: "Beschrijving"
   Tag:
     SINGULARNAME: "Tag"
     PLURALNAME: "Tags"

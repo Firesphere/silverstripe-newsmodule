@@ -58,6 +58,7 @@ class Comment extends DataObject {
 	
 	/**
 	 * For translations, we need a few updates here, but at least we hide the md5 of the e-mail.
+	 * @todo create a better cmsfield setup.
 	 * @return type FieldList
 	 */
 	public function getCMSFields() {

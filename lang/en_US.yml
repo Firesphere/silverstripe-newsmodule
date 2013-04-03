@@ -16,6 +16,8 @@ en_US:
     SLIDESHOWSETTINGS: "Slideshow"
     SLIDEINITIAL: "Show only the first image"
     SLIDESIZE: "Maximum size of the full-size images. E.g. 1024x768"
+    AUTOARCHIVE: "Archive posts older then given days"
+    AUTOARCHIVEDAYS: "Archive after X days"
   Commment:
     SINGULARNAME: "Comment"
     PLURALNAME: "Comments"
@@ -36,6 +38,13 @@ en_US:
     IMPRESSION: "Impression-image"
     TAGS: "Tags"
     COMMENTS: "Comments"
+    SLIDE: "Slideshow"
+    IMAGES: "Slideshow images"
+  SlideshowImage:
+    SINGULARNAME: "Slideshow"
+    PLURALNAME: "Slideshows"
+    TITLE: "Title"
+    DESCRIPTION: "Description"
   Tag:
     SINGULARNAME: "Tag"
     PLURALNAME: "Tags"
