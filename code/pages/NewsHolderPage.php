@@ -398,8 +398,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		if(!$SiteConfig->AutoArchive){
-			$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+		if(!$SiteConfig->AutoArchive || $SiteConfig->AutoArchiveDays == 0){
+			$allEntries = News::get()->filter(array('Live' => 1, 'NewsHolderPageID' => $this->ID))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
 		else{
 			/**
@@ -409,6 +409,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$filter = array(
 				'Created:GreaterThan' => date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')),
 				'Live' => 1,
+				'NewsHolderPageID' => $this->ID
 			);
 			$allEntries = News::get()->filter($filter)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
