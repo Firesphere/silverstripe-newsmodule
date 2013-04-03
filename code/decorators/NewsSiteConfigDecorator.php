@@ -2,7 +2,6 @@
 /**
  * Add some settings to the siteconfig. Pretty easy, right?
  *
- * TweetOnPost requires a new module I'm busy writing. To connect Silverstripe admin to Twitter.
  * @package News/blog module
  * @author Sphere
  */
@@ -37,7 +36,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 				Tab::create(
 					'News',
 					_t($this->class . '.NEWS','News'),
-					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')),
+					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')), // Requires Firesphere/silverstripe-social
 					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
 				),
 				Tab::create(

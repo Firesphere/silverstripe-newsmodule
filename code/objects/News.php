@@ -267,7 +267,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function fetchLocale(){
 		$locales = Translatable::get_existing_content_languages();
-		fb($this->NewsHolderPage()->ID);
 		return($locales[$this->NewsHolderPage()->Locale]);
 	}
 

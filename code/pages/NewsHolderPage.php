@@ -21,10 +21,7 @@ class NewsHolderPage extends Page {
 	 */
 	public function MetaTags($includeTitle = true) {
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
-			//Someone please tell me I didn't forget the actual frikkin' MetaTags function?
 			return $record->MetaTags($includeTitle);
-			// Crap. Ok, working on it!
-			// Note, this requires the OpenGraph Module!
 		}
 		return parent::MetaTags($includeTitle);
 	}
@@ -86,6 +83,11 @@ class NewsHolderPage extends Page {
 		return $template->process(new ArrayData($customise));
 	}
 
+	/**
+	 * 
+	 * @param type $arguments null
+	 * @return type HTML Parsed for template.
+	 */
 	public static function createSlideshow($arguments){
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
@@ -171,23 +173,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * These seem to be no longer picked up. Ah well.
+	 * Does this still work? I think it bugs.
 	 */
-	public function MetaKeywords(){
-		$news = $this->getNews();
-		if($Params['Action'] == 'show' && $news->ID > 0){
-			$tags = $news->Tags()->column('Title');
-			$this->MetaKeywords .= implode(', ', explode(' ', $news->Title)) . ', ' . implode(', ', $tags);
-		}		
-		elseif($Params['Action'] == 'tags'){
-			$tags = Tag::get()->column('Title');
-			$this->MetaKeywords .= implode(', ', $tags).' , All, tags';
-		}
-		elseif($tags = $this->getTags()){
-			$this->MetaKeywords .= $tags->Title;
-		}
-	}
-	
 	public function MetaDescription(){
 		$news = $this->getNews();
 		if($Params['Action'] == 'show' && $news->ID > 0){
@@ -232,7 +219,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public?
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @todo clean this up. I'm not entirely happy with this procedure.
 	 * @todo implement archived items.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
@@ -264,11 +250,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		if($Params['Action'] == 'show'){
 			if(is_numeric($Params['ID'])){
+				/**
+				 * Redirect to the URLSegment if it's a get-by-numeric.
+				 */
 				$filter = array_merge($idFilter,$filter);
 				$news = News::get()->filter($filter)->first();
 				$link = $this->Link('show/').$news->URLSegment;
 				$this->redirect($link, 301);
-				return false;
 			}
 			else{
 				$filter = array_merge($segmentFilter,$filter);
@@ -289,6 +277,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 			return false;
 		}
 		elseif($Params['Action'] == 'archive'){
+			/**
+			 * Archived posts.
+			 */
 			$config = SiteConfig::current_site_config();
 			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -'.$config->AutoArchiveDays.' days'));
 			return News::get()->filter(
@@ -304,7 +295,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Get the correct tags.
 	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
-	 * @todo Clean this mess too. It's far from optimal.
+	 * @todo Implement translations?
 	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
 	 * @return type DataObject or DataList with tags or news.
 	 */
@@ -401,16 +392,19 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		else{
 			/**
-			 * This should take into account, the PublishFrom value.
-			 * @todo fix this. It's not working yet
+			 * If archived, get the non-archived items.
+			 * This should work without a hitch!
 			 */
 			$filter = array(
 				'Created:GreaterThan' => date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')),
+				'Live' => 1,
 			);
-			$allEntries = News::get()->filter(
-				array('Live' => 1, $filter))
+			$allEntries = News::get()->filter($filter)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
+		/**
+		 * Pagination pagination pagination.
+		 */
 		if($allEntries->count() > 0){
 			$records = PaginatedList::create($allEntries,$this->request);
 			if($SiteConfig->PostsPerPage == 0){
@@ -428,7 +422,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I'm tired of writing comments!
 	 * Ok, well, here, I build a form. Nice, huh?
-	 * @todo add a very, very, very left aligned field to detect spambots? Saves on akismet maybe?
 	 * @return form for Comments
 	 */
 	public function CommentForm(){
@@ -493,7 +486,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		/**
 		 * If the "Extra" field is filled, we have a bot.
 		 */
-		if($data['Extra'] == ''){
+		if(!isset($data['Extra']) || $data['Extra'] == ''){
 			$data['Comment'] = Convert::raw2sql($data['Comment']);
 			if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
 				$comment = new Comment();

@@ -1,8 +1,6 @@
 <?php
 /**
  * Slideshow Image is the holder for the images for the slideshow.
- * This is unfinished businees, I'm still not entirely done thinking this over.
- * Experimental implementation.
  *
  * @package News/Blog module
  * @author Simon 'Sphere' Erkelens
