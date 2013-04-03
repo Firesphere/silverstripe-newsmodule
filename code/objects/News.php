@@ -97,7 +97,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
-				$summaryFields['getLocale'] = _t($this->class . '.LOCALE', 'Language');
+				$summaryFields['fetchLocale'] = _t($this->class . '.LOCALE', 'Language');
 			}
 		}
 		$this->extend('summary_fields', $summaryFields);
@@ -126,8 +126,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
 			if(count($translatable) > 1){
-				$searchableFields['NewsHolderPage.Locale'] = array(
+				$searchableFields['Locale'] = array(
 					'title' => _t($this->class . '.LOCALE', 'Language'),
+					'filter' => 'PartialMatchFilter',
 				);
 			}
 		}
@@ -264,13 +265,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @todo Frikkin' fix multi-language support!
 	 * @return type 
 	 */
-	public function getLocale(){
-		$parent = $this->NewsHolderPage();
-		if($parent && class_exists('Translatable')){
-			if($parent->Locale){
-				return $parent->Locale;
-			}
-		}
+	public function fetchLocale(){
+		$locales = Translatable::get_existing_content_languages();
+		fb($this->NewsHolderPage()->ID);
+		return($locales[$this->NewsHolderPage()->Locale]);
 	}
 
 	/**
@@ -327,8 +325,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			$this->NewsHolderPageID = $page->ID;
 		}
 		else{
-			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Lang);
-			$this->NewsHolderPage = $page->ID;
+			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Locale);
+			$this->NewsHolderPageID = $page->ID;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){

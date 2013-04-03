@@ -158,7 +158,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();
-		if($news = $this->getNews() && $Params['Action'] == 'show'){
+		$news = $this->getNews();
+		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->Title = $news->Title . ' - ' . $this->Title;
 		}
 		elseif($Params['Action'] == 'tags'){
@@ -173,7 +174,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * These seem to be no longer picked up. Ah well.
 	 */
 	public function MetaKeywords(){
-		if($news = $this->getNews()){
+		$news = $this->getNews();
+		if($Params['Action'] == 'show' && $news->ID > 0){
 			$tags = $news->Tags()->column('Title');
 			$this->MetaKeywords .= implode(', ', explode(' ', $news->Title)) . ', ' . implode(', ', $tags);
 		}		
@@ -187,7 +189,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	public function MetaDescription(){
-		if($news = $this->getNews()){      
+		$news = $this->getNews();
+		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->MetaDescription .= ' '.$news->Title;
 		}
 		elseif($Params['Action'] == 'tags'){
@@ -201,6 +204,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
+	 * @todo obey translatable
 	 * @return type RSS-feed output.
 	 */
 	public function rss(){
@@ -229,55 +233,47 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * General getter. Should this even be public?
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
 	 * @todo clean this up. I'm not entirely happy with this procedure.
+	 * @todo implement archived items.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
+		$filter = array(
+			'NewsHolderPageID' => $this->ID,
+		);
 		/**
 		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
 		 */
 		if(Member::currentUserID() != 0 && Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
-			$live = 1;
+			$idFilter = array(
+				'ID' => $Params['ID']
+			);
+			$segmentFilter = array(
+				'URLSegment' => $Params['ID']
+			);
 		}
 		else{
-			$live = 0;
+			$idFilter = array(
+				'ID' => $Params['ID'],
+				'Live' => 1
+			);
+			$segmentFilter = array(
+				'URLSegment' => $Params['ID'],
+				'Live' => 1
+			);
 		}
 		if($Params['Action'] == 'show'){
 			if(is_numeric($Params['ID'])){
-				if($live){
-					$filter = array(
-						'ID' => $Params['ID'],
-						'NewsHolderPageID' => $this->ID,
-					);
-				}
-				else{
-					$filter = array(
-						'NewsHolderPageID' => $this->ID,
-						'ID' => $Params['ID'],
-						'Live' => 1
-					);
-				}
+				$filter = array_merge($idFilter,$filter);
 				$news = News::get()->filter($filter)->first();
 				$link = $this->Link('show/').$news->URLSegment;
 				$this->redirect($link, 301);
 				return false;
 			}
 			else{
-				if($live){
-					$filter = array(
-						'URLSegment' => $Params['ID'], // Oh the irony!
-						'NewsHolderPageID' => $this->ID
-					);
-				}
-				else{
-					$filter = array(
-						'NewsHolderPageID' => $this->ID,
-						'URLSegment' => $Params['ID'], // Oh the irony!
-						'Live' => 1
-					);
-				}
+				$filter = array_merge($segmentFilter,$filter);
 				$news = News::get()->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 				if($news->count() > 0){
 					$news = $news->first();
 					return $news;
@@ -366,7 +362,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function currentNewsItem(){
 		$siteConfig = SiteConfig::current_site_config();
-		if ($newsItem = $this->getNews()) {
+		$newsItem = $this->getNews();
+		if ($newsItem) {
 			$newsItem->AllowComments = $siteConfig->Comments;
 			return($newsItem);
 		}	
@@ -399,7 +396,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		if(!$SiteConfig->ArchiveNews){
+		if(!$SiteConfig->AutoArchive){
 			$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
 		else{

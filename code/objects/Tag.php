@@ -5,6 +5,7 @@
  *
  * @author Simon 'Sphere' Erkelens
  * @package News/Blog module
+ * @todo implement translations?
  */
 class Tag extends DataObject {
 	

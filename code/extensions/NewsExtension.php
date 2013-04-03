@@ -15,13 +15,23 @@ class NewsExtension extends DataExtension {
 	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 items.
 	 *	Or, to show 5 random items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
 	 *	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
-	 * @todo fix an admin-like feature. If the user has the correct permissions, show all posts, not only live ones.
 	 */
 	public function NewsArchive($limit = null, $random = null, $related = null) {
 		if($limit == 0){
 			$limit = null;
 		}
 		$Params = $this->owner->getURLParams();
+		if(class_exists('Translatable')){
+			$filter = array(
+				'Live' => 1, 
+				'Locale' => Translatable::current_lang()
+			);
+		}
+		else{
+			$filter = array(
+				'Live' => 1,
+			);
+		}
 		if($Params['Action'] == 'show' && $related) {
 			$otherNews = News::get()
 				->filter(array('URLSegment' => $Params['ID']))
@@ -29,7 +39,7 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
-					->filter(array('Live' => 1))
+					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(array('ID' => $otherNews->ID))
 					->sort('RAND()')
@@ -38,7 +48,7 @@ class NewsExtension extends DataExtension {
 			else{
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
-					->filter(array('Live' => 1))
+					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(array('ID' => $otherNews->ID))
 					->limit($limit);
@@ -46,14 +56,14 @@ class NewsExtension extends DataExtension {
 		} else {
 			if($random){
 				$news = News::get()
-					->filter(array('Live' => 1))
+					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
-					->filter(array('Live' => 1))
+					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->limit($limit);				
 			}
@@ -67,6 +77,7 @@ class NewsExtension extends DataExtension {
 
 	/**
 	 * Just get al tags.
+	 * @todo support translatable
 	 * @return type Datalist of all tags
 	 */
 	public function allTags() {
