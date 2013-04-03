@@ -276,6 +276,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return type $filter array for the filter.
 	 */
 	private function checkPermission($type){
+		$Params = $this->getURLParams();
 		/**
 		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
 		 */
