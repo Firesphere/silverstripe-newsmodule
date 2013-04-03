@@ -68,6 +68,7 @@ Translatable is an EXPERIMENTAL FEATURE! I have not been able to fully test it. 
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
 * The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
+** Publish-date is disabled due to errors caused. Will be fixed asap but low on priority-list.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
 * Posts per Page and Pagination. If set to 0, it won't paginate.
 

@@ -394,6 +394,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
+	 * @todo fix translation support here.
 	 * @return object The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
