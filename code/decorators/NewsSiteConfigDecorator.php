@@ -60,8 +60,8 @@ class NewsSiteConfigDecorator extends DataExtension {
 				Tab::create(
 					'AutoArchive', // name
 					_t($this->class . '.ARCHIVE', 'Auto Archiving'), // title
-					NumericField::create('AutoArchive', _t($this->class . '.AUTOARCHIVE', 'Put items older then X days on a separate archive-page.')),
-					TextField::create('AutoArchiveDays', _t($this->class . '.AUTOARCHIVEDAYS', 'Amount of days before auto-archiving'))
+					CheckboxField::create('AutoArchive', _t($this->class . '.AUTOARCHIVE', 'Put items older then X days on a separate archive-page.')),
+					NumericField::create('AutoArchiveDays', _t($this->class . '.AUTOARCHIVEDAYS', 'Amount of days before auto-archiving'))
 				)
 			),
 			'Access'

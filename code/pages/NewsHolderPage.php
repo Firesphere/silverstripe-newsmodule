@@ -292,6 +292,17 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return false;
 		}
+		elseif($Params['Action'] == 'archive'){
+			$config = SiteConfig::current_site_config();
+			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -'.$config->AutoArchiveDays.' days'));
+			return News::get()->filter(
+				array(
+					'NewsHolderPageID' => $this->ID,
+					'Live' => 1,
+					'Created:LessThan' => $date
+				)
+			);
+		}
 	}
 	
 	/**
@@ -396,7 +407,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 			 * This should take into account, the PublishFrom value.
 			 * @todo fix this. It's not working yet
 			 */
-			$allEntries = News::get()->filter(array('Live' => 1))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));// . ' AND (PublishFrom DATEDIFF(\''.date('Y-m-d').'\',\''.date('Y-m-d', strtotime('PublishFrom')).'\') <= '.$SiteConfig->AutoArchiveDays);
+			$filter = array(
+				'Created:GreaterThan' => date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')),
+			);
+			$allEntries = News::get()->filter(
+				array('Live' => 1, $filter))
+				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
 		if($allEntries->count() > 0){
 			$records = PaginatedList::create($allEntries,$this->request);
