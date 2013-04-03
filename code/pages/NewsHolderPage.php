@@ -153,10 +153,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
-	 * Meta! This is so Meta!
-	 * Yes, Meta stuff here :)
-	 * All just setting, no returning needed since it's $this.
-	 * Note, Meta Title and Meta 
+	 * Meta! This is so Meta! I mean, MetaTitle!
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();
@@ -167,7 +164,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
+		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){ // This doesn't bug out, news does. Funny.
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -176,6 +173,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Does this still work? I think it bugs.
 	 */
 	public function MetaDescription(){
+		$Params = $this->getURLParams();
 		$news = $this->getNews();
 		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->MetaDescription .= ' '.$news->Title;
@@ -191,7 +189,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
-	 * @todo obey translatable
+	 * @todo obey translatable, but how?
 	 * @return type RSS-feed output.
 	 */
 	public function rss(){
@@ -204,7 +202,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
-	 * I'm guessing this PublishFrom value bugs out too.
 	 * @todo make language-specific versions
 	 * @return type DataList with Newsitems
 	 */
@@ -219,46 +216,29 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public?
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @todo implement archived items.
+	 * @todo clean up more. Still unhappy with this mess.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
+		// Default filter.
 		$filter = array(
 			'NewsHolderPageID' => $this->ID,
 		);
-		/**
-		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
-		 */
-		if(Member::currentUserID() != 0 && Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
-			$idFilter = array(
-				'ID' => $Params['ID']
-			);
-			$segmentFilter = array(
-				'URLSegment' => $Params['ID']
-			);
-		}
-		else{
-			$idFilter = array(
-				'ID' => $Params['ID'],
-				'Live' => 1
-			);
-			$segmentFilter = array(
-				'URLSegment' => $Params['ID'],
-				'Live' => 1
-			);
-		}
+		// Filter based on login-status.
+		$idFilter = $this->checkPermission('id');
+		$segmentFilter = $this->checkPermission('segment');
+		// Skip if we're not on show or archive.
 		if($Params['Action'] == 'show'){
+			// Redirect if the ID is numeric
 			if(is_numeric($Params['ID'])){
-				/**
-				 * Redirect to the URLSegment if it's a get-by-numeric.
-				 */
 				$filter = array_merge($idFilter,$filter);
 				$news = News::get()->filter($filter)->first();
 				$link = $this->Link('show/').$news->URLSegment;
 				$this->redirect($link, 301);
 			}
 			else{
+				// get the news.
 				$filter = array_merge($segmentFilter,$filter);
 				$news = News::get()->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
@@ -277,9 +257,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			return false;
 		}
 		elseif($Params['Action'] == 'archive'){
-			/**
-			 * Archived posts.
-			 */
+			// Archive if wished.
 			$config = SiteConfig::current_site_config();
 			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -'.$config->AutoArchiveDays.' days'));
 			return News::get()->filter(
@@ -289,6 +267,39 @@ class NewsHolderPage_Controller extends Page_Controller {
 					'Created:LessThan' => $date
 				)
 			);
+		}
+	}
+	
+	/**
+	 * Check the user-permissions.
+	 * @param type $type string with returntype setting.
+	 * @return type $filter array for the filter.
+	 */
+	private function checkPermission($type){
+		/**
+		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
+		 */
+		$idFilter = array(
+			'ID' => $Params['ID']
+		);
+		$segmentFilter = array(
+			'URLSegment' => $Params['ID']
+		);
+		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
+			$idFilter = array(
+				'ID' => $Params['ID'],
+				'Live' => 1
+			);
+			$segmentFilter = array(
+				'URLSegment' => $Params['ID'],
+				'Live' => 1
+			);
+		}
+		if($type == 'id'){
+			return $idFilter;
+		}
+		elseif($type == 'segment'){
+			return $segmentFilter;
 		}
 	}
 	
@@ -348,7 +359,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * If we're on a newspage, we need to get the news, or else.... OOOHHHH!
+	 * If we're on a newspage, we need to get the newsitem
 	 * @return object of the item.
 	 */
 	public function currentNewsItem(){
