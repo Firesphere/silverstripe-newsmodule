@@ -122,13 +122,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Add the translatable dropdown if we can translate.
 		 */
 		if(class_exists('Translatable')){
-			$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
 			if(count($translatable) > 1){
 				$searchableFields['Locale'] = array(
 					'title' => _t($this->class . '.LOCALE', 'Language'),
 					'filter' => 'ExactMatchFilter',
 					'field' => 'DropdownField',
-					'source' => $translatable,
 				);
 			}
 		}
@@ -142,8 +140,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function scaffoldSearchFields($_params = null){
 		$fields = parent::scaffoldSearchFields($_params);
+		/**
+		 * If there's a locale-field, fill it. Weird that this can't be done in the original function.
+		 */
 		if($fields->fieldByName('Locale') != null){
-			$fields->fieldByName('Locale')->setSource(Translatable::get_existing_content_languages('NewsHolderPage'));
+			$fields->fieldByName('Locale')->setSource(array_merge(array('' => _t($this->class . '.ANY', 'Any language')), Translatable::get_existing_content_languages('NewsHolderPage')));
 		}
 		return $fields;
 	}
@@ -392,19 +393,19 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * So yes, you can.
 	 */
 	public function canCreate($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canEdit($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canDelete($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canView($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 }
