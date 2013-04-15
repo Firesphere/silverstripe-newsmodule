@@ -367,8 +367,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 * It doesn't auto-tweet if the publish-date is in the future. Also, it won't tweet when it's that date!
 		 */
-		if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
-			if(class_exists('TwitterController')){
+		if(class_exists('TwitterController')){
+			if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
 				TwitterController::postTweet($this->Title, $this->AbsoluteLink());
 				$this->Tweeted = true;
 				$this->write();
