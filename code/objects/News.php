@@ -52,7 +52,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 	
 	/**
-	 * And I forgot the index. On large databases, this is a small performance improvement.
+	 * On large databases, this is a small performance improvement.
 	 * @var type 
 	 */
 	public static $indexes = array(
@@ -87,7 +87,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Define sumaryfields;
 	 * @todo obey translations
 	 * @return array of summaryfields
-	 * @todo Make summaryfields translatable
 	 */
 	public function summaryFields() {
 		$summaryFields = array(
@@ -120,9 +119,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			),
 		);
 		/**
-		 * THIS DOES NOT WORK YET!
-		 * For some reason, forcing a source fails :(
-		 * For now, just type the locales, ok?
+		 * Add the translatable dropdown if we can translate.
 		 */
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
@@ -195,8 +192,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$translate,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-//				Disabled temporarily since it seems to be a bit an issue.
-//				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
+//				The PublishFrom seems to bug out, don't use unless you want to help or I tell you it's safe to use.
+				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
@@ -289,9 +286,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Free guess on what this button does.
 	 */
-	public function Link() {
-		if ($newsHolderPage = SiteTree::get()->filter(array("ClassName" => 'NewsHolderPage'))->first()) {
-			return($newsHolderPage->Link('show').'/'.$this->URLSegment);
+	public function Link($action = 'show/') {
+		if ($Page = $this->NewsHolderPage()) {
+			return($Page->Link($action).$this->URLSegment);
 		}
 	}
 
@@ -330,7 +327,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
-	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
+	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
+	 * The NewsHolderPage should NEVER be doubled.
 	 * @todo Actually implement the translatable part :)
 	 */
 	public function onBeforeWrite(){

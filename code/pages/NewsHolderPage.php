@@ -1,7 +1,7 @@
 <?php
 /**
  * News page and controller, not really complicated yet :) 
- * 
+ * @todo fix the double-allowed.
  * @package News/blog module
  * @author Simon 'Sphere' 
  */
@@ -259,7 +259,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
 			$config = SiteConfig::current_site_config();
-			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -'.$config->AutoArchiveDays.' days'));
+			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
 			return News::get()->filter(
 				array(
 					'NewsHolderPageID' => $this->ID,
@@ -355,7 +355,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			return $this;
 		}
 		else{
-			$this->redirect($this->Link());
+			$this->redirect($this->Link('archive'));
 		}
 	}
 	
