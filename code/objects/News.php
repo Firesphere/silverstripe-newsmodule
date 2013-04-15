@@ -86,7 +86,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Define sumaryfields;
 	 * @todo obey translations
-	 * @return string Make summaryfields translatable
+	 * @return array of summaryfields
+	 * @todo Make summaryfields translatable
 	 */
 	public function summaryFields() {
 		$summaryFields = array(
@@ -128,11 +129,26 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			if(count($translatable) > 1){
 				$searchableFields['Locale'] = array(
 					'title' => _t($this->class . '.LOCALE', 'Language'),
-					'filter' => 'PartialMatchFilter',
+					'filter' => 'ExactMatchFilter',
+					'field' => 'DropdownField',
+					'source' => $translatable,
 				);
 			}
 		}
 		return $searchableFields;
+	}
+	
+	/**
+	 * Setup the translatable dropdown sources.
+	 * @param type $_params
+	 * @return type array of fields
+	 */
+	public function scaffoldSearchFields($_params = null){
+		$fields = parent::scaffoldSearchFields($_params);
+		if($fields->fieldByName('Locale') != null){
+			$fields->fieldByName('Locale')->setSource(Translatable::get_existing_content_languages('NewsHolderPage'));
+		}
+		return $fields;
 	}
 	
 	/**
