@@ -333,7 +333,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->Locale){
+		if(!$this->Locale || !class_exists('Translatable')){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
