@@ -1,9 +1,11 @@
 <?php
 /**
  * News page and controller, not really complicated yet :) 
- * 
+ * @todo fix the double-allowed.
  * @package News/blog module
- * @author Simon 'Sphere' 
+ * @author Simon 'Sphere'
+ * @todo refactor refactor refactor
+ * @method Newsitems Objects of News
  */
 class NewsHolderPage extends Page {
 
@@ -11,13 +13,12 @@ class NewsHolderPage extends Page {
 	public static $has_many = array(
 		'Newsitems' => 'News',
 	);
-	
-	public static $icon = 'newsadmin/images/icons/news';
 
 	/**
 	 * This one bugs out :( on live
 	 * @param type $includeTitle boolean
 	 * @return type string of meta-tags
+	 * @todo fix the darn thing.
 	 */
 	public function MetaTags($includeTitle = true) {
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
@@ -28,6 +29,7 @@ class NewsHolderPage extends Page {
 	
 	/**
 	 * The following three functions are global once enabled!
+	 * @todo Can I maybe implement this somewhere less annoying?
 	 * @param type $arguments from Content.
 	 * @return HTML block with the parsed code.
 	 */
@@ -36,8 +38,7 @@ class NewsHolderPage extends Page {
 			return null;
 		}
 		if(substr($arguments['id'], 0, 4) == 'http'){
-			$id = explode('/status/', $arguments['id']);
-			$id = $id[1];
+			list($unneeded,$id) = explode('/status/', $arguments['id']);
 		}
 		else{
 			$id = $arguments['id'];
@@ -46,45 +47,47 @@ class NewsHolderPage extends Page {
 		return ($data['html']);
 	}
 	
-	public static function GeshiParser($arguments, $caption){
+	/**
+	 * @param string $arguments array with the type
+	 * @param type $code string of the code to parse 
+	 * @return type HTMLString of parsed code.
+	 */
+	public static function GeshiParser($arguments, $code){
 		if(!isset($arguments['type'])){
+			// Assuming most code is PHP.
 			$arguments['type'] = 'php';
 		}
-		$geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $caption)), $arguments['type']);
+		$geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $code)), $arguments['type']);
 		$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
 		return $geshi->parse_code();
 	}
 	
-	public static function YouTubeHandler($arguments,$caption = null,$parser = null) {
-		// first things first, if we dont have a video ID, then we don't need to
-		// go any further
+	/**
+	 * @param type $arguments array of arguments from the content
+	 * @param type $caption text between the [] [/] brackets
+	 * @return type HTMLString of parsed youtube movie.
+	 */
+	public static function YouTubeHandler($arguments,$caption = null) {
+		// If there's no ID, just stop.
 		if (empty($arguments['id'])) {
 			return;
 		}
-
-		$customise = array();
 		/*** SET DEFAULTS ***/
-		$customise['YouTubeID'] = $arguments['id'];
-		//play the video on page load
-		$customise['autoplay'] = false;
-		//set the caption
-		$customise['caption'] = $caption ? Convert::raw2xml($caption) : false;
-		//set dimensions
-		$customise['width'] = 640;
-		$customise['height'] = 385;
+		$defaults = array(
+			'YouTubeID' => $arguments['id'],
+			'autoplay' => false,
+			'caption' => $caption ? Convert::raw2xml($caption) : false,
+			'width' => 640,
+			'height' => 385,
+		);
 
 		//overide the defaults with the arguments supplied
-		$customise = array_merge($customise,$arguments);
-
-		//get our YouTube template
+		$customise = array_merge($defaults,$arguments);
 		$template = new SSViewer('YouTube');
-
-		//return the customised template
 		return $template->process(new ArrayData($customise));
 	}
 
 	/**
-	 * 
 	 * @param type $arguments null
 	 * @return type HTML Parsed for template.
 	 */
@@ -124,9 +127,6 @@ class NewsHolderPage extends Page {
 	
 }
 
-/**
- * Although... 
- */
 class NewsHolderPage_Controller extends Page_Controller {
 
 	public static $allowed_actions = array(
@@ -164,7 +164,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){ // This doesn't bug out, news does. Funny.
+		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -192,7 +192,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @todo obey translatable, but how?
 	 * @return type RSS-feed output.
 	 */
-	public function rss(){
+	public function rss(){ 
 		$rss = new RSSFeed(
 			$list = $this->getRSSFeed(),
 			$link = $this->Link("rss"),
@@ -259,7 +259,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
 			$config = SiteConfig::current_site_config();
-			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -'.$config->AutoArchiveDays.' days'));
+			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
 			return News::get()->filter(
 				array(
 					'NewsHolderPageID' => $this->ID,
@@ -339,7 +339,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
-		if($this->getNews()){
+		$Params = $this->getURLParams();
+		if($Params['ID'] != null){
 			return $this;
 		}
 		else{
@@ -351,12 +352,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return \NewsHolderPage_Controller
 	 */
 	public function archive() {
-		if($this->getNews()){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link());
-		}
+		return $this;
 	}
 	
 	/**
@@ -379,15 +375,17 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return \NewsHolderPage_Controller
 	 */
 	public function tag(){
-		if($this->getTags()){
+		$Params = $this->getURLParams();
+		if($Params['ID'] != null){
 			return $this;
+		}
+		else{
+			$this->redirect($this->Link('tags'));
 		}
 	}
 	
 	public function tags(){
-		if($this->getTags()){
-			return $this;
-		}
+		return $this;
 	}
 
 	public function currentTag(){
@@ -401,7 +399,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
 		if(!$SiteConfig->AutoArchive || $SiteConfig->AutoArchiveDays == 0){
-			$allEntries = News::get()->filter(array('Live' => 1, 'NewsHolderPageID' => $this->ID))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+			$filter = array(
+				'Live' => 1, 
+				'NewsHolderPageID' => $this->ID
+			);
+			$allEntries = News::get()
+				->filter($filter)
+				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d')
+			);
 		}
 		else{
 			/**
@@ -413,7 +418,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 				'Live' => 1,
 				'NewsHolderPageID' => $this->ID
 			);
-			$allEntries = News::get()->filter($filter)
+			$allEntries = News::get()
+				->filter($filter)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
 		/**
@@ -490,7 +496,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * I put it in a zakje!
+	 * Store it.
 	 * And also check if it's no double-post. Limited to 60 seconds, but it can be differed.
 	 * I wonder if this is XSS safe? The saveInto does this for me, right?
 	 * @param array $data

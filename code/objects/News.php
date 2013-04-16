@@ -52,7 +52,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 	
 	/**
-	 * And I forgot the index. On large databases, this is a small performance improvement.
+	 * On large databases, this is a small performance improvement.
 	 * @var type 
 	 */
 	public static $indexes = array(
@@ -86,7 +86,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Define sumaryfields;
 	 * @todo obey translations
-	 * @return string Make summaryfields translatable
+	 * @return array of summaryfields
 	 */
 	public function summaryFields() {
 		$summaryFields = array(
@@ -119,20 +119,34 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			),
 		);
 		/**
-		 * THIS DOES NOT WORK YET!
-		 * For some reason, forcing a source fails :(
-		 * For now, just type the locales, ok?
+		 * Add the translatable dropdown if we can translate.
 		 */
 		if(class_exists('Translatable')){
-			$translatable = Translatable::get_existing_content_languages('NewsHolderPage', true);
 			if(count($translatable) > 1){
 				$searchableFields['Locale'] = array(
 					'title' => _t($this->class . '.LOCALE', 'Language'),
-					'filter' => 'PartialMatchFilter',
+					'filter' => 'ExactMatchFilter',
+					'field' => 'DropdownField',
 				);
 			}
 		}
 		return $searchableFields;
+	}
+	
+	/**
+	 * Setup the translatable dropdown sources.
+	 * @param type $_params
+	 * @return type array of fields
+	 */
+	public function scaffoldSearchFields($_params = null){
+		$fields = parent::scaffoldSearchFields($_params);
+		/**
+		 * If there's a locale-field, fill it. Weird that this can't be done in the original function.
+		 */
+		if($fields->fieldByName('Locale') != null){
+			$fields->fieldByName('Locale')->setSource(array_merge(array('' => _t($this->class . '.ANY', 'Any language')), Translatable::get_existing_content_languages('NewsHolderPage')));
+		}
+		return $fields;
 	}
 	
 	/**
@@ -179,8 +193,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$translate,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-//				Disabled temporarily since it seems to be a bit an issue.
-//				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
+//				The PublishFrom seems to bug out, don't use unless you want to help or I tell you it's safe to use.
+				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
@@ -273,9 +287,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Free guess on what this button does.
 	 */
-	public function Link() {
-		if ($newsHolderPage = SiteTree::get()->filter(array("ClassName" => 'NewsHolderPage'))->first()) {
-			return($newsHolderPage->Link('show').'/'.$this->URLSegment);
+	public function Link($action = 'show/') {
+		if ($Page = $this->NewsHolderPage()) {
+			return($Page->Link($action).$this->URLSegment);
 		}
 	}
 
@@ -314,12 +328,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
-	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
+	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
+	 * The NewsHolderPage should NEVER be doubled.
 	 * @todo Actually implement the translatable part :)
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->Locale){
+		if(!$this->Locale || !class_exists('Translatable')){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
@@ -353,8 +368,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 * It doesn't auto-tweet if the publish-date is in the future. Also, it won't tweet when it's that date!
 		 */
-		if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
-			if(class_exists('TwitterController')){
+		if(class_exists('TwitterController')){
+			if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
 				TwitterController::postTweet($this->Title, $this->AbsoluteLink());
 				$this->Tweeted = true;
 				$this->write();
@@ -374,23 +389,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
-	 * Ehhh, this needs fixing for SS3.
-	 * So yes, you can.
+	 * Permissions
 	 */
 	public function canCreate($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canEdit($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canDelete($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 	public function canView($member = null) {
-		return(true);
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
 	}
 
 }
