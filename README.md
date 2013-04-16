@@ -10,10 +10,13 @@ If you can't/wont push/fork, you can e-mail me the translations.
 ## Introduction
 
 This is the Silverstripe 3 Newsmodule. It's separate from the SiteTree.
-Mainly to keep the SiteTree uncluttered. 
+Mainly to keep the SiteTree uncluttered.
+
+If you expect to have a few hundred articles (like I do), your SiteTree becomes very unreadable. That's why I chose to make an alternative, using ModelAdmin.
 
 It works. Pretty much. Has some missing features. Please read my comments on the functions and such. It should make everything clear.
-If it doesn't... Then... wait a bit until I update this, ok?
+If you encounter any problems with the Master, please let me know! I can't bugfix without a ticket!
+If you use the development-branch, be aware that this is my untested area and therefor might contain bugs or just plain ruin your site with errors.
 
 Ow, and the default template is based on HTML5 features and my own website. Functional frontend demo can also be found on my website. [`Casa Laguna`](http://casa-laguna.net/all-the-news)
 

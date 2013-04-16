@@ -123,4 +123,23 @@ class Comment extends DataObject {
 		$mail->send();
 	}
 	
+	/**
+	 * Permissions
+	 */
+	public function canCreate($member = null) {
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+	}
+
+	public function canEdit($member = null) {
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+	}
+
+	public function canDelete($member = null) {
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+	}
+
+	public function canView($member = null) {
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+	}
+
 }

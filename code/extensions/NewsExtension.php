@@ -11,12 +11,12 @@ class NewsExtension extends DataExtension {
 	/**
 	 * Get all, or a limited, set of items.
 	 * @param $limit integer with chosen limit. Called from template via <% loop NewsArchive(5) %> for the 5 latest items.
-	 * @param $random boolean Called from template. e.g. <% loop NewsArchive(5,1) %> to show randomly related posts via the tags.
-	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 items.
-	 *	Or, to show 5 random items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
+	 * @param $random boolean Called from template. e.g. <% loop NewsArchive(5,1) %> to show random posts, related via the tags.
+	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 related items.
+	 *	Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
 	 *	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
 	 */
-	public function NewsArchive($limit = null, $random = null, $related = null) {
+	public function NewsArchive($limit = 5, $random = null, $related = null) {
 		if($limit == 0){
 			$limit = null;
 		}
@@ -77,7 +77,7 @@ class NewsExtension extends DataExtension {
 
 	/**
 	 * Just get al tags.
-	 * @todo support translatable
+	 * @todo support translatable?
 	 * @return type Datalist of all tags
 	 */
 	public function allTags() {
