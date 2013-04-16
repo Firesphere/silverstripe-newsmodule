@@ -74,12 +74,6 @@ class Tag extends DataObject {
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
-			if($this->ID > 0){
-				$Renamed = new Renamed();
-				$Renamed->OldLink = $this->URLSegment;
-				$Renamed->NewsID = $this->ID;
-				$Renamed->write();
-			}
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if(strpos($this->URLSegment, 'page-') === false){
 				$nr = 1;

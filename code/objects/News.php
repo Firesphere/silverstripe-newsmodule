@@ -389,8 +389,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
-	 * Ehhh, this needs fixing for SS3.
-	 * So yes, you can.
+	 * Permissions
 	 */
 	public function canCreate($member = null) {
 		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));

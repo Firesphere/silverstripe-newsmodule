@@ -3,7 +3,9 @@
  * News page and controller, not really complicated yet :) 
  * @todo fix the double-allowed.
  * @package News/blog module
- * @author Simon 'Sphere' 
+ * @author Simon 'Sphere'
+ * @todo refactor refactor refactor
+ * @method Newsitems Objects of News
  */
 class NewsHolderPage extends Page {
 
@@ -11,13 +13,12 @@ class NewsHolderPage extends Page {
 	public static $has_many = array(
 		'Newsitems' => 'News',
 	);
-	
-	public static $icon = 'newsadmin/images/icons/news';
 
 	/**
 	 * This one bugs out :( on live
 	 * @param type $includeTitle boolean
 	 * @return type string of meta-tags
+	 * @todo fix the darn thing.
 	 */
 	public function MetaTags($includeTitle = true) {
 		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
@@ -124,9 +125,6 @@ class NewsHolderPage extends Page {
 	
 }
 
-/**
- * Although... 
- */
 class NewsHolderPage_Controller extends Page_Controller {
 
 	public static $allowed_actions = array(
@@ -164,7 +162,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){ // This doesn't bug out, news does. Funny.
+		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -192,7 +190,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @todo obey translatable, but how?
 	 * @return type RSS-feed output.
 	 */
-	public function rss(){
+	public function rss(){ 
 		$rss = new RSSFeed(
 			$list = $this->getRSSFeed(),
 			$link = $this->Link("rss"),
@@ -339,7 +337,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
-		if($this->getNews()){
+		$Params = $this->getURLParams();
+		if($Params['ID'] != null){
 			return $this;
 		}
 		else{
@@ -351,12 +350,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return \NewsHolderPage_Controller
 	 */
 	public function archive() {
-		if($this->getNews()){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link('archive'));
-		}
+		return $this;
 	}
 	
 	/**
@@ -379,15 +373,17 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return \NewsHolderPage_Controller
 	 */
 	public function tag(){
-		if($this->getTags()){
+		$Params = $this->getURLParams();
+		if($Params['ID'] != null){
 			return $this;
+		}
+		else{
+			$this->redirect($this->Link('tags'));
 		}
 	}
 	
 	public function tags(){
-		if($this->getTags()){
-			return $this;
-		}
+		return $this;
 	}
 
 	public function currentTag(){
@@ -401,7 +397,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
 		if(!$SiteConfig->AutoArchive || $SiteConfig->AutoArchiveDays == 0){
-			$allEntries = News::get()->filter(array('Live' => 1, 'NewsHolderPageID' => $this->ID))->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+			$filter = array(
+				'Live' => 1, 
+				'NewsHolderPageID' => $this->ID
+			);
+			$allEntries = News::get()
+				->filter($filter)
+				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d')
+			);
 		}
 		else{
 			/**
@@ -413,7 +416,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 				'Live' => 1,
 				'NewsHolderPageID' => $this->ID
 			);
-			$allEntries = News::get()->filter($filter)
+			$allEntries = News::get()
+				->filter($filter)
 				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
 		}
 		/**
