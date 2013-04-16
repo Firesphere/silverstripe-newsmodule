@@ -496,7 +496,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * I put it in a zakje!
+	 * Store it.
 	 * And also check if it's no double-post. Limited to 60 seconds, but it can be differed.
 	 * I wonder if this is XSS safe? The saveInto does this for me, right?
 	 * @param array $data
