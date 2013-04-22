@@ -43,10 +43,7 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 * [`Silverstripe Translatable`](https://github.com/silverstripe/silverstripe-translatable)
 
-Do note, I have found that this translatable package is a bit iffy. It works and translatable features based on available pages works.
-Include the Translatable and apply it to the SiteTree. The module itself does not care about it's language. It just works as a child of the NewsHolderPage, which can be anything.
-This fails in the general getter so far. I'm working on this.
-Translatable is an EXPERIMENTAL FEATURE! I have not been able to fully test it. All feedback on Issue #10 is very much appreciated!
+Note on which version of translatable, CMS and Framework you use! They might not be compatible.
 
 ### This is a semi-tested translatable release. It does not break the current version, but I can't promise it works as required!
 
