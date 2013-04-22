@@ -241,7 +241,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 				// get the news.
 				$filter = array_merge($segmentFilter,$filter);
 				$news = News::get()->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+					->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 				if($news->count() > 0){
 					$news = $news->first();
 					return $news;
@@ -322,7 +322,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $tagItems->ID)
 					->filter(array('Live' => 1))
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+					->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 				return $news;
 			}				
 			else{
@@ -405,8 +405,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			);
 			$allEntries = News::get()
 				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d')
-			);
+				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 		}
 		else{
 			/**
@@ -420,7 +419,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			);
 			$allEntries = News::get()
 				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'));
+				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 		}
 		/**
 		 * Pagination pagination pagination.
