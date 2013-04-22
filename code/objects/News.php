@@ -80,7 +80,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			return _t($this->class . '.PLURALNAME');
 		} else {
 			return parent::plural_name();
-		}   
+		}
 	}
 	
 	/**
@@ -122,6 +122,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Add the translatable dropdown if we can translate.
 		 */
 		if(class_exists('Translatable')){
+			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
 				$searchableFields['Locale'] = array(
 					'title' => _t($this->class . '.LOCALE', 'Language'),
