@@ -71,6 +71,8 @@ Note on which version of translatable, CMS and Framework you use! They might not
 ** Publish-date is disabled due to errors caused. Will be fixed asap but low on priority-list.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
 * Posts per Page and Pagination. If set to 0, it won't paginate.
+* Reports on comments, how much of them are marked by Akismet and how many are hidden.
+* Report on the tag usage.
 
 ## Demo of frontend
 
