@@ -93,7 +93,7 @@ class CommentReport extends SS_Report {
 	public function parameterFields() {
 		return new FieldList(
 			TextField::create('Title', _t($this->class . '.NEWSTITLE', 'Search newsitem')),
-			new DropdownField(
+			DropdownField::create(
 				'Comment', 
 				_t($this->class . '.COUNTFILTER', 'Comment count'), 
 				array(
