@@ -5,7 +5,7 @@ nl_NL:
   NewsSiteConfigDecorator:
     NEWS: "Nieuws instellingen"
     TWEETPOST: "Tweet na posten"
-    PPP: "Aantal posts per pagina (Nog niet actief)"
+    PPP: "Aantal posts per pagina"
     COMMENTSSETTINGS: "Reacties"
     COMMENTS: "Sta reacties op items toe"
     APPROVE: "Reacties moeten worden goedgekeurd"
@@ -64,3 +64,19 @@ nl_NL:
     NewsHolderPage_tag.ss:
       TAG: "Tag"
       ALLTAGS: "All tags"
+  CommentReport:
+    TITLE: "Reacties rapportage"
+    NEWSTITLE: "Titel nieuwsbericht"
+    COMMENTCOUNT: "Totaal aantal reacties"
+    COMMENTSPAM: "Totaal aantal spam"
+    COMMENTHIDDEN: "Totaal aantal verborgen"
+    NEWSSEARCHTITLE: "Zoek een nieuwsbericht"
+    COUNTFILTER: "Reactie filter"
+    ANY: "Alles"
+    SPAMCOUNT: "Een of meer spamreacties"
+    HIDDENCOUNT: "Een of meer verborgen reacties"
+  TagReport:
+    TITLE: "Tag gebruik rapportage"
+    NEWSTITLE: "Titel nieuwsbericht"
+    NEWSCOUNT: "Totaal items gelinked"
+    TAGTITLE: "Zoek een tag"

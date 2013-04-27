@@ -92,12 +92,12 @@ class CommentReport extends SS_Report {
 	 */
 	public function parameterFields() {
 		return new FieldList(
-			TextField::create('Title', _t($this->class . '.NEWSTITLE', 'Search newsitem')),
+			TextField::create('Title', _t($this->class . '.NEWSSEARCHTITLE', 'Search newsitem')),
 			DropdownField::create(
 				'Comment', 
 				_t($this->class . '.COUNTFILTER', 'Comment count'), 
 				array(
-					'' => _t($this->class . '.Any', 'Any'),
+					'' => _t($this->class . '.ANY', 'Any'),
 					'SPAMCOUNT' => _t($this->class . '.SPAMCOUNT', 'One or more spam comments'),
 					'HIDDENCOUNT' => _t($this->class . '.HIDDENCOUNT', 'One or more hidden comments'),
 				)
