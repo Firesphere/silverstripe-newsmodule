@@ -40,12 +40,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 
 	public static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
-//	Disable the above and enable the line below, if you want to used the cached on created option. Although I think it doesn't add much
+//	Disable the above and enable the line below, if you want to use the cached feature
+//	Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.
+//	And uncomment the sort below.
 //	public static $default_sort = 'News.Created DESC';
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
-	 * @var type 
+	 * @var type array of defaults. Commenting is true, SiteConfig overrides this!
 	 */
 	public static $defaults = array(
 		'Commenting' => true,
@@ -53,7 +55,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * On large databases, this is a small performance improvement.
-	 * @var type 
+	 * @var type array of indexes.
 	 */
 	public static $indexes = array(
 		'URLSegment' => true,
@@ -61,7 +63,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Define singular name translatable
-	 * @return type Singular name
+	 * @return type string Singular name
 	 */
 	public function singular_name() {
 		if (_t($this->class . '.SINGULARNAME')) {
@@ -73,7 +75,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Define plural name translatable
-	 * @return type Plural name
+	 * @return type string Plural name
 	 */
 	public function plural_name() {
 		if (_t($this->class . '.PLURALNAME')) {
@@ -145,7 +147,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * If there's a locale-field, fill it. Weird that this can't be done in the original function.
 		 */
 		if($fields->fieldByName('Locale') != null){
-			$fields->fieldByName('Locale')->setSource(array_merge(array('' => _t($this->class . '.ANY', 'Any language')), Translatable::get_existing_content_languages('NewsHolderPage')));
+			$fields->fieldByName('Locale')
+				->setSource(
+					array_merge(
+						array('' => _t($this->class . '.ANY', 'Any language')), 
+						Translatable::get_existing_content_languages('NewsHolderPage')
+					)
+				);
 		}
 		return $fields;
 	}
@@ -194,7 +202,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$translate,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-//				The PublishFrom seems to bug out, don't use unless you want to help or I tell you it's safe to use.
 				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
@@ -202,6 +209,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'))
 			)
 		);
+		/**
+		 * Add a link to the frontpage version of the item.
+		 */
 		if($this->ID){
 			$fields->addFieldToTab(
 				'Root.Main',
@@ -293,7 +303,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			return($Page->Link($action).$this->URLSegment);
 		}
 	}
-
 
 	/**
 	 * This is quite handy, for meta-tags and such.

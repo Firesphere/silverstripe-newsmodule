@@ -91,8 +91,11 @@ class CommentReport extends SS_Report {
 	 * @return \FieldList FieldList instance with the searchfields.
 	 */
 	public function parameterFields() {
-		return new FieldList(
-			TextField::create('Title', _t($this->class . '.NEWSSEARCHTITLE', 'Search newsitem')),
+		return FieldList::create(
+			TextField::create(
+				'Title', 
+				_t($this->class . '.NEWSSEARCHTITLE', 'Search newsitem')
+			),
 			DropdownField::create(
 				'Comment', 
 				_t($this->class . '.COUNTFILTER', 'Comment count'), 

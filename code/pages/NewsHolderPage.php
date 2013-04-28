@@ -219,7 +219,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @todo clean up more. Still unhappy with this mess.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
-	public function getNews(){
+	private function getNews(){
 		$Params = $this->getURLParams();
 		// Default filter.
 		$filter = array(
