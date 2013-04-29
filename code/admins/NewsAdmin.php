@@ -5,6 +5,7 @@
  * 
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @todo Optional support for sortable. Should/could be useful for tags.
  */
 class NewsAdmin extends ModelAdmin {
 

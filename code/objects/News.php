@@ -7,6 +7,7 @@
  * @package News/blog module
  * @author Simon 'Sphere'
  * @todo Semantics
+ * @todo Cleanup and integration with newsholderpage.
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 

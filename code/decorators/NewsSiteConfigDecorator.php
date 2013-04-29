@@ -4,6 +4,8 @@
  *
  * @package News/blog module
  * @author Sphere
+ * @todo clean this up
+ * @todo SEMANTICS!
  */
 class NewsSiteConfigDecorator extends DataExtension {
 
