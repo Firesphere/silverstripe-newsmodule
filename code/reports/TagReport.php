@@ -4,6 +4,7 @@
  * 
  * @package News/Blog module
  * @author Simon 'Sphere'
+ * @todo Semantics
  */
 
 class TagReport extends SS_Report {

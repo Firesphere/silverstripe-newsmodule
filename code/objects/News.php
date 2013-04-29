@@ -5,7 +5,8 @@
  * History is NOT supported. Only the URLSegment is being tracked. This makes it a bit more simplistic.
  * 
  * @package News/blog module
- * @author Simon 'Sphere' 
+ * @author Simon 'Sphere'
+ * @todo Semantics
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
