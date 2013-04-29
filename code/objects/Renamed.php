@@ -6,7 +6,8 @@
  * This functionality is chosen in favor of fully keeping a history of all the news.
  * 
  * @package News/Blog module
- * @author Sphere
+ * @author Simon `Sphere`
+ * 
  */
 class Renamed extends DataObject{
     

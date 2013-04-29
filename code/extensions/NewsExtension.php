@@ -4,7 +4,9 @@
  * Same goes for tags. For if you want a tagcloud in your sidebar, for example.
  * 
  * @package News/blog module
- * @author Simon 'Sphere' 
+ * @author Simon 'Sphere'
+ * @todo Better comments
+ * @todo Semantics
  */
 class NewsExtension extends DataExtension {
 
