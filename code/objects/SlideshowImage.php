@@ -3,7 +3,10 @@
  * Slideshow Image is the holder for the images for the slideshow.
  *
  * @package News/Blog module
- * @author Simon 'Sphere' Erkelens
+ * @author Simon `Sphere`
+ * @todo better integration into the newsitem itself.
+ * @todo semantics
+ * @todo cleanup where possible.
  */
 class SlideshowImage extends DataObject {
 	

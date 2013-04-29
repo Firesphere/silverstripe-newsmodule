@@ -4,6 +4,7 @@
  * 
  * @package News/Blog module
  * @author Simon 'Sphere'
+ * @todo Semantics
  */
 
 class TagReport extends SS_Report {
@@ -71,8 +72,11 @@ class TagReport extends SS_Report {
 	 * @return \FieldList FieldList instance with the searchfields.
 	 */
 	public function parameterFields() {
-		return new FieldList(
-			TextField::create('Title', _t($this->class . '.TAGTITLE', 'Search tag'))
+		return FieldList::create(
+			TextField::create(
+				'Title', 
+				_t($this->class . '.TAGTITLE', 'Search tag')
+			)
 		);
 	}
 }

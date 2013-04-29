@@ -6,6 +6,8 @@
  * @author Simon 'Sphere' Erkelens
  * @package News/Blog module
  * @todo implement translations?
+ * @todo Semantics
+ * @todo sortable
  */
 class Tag extends DataObject {
 	

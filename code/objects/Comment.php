@@ -6,6 +6,7 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @todo None.
  */
 class Comment extends DataObject {
 
