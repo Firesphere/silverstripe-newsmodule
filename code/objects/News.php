@@ -229,38 +229,42 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				),
 				'Title'
 			);
-		}
-		$fields->addFieldToTab(
-			'Root',
-			Tab::create(
-				'Comments',
-				_t($this->class . '.COMMENTS', 'Comments'),
-				GridField::create(
-					'Comment', 
+			/**
+			 * It seems the sortorder bugs out when creating a new item.
+			 * Since comments and slideshow-items can't be created before the item exists,
+			 * I hope this is the solution to Issue #40, which I can't reproduce.
+			 */
+			$fields->addFieldToTab(
+				'Root',
+				Tab::create(
+					'Comments',
 					_t($this->class . '.COMMENTS', 'Comments'),
-					$this->Comments(), 
-					GridFieldConfig_RelationEditor::create()
+					GridField::create(
+						'Comment', 
+						_t($this->class . '.COMMENTS', 'Comments'),
+						$this->Comments(), 
+						GridFieldConfig_RelationEditor::create()
+					)
 				)
-			)
-		);
-		$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-		$gridFieldConfig->addComponent(new GridFieldBulkEditingTools());
-		$gridFieldConfig->addComponent(new GridFieldBulkImageUpload()); 
-		$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
-		$fields->addFieldToTab(
-			'Root',
-			Tab::create(
-				'SlideshowImages',
-				_t($this->class . '.SLIDE', 'Slideshow'),
-				$gridfield = GridField::create(
-					'SlideshowImage',
-					_t($this->class . '.IMAGES', 'Slideshow Images'),
-					$this->SlideshowImages()
-						->sort('SortOrder'), 
-					$gridFieldConfig)
-			)
-		);
-		
+			);
+			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
+			$gridFieldConfig->addComponent(new GridFieldBulkEditingTools());
+			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload()); 
+			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+			$fields->addFieldToTab(
+				'Root',
+				Tab::create(
+					'SlideshowImages',
+					_t($this->class . '.SLIDE', 'Slideshow'),
+					$gridfield = GridField::create(
+						'SlideshowImage',
+						_t($this->class . '.IMAGES', 'Slideshow Images'),
+						$this->SlideshowImages()
+							->sort('SortOrder'), 
+						$gridFieldConfig)
+				)
+			);
+		}
 		return($fields);
 	}
 
