@@ -132,7 +132,8 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 ## Known Issues
 
-* No serious issues known at this point.
+* Possible issue with creating a new newsitem on the relation to the Sortable Gridfield for the slideshow.
+Fix is to comment line 253 in News.php `$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));`
 
 ## Requests
 
