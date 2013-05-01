@@ -18,5 +18,9 @@ class NewsAdmin extends ModelAdmin {
 
 	public static $menu_title = 'News';
 
+	public function getEditForm($id = null, $fields = null) {
+		$form = parent::getEditForm($id, $fields);
+		return $form;
+	}
 }
 

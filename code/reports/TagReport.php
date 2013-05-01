@@ -72,11 +72,12 @@ class TagReport extends SS_Report {
 	 * @return \FieldList FieldList instance with the searchfields.
 	 */
 	public function parameterFields() {
-		return FieldList::create(
-			TextField::create(
+		$return = FieldList::create(
+			$title = TextField::create(
 				'Title', 
 				_t($this->class . '.TAGTITLE', 'Search tag')
 			)
 		);
+		return $return;
 	}
 }
