@@ -55,12 +55,15 @@ class Tag extends DataObject {
 	}
 	
 	public function getCMSFields() {
+		/** Setup new Root Fieldlist */
 		$fields = FieldList::create(TabSet::create('Root'));
+		/** Add the fields */
 		$fields->addFieldsToTab(
-			'Root', 
+			'Root', // To what tab
 			Tab::create(
-				'Main',
-				_t($this->class . '.MAIN', 'Main'),
+				'Main', // Name
+				_t($this->class . '.MAIN', 'Main'), // Title
+				/** Fields */
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$html = HTMLEditorField::create('Description', _t($this->class . '.DESCRIPTION', 'Content')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression'))

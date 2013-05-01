@@ -34,16 +34,27 @@ class NewsExtension extends DataExtension {
 				'Live' => 1,
 			);
 		}
+		/**
+		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
+		 */
 		if($Params['Action'] == 'show' && $related) {
 			$otherNews = News::get()
-				->filter(array('URLSegment' => $Params['ID']))
+				->filter(
+					array(
+						'URLSegment' => $Params['ID']
+					)
+				)
 				->first();
 			if($random){
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
-					->exclude(array('ID' => $otherNews->ID))
+					->exclude(
+						array(
+							'ID' => $otherNews->ID
+						)
+					)
 					->sort('RAND()')
 					->limit($limit);
 			}
@@ -52,7 +63,11 @@ class NewsExtension extends DataExtension {
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
-					->exclude(array('ID' => $otherNews->ID))
+					->exclude(
+						array(
+							'ID' => $otherNews->ID
+						)
+					)
 					->limit($limit);
 			}
 		} else {

@@ -4,7 +4,6 @@
  * 
  * @package News/Blog module
  * @author Simon 'Sphere'
- * @todo Semantics
  */
 
 class CommentReport extends SS_Report {
@@ -43,6 +42,7 @@ class CommentReport extends SS_Report {
 			$record->Commentcount = $record->Comments()->count();
 			$record->Spamcount = $record->Comments()->filter(array('AkismetMarked' => 1))->count();
 			$record->Hiddencount = $record->Comments()->filter(array('AkismetMarked' => 0, 'Visible' => 0))->count();
+			
 			if(isset($params['Comment']) && $params['Comment'] == 'SPAMCOUNT' && $record->Spamcount > 0){
 				$returnSet->push($record);
 			}
@@ -92,12 +92,12 @@ class CommentReport extends SS_Report {
 	 * @return \FieldList FieldList instance with the searchfields.
 	 */
 	public function parameterFields() {
-		return FieldList::create(
-			TextField::create(
+		$return = FieldList::create(
+			$title = TextField::create(
 				'Title', 
 				_t($this->class . '.NEWSSEARCHTITLE', 'Search newsitem')
 			),
-			DropdownField::create(
+			$count = DropdownField::create(
 				'Comment', 
 				_t($this->class . '.COUNTFILTER', 'Comment count'), 
 				array(
@@ -107,5 +107,6 @@ class CommentReport extends SS_Report {
 				)
 			)
 		);
+		return $return;
 	}
 }
