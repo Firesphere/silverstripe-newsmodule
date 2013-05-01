@@ -13,9 +13,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	public static $db = array(
 		'Title' => 'Varchar(255)',
-		// Author is a troublemaker. Please tell me, 
-		// should I either auto-set the username from currentmember, 
-		// or use the textfield I'm using now (LAZY!)
+		/**
+		 * Author is a troublemaker. Please tell me, 
+		 * should I either auto-set the username from currentmember, 
+		 * or use the textfield I'm using now (Lazy implementation).
+		 */
 		'Author' => 'Varchar(255)',
 		'URLSegment' => 'Varchar(255)',
 		'Content' => 'HTMLText',
@@ -42,9 +44,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 
 	public static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
-//	Disable the above and enable the line below, if you want to use the cached feature
-//	Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.
-//	And uncomment the sort below.
+	/**
+	 * Disable the above and enable the line below, if you want to use the cached feature
+	 * Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.
+	 * And uncomment the sort below.
+	 */
 //	public static $default_sort = 'News.Created DESC';
 	
 	/**
@@ -89,7 +93,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Define sumaryfields;
-	 * @todo obey translations
 	 * @return array of summaryfields
 	 */
 	public function summaryFields() {
@@ -191,14 +194,15 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		else{
 			$translate = LiteralField::create('Doh', '');
 		}
-		
+		/** Setup new root tab */
 		$fields = FieldList::create(TabSet::create('Root'));
 		
 		$fields->addFieldsToTab(
-			'Root',
+			'Root', // what tab
 			Tab::create(
-				'Main',
-				_t($this->class . '.MAIN', 'Main'),
+				'Main', // Name
+				_t($this->class . '.MAIN', 'Main'), // Title
+				/** The fields */
 				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
@@ -247,6 +251,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 					)
 				)
 			);
+			/**
+			 * Note the requirements! Otherwise, things might break!
+			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 			$gridFieldConfig->addComponent(new GridFieldBulkEditingTools());
 			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload()); 
@@ -292,9 +299,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Setup available locales.
-	 * Yes, again, this is beta and not working yet :(
-	 * @todo Frikkin' fix multi-language support!
-	 * @return type 
+	 * @return type ArrayList of available locale's.
 	 */
 	public function fetchLocale(){
 		$locales = Translatable::get_existing_content_languages();

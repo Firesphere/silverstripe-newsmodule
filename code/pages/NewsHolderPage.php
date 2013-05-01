@@ -211,11 +211,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return type DataList with Newsitems
 	 */
 	public function getRSSFeed() {
-		return News::get()
+		$return = News::get()
 			->filter(array('Live' => 1))
 			->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 			->sort('IF(PublishFrom, PublishFrom, Created)', "DESC")
 			->limit(10);
+		return $return;
 	}
 	
 	/**
@@ -321,20 +322,22 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if(isset($Params['ID']) && $Params['ID'] != null){
 			$tagItems = Tag::get()->filter(array('URLSegment' => $Params['ID']))->first();
 			if($tagItems->News()->count() > 0 && !$news){
-				return $tagItems;
+				$return = $tagItems;
 			}
 			elseif($tagItems->News()->count() > 0 && $news){
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $tagItems->ID)
 					->filter(array('Live' => 1))
 					->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
-				return $news;
+				$return = $news;
 			}				
 			else{
 				$this->redirect('tag');
 			}
 		}
-		$return = Tag::get();
+		else{
+			$return = Tag::get();
+		}
 		return $return;
 	}
 	
@@ -370,7 +373,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if ($newsItem) {
 			$newsItem->AllowComments = $siteConfig->Comments;
 			return($newsItem);
-		}	
+		}
 	}
 	
 	/**

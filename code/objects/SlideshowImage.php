@@ -36,6 +36,7 @@ class SlideshowImage extends DataObject {
 	 */
 	public function onAfterWrite(){
 		parent::onAfterWrite();
+		/** Limit uploaded images to the setting in the siteconfig. */
 		$SiteConfig = SiteConfig::current_site_config();
 		if($SiteConfig->SlideshowSize){
 			$splitter = trim(str_replace(range(0,9),'',$SiteConfig->SlideshowSize));
