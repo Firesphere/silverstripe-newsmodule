@@ -28,6 +28,10 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'AutoArchiveDays' => 'Int',
 	);
 	
+	/**
+	 * Update the SiteConfig with the news-settings.
+	 * @param FieldList $fields of current FieldList of SiteConfig
+	 */
 	public function updateCMSFields(FieldList $fields){
 
 		$fields->addFieldToTab(
