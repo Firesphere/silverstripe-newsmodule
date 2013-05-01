@@ -5,10 +5,12 @@
  * @package News/blog module
  * @author Sphere
  * @todo clean this up
- * @todo SEMANTICS!
  */
 class NewsSiteConfigDecorator extends DataExtension {
 
+	/**
+	 * @var type array of all the extra's we need for setting everything up.
+	 */
 	public static $db = array(
 		'Comments' => 'boolean(true)',
 		'MustApprove' => 'boolean(true)',
@@ -19,9 +21,6 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'DefaultGravatar' => 'Varchar(255)',
 		'GravatarSize' => 'Int',
 		'TweetOnPost' => 'Boolean(false)',
-		/**
-		 * Preparing the slideshow integration!
-		 */
 		'SlideshowInitial' => 'Boolean(true)',
 		'SlideshowSize' => 'Varchar(15)',
 		'AutoArchive' => 'Boolean(false)',
@@ -35,16 +34,18 @@ class NewsSiteConfigDecorator extends DataExtension {
 	public function updateCMSFields(FieldList $fields){
 
 		$fields->addFieldToTab(
-			'Root',
+			'Root', // What tab
 			TabSet::create(
 				'Newssettings', // name
 				_t($this->class . '.NEWSCOMMENTS', 'News settings'), // title
+				/** General news settings */
 				Tab::create(
-					'News',
-					_t($this->class . '.NEWS','News'),
+					'News', // Name
+					_t($this->class . '.NEWS','News'), // Title
 					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')), // Requires Firesphere/silverstripe-social
 					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
 				),
+				/** Comment settings */
 				Tab::create(
 					'Comments',
 					_t($this->class . '.COMMENTSSETTINGS', 'Comments'),
@@ -56,12 +57,14 @@ class NewsSiteConfigDecorator extends DataExtension {
 					TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
 					CheckboxField::create('ExtraSecurity', _t($this->class . '.SPAMPROTECTION', 'Use an extra field for spamprotection'))
 				),
+				/** Slideshow settings */
 				Tab::create(
 					'Slideshowsettings', // name
 					_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'), // title
 					CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
 					TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
 				),
+				/** Archiving settings */
 				Tab::create(
 					'AutoArchive', // name
 					_t($this->class . '.ARCHIVE', 'Auto Archiving'), // title
