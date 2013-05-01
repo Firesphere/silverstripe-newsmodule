@@ -30,7 +30,7 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 ## Maintainer Contacts
 
-* Simon "Sphere" Erkelens `simon[at]casa-laguna[dot]net`
+* Simon "Sphere" Erkelens `github[at]casa-laguna[dot]net`
 
 ## Requirements
 
