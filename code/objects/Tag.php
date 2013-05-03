@@ -20,6 +20,7 @@ class Tag extends DataObject {
 		'Description' => 'HTMLText',
 		'URLSegment' => 'Varchar(255)',
 		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED
+		'SortOrder' => 'Int',
 	);
 	
 	public static $has_one = array(
@@ -30,6 +31,13 @@ class Tag extends DataObject {
 		'News' => 'News',
 	);
 
+	/**
+	 * CMS seems to ignore this unless sortable is enabled.
+	 * Input appreciated.
+	 * @var type string of sortorder.
+	 */
+	public static $default_sort = 'SortOrder ASC';
+	
 	/**
 	 * Define singular name translatable
 	 * @return type Singular name
@@ -54,6 +62,10 @@ class Tag extends DataObject {
 		}   
 	}
 	
+	/**
+	 * @todo fix sortorder
+	 * @return type FieldList of fields that are editable.
+	 */
 	public function getCMSFields() {
 		/** Setup new Root Fieldlist */
 		$fields = FieldList::create(TabSet::create('Root'));
