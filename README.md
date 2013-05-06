@@ -127,6 +127,8 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 ## Plans
 
+* Add [`Aloha Frontend Editor`](https://github.com/alohaeditor/Aloha-Editor.git) for quick updating/changing items.
+* Use Aloha Frontend Editor for quick-adding items from the frontend.
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a "Fetch me a beer" function. Should be useful I think.
 

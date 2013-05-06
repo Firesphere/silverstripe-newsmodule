@@ -6,4 +6,10 @@ $.fn.tagcloud.defaults = {
 
 $(function(){
 	$('.tagCloud a').tagcloud();
+	
+//	if($.fn.Aloha){
+		Aloha.ready(function(){
+			Aloha.jQuery('figcaption, div.noImage');
+		});
+//	}
 });
