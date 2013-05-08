@@ -15,7 +15,7 @@
 class NewsHolderPage extends Page {
 
    
-	public static $has_many = array(
+	private static $has_many = array(
 		'Newsitems' => 'News',
 	);
 
@@ -150,19 +150,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
-		/**
-		 * Note, these need to be initialized before newsmodule.js!
-		 * Fix coming up, this is Development after all :)
-		 */
-		if(Member::currentUserID() > 0 && Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
-			Requirements::css('silverstripe-newsmodule/javascript/thirdparty/Aloha/css/aloha.css');
-			Requirements::javascript('silverstripe-newsmodule/javascript/thirdparty/Aloha/lib/require.js');
-			Requirements::javascript('silverstripe-newsmodule/javascript/thirdparty/Aloha/lib/aloha-full.min.js');
-		}
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
-
 		setlocale(LC_ALL, i18n::get_locale());
 	}
 
