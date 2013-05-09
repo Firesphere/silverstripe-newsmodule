@@ -75,7 +75,7 @@ class CommentReport extends SS_Report {
 				'casting' => 'Int'
 			),
 			"Spamcount" => array(
-				"title" => _t($this->class . '.COMMENTCOUNT', 'Spam comments'),
+				"title" => _t($this->class . '.COMMENTSPAMCOUNT', 'Spam comments'),
 				'casting' => 'Int'
 			),
 			"Hiddencount" => array(

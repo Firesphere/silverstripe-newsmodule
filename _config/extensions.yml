@@ -1,0 +1,9 @@
+---
+Name: Newsmodule-extensions
+---
+ContentController:
+  extensions:
+    ['NewsExtension']
+SiteConfig:
+  extensions:
+    ['NewsSiteConfigDecorator']
