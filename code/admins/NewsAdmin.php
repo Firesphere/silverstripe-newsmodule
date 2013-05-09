@@ -20,6 +20,19 @@ class NewsAdmin extends ModelAdmin {
 
 	public function getEditForm($id = null, $fields = null) {
 		$form = parent::getEditForm($id, $fields);
+		/**
+		 * SortOrder is ignored unless sortable is enabled.
+		 */
+		if($this->modelClass == "Tag"){
+			$form->fields
+				->items[0]
+				->config
+				->addComponent(
+					new GridFieldSortableRows(
+						'SortOrder'
+					)
+				);
+		}
 		return $form;
 	}
 }

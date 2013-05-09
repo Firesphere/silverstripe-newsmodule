@@ -13,6 +13,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 	 */
 	public static $db = array(
 		'Comments' => 'boolean(true)',
+		'NewsEmail' => 'Varchar(255)',
 		'MustApprove' => 'boolean(true)',
 		'Gravatar' => 'boolean(true)',
 		'AkismetKey' => 'Varchar(255)',
@@ -42,8 +43,9 @@ class NewsSiteConfigDecorator extends DataExtension {
 				Tab::create(
 					'News', // Name
 					_t($this->class . '.NEWS','News'), // Title
-					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet na posten?')), // Requires Firesphere/silverstripe-social
-					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
+					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
+					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
+					EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to'))
 				),
 				/** Comment settings */
 				Tab::create(

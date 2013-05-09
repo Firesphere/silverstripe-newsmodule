@@ -10,7 +10,9 @@
         <h1>$Title</h1>
 	<h3>$Author on <% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
 	<br />
+	<div class="Content" contenteditable="true">
         $Content
+	</div>
 	  <% if Tags.Count > 0 %>
 	  <br />
 	  <div class="small">
