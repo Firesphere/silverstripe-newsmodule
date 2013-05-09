@@ -1,20 +1,16 @@
 <?php
-
-// make News-functions available to controller and templates:
-Object::add_extension('ContentController', 'NewsExtension');
-// Setup siteconfig
-Object::add_extension('SiteConfig', 'NewsSiteConfigDecorator');
 // Use an icon
+// I thought I could configure this via yml, but appearantly, I can't.
 LeftAndMain::require_css('silverstripe-newsmodule/css/news_icon.css');
 
 /**
- * Remove or comment the following lines to disable features.
+ * Remove or comment the following lines to enable/disable features.
  * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
  * 
  * To enable, just add a / directly after the star below this line
  *
- * 
 // It seems an array bugs out :(
+// Can this be done via a yml file?
 ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
 ShortcodeParser::get()->register('code',array('NewsHolderPage','GeshiParser'));
 ShortcodeParser::get()->register('YT',array('NewsHolderPage','YouTubeHandler'));
