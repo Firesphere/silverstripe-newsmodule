@@ -116,9 +116,9 @@ class Comment extends DataObject {
 	public function onAfterWrite(){
 		$SiteConfig = SiteConfig::current_site_config();
 		$mail = new Email();
-		$mail->setTo('you@your-domain.com');
-		$mail->setSubject('New post titled: ' .$this->Title);
-		$mail->setFrom('info@your-domain.com');
+		$mail->setTo($SiteConfig->NewsEmail);
+		$mail->setSubject(_t($this->class . '.COMMENTMAILSUBJECT', 'New post titled: ') .$this->Title);
+		$mail->setFrom($this->Email);
 		$mail->setTemplate('CommentPost');
 		$mail->populateTemplate($this);
 		$mail->send();
