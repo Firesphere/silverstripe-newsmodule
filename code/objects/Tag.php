@@ -7,7 +7,8 @@
  * @package News/Blog module
  * @todo implement translations?
  * @todo Semantics
- * @todo sortable
+ * @method Impression Image Impressionimage for this tag
+ * @method News News NewsItems this tag belongs to.
  */
 class Tag extends DataObject {
 	
@@ -15,7 +16,7 @@ class Tag extends DataObject {
 	 * Not too exciting. Description is optional, Could be useful if you have very cryptic tags ;)
 	 * @var type 
 	 */
-	public static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'URLSegment' => 'Varchar(255)',
@@ -23,11 +24,11 @@ class Tag extends DataObject {
 		'SortOrder' => 'Int',
 	);
 	
-	public static $has_one = array(
+	private static $has_one = array(
 		'Impression' => 'Image',
 	);
 	
-	public static $belongs_many_many = array(
+	private static $belongs_many_many = array(
 		'News' => 'News',
 	);
 
@@ -36,8 +37,14 @@ class Tag extends DataObject {
 	 * Input appreciated.
 	 * @var type string of sortorder.
 	 */
-	public static $default_sort = 'SortOrder ASC';
+	private static $default_sort = 'SortOrder ASC';
 	
+	/**
+	 * Create indexes.
+	 */
+	private static $indexes = array(
+		'URLSegment' => true,
+	);
 	/**
 	 * Define singular name translatable
 	 * @return type Singular name

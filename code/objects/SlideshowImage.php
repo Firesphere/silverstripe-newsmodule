@@ -7,16 +7,18 @@
  * @todo better integration into the newsitem itself.
  * @todo semantics
  * @todo cleanup where possible.
+ * @method Image Image Image for this group
+ * @method News News NewsItem this image belongs to
  */
 class SlideshowImage extends DataObject {
 	
-	public static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'SortOrder' => 'Int',
 	);
 	
-	public static $has_one = array(
+	private static $has_one = array(
 		'Image' => 'Image',
 		'News' => 'News',
 	);
