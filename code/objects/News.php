@@ -255,8 +255,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			 * Note the requirements! Otherwise, things might break!
 			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			$gridFieldConfig->addComponent(new GridFieldBulkEditingTools());
-			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload()); 
+			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 			$fields->addFieldToTab(
 				'Root',
