@@ -7,3 +7,6 @@ ContentController:
 SiteConfig:
   extensions:
     ['NewsSiteConfigDecorator']
+LeftAndMain:
+  extensions:
+    ['NewsLeftAndMainExtension']

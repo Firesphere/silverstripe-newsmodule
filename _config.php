@@ -1,8 +1,4 @@
 <?php
-// Use an icon
-// I thought I could configure this via yml, but appearantly, I can't.
-LeftAndMain::require_css('silverstripe-newsmodule/css/news_icon.css');
-
 /**
  * Remove or comment the following lines to enable/disable features.
  * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
