@@ -1,16 +1,18 @@
 <?php
 /**
- * News page and controller, not really complicated yet :) 
- * @todo fix the double-allowed.
+ * News page and controller.
+ * 
+ * NewsHolderPage
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  * @todo refactor refactor refactor
  * @todo port things to the News itself instead of handling here
  * @todo Clean this up
- * @todo Move the news functions as extensions to a separate extension
- * @todo Move the tags functions as extensions to a separate extension
+ * @todo Move the news functions as extensions to a separate extension or the actual model itself.
+ * @todo Move the tags functions as extensions to a separate extension or the actual model itself.
  * @todo Uncluttering
- * @method Newsitems Objects of News
+ * @method Newsitems News Newsitems linked to this page (for Translatable)
  */
 class NewsHolderPage extends Page {
 
@@ -59,7 +61,7 @@ class NewsHolderPage extends Page {
 	 */
 	public static function GeshiParser($arguments, $code){
 		if(!isset($arguments['type'])){
-			// Assuming most code is PHP.
+			/** Assuming most code is PHP. Feel free to update. Should this be a configurable? */
 			$arguments['type'] = 'php';
 		}
 		$geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $code)), $arguments['type']);
@@ -400,7 +402,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
-	 * @todo fix translation support here.
 	 * @return object The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){

@@ -8,6 +8,12 @@
  * @author Simon 'Sphere'
  * @todo Semantics
  * @todo Cleanup and integration with newsholderpage.
+ * @method NewsHolderPage NewsHolderPage NewsHolderPage this NewsItem belongs to
+ * @method Impression Image the Impression for this NewsItem
+ * @method Comments Comment Comments on this NewsItem
+ * @method Renamed Renamed changed URLSegments
+ * @method SlideshowImages SlideshowImage Images for the slideshow-feature
+ * @method Tags Tag Added Tags for this Item.
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
