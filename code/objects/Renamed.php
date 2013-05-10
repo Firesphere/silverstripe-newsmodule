@@ -14,15 +14,15 @@
  */
 class Renamed extends DataObject{
     
-	public static $db = array(
+	private static $db = array(
 		'OldLink' => 'Varchar(255)'
 	);
 
-	public static $has_one = array(
+	private static $has_one = array(
 		'News' => 'News',
 	);
 
-	public static $indexes = array(
+	private static $indexes = array(
 		'OldLink' => true
 	);
 	

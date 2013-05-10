@@ -10,13 +10,13 @@
  */
 class SlideshowImage extends DataObject {
 	
-	public static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'SortOrder' => 'Int',
 	);
 	
-	public static $has_one = array(
+	private static $has_one = array(
 		'Image' => 'Image',
 		'News' => 'News',
 	);
