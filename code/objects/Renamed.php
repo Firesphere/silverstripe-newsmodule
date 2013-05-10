@@ -10,7 +10,7 @@
  * 
  * @package News/Blog module
  * @author Simon `Sphere`
- * 
+ * @method News News NewsItem this object belongs to
  */
 class Renamed extends DataObject{
     

@@ -7,6 +7,8 @@
  * @todo better integration into the newsitem itself.
  * @todo semantics
  * @todo cleanup where possible.
+ * @method Image Image Image for this group
+ * @method News News NewsItem this image belongs to
  */
 class SlideshowImage extends DataObject {
 	

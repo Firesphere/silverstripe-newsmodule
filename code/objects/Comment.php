@@ -7,6 +7,7 @@
  * @package News/blog module
  * @author Simon 'Sphere'
  * @todo None.
+ * @method News Object of NewsItem
  */
 class Comment extends DataObject {
 

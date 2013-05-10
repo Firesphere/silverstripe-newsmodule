@@ -7,7 +7,8 @@
  * @package News/Blog module
  * @todo implement translations?
  * @todo Semantics
- * @todo sortable
+ * @method Impression Image Impressionimage for this tag
+ * @method News News NewsItems this tag belongs to.
  */
 class Tag extends DataObject {
 	
