@@ -191,6 +191,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * If there are multiple translations available, add the field.
 		 * This better not break?
 		 */
+		$translate = LiteralField::create('', '');
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
@@ -261,7 +262,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			 * Note the requirements! Otherwise, things might break!
 			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
+//			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 			$fields->addFieldToTab(
 				'Root',
