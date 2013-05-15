@@ -262,8 +262,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			 * Note the requirements! Otherwise, things might break!
 			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			/** GridFieldBulkImageUpload breaks. Sucks, looking into it! */
-//			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
+			/** Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out! */
+			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 			$fields->addFieldToTab(
 				'Root',
