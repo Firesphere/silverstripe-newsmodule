@@ -3,7 +3,7 @@
 <div class="cloud">
 <div class="tagCloud">
 <% loop allTags %>
-<a href="{$Up.URLSegment}/tag/$URLSegment" rel="$News.count()" >$Title</a>
+<a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()" >$Title</a>
 <% end_loop %>
 </div>
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="{YOUR TWITTER ACCOUNT}" data-dnt="true">Tweet</a>
