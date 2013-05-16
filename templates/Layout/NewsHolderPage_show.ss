@@ -17,7 +17,7 @@
 	  <br />
 	  <div class="small">
 		<% loop Tags %>
-		<a href="{$Up.URLSegment}/tag/$URLSegment">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
+		<a href="{$Top.URLSegment}/tag/$URLSegment">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
 		<% end_loop %>
 	  </div>
 	  <br />
