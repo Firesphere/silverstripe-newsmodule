@@ -95,7 +95,7 @@ class Comment extends DataObject {
 				$akismet->setCommentAuthorURL($this->URL);
 				$result = (int)$akismet->isCommentSpam();
 				if($result){
-					if(SSAkismet::getSaveSpam()) $this->AkismetMarked = true;
+					$this->AkismetMarked = true;
 				}
 
 			} catch (Exception $e) {

@@ -182,20 +182,28 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	public function getCMSFields() {
 		/**
-		 * This is to adress the Author-issue. As described in the db-field declaration
+		 * This is to adress the Author-issue. As described in the db-field declaration.
+		 * Also, setup the tags-field. Relations can't be saved if the object doesn't exist yet.
 		 */
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
+			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+		} else {
+			$tags = ReadonlyField::create('Tags', 'Tags', 'Tags can be added after the newsitem is saved once');
 		}
 		/**
 		 * If there are multiple translations available, add the field.
+		 * If there's just one locale, just create a literalfield.
+		 * And if there's no translatable at all, we create a literalfield as well, because we need the field in the list.
 		 * This better not break?
 		 */
-		$translate = LiteralField::create('', '');
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
 				$translate = DropdownField::create('Locale', _t($this->class . '.LOCALE', 'Locale'), $translatable);
+			}
+			else{
+				$translate = LiteralField::create('OneLocale', '');
 			}
 		}
 		else{
@@ -219,7 +227,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
 				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
 				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
-				$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'))
+				$tags
 			)
 		);
 		/**
