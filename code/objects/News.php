@@ -187,9 +187,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$tags = ReadonlyField::create('Tags', _t($this->class . '.TAGS', 'Tags'), _t($this->class . '.TAGAFTERID', 'Tags can be added after the newsitem is saved once'));
 		} else {
-			$tags = ReadonlyField::create('Tags', 'Tags', 'Tags can be added after the newsitem is saved once');
+			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
 		/**
 		 * If there are multiple translations available, add the field.
@@ -270,7 +270,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			 * Note the requirements! Otherwise, things might break!
 			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			/** Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out! */
+			/** 
+			 * Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out!
+			 * Also, make sure you thoroughly run flush=1 in the admin!
+			 */
 			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 			$fields->addFieldToTab(
