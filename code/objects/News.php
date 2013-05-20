@@ -17,7 +17,7 @@
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
-	public static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(255)',
 		/**
 		 * Author is a troublemaker. Please tell me, 
@@ -34,22 +34,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Locale' => 'Varchar(10)',
 	);
 	
-	public static $has_one = array(
+	private static $has_one = array(
 		'NewsHolderPage' => 'NewsHolderPage',
 		'Impression' => 'Image',
 	);
 	
-	public static $has_many = array(
+	private static $has_many = array(
 		'Comments' => 'Comment',
 		'Renamed' => 'Renamed',
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	
-	public static $many_many = array(
+	private static $many_many = array(
 		'Tags' => 'Tag',
 	);
 
-	public static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
+	private static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
 	/**
 	 * Disable the above and enable the line below, if you want to use the cached feature
 	 * Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.

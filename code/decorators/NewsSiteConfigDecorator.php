@@ -11,7 +11,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 	/**
 	 * @var type array of all the extra's we need for setting everything up.
 	 */
-	public static $db = array(
+	private static $db = array(
 		'Comments' => 'boolean(true)',
 		'NewsEmail' => 'Varchar(255)',
 		'MustApprove' => 'boolean(true)',
