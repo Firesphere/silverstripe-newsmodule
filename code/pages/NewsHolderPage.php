@@ -17,7 +17,7 @@
 class NewsHolderPage extends Page {
 
    
-	private static $has_many = array(
+	public static $has_many = array(
 		'Newsitems' => 'News',
 	);
 

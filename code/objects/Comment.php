@@ -11,7 +11,7 @@
  */
 class Comment extends DataObject {
 
-	private static $db = array(
+	public static $db = array(
 		'Title' => 'Varchar(255)',
 		'Name' => 'Varchar(255)',
 		'Email' => 'Varchar(255)',
@@ -23,11 +23,11 @@ class Comment extends DataObject {
 		'ShowGravatar' => 'Boolean(true)',
 	);
 
-	private static $has_one = array(
+	public static $has_one = array(
 		'News' => 'News',
 	);
 
-	private static $summary_fields = array(
+	public static $summary_fields = array(
 		'Title',
 		'Name',
 		'Created',

@@ -16,7 +16,7 @@ class Tag extends DataObject {
 	 * Not too exciting. Description is optional, Could be useful if you have very cryptic tags ;)
 	 * @var type 
 	 */
-	private static $db = array(
+	public static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'URLSegment' => 'Varchar(255)',
@@ -24,11 +24,11 @@ class Tag extends DataObject {
 		'SortOrder' => 'Int',
 	);
 	
-	private static $has_one = array(
+	public static $has_one = array(
 		'Impression' => 'Image',
 	);
 	
-	private static $belongs_many_many = array(
+	public static $belongs_many_many = array(
 		'News' => 'News',
 	);
 
@@ -37,12 +37,12 @@ class Tag extends DataObject {
 	 * Input appreciated.
 	 * @var type string of sortorder.
 	 */
-	private static $default_sort = 'SortOrder ASC';
+	public static $default_sort = 'SortOrder ASC';
 	
 	/**
 	 * Create indexes.
 	 */
-	private static $indexes = array(
+	public static $indexes = array(
 		'URLSegment' => true,
 	);
 	/**
