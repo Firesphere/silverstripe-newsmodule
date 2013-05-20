@@ -17,7 +17,7 @@
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
-	public static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar(255)',
 		/**
 		 * Author is a troublemaker. Please tell me, 
@@ -34,22 +34,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Locale' => 'Varchar(10)',
 	);
 	
-	public static $has_one = array(
+	private static $has_one = array(
 		'NewsHolderPage' => 'NewsHolderPage',
 		'Impression' => 'Image',
 	);
 	
-	public static $has_many = array(
+	private static $has_many = array(
 		'Comments' => 'Comment',
 		'Renamed' => 'Renamed',
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	
-	public static $many_many = array(
+	private static $many_many = array(
 		'Tags' => 'Tag',
 	);
 
-	public static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
+	private static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
 	/**
 	 * Disable the above and enable the line below, if you want to use the cached feature
 	 * Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.
@@ -187,9 +187,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$tags = ReadonlyField::create('Tags', _t($this->class . '.TAGS', 'Tags'), _t($this->class . '.TAGAFTERID', 'Tags can be added after the newsitem is saved once'));
 		} else {
-			$tags = ReadonlyField::create('Tags', 'Tags', 'Tags can be added after the newsitem is saved once');
+			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
 		/**
 		 * If there are multiple translations available, add the field.
@@ -270,7 +270,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			 * Note the requirements! Otherwise, things might break!
 			 */
 			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			/** Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out! */
+			/** 
+			 * Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out!
+			 * Also, make sure you thoroughly run flush=1 in the admin!
+			 */
 			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 			$fields->addFieldToTab(
