@@ -16,6 +16,7 @@
  */
 class NewsHolderPage extends Page {
 
+	private static $description = 'HolderPage for newsitems';
    
 	private static $has_many = array(
 		'Newsitems' => 'News',
@@ -136,7 +137,7 @@ class NewsHolderPage extends Page {
 
 class NewsHolderPage_Controller extends Page_Controller {
 
-	public static $allowed_actions = array(
+	private static $allowed_actions = array(
 		'allNews',
 		'show',
 		'tag',
