@@ -23,19 +23,6 @@ class NewsHolderPage extends Page {
 	);
 
 	/**
-	 * This one bugs out :( on live
-	 * @param type $includeTitle boolean
-	 * @return type string of meta-tags
-	 * @todo fix the darn thing.
-	 */
-	public function MetaTags($includeTitle = true) {
-		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
-			return $record->MetaTags($includeTitle);
-		}
-		return parent::MetaTags($includeTitle);
-	}
-	
-	/**
 	 * The following three functions are global once enabled!
 	 * @todo Can I maybe implement this somewhere less annoying?
 	 * @param type $arguments from Content.
