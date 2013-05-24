@@ -4,7 +4,6 @@
  *
  * @package News/blog module
  * @author Sphere
- * @todo clean this up
  */
 class NewsSiteConfigDecorator extends DataExtension {
 
@@ -22,6 +21,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'DefaultGravatar' => 'Varchar(255)',
 		'GravatarSize' => 'Int',
 		'TweetOnPost' => 'Boolean(false)',
+		'EnableSlideshow' => 'Boolean(false)',
 		'SlideshowInitial' => 'Boolean(true)',
 		'SlideshowSize' => 'Varchar(15)',
 		'AutoArchive' => 'Boolean(false)',
@@ -63,6 +63,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 				Tab::create(
 					'Slideshowsettings', // name
 					_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'), // title
+					CheckboxField::create('EnableSlideshow', _t($this->class . '.ENABLESLIDESHOW', 'Enable slideshow-feature (It\'s known to bug in SS3.0).')),
 					CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
 					TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
 				),

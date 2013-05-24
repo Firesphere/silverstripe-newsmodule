@@ -8,7 +8,7 @@
  * @author Simon 'Sphere'
  * @todo Semantics
  * @todo Cleanup and integration with newsholderpage.
- * @method NewsHolderPage NewsHolderPage NewsHolderPage this NewsItem belongs to
+ * @method NewsHolderPage NewsHolderPage this NewsItem belongs to
  * @method Impression Image the Impression for this NewsItem
  * @method Comments Comment Comments on this NewsItem
  * @method Renamed Renamed changed URLSegments
@@ -181,6 +181,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	public function getCMSFields() {
+		$SiteConfig = SiteConfig::current_site_config();
 		/**
 		 * This is to adress the Author-issue. As described in the db-field declaration.
 		 * Also, setup the tags-field. Relations can't be saved if the object doesn't exist yet.
@@ -267,54 +268,41 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				)
 			);
 			/**
-			 * Note the requirements! Otherwise, things might break!
+			 * This solution is to prevent the known bug with the GridFieldBulkEditor.
+			 * It should work with the latest under SS3.1
+			 * It will probably break with the old 0.5 release for SS3.0.x
+			 * EnableSlideshow is disabled by default to prevent bugs.
 			 */
-			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			/** 
-			 * Please make sure you have the latest GridFieldBulkEditingTools installed! Some older versions bug out!
-			 * Also, make sure you thoroughly run flush=1 in the admin!
-			 */
-			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
-			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
-			$fields->addFieldToTab(
-				'Root',
-				Tab::create(
-					'SlideshowImages',
-					_t($this->class . '.SLIDE', 'Slideshow'),
-					$gridfield = GridField::create(
-						'SlideshowImage',
-						_t($this->class . '.IMAGES', 'Slideshow Images'),
-						$this->SlideshowImages()
-							->sort('SortOrder'), 
-						$gridFieldConfig)
-				)
-			);
+			if($SiteConfig->EnableSlideshow){
+				/**
+				 * Note the requirements! Otherwise, things might break!
+				 */
+				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
+				/** 
+				 * Please make sure you have the latest GridFieldBulkEditingTools installed! 
+				 * Some older versions bug out!
+				 * Also, make sure you thoroughly run flush=1 in the admin!
+				 */
+				$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
+				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+				$fields->addFieldToTab(
+					'Root',
+					Tab::create(
+						'SlideshowImages',
+						_t($this->class . '.SLIDE', 'Slideshow'),
+						$gridfield = GridField::create(
+							'SlideshowImage',
+							_t($this->class . '.IMAGES', 'Slideshow Images'),
+							$this->SlideshowImages()
+								->sort('SortOrder'), 
+							$gridFieldConfig)
+					)
+				);
+			}
 		}
 		return($fields);
 	}
 
-	/**
-	 * Why does this, again, not work on live, but does it work on dev?
-	 * @param type $includeTitle boolean
-	 * @return string of a whole heap of meta-data
-	 */
-	public function MetaTags($includeTitle = true){
-		$tags = "";
-		$tags .= "<meta name=\"keywords\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaKeywords . ',' . str_replace(' ', ',',$this->Title)) . "\" />\n";
-		$tags .= "<meta name=\"description\" content=\"" . Convert::raw2att($this->NewsHolderPage()->MetaDescription . ' ' . $this->Title) . "\" />\n";
-		
-		if($this->ExtraMeta) { 
-			$tags .= $this->ExtraMeta . "\n";
-		} 
-		
-		if(Permission::check('CMS_ACCESS_CMSMain') && in_array('CMSPreviewable', class_implements($this))) {
-			$tags .= "<meta name=\"x-page-id\" content=\"{$this->ID}\" />\n";
-			$tags .= "<meta name=\"x-cms-edit-link\" content=\"" . $this->CMSEditLink() . "\" />\n";
-		}
-		$this->extend('MetaTags', $tags);
-		return $tags;
-	}
-	
 	/**
 	 * Setup available locales.
 	 * @return type ArrayList of available locale's.
