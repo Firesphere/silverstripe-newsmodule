@@ -282,14 +282,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 			'URLSegment' => $Params['ID']
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
-			$idFilter = array(
-				'ID' => $Params['ID'],
-				'Live' => 1
-			);
-			$segmentFilter = array(
-				'URLSegment' => $Params['ID'],
-				'Live' => 1
-			);
+			$idFilter['Live'] = 1;
+			$segmentFilter['Live'] = 1;
 		}
 		if($type == 'id'){
 			return $idFilter;
