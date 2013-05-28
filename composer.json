@@ -16,7 +16,8 @@
 		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
 	},
 	"require": {
-		"silverstripe/framework": "3.*",
+		"silverstripe/framework": "3.0.*",
+		"silverstripe/cms": "3.0.*",
 		"composer/installers": "*",
 		"colymba/GridFieldBulkEditingTools" : "*",
 		"UndefinedOffset/SortableGridField" : "*",

@@ -34,7 +34,8 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 ## Requirements
 
-* [`Silverstripe 3.x framework`](https://github.com/silverstripe/Sapphire)
+* [`Silverstripe 3.0.x framework`](https://github.com/silverstripe/Sapphire)
+* [`Silverstripe 3.0.x CMS`](https://github.com/silverstripe/cms)
 * [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
