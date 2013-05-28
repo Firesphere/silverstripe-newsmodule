@@ -267,38 +267,31 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 					)
 				)
 			);
+
 			/**
-			 * This solution is to prevent the known bug with the GridFieldBulkEditor.
-			 * It should work with the latest under SS3.1
-			 * It will probably break with the old 0.5 release for SS3.0.x
-			 * EnableSlideshow is disabled by default to prevent bugs.
+			 * Note the requirements! Otherwise, things might break!
 			 */
-			if($SiteConfig->EnableSlideshow){
-				/**
-				 * Note the requirements! Otherwise, things might break!
-				 */
-				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-				/** 
-				 * Please make sure you have the latest GridFieldBulkEditingTools installed! 
-				 * Some older versions bug out!
-				 * Also, make sure you thoroughly run flush=1 in the admin!
-				 */
-				$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
-				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
-				$fields->addFieldToTab(
-					'Root',
-					Tab::create(
-						'SlideshowImages',
-						_t($this->class . '.SLIDE', 'Slideshow'),
-						$gridfield = GridField::create(
-							'SlideshowImage',
-							_t($this->class . '.IMAGES', 'Slideshow Images'),
-							$this->SlideshowImages()
-								->sort('SortOrder'), 
-							$gridFieldConfig)
-					)
-				);
-			}
+			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
+			/** 
+			 * Please make sure you have the latest GridFieldBulkEditingTools installed! 
+			 * Some older versions bug out!
+			 * Also, make sure you thoroughly run flush=1 in the admin!
+			 */
+			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
+			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+			$fields->addFieldToTab(
+				'Root',
+				Tab::create(
+					'SlideshowImages',
+					_t($this->class . '.SLIDE', 'Slideshow'),
+					$gridfield = GridField::create(
+						'SlideshowImage',
+						_t($this->class . '.IMAGES', 'Slideshow Images'),
+						$this->SlideshowImages()
+							->sort('SortOrder'), 
+						$gridFieldConfig)
+				)
+			);
 		}
 		return($fields);
 	}
