@@ -16,9 +16,10 @@
 		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
 	},
 	"require": {
-		"silverstripe/framework": "3.*",
+		"silverstripe/framework": "3.1.*",
+		"silverstripe/cms": "3.1.*",
 		"composer/installers": "*",
-		"colymba/GridFieldBulkEditingTools" : "*",
+		"colymba/GridFieldBulkEditingTools" : "1.*",
 		"UndefinedOffset/SortableGridField" : "*",
 		"normann/gridfieldpaginatorwithshowall" : "*"
 	},

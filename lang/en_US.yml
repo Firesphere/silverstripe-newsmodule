@@ -52,6 +52,8 @@ en_US:
     TITLE: "Title"
     DESCRIPTION: "Description"
     IMPRESSION: "Impression-image"
+  NewsHolderPage:
+    DESCRIPTION: "HolderPage for newsitems"
   NewsHolderPage_Controller:
     COMMENT:
       NAME: "Name"
