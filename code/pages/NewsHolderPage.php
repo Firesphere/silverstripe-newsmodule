@@ -16,24 +16,12 @@
  */
 class NewsHolderPage extends Page {
 
+	private static $description = 'HolderPage for newsitems';
    
 	private static $has_many = array(
 		'Newsitems' => 'News',
 	);
 
-	/**
-	 * This one bugs out :( on live
-	 * @param type $includeTitle boolean
-	 * @return type string of meta-tags
-	 * @todo fix the darn thing.
-	 */
-	public function MetaTags($includeTitle = true) {
-		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
-			return $record->MetaTags($includeTitle);
-		}
-		return parent::MetaTags($includeTitle);
-	}
-	
 	/**
 	 * The following three functions are global once enabled!
 	 * @todo Can I maybe implement this somewhere less annoying?
@@ -136,7 +124,7 @@ class NewsHolderPage extends Page {
 
 class NewsHolderPage_Controller extends Page_Controller {
 
-	public static $allowed_actions = array(
+	private static $allowed_actions = array(
 		'allNews',
 		'show',
 		'tag',
@@ -294,14 +282,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 			'URLSegment' => $Params['ID']
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
-			$idFilter = array(
-				'ID' => $Params['ID'],
-				'Live' => 1
-			);
-			$segmentFilter = array(
-				'URLSegment' => $Params['ID'],
-				'Live' => 1
-			);
+			$idFilter['Live'] = 1;
+			$segmentFilter['Live'] = 1;
 		}
 		if($type == 'id'){
 			return $idFilter;

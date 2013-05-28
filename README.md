@@ -34,7 +34,8 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 ## Requirements
 
-* [`Silverstripe 3.x framework`](https://github.com/silverstripe/Sapphire)
+* [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
+* [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/cms)
 * [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
@@ -133,7 +134,9 @@ If you set optional extra anti-spam method, the commentform will contain a field
 ## Known Issues
 
 * Possible issue with creating a new newsitem on the relation to the Sortable Gridfield for the slideshow.
-Fix is to comment line 253 in News.php `$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));`
+Fix is to comment line 253 in News.php `$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));` or get the latest gridfieldbulkeditingtools and do
+`yoursite.com/admin/?flush=all`
+That should also fix this issue.
 
 ## Requests
 
