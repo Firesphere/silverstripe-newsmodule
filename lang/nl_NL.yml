@@ -52,6 +52,8 @@ nl_NL:
     TITLE: "Titel"
     DESCRIPTION: "Beschrijving"
     IMPRESSION: "Impressieafbeelding"
+  NewsHolderPage:
+    DESCRIPTION: "Algemene nieuwsitems overzichtspagina"
   NewsHolderPage_Controller:
     COMMENT:
       NAME: "Naam"
