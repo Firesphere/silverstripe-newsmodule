@@ -103,6 +103,7 @@ class NewsHolderPage extends Page {
 	
 	/**
 	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
+	 * @todo optional creation? I'm afraid here's a big potential bug at extending stuff!
 	 */
 	public function requireDefaultRecords()	{
 		parent::requireDefaultRecords();
@@ -251,6 +252,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return false;
 		}
+		/**
+		 * @todo implement issue #64
+		 */
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
 			$config = SiteConfig::current_site_config();

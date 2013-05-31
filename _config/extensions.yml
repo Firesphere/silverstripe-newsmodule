@@ -10,3 +10,6 @@ SiteConfig:
 LeftAndMain:
   extensions:
     ['NewsLeftAndMainExtension']
+GoogleSiteMap:
+  register:
+    'News'
