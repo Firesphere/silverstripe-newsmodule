@@ -186,7 +186,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	public function getCMSFields() {
-		$SiteConfig = SiteConfig::current_site_config();
+		$typeArray = array(
+			'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
+			'external' => _t($this->class . '.EXTERNALTYPE', 'External link'),
+			'download' => _t($this->class . '.DOWNLOADTYPE', 'Download')
+		);
 		/**
 		 * This is to adress the Author-issue. As described in the db-field declaration.
 		 * Also, setup the tags-field. Relations can't be saved if the object doesn't exist yet.
@@ -194,9 +198,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
 			$tags = ReadonlyField::create('Tags', _t($this->class . '.TAGS', 'Tags'), _t($this->class . '.TAGAFTERID', 'Tags can be added after the newsitem is saved once'));
+			$this->Type = 'news';
 		} else {
 			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
+		
 		/**
 		 * If there are multiple translations available, add the field.
 		 * If there's just one locale, just create a literalfield.
@@ -227,6 +233,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
+				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
 				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file')),
@@ -238,32 +245,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$tags
 			)
 		);
-		/**
-		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
-		 * @todo make this actually work. Contact @_UncleCheese_
-		 * @todo make this work, what's going wrong exactly?
-		 * @bug fails test and function.
-		 * @bug red on default despite the if
-		 * @bug Why won't this work?
-		 */
-		if(class_exists('DisplayLogicFormField')){
-			$typeArray = array(
-				'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
-				'external' => _t($this->class . '.EXTERNALTYPE', 'External link'),
-				'download' => _t($this->class . '.DOWNLOADTYPE', 'Download')
-			);
-			if(!$this->ID){
-				$this->Type = 'news';
-			}
-			$fields->addFieldToTab(
-				'Root.Main',
-				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
-				'External'
-			);
-			$file->displayIf($this->Type)->isEqualTo('download');
-			$link->hideUnless('Type')->isEqualTo('external');
-			$html->hideUnless('Type')->isEqualTo('news');
-		}
+
 		/**
 		 * Add a link to the frontpage version of the item.
 		 */
@@ -282,6 +264,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				),
 				'Title'
 			);
+			
 			/**
 			 * It seems the sortorder bugs out when creating a new item.
 			 * Since comments and slideshow-items can't be created before the item exists,
@@ -321,6 +304,21 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				)
 			);
 		}
+		
+		/**
+		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
+		 * @todo make this actually work. Contact @_UncleCheese_
+		 * @todo make this work, what's going wrong exactly?
+		 * @bug fails test and function.
+		 * @bug red on default despite the if
+		 * @bug Why won't this work?
+		 */
+		if(class_exists('DisplayLogicFormField')){
+			$file->hideUnless('Type')->isEqualTo('download');
+			$link->hideUnless('Type')->isEqualTo('external');
+			$html->displayIf('Type')->isEqualTo('news');
+		}
+		
 		return($fields);
 	}
 
