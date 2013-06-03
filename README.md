@@ -1,6 +1,10 @@
 # silverstripe-newsmodule
 =======================
 
+@deprecated notice:
+Development on this version has been cancelled. Only important bugfixes and desparate requests will be pushed to the 3.0 branch.
+Please switch to Silverstripe 3.1 It is stable enough and easier to work with.
+
 ### REQUEST
 
 If you can translate the yaml files into your native language, would be great.
@@ -36,7 +40,7 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 * [`Silverstripe 3.0.x framework`](https://github.com/silverstripe/Sapphire)
 * [`Silverstripe 3.0.x CMS`](https://github.com/silverstripe/cms)
-* [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
+* [`GridFieldBulkEditingTools 0.5`](https://github.com/colymba/GridFieldBulkEditingTools/tree/0.5)
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
@@ -45,6 +49,8 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * [`Silverstripe Translatable`](https://github.com/silverstripe/silverstripe-translatable)
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
+
+Support for external links or download will NOT be included in this version unless the requests for it to support are too much for me to ignore.
 
 ### This is a semi-tested translatable release. It does not break the current version, but I can't promise it works as required!
 
