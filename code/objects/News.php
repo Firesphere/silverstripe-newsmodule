@@ -308,15 +308,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		/**
 		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
 		 * @todo make this actually work. Contact @_UncleCheese_
-		 * @todo make this work, what's going wrong exactly?
-		 * @bug fails test and function.
-		 * @bug red on default despite the if
-		 * @bug Why won't this work?
 		 */
 		if(class_exists('DisplayLogicFormField')){
 			$file->hideUnless('Type')->isEqualTo('download');
 			$link->hideUnless('Type')->isEqualTo('external');
-			$html->displayIf('Type')->isEqualTo('news');
+			$html->hideUnless('Type')->isEqualTo('news');
 		}
 		
 		return($fields);

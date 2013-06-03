@@ -1,6 +1,12 @@
 # silverstripe-newsmodule
 =======================
 
+I have decided to STOP development on the 3.0 version of this module. I feel it's taking up too much time, without giving anything back.
+Bugfixes will be deployed if needed, but new features will NOT be ported to the 3.0 branch unless explicitly asked for.
+A hotfix for issue #58 will be online soon, but that's final. Please switch to 3.1
+
+/Signed Simon
+
 ### REQUEST
 
 If you can translate the yaml files into your native language, would be great.
@@ -40,13 +46,15 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
+## Highly recommended
+
+* [`Silverstripe Display Logic`](https://github.com/UncleCheese/silverstripe-display-logic)
+
 ## Optional
 
 * [`Silverstripe Translatable`](https://github.com/silverstripe/silverstripe-translatable)
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
-
-### This is a semi-tested translatable release. It does not break the current version, but I can't promise it works as required!
 
 ## Features
 
