@@ -24,7 +24,8 @@
 		"normann/gridfieldpaginatorwithshowall" : "*"
 	},
 	"suggest": {
-		"silverstripe/translatable": "*"
+		"silverstripe/translatable": "*",
+		"unclecheese/display-logic": "*"
 	},
 	"extra": {
 		"installer-name": "silverstripe-newsmodule"

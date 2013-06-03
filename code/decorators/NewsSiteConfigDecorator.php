@@ -25,6 +25,7 @@ class NewsSiteConfigDecorator extends DataExtension {
 		'SlideshowSize' => 'Varchar(15)',
 		'AutoArchive' => 'Boolean(false)',
 		'AutoArchiveDays' => 'Int',
+		'ReturnExternal' => 'Boolean(false)',
 	);
 	
 	/**
@@ -44,7 +45,8 @@ class NewsSiteConfigDecorator extends DataExtension {
 					_t($this->class . '.NEWS','News'), // Title
 					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
 					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
-					EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to'))
+					EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to')),
+					CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNAL', 'Make the item link directly to external'))
 				),
 				/** Comment settings */
 				Tab::create(

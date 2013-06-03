@@ -83,6 +83,7 @@ class NewsHolderPage extends Page {
 	}
 
 	/**
+	 * Only works on a functional newsrecord!
 	 * @param type $arguments null
 	 * @return type HTML Parsed for template.
 	 */
@@ -103,6 +104,7 @@ class NewsHolderPage extends Page {
 	
 	/**
 	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
+	 * @todo optional creation? I'm afraid here's a big potential bug at extending stuff!
 	 */
 	public function requireDefaultRecords()	{
 		parent::requireDefaultRecords();
@@ -140,6 +142,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
+		$this->needsRedirect();
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
@@ -187,7 +190,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return type RSS-feed output.
 	 */
 	public function rss(){ 
-		$rss = new RSSFeed(
+		$rss = RSSFeed::create(
 			$list = $this->getRSSFeed(),
 			$link = $this->Link("rss"),
 			$title = "News feed"
@@ -206,6 +209,43 @@ class NewsHolderPage_Controller extends Page_Controller {
 			->sort('IF(PublishFrom, PublishFrom, Created)', "DESC")
 			->limit(10);
 		return $return;
+	}
+	
+	/**
+	 * This feature is cleaner for redirection.
+	 * Saves requests to the database if I'm not mistaken.
+	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
+	 */
+	private function needsRedirect(){
+		$Params = $this->getURLParams();
+		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID'])){
+			if(isset($Params['ID']) && is_numeric($Params['ID'])){
+				$redirect = News::get()->filter('ID', $Params['ID'])->first();
+				if($redirect->ID > 0){
+					$this->redirect($redirect->Link(), 301);
+				}
+				else{
+					$this->redirect($this->Link(), 404);
+				}
+			}
+			else{
+				$news = News::get()->filter(
+					array(
+						'URLSegment' => $Params['ID'],
+						'NewsHolderPageID' => $this->ID
+					)
+				);
+				if($news->count() == 0){
+					$renamed = Renamed::get()->filter('OldLink', $Params['ID'])->first();
+					if($renamed->ID > 0){
+						$this->redirect($renamed->Link(), 301);
+					}
+					else{
+						$this->redirect($this->Link(), 404);
+					}
+				}
+			}
+		}
 	}
 	
 	/**
@@ -251,6 +291,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return false;
 		}
+		/**
+		 * @todo implement issue #64
+		 */
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
 			$config = SiteConfig::current_site_config();
@@ -326,7 +369,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Just return this. currentNewsItem should fix it. This one is for show.
-	 * @todo fix redundancy check. It makes 5 requests to the database. It should be 1, preferably.
+	 * @bug Redirector on ID/Old segment is broken
 	 * @return object this. Forreal! Or, redirect if getNews() returns false.
 	 */
 	public function show() {
