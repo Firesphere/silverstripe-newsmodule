@@ -202,7 +202,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		} else {
 			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
-		
+
 		/**
 		 * If there are multiple translations available, add the field.
 		 * If there's just one locale, just create a literalfield.
