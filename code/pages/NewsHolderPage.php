@@ -6,12 +6,6 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @todo refactor refactor refactor
- * @todo port things to the News itself instead of handling here
- * @todo Clean this up
- * @todo Move the news functions as extensions to a separate extension or the actual model itself.
- * @todo Move the tags functions as extensions to a separate extension or the actual model itself.
- * @todo Uncluttering
  * @method Newsitems News Newsitems linked to this page (for Translatable)
  */
 class NewsHolderPage extends Page {

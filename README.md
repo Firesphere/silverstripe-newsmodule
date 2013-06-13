@@ -82,6 +82,8 @@ Note on which version of translatable, CMS and Framework you use! They might not
 * Posts per Page and Pagination. If set to 0, it won't paginate.
 * Reports on comments, how much of them are marked by Akismet and how many are hidden.
 * Report on the tag usage.
+* Address the items that belong to a page with <% loop Children %> (don't ask, too little too late)
+* Archive-fix. You can create a "big-archive" with items older than x days
 
 ## Demo of frontend
 
@@ -136,6 +138,9 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 ## Plans
 
+* Setup archiving-by-date. So you have grouped by month and year, the items. Repondering. issue #64
+* Possible integration of issue #66
+* Solution to create an uncluttered method for issue #59
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a "Fetch me a beer" function. Should be useful I think.
 
