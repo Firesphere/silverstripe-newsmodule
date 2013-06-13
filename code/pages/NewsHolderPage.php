@@ -132,6 +132,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'tag',
 		'tags',
 		'rss',
+		'archive',
 		'CommentForm',
 		'CommentStore',
 	);
@@ -238,7 +239,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 				if($news->count() == 0){
 					$renamed = Renamed::get()->filter('OldLink', $Params['ID'])->first();
 					if($renamed->ID > 0){
-						$this->redirect($renamed->Link(), 301);
+						$this->redirect($renamed->News()->Link(), 301);
 					}
 					else{
 						$this->redirect($this->Link(), 404);
@@ -296,6 +297,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		 */
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
+			/**
+			 * @todo date-sorted archive.
+			 */
 			$config = SiteConfig::current_site_config();
 			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
 			return News::get()->filter(
@@ -445,14 +449,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 			 * If archived, get the non-archived items.
 			 * This should work without a hitch!
 			 */
+			$oldDate = date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')) . ' 00:00:00';
 			$filter = array(
-				'Created:GreaterThan' => date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')),
+				'Created:LessThan' => $oldDate,
 				'Live' => 1,
 				'NewsHolderPageID' => $this->ID
 			);
 			$allEntries = News::get()
 				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
+				->where('PublishFrom IS NULL OR PublishFrom < \'' . $oldDate . '\'');
 		}
 		/**
 		 * Pagination pagination pagination.
