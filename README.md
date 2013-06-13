@@ -3,7 +3,6 @@
 
 I have decided to STOP development on the 3.0 version of this module. I feel it's taking up too much time, without giving anything back.
 Bugfixes will be deployed if needed, but new features will NOT be ported to the 3.0 branch unless explicitly asked for.
-A hotfix for issue #58 will be online soon, but that's final. Please switch to 3.1
 
 /Signed Simon
 
@@ -107,16 +106,18 @@ If you don't have a github account, just download:
  3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
 A default page will be created if possible.
 
-Other option is to clone the repo into your site-root:
+The advised option is to clone the repo into your site-root:
  1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git`. 
  2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
 A default page will be created if possible.
+This method will make sure you can always pull the latest updates from the upstream, thus, keeping you up-to-date with the latest features!
 
-Although, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
+Preferred, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
  1.  Make a fork of this module.
  2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
  3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
 A default page will be created if possible.
+This method is only if you know how git works and know how to add upstreams etc. to contribute.
 
 Note, forking is NOT REQUIRED, only handy if you want to help out.
 
@@ -124,6 +125,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 * Write grammatically correct.
 * If you have Akismet, add your Akismet API-key to the SiteConfig in News settings (It's in the Comments-section). It saves you from comment-spam
+* Make sure your cat doesn't walk over yoa23'oqexkji6ygfp89cbhv2
 
 ## Configuration
 
