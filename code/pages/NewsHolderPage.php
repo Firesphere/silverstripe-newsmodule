@@ -21,6 +21,10 @@ class NewsHolderPage extends Page {
 	private static $has_many = array(
 		'Newsitems' => 'News',
 	);
+	
+	private static $allowed_children = array(
+		'News',
+	);
 
 	/**
 	 * The following three functions are global once enabled!
@@ -122,6 +126,15 @@ class NewsHolderPage extends Page {
 		}
 	}
 	
+	/**
+	 * Support for children.
+	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
+	 * Isn't this supposed to be handled in the allowed_children?
+	 */
+	public function Children(){
+		return $this->Newsitems();
+	}
+
 }
 
 class NewsHolderPage_Controller extends Page_Controller {
@@ -183,7 +196,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$this->MetaDescription .= ' ' . $tags->Title;
 		}
 	}
-
+	
 	/**
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
