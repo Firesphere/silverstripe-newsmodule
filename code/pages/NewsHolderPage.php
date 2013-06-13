@@ -6,12 +6,6 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @todo refactor refactor refactor
- * @todo port things to the News itself instead of handling here
- * @todo Clean this up
- * @todo Move the news functions as extensions to a separate extension or the actual model itself.
- * @todo Move the tags functions as extensions to a separate extension or the actual model itself.
- * @todo Uncluttering
  * @method Newsitems News Newsitems linked to this page (for Translatable)
  */
 class NewsHolderPage extends Page {
@@ -20,6 +14,10 @@ class NewsHolderPage extends Page {
    
 	private static $has_many = array(
 		'Newsitems' => 'News',
+	);
+	
+	private static $allowed_children = array(
+		'News',
 	);
 
 	/**
@@ -122,6 +120,15 @@ class NewsHolderPage extends Page {
 		}
 	}
 	
+	/**
+	 * Support for children.
+	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
+	 * Isn't this supposed to be handled in the allowed_children?
+	 */
+	public function Children(){
+		return $this->Newsitems();
+	}
+
 }
 
 class NewsHolderPage_Controller extends Page_Controller {
@@ -132,6 +139,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'tag',
 		'tags',
 		'rss',
+		'archive',
 		'CommentForm',
 		'CommentStore',
 	);
@@ -182,7 +190,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$this->MetaDescription .= ' ' . $tags->Title;
 		}
 	}
-
+	
 	/**
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
@@ -238,7 +246,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 				if($news->count() == 0){
 					$renamed = Renamed::get()->filter('OldLink', $Params['ID'])->first();
 					if($renamed->ID > 0){
-						$this->redirect($renamed->Link(), 301);
+						$this->redirect($renamed->News()->Link(), 301);
 					}
 					else{
 						$this->redirect($this->Link(), 404);
@@ -296,6 +304,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		 */
 		elseif($Params['Action'] == 'archive'){
 			// Archive if wished.
+			/**
+			 * @todo date-sorted archive.
+			 */
 			$config = SiteConfig::current_site_config();
 			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
 			return News::get()->filter(
@@ -445,14 +456,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 			 * If archived, get the non-archived items.
 			 * This should work without a hitch!
 			 */
+			$oldDate = date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')) . ' 00:00:00';
 			$filter = array(
-				'Created:GreaterThan' => date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')),
+				'Created:LessThan' => $oldDate,
 				'Live' => 1,
 				'NewsHolderPageID' => $this->ID
 			);
 			$allEntries = News::get()
 				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
+				->where('PublishFrom IS NULL OR PublishFrom < \'' . $oldDate . '\'');
 		}
 		/**
 		 * Pagination pagination pagination.
