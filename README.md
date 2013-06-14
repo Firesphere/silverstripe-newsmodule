@@ -91,6 +91,10 @@ Note on which version of translatable, CMS and Framework you use! They might not
 * [`Specific tag`](http://casa-laguna.net/all-the-news/tag/sphere)
 * [`Redirect to urlsegment`](http://casa-laguna.net/all-the-news/show/1)
 
+## Demo of backend
+
+* [`user: news@test.com password: newsmodule`](http://newsmodule.casa-laguna.net/admin)
+
 ## Lacks
 
 * History of changes in the items
