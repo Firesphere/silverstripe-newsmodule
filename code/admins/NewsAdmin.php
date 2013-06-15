@@ -9,15 +9,15 @@
  */
 class NewsAdmin extends ModelAdmin {
 
-	public static $managed_models = array(
+	private static $managed_models = array(
 		'News',
 		'Tag',
 	);
 
-	public static $url_segment = 'news';
+	private static $url_segment = 'news';
 
-	public static $menu_title = 'News';
-
+	private static $menu_title = 'News';
+	
 	public function getEditForm($id = null, $fields = null) {
 		$form = parent::getEditForm($id, $fields);
 		/**
