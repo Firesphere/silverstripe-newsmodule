@@ -67,7 +67,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
 	 * @var type array of defaults. Commenting is true, SiteConfig overrides this!
 	 */
-	public static $defaults = array(
+	private static $defaults = array(
 		'Commenting' => true,
 	);
 	
@@ -75,10 +75,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * On large databases, this is a small performance improvement.
 	 * @var type array of indexes.
 	 */
-	public static $indexes = array(
+	private static $indexes = array(
 		'URLSegment' => true,
 	);
 
+	private static $casting = array(
+		'FilterDate' => 'Datetime',
+	);
 	/**
 	 * Define singular name translatable
 	 * @return type string Singular name
@@ -103,6 +106,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 	}
 	
+		
+	public function getFilterDate(){
+		if($this->PublishFrom != null){
+			return $this->PublishFrom;
+		}
+		return $this->Created;
+	}
+
 	/**
 	 * Define sumaryfields;
 	 * @return array of summaryfields
@@ -432,6 +443,21 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
+	 * Returns the month name this news item was posted in.
+	 * @return string
+	 */
+	public function getMonthCreated() {
+		return date('F', strtotime($this->Created));
+	}
+	
+	/**
+	 * Returns the year this news item was posted in.
+	 * @return string
+	 */
+	public function getYearCreated(){
+		return date('Y', strtotime($this->Created));
+	}
+	/**
 	 * Permissions
 	 */
 	public function canCreate($member = null) {
@@ -447,7 +473,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin') || $this->Live == 1);
 	}
 
 }
