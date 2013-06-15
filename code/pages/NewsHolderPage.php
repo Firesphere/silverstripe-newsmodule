@@ -440,7 +440,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 				)
 			)
 			->where('PublishFrom LIKE \''.$year.'-'.$month.'%\' OR PublishFrom IS NULL');
-		var_dump($allEntries->count());
 		/**
 		 * Pagination pagination pagination.
 		 */
