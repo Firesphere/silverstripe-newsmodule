@@ -442,7 +442,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		if(!$SiteConfig->AutoArchive || $SiteConfig->AutoArchiveDays == 0){
+		$Params = $this->getURLParams();
+		if($Params['Action'] != 'archive'){
 			$filter = array(
 				'Live' => 1, 
 				'NewsHolderPageID' => $this->ID
@@ -453,8 +454,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		else{
 			/**
-			 * If archived, get the non-archived items.
-			 * This should work without a hitch!
+			 * This entire feature needs changing thus is now considered.
+			 * @deprecated
 			 */
 			$oldDate = date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')) . ' 00:00:00';
 			$filter = array(
