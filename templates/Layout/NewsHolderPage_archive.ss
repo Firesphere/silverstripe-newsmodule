@@ -8,7 +8,7 @@
 	<li>
 	<a href="$Top.Link(archive)/$YearCreated">$YearCreated</a>
 	<ul>
-		<% loop GroupedBy(MonthCreated) %>
+		<% loop Children.GroupedBy(MonthCreated) %>
 		$MonthCreated
 		<% end_loop %>
 	</ul>

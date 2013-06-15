@@ -442,10 +442,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
-	public function getMonthCreated(){
-		var_dump('hoi');
-		return(date('m', strtotime($this->Created)));
-	}
 	/**
 	 * Returns the year this news item was posted in.
 	 * @return string
@@ -454,6 +450,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$yearItems = date('Y', strtotime($this->Created));
 		return $yearItems;
 	}
+	/**
+	 * @todo get the monthly items.
+	 */
 	/**
 	 * Permissions
 	 */
