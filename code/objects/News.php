@@ -26,6 +26,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		'Author' => 'Varchar(255)',
 		'URLSegment' => 'Varchar(255)',
+		'Synopsis' => 'Text',
 		'Content' => 'HTMLText',
 		'PublishFrom' => 'Date',
 		'Tweeted' => 'Boolean(false)',
@@ -230,10 +231,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				'Main', // Name
 				_t($this->class . '.MAIN', 'Main'), // Title
 				/** The fields */
-				$help = ReadonlyField::create('dummy', _t($this->class . '.HELPTITLE', 'Help'), _t($this->class . '.HELP', 'It is important to know, the publish-date does require the publish checkbox to be set! Publish-date is optional. Also, it won\'t auto-tweet when it goes live!')),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
 				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
+				$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract')),
 				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
 				$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file')),
