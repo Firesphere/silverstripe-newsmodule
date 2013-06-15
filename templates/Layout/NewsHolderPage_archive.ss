@@ -41,11 +41,11 @@
     </div>
         <div class="clear"></div>
 	      <div class='pagination'>
-<% if allNews.MoreThanOnePage %>
-    <% if allNews.NotFirstPage %>
+<% if getArchive.MoreThanOnePage %>
+    <% if getArchive.NotFirstPage %>
         <a class="prev" href="$allNews.PrevLink">Prev</a>
     <% end_if %>
-    <% loop allNews.PaginationSummary %>
+    <% loop getArchive.PaginationSummary %>
         <% if CurrentBool %>
             $PageNum
         <% else %>
@@ -56,7 +56,7 @@
             <% end_if %>
         <% end_if %>
         <% end_loop %>
-    <% if allNews.NotLastPage %>
+    <% if getArchive.NotLastPage %>
         <a class="next" href="$allNews.NextLink">Next</a>
     <% end_if %>
 <% end_if %>
