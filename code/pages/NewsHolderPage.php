@@ -169,7 +169,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
+		elseif($Params['Action'] == 'tag'){
+			$tags = $this->getTags();
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -222,6 +223,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * This feature is cleaner for redirection.
 	 * Saves requests to the database if I'm not mistaken.
+	 * @todo Find a cleaner way to do this. This is ugly.
 	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
@@ -244,9 +246,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 					)
 				);
 				if($news->count() == 0){
-					$renamed = Renamed::get()->filter('OldLink', $Params['ID'])->first();
-					if($renamed->ID > 0){
-						$this->redirect($renamed->News()->Link(), 301);
+					$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
+					if($renamed->count() > 0){
+						$this->redirect($renamed->First()->News()->Link(), 301);
 					}
 					else{
 						$this->redirect($this->Link(), 404);
@@ -379,28 +381,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * Just return this. currentNewsItem should fix it. This one is for show.
-	 * @bug Redirector on ID/Old segment is broken
-	 * @return object this. Forreal! Or, redirect if getNews() returns false.
-	 */
-	public function show() {
-		$Params = $this->getURLParams();
-		if($Params['ID'] != null){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link());
-		}
-	}
-	/**
-	 * Handle the Archive, if needed.
-	 * @return \NewsHolderPage_Controller
-	 */
-	public function archive() {
-		return $this;
-	}
-	
-	/**
 	 * If we're on a newspage, we need to get the newsitem
 	 * @return object of the item.
 	 */
@@ -413,26 +393,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 	}
 	
-	/**
-	 * Tag functions. They always return this, so the template addressing can address the getTags function.
-	 * I wonder if it really needs to do the check, it's another redundancy-thing.
-	 * @todo Fix the redundant check. It's all extra operations now.
-	 * @return \NewsHolderPage_Controller
-	 */
-	public function tag(){
-		$Params = $this->getURLParams();
-		if($Params['ID'] != null){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link('tags'));
-		}
-	}
-	
-	public function tags(){
-		return $this;
-	}
-
 	public function currentTag(){
 		return $this->getTags();
 	}
