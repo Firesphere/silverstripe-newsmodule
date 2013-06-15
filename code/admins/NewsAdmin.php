@@ -24,9 +24,9 @@ class NewsAdmin extends ModelAdmin {
 		 * SortOrder is ignored unless sortable is enabled.
 		 */
 		if($this->modelClass == "Tag"){
-			$form->fields
-				->items[0]
-				->config
+			$form->Fields()
+				->fieldByName('Tag')
+				->getConfig()
 				->addComponent(
 					new GridFieldSortableRows(
 						'SortOrder'

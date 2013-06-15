@@ -14,7 +14,8 @@
 	  <p>$Synopsis</p>
 	  <% else %>
           <p>$Content.Summary</p>
-	  <% end_if %>	  <% if Tags.Count > 0 %>
+	  <% end_if %>
+	  <% if Tags.Count > 0 %>
 	  <br />
 	  <div class="small">
 		<% loop Tags %>
