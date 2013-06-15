@@ -2,6 +2,20 @@
   <div id="container">
     <div id="homepage">
       <section id="latest_work">
+	      <% if getArchiveList %>
+	      <ul>
+	<% loop getArchiveList.GroupedBy(YearCreated) %>
+	<li>
+	<a href="$Top.Link(archive)/$YearCreated">$YearCreated</a>
+	<ul>
+		<% loop GroupedBy(MonthCreated) %>
+		$MonthCreated
+		<% end_loop %>
+	</ul>
+	</li>
+	<% end_loop %>
+	      </ul>
+	<% end_if %>
 <% if getArchive %>
       <% loop getArchive %>
       <article class="one_third $FirstLast <% if IsThird %>First<% end_if %>">

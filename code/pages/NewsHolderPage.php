@@ -408,6 +408,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return false;
 	}
 	
+	public function getArchiveList(){
+		return GroupedList::create(News::get()->sort('IF(PublishFrom, PublishFrom, Created) DESC'));
+	}
 	/**
 	 * Get the items, per month/year
 	 * If no month or year is set, current month/year is assumed
@@ -420,13 +423,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$month = date('m');
 			$year = date('Y');
 		}
-		elseif(isset($Params['ID']) && !isset($Params['OtherID'])){
-			$month = $Params['ID'];
-			$year = date('Y');
+		elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
+			$year = $Params['ID'];
+			$month = '';
 		}
 		else{
-			$month = $Params['ID'];
-			$year = $Params['OtherID'];
+			$year = $Params['ID'];
+			$month = $Params['OtherID'];
 		}
 		/**
 		 * This needs cleanup.

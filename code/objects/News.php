@@ -441,21 +441,18 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function LookForExistingURLSegment($URLSegment) {
 		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
-	
-	/**
-	 * Returns the month name this news item was posted in.
-	 * @return string
-	 */
-	public function getMonthCreated() {
-		return date('F', strtotime($this->Created));
+
+	public function getMonthCreated(){
+		var_dump('hoi');
+		return(date('m', strtotime($this->Created)));
 	}
-	
 	/**
 	 * Returns the year this news item was posted in.
 	 * @return string
 	 */
 	public function getYearCreated(){
-		return date('Y', strtotime($this->Created));
+		$yearItems = date('Y', strtotime($this->Created));
+		return $yearItems;
 	}
 	/**
 	 * Permissions
