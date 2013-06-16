@@ -67,7 +67,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
 	 * @var type array of defaults. Commenting is true, SiteConfig overrides this!
 	 */
-	public static $defaults = array(
+	private static $defaults = array(
 		'Commenting' => true,
 	);
 	
@@ -75,10 +75,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * On large databases, this is a small performance improvement.
 	 * @var type array of indexes.
 	 */
-	public static $indexes = array(
+	private static $indexes = array(
 		'URLSegment' => true,
 	);
 
+	private static $casting = array(
+		'FilterDate' => 'Datetime',
+	);
 	/**
 	 * Define singular name translatable
 	 * @return type string Singular name
@@ -103,6 +106,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 	}
 	
+		
+	public function getFilterDate(){
+		if($this->PublishFrom != null){
+			return $this->PublishFrom;
+		}
+		return $this->Created;
+	}
+
 	/**
 	 * Define sumaryfields;
 	 * @return array of summaryfields
@@ -269,7 +280,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			/**
 			 * It seems the sortorder bugs out when creating a new item.
 			 * Since comments and slideshow-items can't be created before the item exists,
-			 * I hope this is the solution to Issue #40, which I can't reproduce.
 			 */
 			$fields->addFieldToTab(
 				'Root',
@@ -430,7 +440,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function LookForExistingURLSegment($URLSegment) {
 		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
-	
+
+	/**
+	 * Returns the year this news item was posted in.
+	 * @return string
+	 */
+	public function getYearCreated(){
+		$yearItems = date('Y', strtotime($this->Created));
+		return $yearItems;
+	}
+	/**
+	 * @todo get the monthly items.
+	 */
+	public function getMonthCreated(){
+		return(date('F', strtotime($this->Created)));
+	}
+
 	/**
 	 * Permissions
 	 */
@@ -447,7 +472,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin') || $this->Live == 1);
 	}
 
 }

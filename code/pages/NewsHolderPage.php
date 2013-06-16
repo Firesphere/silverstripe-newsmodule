@@ -301,24 +301,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return false;
 		}
-		/**
-		 * @todo implement issue #64
-		 */
-		elseif($Params['Action'] == 'archive'){
-			// Archive if wished.
-			/**
-			 * @todo date-sorted archive.
-			 */
-			$config = SiteConfig::current_site_config();
-			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
-			return News::get()->filter(
-				array(
-					'NewsHolderPageID' => $this->ID,
-					'Live' => 1,
-					'Created:LessThan' => $date
-				)
-			);
-		}
 	}
 	
 	/**
@@ -402,35 +384,70 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		$Params = $this->getURLParams();
-		if($Params['Action'] != 'archive'){
-			$filter = array(
-				'Live' => 1, 
-				'NewsHolderPageID' => $this->ID
-			);
-			$allEntries = News::get()
-				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
-		}
-		else{
-			/**
-			 * This entire feature needs changing thus is now considered.
-			 * @deprecated
-			 */
-			$oldDate = date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')) . ' 00:00:00';
-			$filter = array(
-				'Created:LessThan' => $oldDate,
-				'Live' => 1,
-				'NewsHolderPageID' => $this->ID
-			);
-			$allEntries = News::get()
-				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom < \'' . $oldDate . '\'');
-		}
+		$filter = array(
+			'Live' => 1, 
+			'NewsHolderPageID' => $this->ID
+		);
+		$allEntries = News::get()
+			->filter($filter)
+			->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 		/**
 		 * Pagination pagination pagination.
 		 */
-		if($allEntries->count() > 0){
+		if($allEntries->count() > $SiteConfig->PostsPerPage){
+			$records = PaginatedList::create($allEntries,$this->request);
+			if($SiteConfig->PostsPerPage == 0){
+				$records->setPageStart(1);
+				$records->setLimititems(0);
+			}
+			else{
+				$records->setPageLength($SiteConfig->PostsPerPage);
+			}
+			return $records;
+		}
+		return false;
+	}
+	
+	public function getArchiveList(){
+		$NewsGroups = GroupedList::create(News::get());
+		return $NewsGroups;
+	}
+	/**
+	 * Get the items, per month/year
+	 * If no month or year is set, current month/year is assumed
+	 * @todo sidebar with year/month grouping.
+	 */
+	public function getArchive(){
+		$SiteConfig = SiteConfig::current_site_config();
+		$Params = $this->getURLParams();
+		if(!isset($Params['ID'])){
+			$month = date('m');
+			$year = date('Y');
+		}
+		elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
+			$year = $Params['ID'];
+			$month = '';
+		}
+		else{
+			$year = $Params['ID'];
+			$month = $Params['OtherID'];
+		}
+		/**
+		 * This needs cleanup.
+		 */
+		$allEntries = News::get()
+			->filter(
+				array(
+					'Live' => 1, 
+					'NewsHolderPageID' => $this->ID,
+					'Created:PartialMatch' => $year.'-'.$month
+				)
+			)
+			->where('PublishFrom LIKE \''.$year.'-'.$month.'%\' OR PublishFrom IS NULL');
+		/**
+		 * Pagination pagination pagination.
+		 */
+		if($allEntries->count() > $SiteConfig->PostsPerPage){
 			$records = PaginatedList::create($allEntries,$this->request);
 			if($SiteConfig->PostsPerPage == 0){
 				$records->setPageStart(1);
