@@ -67,7 +67,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
 	 * @var type array of defaults. Commenting is true, SiteConfig overrides this!
 	 */
-	public static $defaults = array(
+	private static $defaults = array(
 		'Commenting' => true,
 	);
 	
@@ -75,10 +75,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * On large databases, this is a small performance improvement.
 	 * @var type array of indexes.
 	 */
-	public static $indexes = array(
+	private static $indexes = array(
 		'URLSegment' => true,
 	);
 
+	private static $casting = array(
+		'FilterDate' => 'Datetime',
+	);
 	/**
 	 * Define singular name translatable
 	 * @return type string Singular name
@@ -103,6 +106,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 	}
 	
+		
+	public function getFilterDate(){
+		if($this->PublishFrom != null){
+			return $this->PublishFrom;
+		}
+		return $this->Created;
+	}
+
 	/**
 	 * Define sumaryfields;
 	 * @return array of summaryfields
@@ -113,6 +124,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
 			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
+		$pages = NewsHolderPage::get();
+		if($pages->count() > 1){
+			$summaryFields['NewsHolderPage.Title'] = _t($this->class . '.PARENTPAGE', 'Parent holderpage');
+		}
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
@@ -130,13 +145,20 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
-		$searchableFields = array(
-			'Title' => array(
+		unset($searchableFields['NewsHolderPage.Title']);
+		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
 				'title'  => _t($this->class . '.TITLE','Title')
-			),
-		);
+			);
+		$pages = NewsHolderPage::get();
+		if($pages->count() > 1){
+			$searchableFields['NewsHolderPageID'] = array(
+				'title' => _t($this->class . '.PARENTPAGE', 'Parent holderpage'),
+				'filter' => 'PartialMatchFilter',
+				'field' => 'DropdownField',
+			);
+		}
 		/**
 		 * Add the translatable dropdown if we can translate.
 		 */
@@ -170,6 +192,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 						array('' => _t($this->class . '.ANY', 'Any language')), 
 						Translatable::get_existing_content_languages('NewsHolderPage')
 					)
+				);
+		}
+		if($fields->fieldByName('NewsHolderPageID') != null){
+			$source = NewsHolderPage::get();
+			$source = $source->map('ID', 'Title');
+			$fields->fieldByName('NewsHolderPageID')
+				->setSource(
+					$source
 				);
 		}
 		return $fields;
@@ -222,6 +252,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		else{
 			$translate = LiteralField::create('Doh', '');
 		}
+		$multiple = LiteralField::create('NoMultiple', '');
+		$HolderPages = NewsHolderPage::get();
+		if($HolderPages->count() > 1){
+			$multiple = DropdownField::create('NewsHolderPageID', _t($this->class . '.HOLDERPAGE', 'Parent holderpage'), $HolderPages->map('ID', 'Title'));
+		}
 		/** Setup new root tab */
 		$fields = FieldList::create(TabSet::create('Root'));
 		
@@ -233,6 +268,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				/** The fields */
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
+				$multiple,
 				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
 				$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract')),
 				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
@@ -269,7 +305,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			/**
 			 * It seems the sortorder bugs out when creating a new item.
 			 * Since comments and slideshow-items can't be created before the item exists,
-			 * I hope this is the solution to Issue #40, which I can't reproduce.
 			 */
 			$fields->addFieldToTab(
 				'Root',
@@ -377,11 +412,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->Locale || !class_exists('Translatable')){
+		if((!$this->Locale || !class_exists('Translatable')) && !$this->NewsHolderPageID){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
-		else{
+		elseif(!$this->NewsHolderPageID){
 			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Locale);
 			$this->NewsHolderPageID = $page->ID;
 		}
@@ -430,7 +465,22 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function LookForExistingURLSegment($URLSegment) {
 		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
-	
+
+	/**
+	 * Returns the year this news item was posted in.
+	 * @return string
+	 */
+	public function getYearCreated(){
+		$yearItems = date('Y', strtotime($this->Created));
+		return $yearItems;
+	}
+	/**
+	 * @todo get the monthly items.
+	 */
+	public function getMonthCreated(){
+		return(date('F', strtotime($this->Created)));
+	}
+
 	/**
 	 * Permissions
 	 */
@@ -447,7 +497,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin') || $this->Live == 1);
 	}
 
 }

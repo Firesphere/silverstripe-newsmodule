@@ -116,6 +116,17 @@ class NewsHolderPage extends Page {
 			$page->write();
 			$page->publish('Stage','Live');
 			$page->flushCache();
+			/** 
+			 * This is to make sure we don't create any orphans by upgrading.
+			 * It shouldn't be necessary, but we prefer to be safe over being sorry.
+			 */
+			$newsItems = News::get();
+			foreach($newsItems as $newsItem){
+				if($newsItem->NewsHolderPageID == 0){
+					$newsItem->NewsHolderPageID = $this->ID;
+					$newsItem->write();
+				}
+			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
 	}
@@ -169,7 +180,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 		elseif($Params['Action'] == 'tags'){
 			$this->Title = 'All tags - ' . $this->Title;
 		}
-		elseif($tags = $this->getTags() && $Params['Action'] == 'tag'){
+		elseif($Params['Action'] == 'tag'){
+			$tags = $this->getTags();
 			$this->Title = $tags->Title . ' - ' . $this->Title;
 		}
 	}
@@ -222,6 +234,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * This feature is cleaner for redirection.
 	 * Saves requests to the database if I'm not mistaken.
+	 * @todo Find a cleaner way to do this. This is ugly.
 	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
@@ -244,9 +257,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 					)
 				);
 				if($news->count() == 0){
-					$renamed = Renamed::get()->filter('OldLink', $Params['ID'])->first();
-					if($renamed->ID > 0){
-						$this->redirect($renamed->News()->Link(), 301);
+					$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
+					if($renamed->count() > 0){
+						$this->redirect($renamed->First()->News()->Link(), 301);
 					}
 					else{
 						$this->redirect($this->Link(), 404);
@@ -298,24 +311,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 				}
 			}
 			return false;
-		}
-		/**
-		 * @todo implement issue #64
-		 */
-		elseif($Params['Action'] == 'archive'){
-			// Archive if wished.
-			/**
-			 * @todo date-sorted archive.
-			 */
-			$config = SiteConfig::current_site_config();
-			$date = date('Y-m-d', strtotime(date('Y-m-d') . ' -' . $config->AutoArchiveDays . ' days'));
-			return News::get()->filter(
-				array(
-					'NewsHolderPageID' => $this->ID,
-					'Live' => 1,
-					'Created:LessThan' => $date
-				)
-			);
 		}
 	}
 	
@@ -379,28 +374,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * Just return this. currentNewsItem should fix it. This one is for show.
-	 * @bug Redirector on ID/Old segment is broken
-	 * @return object this. Forreal! Or, redirect if getNews() returns false.
-	 */
-	public function show() {
-		$Params = $this->getURLParams();
-		if($Params['ID'] != null){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link());
-		}
-	}
-	/**
-	 * Handle the Archive, if needed.
-	 * @return \NewsHolderPage_Controller
-	 */
-	public function archive() {
-		return $this;
-	}
-	
-	/**
 	 * If we're on a newspage, we need to get the newsitem
 	 * @return object of the item.
 	 */
@@ -413,26 +386,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 	}
 	
-	/**
-	 * Tag functions. They always return this, so the template addressing can address the getTags function.
-	 * I wonder if it really needs to do the check, it's another redundancy-thing.
-	 * @todo Fix the redundant check. It's all extra operations now.
-	 * @return \NewsHolderPage_Controller
-	 */
-	public function tag(){
-		$Params = $this->getURLParams();
-		if($Params['ID'] != null){
-			return $this;
-		}
-		else{
-			$this->redirect($this->Link('tags'));
-		}
-	}
-	
-	public function tags(){
-		return $this;
-	}
-
 	public function currentTag(){
 		return $this->getTags();
 	}
@@ -442,35 +395,66 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
-		$Params = $this->getURLParams();
-		if($Params['Action'] != 'archive'){
-			$filter = array(
-				'Live' => 1, 
-				'NewsHolderPageID' => $this->ID
-			);
-			$allEntries = News::get()
-				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
-		}
-		else{
-			/**
-			 * This entire feature needs changing thus is now considered.
-			 * @deprecated
-			 */
-			$oldDate = date('Y-m-d', strtotime(date('Y-m-d').' -'.$SiteConfig->AutoArchiveDays.' days')) . ' 00:00:00';
-			$filter = array(
-				'Created:LessThan' => $oldDate,
-				'Live' => 1,
-				'NewsHolderPageID' => $this->ID
-			);
-			$allEntries = News::get()
-				->filter($filter)
-				->where('PublishFrom IS NULL OR PublishFrom < \'' . $oldDate . '\'');
-		}
+		$filter = array(
+			'Live' => 1, 
+			'NewsHolderPageID' => $this->ID
+		);
+		$allEntries = News::get()
+			->filter($filter)
+			->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
 		/**
 		 * Pagination pagination pagination.
 		 */
-		if($allEntries->count() > 0){
+		if($allEntries->count() > $SiteConfig->PostsPerPage){
+			$records = PaginatedList::create($allEntries,$this->request);
+			if($SiteConfig->PostsPerPage == 0){
+				$records->setPageStart(1);
+				$records->setLimititems(0);
+			}
+			else{
+				$records->setPageLength($SiteConfig->PostsPerPage);
+			}
+			return $records;
+		}
+		return false;
+	}
+	
+	/**
+	 * Get the items, per month/year
+	 * If no month or year is set, current month/year is assumed
+	 * @todo sidebar with year/month grouping.
+	 */
+	public function getArchive(){
+		$SiteConfig = SiteConfig::current_site_config();
+		$Params = $this->getURLParams();
+		if(!isset($Params['ID'])){
+			$month = date('m');
+			$year = date('Y');
+		}
+		elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
+			$year = $Params['ID'];
+			$month = '';
+		}
+		else{
+			$year = $Params['ID'];
+			$month = $Params['OtherID'];
+		}
+		/**
+		 * This needs cleanup.
+		 */
+		$allEntries = News::get()
+			->filter(
+				array(
+					'Live' => 1, 
+					'NewsHolderPageID' => $this->ID,
+					'Created:PartialMatch' => $year.'-'.$month
+				)
+			)
+			->where('PublishFrom LIKE \''.$year.'-'.$month.'%\' OR PublishFrom IS NULL');
+		/**
+		 * Pagination pagination pagination.
+		 */
+		if($allEntries->count() > $SiteConfig->PostsPerPage){
 			$records = PaginatedList::create($allEntries,$this->request);
 			if($SiteConfig->PostsPerPage == 0){
 				$records->setPageStart(1);

@@ -94,6 +94,14 @@ class NewsExtension extends DataExtension {
 		return($news);
 	}
 
+	/**
+	 * Get the NewsItems as groupedList for global archive-listing.
+	 * @return GroupedList of NewsItems.
+	 */
+	public function getArchiveList(){
+		$NewsGroups = GroupedList::create(News::get());
+		return $NewsGroups;
+	}
 
 	/**
 	 * Just get al tags.

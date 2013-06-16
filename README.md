@@ -55,6 +55,10 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
 
+## Work in progress
+
+Please check my github, for issues, see /feature/Issues/{Issues/ID/lowercase_title_with_underscores}
+
 ## Features
 
 * Handle news and impressions besides the news.
