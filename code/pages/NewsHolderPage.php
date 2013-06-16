@@ -116,6 +116,17 @@ class NewsHolderPage extends Page {
 			$page->write();
 			$page->publish('Stage','Live');
 			$page->flushCache();
+			/** 
+			 * This is to make sure we don't create any orphans by upgrading.
+			 * It shouldn't be necessary, but we prefer to be safe over being sorry.
+			 */
+			$newsItems = News::get();
+			foreach($newsItems as $newsItem){
+				if($newsItem->NewsHolderPageID == 0){
+					$newsItem->NewsHolderPageID = $this->ID;
+					$newsItem->write();
+				}
+			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
 	}
