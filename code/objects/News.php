@@ -280,7 +280,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			/**
 			 * It seems the sortorder bugs out when creating a new item.
 			 * Since comments and slideshow-items can't be created before the item exists,
-			 * I hope this is the solution to Issue #40, which I can't reproduce.
 			 */
 			$fields->addFieldToTab(
 				'Root',
@@ -453,6 +452,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * @todo get the monthly items.
 	 */
+	public function getMonthCreated(){
+		return(date('F', strtotime($this->Created)));
+	}
+
 	/**
 	 * Permissions
 	 */

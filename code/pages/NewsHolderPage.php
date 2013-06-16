@@ -409,7 +409,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	public function getArchiveList(){
-		return GroupedList::create(News::get()->sort('IF(PublishFrom, PublishFrom, Created) DESC'));
+		$NewsGroups = GroupedList::create(News::get());
+		return $NewsGroups;
 	}
 	/**
 	 * Get the items, per month/year
