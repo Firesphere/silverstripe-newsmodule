@@ -78,10 +78,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-
+	
+	/** 
+	 * Why am I casting here? Probably not needed.
+	 * @redundant Go die in a fire casting. I don't need you.
+	 * @var array() Really? Yes, really.
+	 */
 	private static $casting = array(
 		'FilterDate' => 'Datetime',
 	);
+	
 	/**
 	 * Define singular name translatable
 	 * @return type string Singular name
@@ -207,7 +213,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * This is for sorting the newsitems by either one of them. Keep it clean!
-	 * @return type
+	 * Or not. Could work any way.
+	 * @return Date of publish
 	 */
 	public function fetchPublish(){
 		if(!$this->PublishFrom){
@@ -216,6 +223,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return $this->PublishFrom;
 	}
 	
+	/**
+	 * Unless you're really motivated. Don't read this. It's too much.
+	 * @return FieldList with the Fields required. Who would've guessed?!
+	 */
 	public function getCMSFields() {
 		$typeArray = array(
 			'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
@@ -374,8 +385,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * This is quite handy, for meta-tags and such.
-	 * @param type $action string, the added URLSegment, the actual function that'll return the news.
-	 * @return type link. To the item.
+	 * @param $action string, the added URLSegment, the actual function that'll return the news.
+	 * @return link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink($action = 'show/'){
 		if($Page = $this->NewsHolderPage()){
@@ -398,7 +409,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
-	 * Guess
+	 * Guess again.
 	 * @return type String
 	 */
 	public function getOGTitle(){
@@ -468,7 +479,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Returns the year this news item was posted in.
-	 * @return string
+	 * @return string of year. With 4 characters, unless it's the year 10000
 	 */
 	public function getYearCreated(){
 		$yearItems = date('Y', strtotime($this->Created));
@@ -478,7 +489,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @todo get the monthly items.
 	 */
 	public function getMonthCreated(){
-		return(date('F', strtotime($this->Created)));
+		$monthItems = date('F', strtotime($this->Created));
+		return $monthItems;
 	}
 
 	/**

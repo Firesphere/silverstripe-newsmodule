@@ -9,7 +9,7 @@
 class CommentReport extends SS_Report {
 
 	/**
-	 * Set the title
+	 * Set the title. Because titles are useful.
 	 * @return String Report Title
 	 */
 	public function title() {

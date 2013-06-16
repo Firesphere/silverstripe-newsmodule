@@ -7,6 +7,7 @@
  * @package News/blog module
  * @author Simon 'Sphere'
  * @method Newsitems News Newsitems linked to this page (for Translatable)
+ * @todo WHOAH! This thing is fat. Slim it down boy!
  */
 class NewsHolderPage extends Page {
 
@@ -21,7 +22,7 @@ class NewsHolderPage extends Page {
 	);
 
 	/**
-	 * The following three functions are global once enabled!
+	 * The following four functions are global once enabled!
 	 * @todo Can I maybe implement this somewhere less annoying?
 	 * @param type $arguments from Content.
 	 * @return HTML block with the parsed code.
@@ -99,6 +100,9 @@ class NewsHolderPage extends Page {
 			return($template->process($record));
 		}
 	}
+	/**
+	 * I'm serious. These shouldn't be here if possible.
+	 */
 	
 	/**
 	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
@@ -135,6 +139,7 @@ class NewsHolderPage extends Page {
 	 * Support for children.
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
 	 * Isn't this supposed to be handled in the allowed_children?
+	 * Anyway. If you don't like children... Rename this.
 	 */
 	public function Children(){
 		return $this->Newsitems();
@@ -144,6 +149,10 @@ class NewsHolderPage extends Page {
 
 class NewsHolderPage_Controller extends Page_Controller {
 
+	/**
+	 * We allow a lot, right?
+	 * @var array, again.
+	 */
 	private static $allowed_actions = array(
 		'allNews',
 		'show',
@@ -188,6 +197,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Does this still work? I think it bugs.
+	 * Or ignored, that could be it too.
 	 */
 	public function MetaDescription(){
 		$Params = $this->getURLParams();
@@ -206,7 +216,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
-	 * @todo obey translatable, but how?
+	 * @todo obey translatable.
 	 * @return type RSS-feed output.
 	 */
 	public function rss(){ 
@@ -270,7 +280,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * General getter. Should this even be public?
+	 * General getter. Should this even be public? (yes, it needs to be public)
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
 	 * @todo clean up more. Still unhappy with this mess.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.

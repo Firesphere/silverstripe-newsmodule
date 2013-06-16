@@ -18,6 +18,12 @@ class NewsAdmin extends ModelAdmin {
 
 	private static $menu_title = 'News';
 	
+	/**
+	 * Add the sortorder to tags. I guess tags are sortable now.
+	 * @param Int $id (No idea)
+	 * @param FieldList $fields because I can
+	 * @return Form $form, because it comes in handy.
+	 */
 	public function getEditForm($id = null, $fields = null) {
 		$form = parent::getEditForm($id, $fields);
 		/**
