@@ -148,9 +148,6 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 ## Plans
 
-* Setup archiving-by-date. So you have grouped by month and year, the items. Repondering. issue #64
-* Possible integration of issue #66
-* Solution to create an uncluttered method for issue #59
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a "Fetch me a beer" function. Should be useful I think.
 * Add a noscript field to prevent botspam.
@@ -165,6 +162,7 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 * Improvements.
 * Translations.
+* Beer.
 
 ## Other
 
