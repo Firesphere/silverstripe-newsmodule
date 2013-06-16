@@ -408,10 +408,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return false;
 	}
 	
-	public function getArchiveList(){
-		$NewsGroups = GroupedList::create(News::get());
-		return $NewsGroups;
-	}
 	/**
 	 * Get the items, per month/year
 	 * If no month or year is set, current month/year is assumed
