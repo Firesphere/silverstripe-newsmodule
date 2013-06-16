@@ -10,7 +10,7 @@
 class TagReport extends SS_Report {
 
 	/**
-	 * Set the title
+	 * Set the title. Because I still don't know why not.
 	 * @return String Report Title
 	 */
 	public function title() {
