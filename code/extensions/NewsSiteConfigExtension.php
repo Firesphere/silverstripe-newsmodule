@@ -5,7 +5,7 @@
  * @package News/blog module
  * @author Sphere
  */
-class NewsSiteConfigDecorator extends DataExtension {
+class NewsSiteConfigExtension extends DataExtension {
 
 	/**
 	 * @var type array of all the extra's we need for setting everything up.
