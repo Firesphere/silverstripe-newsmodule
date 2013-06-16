@@ -124,6 +124,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
 			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
+		$pages = NewsHolderPage::get();
+		if($pages->count() > 1){
+			$summaryFields['NewsHolderPage.Title'] = _t($this->class . '.PARENTPAGE', 'Parent holderpage');
+		}
 		if(class_exists('Translatable')){
 			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
 			if(count($translatable) > 1){
@@ -141,13 +145,20 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
-		$searchableFields = array(
-			'Title' => array(
+		unset($searchableFields['NewsHolderPage.Title']);
+		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
 				'title'  => _t($this->class . '.TITLE','Title')
-			),
-		);
+			);
+		$pages = NewsHolderPage::get();
+		if($pages->count() > 1){
+			$searchableFields['NewsHolderPageID'] = array(
+				'title' => _t($this->class . '.PARENTPAGE', 'Parent holderpage'),
+				'filter' => 'PartialMatchFilter',
+				'field' => 'DropdownField',
+			);
+		}
 		/**
 		 * Add the translatable dropdown if we can translate.
 		 */
@@ -181,6 +192,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 						array('' => _t($this->class . '.ANY', 'Any language')), 
 						Translatable::get_existing_content_languages('NewsHolderPage')
 					)
+				);
+		}
+		if($fields->fieldByName('NewsHolderPageID') != null){
+			$source = NewsHolderPage::get();
+			$source = $source->map('ID', 'Title');
+			$fields->fieldByName('NewsHolderPageID')
+				->setSource(
+					$source
 				);
 		}
 		return $fields;
@@ -233,6 +252,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		else{
 			$translate = LiteralField::create('Doh', '');
 		}
+		$multiple = LiteralField::create('NoMultiple', '');
+		$HolderPages = NewsHolderPage::get();
+		if($HolderPages->count() > 1){
+			$multiple = DropdownField::create('NewsHolderPageID', _t($this->class . '.HOLDERPAGE', 'Parent holderpage'), $HolderPages->map('ID', 'Title'));
+		}
 		/** Setup new root tab */
 		$fields = FieldList::create(TabSet::create('Root'));
 		
@@ -244,6 +268,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				/** The fields */
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
+				$multiple,
 				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
 				$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract')),
 				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
@@ -387,11 +412,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!$this->Locale || !class_exists('Translatable')){
+		if((!$this->Locale || !class_exists('Translatable')) && !$this->NewsHolderPageID){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
-		else{
+		elseif(!$this->NewsHolderPageID){
 			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Locale);
 			$this->NewsHolderPageID = $page->ID;
 		}
