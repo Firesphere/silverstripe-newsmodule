@@ -45,6 +45,10 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
+### Child grouping support
+
+* Requires [`ENHANCEMENT issue #2501`](https://github.com/silverstripe/silverstripe-framework/pull/2105) for child grouping support
+
 ## Highly recommended
 
 * [`Silverstripe Display Logic`](https://github.com/UncleCheese/silverstripe-display-logic)
@@ -57,7 +61,7 @@ Note on which version of translatable, CMS and Framework you use! They might not
 
 ## Work in progress
 
-Yeah. It kinda is. I'm trying not to break old features with new features!
+Please check my github, for issues, see /feature/Issues/{Issues/ID/lowercase_title_with_underscores}
 
 ## Features
 
@@ -86,7 +90,7 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 * Reports on comments, how much of them are marked by Akismet and how many are hidden.
 * Report on the tag usage.
 * Address the items that belong to a page with <% loop Children %> (don't ask, too little too late)
-* Archive. Globally addressable from the template via <% loop getArchiveList %>. See included template examples.
+* Archive-fix. You can create a "big-archive" with items older than x days
 
 ## Demo of frontend
 
@@ -131,7 +135,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 ## Best Practices
 
-* Write grammatically correct. (If you don't, I'll prevent you from getting any updates. Be warned!)
+* Write grammatically correct.
 * If you have Akismet, add your Akismet API-key to the SiteConfig in News settings (It's in the Comments-section). It saves you from comment-spam
 * Make sure your cat doesn't walk over yoa23'oqexkji6ygfp89cbhv2
 
@@ -148,21 +152,20 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 ## Plans
 
+* Setup archiving-by-date. So you have grouped by month and year, the items. Repondering. issue #64
+* Possible integration of issue #66
+* Solution to create an uncluttered method for issue #59
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a "Fetch me a beer" function. Should be useful I think.
-* Add a noscript field to prevent botspam.
 
 ## Known Issues
 
 * None at the moment.
-* Version 3.0 is redundant as hell.
-* No, I'm serious, Master_3.0 is really far behind.
 
 ## Requests
 
 * Improvements.
 * Translations.
-* Beer.
 
 ## Other
 
@@ -170,6 +173,7 @@ If you set optional extra anti-spam method, the commentform will contain a field
 * Code Comments should not be taken too seriously, since I'm bad at writing serious code-comments.
 * Please use the Issue-tracker, otherwise I get lost too.
 * This ModelAdmin method is chosen to declutter the SiteTree.
+* This is a port of a non-released SS2.4 newsmodule I wrote. It might not be entirely "up to code" yet.
 
 ## Actual license
 
