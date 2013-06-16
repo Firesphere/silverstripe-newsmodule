@@ -20,7 +20,7 @@ class Tag extends DataObject {
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'URLSegment' => 'Varchar(255)',
-		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED
+		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED (I think)
 		'SortOrder' => 'Int',
 	);
 	

@@ -11,6 +11,9 @@
  */
 class Comment extends DataObject {
 
+	/**
+	 * Here are a bunch of statics. If you don't know what it does, you should read the Silverstripe documentation.
+	 */
 	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Name' => 'Varchar(255)',
@@ -57,6 +60,7 @@ class Comment extends DataObject {
 			return parent::plural_name();
 		}   
 	}
+	/** If you hadn't guessed what the above does. Try the functions below! */
 	
 	/**
 	 * For translations, we need a few updates here, but at least we hide the md5 of the e-mail.
@@ -82,9 +86,15 @@ class Comment extends DataObject {
 		else{
 			$this->Visible = true;
 		}
+		/**
+		 * No, I'm serious. Commenters forget that http is somewhat required to make the link actually work :'(
+		 */
 		if(substr($this->URL,0,4) != 'http' && $this->URL != ''){
 			$this->URL = 'http://'.$this->URL;
 		}
+		/**
+		 * For crying out loud, can't you just write the MD5 yours... Nevermind.
+		 */
 		$this->MD5Email = md5($this->Email);
 		if($SiteConfig->AkismetKey) {
 			try {
@@ -105,6 +115,9 @@ class Comment extends DataObject {
 				// $this->Visible = false;
 			}
 		}
+		/**
+		 * PHP and HTML do not like each other I guess.
+		 */
 		$this->Comment = nl2br($this->Comment);
 	}
 	
@@ -116,6 +129,7 @@ class Comment extends DataObject {
 	 */
 	public function onAfterWrite(){
 		$SiteConfig = SiteConfig::current_site_config();
+		/** No, really, I mean it. Change this. When spambots find your site, 30 e-mails an hour is NORMAL! */
 		$mail = Email::create();
 		$mail->setTo($SiteConfig->NewsEmail);
 		$mail->setSubject(_t($this->class . '.COMMENTMAILSUBJECT', 'New post titled: ') .$this->Title);
@@ -126,7 +140,8 @@ class Comment extends DataObject {
 	}
 	
 	/**
-	 * Permissions
+	 * Permissions.
+	 * Because ehm... Well. You know.
 	 */
 	public function canCreate($member = null) {
 		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));

@@ -104,7 +104,7 @@ class NewsExtension extends DataExtension {
 	}
 
 	/**
-	 * Just get al tags.
+	 * Just get all tags.
 	 * @todo support translatable?
 	 * @return type Datalist of all tags
 	 */

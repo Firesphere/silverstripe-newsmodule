@@ -18,6 +18,10 @@ class SlideshowImage extends DataObject {
 		'SortOrder' => 'Int',
 	);
 	
+	/**
+	 * In case you hadn't guessed. This thingy has images.
+	 * @var array. I know.
+	 */
 	private static $has_one = array(
 		'Image' => 'Image',
 		'News' => 'News',
