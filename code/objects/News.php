@@ -497,19 +497,19 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * Permissions
 	 */
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin') || $this->Live == 1);
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
 	}
 
 }
