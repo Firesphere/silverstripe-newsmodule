@@ -77,13 +77,14 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 * Tweet rendering by Twitter. Include the twitter widget JS and in your content, just do [tweet id=tweetID]
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
-* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss`
+* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly by some versions of the HTTP class in the RSS-entry builder!)
 * If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
 * The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
+** Publish-date is disabled due to errors caused. Will be fixed asap but low on priority-list.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
 * Posts per Page and Pagination. If set to 0, it won't paginate.
 * Reports on comments, how much of them are marked by Akismet and how many are hidden.
@@ -101,8 +102,6 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 ## Demo of backend
 
 * [`user: news@test.com password: newsmodule`](http://newsmodule.casa-laguna.net/admin)
-
-This testenvironment is resetted every 24 hours. 
 
 ## Lacks
 
