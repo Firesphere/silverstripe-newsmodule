@@ -23,8 +23,6 @@ class NewsSiteConfigExtension extends DataExtension {
 		'TweetOnPost' => 'Boolean(false)',
 		'SlideshowInitial' => 'Boolean(true)',
 		'SlideshowSize' => 'Varchar(15)',
-		'AutoArchive' => 'Boolean(false)',
-		'AutoArchiveDays' => 'Int',
 		'ReturnExternal' => 'Boolean(false)',
 	);
 	
@@ -66,13 +64,6 @@ class NewsSiteConfigExtension extends DataExtension {
 					_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'), // title
 					CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
 					TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
-				),
-				/** Archiving settings */
-				Tab::create(
-					'AutoArchive', // name
-					_t($this->class . '.ARCHIVE', 'Auto Archiving'), // title
-					CheckboxField::create('AutoArchive', _t($this->class . '.AUTOARCHIVE', 'Put items older then X days on a separate archive-page.')),
-					NumericField::create('AutoArchiveDays', _t($this->class . '.AUTOARCHIVEDAYS', 'Amount of days before auto-archiving'))
 				)
 			),
 			'Access'
