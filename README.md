@@ -194,3 +194,19 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 
 (I shouldn't scream, should I? This is copy-paste from BSD-2 license...)
+
+## Did you read this entire readme? You rock!
+
+Pictured below is a cow. In ASCII. And I think this cow is a bit tired.
+```
+                            .-.
+                           ##  )
+                           *
+                         _.-+*'`*+-._
+                       ,##  _    _   #.
+                      ;### ((.;;.))  ##:
+                .=._.;    ,-*:;;:*-. *##:._.=,
+                 >##;    *-')_@@_(`-*   ;###<
+ ---------------`****------(o `` o)-----*****'-------------e:l
+                            `-""-'    
+```
