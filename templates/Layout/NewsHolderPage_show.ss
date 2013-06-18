@@ -11,7 +11,14 @@
 	<h3>$Author on <% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
 	<br />
 	<div class="Content" contenteditable="true">
-        $Content
+		$Content
+	<% if Type != news %>
+		<% if Type == External %>
+		<a href="$External" target="_blank">$Title</a>
+		<% else_if Type == Download %>
+		<a href="$Download.Link">$Title</a>
+		<% end_if %>
+	<% end_if %>
 	</div>
 	  <% if Tags.Count > 0 %>
 	  <br />
