@@ -16,12 +16,12 @@
 		<% end_if %>
 	  <h3><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
 	  <% if Synopsis %>
-	  <p>$Synopsis</p>
+		<p>$Synopsis</p>
 	  <% else %>
-          <p>$Content.Summary</p>
+		<p>$Content.Summary</p>
 	  <% end_if %>
-	  <% if Type == 'news' %>
-          <footer class="more"><a href="$Link">Read More &raquo;</a></footer>
+	  <% if not SiteConfig.ReturnExternal %>
+		<footer class="more"><a href="$Link">Read More &raquo;</a></footer>
 	  <% end_if %>
 	</div>
 	  <% if Tags.Count > 0 %>
