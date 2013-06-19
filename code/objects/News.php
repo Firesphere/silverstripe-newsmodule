@@ -128,7 +128,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$summaryFields = array(
 			'Title' => _t($this->class . '.TITLE', 'Titel'),
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
-			'fetchPublish' => _t($this->class . 'PUBLISH', 'Publish date'),
+			'Created' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
 		$pages = NewsHolderPage::get();
 		if($pages->count() > 1){
