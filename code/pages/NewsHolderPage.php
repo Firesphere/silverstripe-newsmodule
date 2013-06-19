@@ -426,7 +426,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			return $records;
 		}
-		return false;
+		return $allEntries;
 	}
 	
 	/**
