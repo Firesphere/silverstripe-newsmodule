@@ -23,7 +23,7 @@ class NewsSiteConfigExtension extends DataExtension {
 		'TweetOnPost' => 'Boolean(false)',
 		'SlideshowInitial' => 'Boolean(true)',
 		'SlideshowSize' => 'Varchar(15)',
-		'ReturnExternal' => 'Boolean(false)',
+		'ReturnExternal' => 'Boolean(true)',
 	);
 	
 	/**
@@ -44,7 +44,7 @@ class NewsSiteConfigExtension extends DataExtension {
 					CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
 					TextField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
 					EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to')),
-					CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNAL', 'Make the item link directly to external'))
+					CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNAL', 'Make externals open in a new tab/window'))
 				),
 				/** Comment settings */
 				Tab::create(
