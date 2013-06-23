@@ -3,8 +3,8 @@
  * Remove or comment the following lines to enable/disable features.
  * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
  * 
- * To enable, just add a / directly after the star below this line. To disable, remove the /
- */
+ * To enable, just add a / directly after the star below this line
+ *
 // It seems an array bugs out :(
 // Can this be done via a yml file?
 ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
