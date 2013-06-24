@@ -187,9 +187,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
-		} else {
 			$tags = ReadonlyField::create('Tags', 'Tags', 'Tags can be added after the newsitem is saved once');
+		} else {
+			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
 		/**
 		 * If there are multiple translations available, add the field.
