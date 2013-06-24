@@ -228,11 +228,35 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return FieldList with the Fields required. Who would've guessed?!
 	 */
 	public function getCMSFields() {
+		$siteConfig = SiteConfig::current_site_config();
+		/**
+		 * Configuration options from SiteConfig
+		 */
 		$typeArray = array(
 			'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
-			'external' => _t($this->class . '.EXTERNALTYPE', 'External link'),
-			'download' => _t($this->class . '.DOWNLOADTYPE', 'Download')
 		);
+		$link = LiteralField::create('External', '');
+		$file = LiteralField::create('Download', '');
+		if($siteConfig->AllowExternals){
+			$typeArray['external'] = _t($this->class . '.EXTERNALTYPE', 'External link');
+			$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link'));
+		}
+		if($siteConfig->AllowDownloads){
+			$typeArray['download'] = _t($this->class . '.DOWNLOADTYPE', 'Download');
+			$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file'));
+		}
+		if(count($typeArray) > 1){
+			$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type);
+		}
+		else{
+			$type = LiteralField::create('Type', '');
+		}
+		if($siteConfig->UseAbstract){
+			$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract'));
+		}
+		else{
+			$summ = LiteralField::create('Synopsis', '');
+		}
 		/**
 		 * This is to adress the Author-issue. As described in the db-field declaration.
 		 * Also, setup the tags-field. Relations can't be saved if the object doesn't exist yet.
@@ -257,12 +281,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$translate = DropdownField::create('Locale', _t($this->class . '.LOCALE', 'Locale'), $translatable);
 			}
 			else{
-				$translate = LiteralField::create('OneLocale', '');
+				$translate = LiteralField::create('Locale', '');
 			}
 		}
 		else{
-			$translate = LiteralField::create('Doh', '');
+			$translate = LiteralField::create('Locale', '');
 		}
+		/** Allow for multiple root newsholderpages. */
+		/** @todo fix a neater way to display this in the admin. Requires a new ModelAdmin extension-module. TBA(tm) */
 		$multiple = LiteralField::create('NoMultiple', '');
 		$HolderPages = NewsHolderPage::get();
 		if($HolderPages->count() > 1){
@@ -280,11 +306,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
 				$multiple,
-				$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type),
-				$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract')),
-				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
+				$type,
+				$summ,
+				$link,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
-				$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file')),
+				$file,
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
@@ -296,6 +322,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 		/**
 		 * Add a link to the frontpage version of the item.
+		 * The following items are all has_one or has_many relations.
+		 * No use for showing them initially.
 		 */
 		if($this->ID){
 			$fields->addFieldToTab(
@@ -314,49 +342,52 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			);
 			
 			/**
-			 * It seems the sortorder bugs out when creating a new item.
-			 * Since comments and slideshow-items can't be created before the item exists,
+			 * If commenting is allowed globally, show the comment-tab.
 			 */
-			$fields->addFieldToTab(
-				'Root',
-				Tab::create(
-					'Comments',
-					_t($this->class . '.COMMENTS', 'Comments'),
-					GridField::create(
-						'Comment', 
+			if($siteConfig->Comments){
+				$fields->addFieldToTab(
+					'Root',
+					Tab::create(
+						'Comments',
 						_t($this->class . '.COMMENTS', 'Comments'),
-						$this->Comments(), 
-						GridFieldConfig_RelationEditor::create()
+						GridField::create(
+							'Comment', 
+							_t($this->class . '.COMMENTS', 'Comments'),
+							$this->Comments(), 
+							GridFieldConfig_RelationEditor::create()
+						)
 					)
-				)
-			);
-
+				);
+			}
 			/**
 			 * Note the requirements! Otherwise, things might break!
+			 * If the Slideshow is enabled, show it's gridfield and features
 			 */
-			$gridFieldConfig = GridFieldConfig_RecordEditor::create();
-			$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
-			$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
-			$fields->addFieldToTab(
-				'Root',
-				Tab::create(
-					'SlideshowImages',
-					_t($this->class . '.SLIDE', 'Slideshow'),
-					$gridfield = GridField::create(
-						'SlideshowImage',
-						_t($this->class . '.IMAGES', 'Slideshow Images'),
-						$this->SlideshowImages()
-							->sort('SortOrder'), 
-						$gridFieldConfig)
-				)
-			);
+			if($siteConfig->EnableSlideshow){
+				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
+				$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
+				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+				$fields->addFieldToTab(
+					'Root',
+					Tab::create(
+						'SlideshowImages',
+						_t($this->class . '.SLIDE', 'Slideshow'),
+						$gridfield = GridField::create(
+							'SlideshowImage',
+							_t($this->class . '.IMAGES', 'Slideshow Images'),
+							$this->SlideshowImages()
+								->sort('SortOrder'), 
+							$gridFieldConfig)
+					)
+				);
+			}
 		}
 		
 		/**
 		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
 		 * @todo make this actually work. Contact @_UncleCheese_
 		 */
-		if(class_exists('DisplayLogicFormField')){
+		if(class_exists('DisplayLogicFormField') && count($typeArray) > 1){
 			$file->hideUnless('Type')->isEqualTo('download');
 			$link->hideUnless('Type')->isEqualTo('external');
 			$html->hideUnless('Type')->isEqualTo('news');
@@ -423,13 +454,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if((!$this->Locale || !class_exists('Translatable')) && !$this->NewsHolderPageID){
+		if((!$this->Locale || !class_exists('Translatable') || $this->Locale == '') && !$this->NewsHolderPageID){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPageID = $page->ID;
 		}
 		elseif(!$this->NewsHolderPageID){
 			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Locale);
 			$this->NewsHolderPageID = $page->ID;
+		}
+		if(!$this->Type || $this->Type == ''){
+			$this->Type = 'news';
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
