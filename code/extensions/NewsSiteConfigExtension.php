@@ -73,7 +73,7 @@ class NewsSiteConfigExtension extends DataExtension {
 					NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size (32 for 32x32px)')),
 					TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
 					CheckboxField::create('ExtraSecurity', _t($this->class . '.SPAMPROTECTION', 'Use an extra field for spamprotection')),
-					CheckboxField::create('NoscriptSecurity', _t($this->class . '.NOSCRIPTSPAM', 'Use a <noscript> field for spamprotection'))
+					CheckboxField::create('NoscriptSecurity', _t($this->class . '.NOSCRIPTSPAM', 'Use a noscript field for spamprotection'))
 				),
 				/** Slideshow settings */
 				Tab::create(
