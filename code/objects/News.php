@@ -235,11 +235,15 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$typeArray = array(
 			'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
 		);
+		$link = LiteralField::create('External', '');
+		$file = LiteralField::create('Download', '');
 		if($siteConfig->AllowExternals){
 			$typeArray['external'] = _t($this->class . '.EXTERNALTYPE', 'External link');
+			$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link'));
 		}
 		if($siteConfig->AllowDownloads){
 			$typeArray['download'] = _t($this->class . '.DOWNLOADTYPE', 'Download');
+			$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file'));
 		}
 		if(count($typeArray) > 1){
 			$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type);
@@ -304,9 +308,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$multiple,
 				$type,
 				$summ,
-				$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link')),
+				$link,
 				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
-				$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file')),
+				$file,
 				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
 				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
 				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
@@ -383,7 +387,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
 		 * @todo make this actually work. Contact @_UncleCheese_
 		 */
-		if(class_exists('DisplayLogicFormField')){
+		if(class_exists('DisplayLogicFormField') && count($typeArray) > 1){
 			$file->hideUnless('Type')->isEqualTo('download');
 			$link->hideUnless('Type')->isEqualTo('external');
 			$html->hideUnless('Type')->isEqualTo('news');
