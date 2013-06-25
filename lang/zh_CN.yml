@@ -2,7 +2,7 @@ zh_CN:
   NewsAdmin:
     MENUTITLE: "新闻"
     ActionAdd: "添加新闻"
-  NewsSiteConfigExtension:
+  NewsSiteConfigDecorator:
     NEWS: "新闻设置"
     TWEETPOST: "添加新闻后, 在推特(Tweet)上发布消息"
     PPP: "每页新闻数量"

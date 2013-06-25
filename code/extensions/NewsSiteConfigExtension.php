@@ -46,7 +46,7 @@ class NewsSiteConfigExtension extends DataExtension {
 				'Root', // What tab
 				TabSet::create(
 					'Newssettings', // name
-					_t($this->class . '.NEWSSETTINGS', 'News settings'), // title
+					_t($this->class . '.NEWSCOMMENTS', 'News settings'), // title
 					/** General news settings */
 					Tab::create(
 						'News', // Name
@@ -61,7 +61,7 @@ class NewsSiteConfigExtension extends DataExtension {
 						_t($this->class . '.EXTERNAL', 'External linking'),
 						CheckboxField::create('AllowExternals', _t($this->class . '.ALLOWEXT', 'Allow linking to external articles')),
 						CheckboxField::create('AllowDownloads', _t($this->class . '.ALLOWDOWN', 'Allow linking to downloads')),
-						CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNALEXT', 'Make externals open in a new tab/window'))
+						CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNAL', 'Make externals open in a new tab/window'))
 					),
 					/** Comment settings */
 					Tab::create(
