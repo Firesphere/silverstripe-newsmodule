@@ -179,6 +179,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * Meta! This is so Meta! I mean, MetaTitle!
+	 * @todo Make these translatable
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();

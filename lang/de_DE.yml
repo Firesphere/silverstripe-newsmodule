@@ -2,7 +2,7 @@ de_DE:
   NewsAdmin:
     MENUTITLE: "Neuigkeiten"
     ActionAdd: "Meldung hinzufügen"
-  NewsSiteConfigDecorator:
+  NewsSiteConfigExtension:
     NEWS: "Einstellungen für Neuigkeiten"
     TWEETPOST: "Tweet schicken nach der Veröffentlichung einer neuen Meldung"
     PPP: "Anzahl Meldungen pro Seite"

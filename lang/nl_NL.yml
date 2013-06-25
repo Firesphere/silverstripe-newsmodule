@@ -2,7 +2,7 @@ nl_NL:
   NewsAdmin:
     MENUTITLE: "Nieuws"
     ActionAdd: "Nieuwsbericht toevoegen"
-  NewsSiteConfigDecorator:
+  NewsSiteConfigExtension:
     NEWS: "Nieuws instellingen"
     TWEETPOST: "Tweet na posten"
     PPP: "Aantal posts per pagina"

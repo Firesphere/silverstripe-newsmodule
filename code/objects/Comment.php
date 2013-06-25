@@ -144,19 +144,19 @@ class Comment extends DataObject {
 	 * Because ehm... Well. You know.
 	 */
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMSACCESSNewsAdmin'));
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
 	}
 
 }
