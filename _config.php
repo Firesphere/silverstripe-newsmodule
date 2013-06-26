@@ -5,10 +5,8 @@
  * 
  * To enable, just add a / directly after the star below this line. To disable, remove the /
  */
-// It seems an array bugs out :(
-// Can this be done via a yml file?
-ShortcodeParser::get()->register('tweet',array('NewsHolderPage','TweetHandler'));
-ShortcodeParser::get()->register('code',array('NewsHolderPage','GeshiParser'));
-ShortcodeParser::get()->register('YT',array('NewsHolderPage','YouTubeHandler'));
-ShortcodeParser::get()->register('slideshow', array('NewsHolderPage','createSlideshow'));
+ShortcodeParser::get()->register('tweet',array('ExtraShortcodeParser','TweetHandler'));
+ShortcodeParser::get()->register('code',array('ExtraShortcodeParser','GeshiParser'));
+ShortcodeParser::get()->register('YT',array('ExtraShortcodeParser','YouTubeHandler'));
+ShortcodeParser::get()->register('slideshow', array('ExtraShortcodeParser','createSlideshow'));
 /*This comment is here to save you from WTF HAPPENED!*/
