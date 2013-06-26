@@ -84,7 +84,6 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
 * The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
-** Publish-date is disabled due to errors caused. Will be fixed asap but low on priority-list.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
 * Posts per Page and Pagination. If set to 0, it won't paginate.
 * Reports on comments, how much of them are marked by Akismet and how many are hidden.
@@ -159,7 +158,7 @@ If you set optional extra anti-spam method, the commentform will contain a field
 ## Known Issues
 
 * None at the moment.
-* Version 3.0 is redundant as hell.
+* Version 3.0 is outdated as hell.
 * No, I'm serious, Master_3.0 is really far behind.
 
 ## Requests
@@ -197,16 +196,27 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ## Did you read this entire readme? You rock!
 
-Pictured below is a cow. In ASCII. And I think this cow is a bit tired.
+Pictured below is a cow, just for you.
 ```
-                            .-.
-                           ##  )
-                           *
-                         _.-+*'`*+-._
-                       ,##  _    _   #.
-                      ;### ((.;;.))  ##:
-                .=._.;    ,-*:;;:*-. *##:._.=,
-                 >##;    *-')_@@_(`-*   ;###<
- ---------------`****------(o `` o)-----*****'-------------e:l
-                            `-""-'    
+
+               /( ,,,,, )\
+              _\,;;;;;;;,/_
+           .-"; ;;;;;;;;; ;"-.
+           '.__/`_ / \ _`\__.'
+              | (')| |(') |
+              | .--' '--. |
+              |/ o     o \|
+              |           |
+             / \ _..=.._ / \
+            /:. '._____.'   \
+           ;::'    / \      .;
+           |     _|_ _|_   ::|
+         .-|     '==o=='    '|-.
+        /  |  . /       \    |  \
+        |  | ::|         |   | .|
+        |  (  ')         (.  )::|
+        |: |   |;  U U  ;|:: | `|
+        |' |   | \ U U / |'  |  |
+        ##V|   |_/`"""`\_|   |V##
+           ##V##         ##V##
 ```

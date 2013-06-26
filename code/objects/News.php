@@ -512,16 +512,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	/**
-	 * Returns the year this news item was posted in.
-	 * @return string of year. With 4 characters, unless it's the year 10000
+	 * Returns the year and month this news item was posted in, this is for Grouping in template..
+	 * @return string of year|month. With 4 characters, unless it's the year 10000. Or a month, ofcourse.
 	 */
 	public function getYearCreated(){
 		$yearItems = date('Y', strtotime($this->Created));
 		return $yearItems;
 	}
-	/**
-	 * @todo get the monthly items.
-	 */
+
 	public function getMonthCreated(){
 		$monthItems = date('F', strtotime($this->Created));
 		return $monthItems;

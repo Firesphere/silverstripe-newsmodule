@@ -94,6 +94,7 @@ class Tag extends DataObject {
 	/**
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
 	 * @todo I still have to fix that translatable, remember? ;)
+	 * @todo support multiple HolderPages?
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
