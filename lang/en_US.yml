@@ -52,6 +52,7 @@ en_US:
     ANY: "Any language"
     TAGS: "Tags"
     COMMENTS: "Comments"
+    TAGAFTERID: "Tags can be added after the item has been saved"
     SLIDE: "Slideshow"
     IMAGES: "Slideshow images"
     NEWSITEMTYPE: "Newsitem"

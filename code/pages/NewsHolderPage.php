@@ -340,7 +340,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$segmentFilter = array(
 			'URLSegment' => $Params['ID']
 		);
-		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMSACCESSNewsAdmin')){
+		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
 			$idFilter['Live'] = 1;
 			$segmentFilter['Live'] = 1;
 		}
