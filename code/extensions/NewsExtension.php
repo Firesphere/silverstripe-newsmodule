@@ -17,9 +17,7 @@ class NewsExtension extends DataExtension {
 	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 related items.
 	 *	Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
 	 *	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
-	 * @todo implement archiving by month/year
 	 * @todo implement subsites
-	 * @todo implement better previews
 	 */
 	public function NewsArchive($limit = 5, $random = null, $related = null) {
 		if($limit == 0){
