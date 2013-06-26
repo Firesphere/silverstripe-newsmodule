@@ -27,6 +27,7 @@ class NewsSiteConfigExtension extends DataExtension {
 		'DefaultGravatar' => 'Varchar(255)',
 		'GravatarSize' => 'Int',
 		'AkismetKey' => 'Varchar(255)',
+		'NoscriptSecurity' => 'Boolean(true)',
 		'ExtraSecurity' => 'Boolean(true)',
 		/** External options */
 		'AllowExternals' => 'Boolean(true)',

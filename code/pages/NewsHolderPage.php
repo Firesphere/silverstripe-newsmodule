@@ -433,6 +433,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if($siteconfig->ExtraSecurity){
 			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
 		}
+		if($siteconfig->NoscriptSecurity){
+			$field[] = LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>');
+		}
 		$fields = FieldList::create(
 			$field
 		);
@@ -461,8 +464,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function CommentStore($data, $form){
 		/**
 		 * If the "Extra" field is filled, we have a bot.
+		 * Also, the nsas (<noscript> Anti Spam) is a bot. Bot's don't use javascript.
+		 * Note, a legitimate visitor that has JS disabled, will be unable to post!
 		 */
-		if(!isset($data['Extra']) || $data['Extra'] == ''){
+		if(!isset($data['Extra']) || $data['Extra'] == '' || isset($data['nsas'])){
 			$data['Comment'] = Convert::raw2sql($data['Comment']);
 			if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
 				$comment = new Comment();
