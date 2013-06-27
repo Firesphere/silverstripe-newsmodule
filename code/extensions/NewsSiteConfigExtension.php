@@ -62,7 +62,7 @@ class NewsSiteConfigExtension extends DataExtension {
 						_t($this->class . '.EXTERNAL', 'External linking'),
 						CheckboxField::create('AllowExternals', _t($this->class . '.ALLOWEXT', 'Allow linking to external articles')),
 						CheckboxField::create('AllowDownloads', _t($this->class . '.ALLOWDOWN', 'Allow linking to downloads')),
-						CheckboxField::create('ReturnExternal', _t($this->class . '.EXTERNAL', 'Make externals open in a new tab/window'))
+						CheckboxField::create('ReturnExternal', _t($this->class . '.RETURNEXT', 'Make externals open in a new tab/window'))
 					),
 					/** Comment settings */
 					Tab::create(
