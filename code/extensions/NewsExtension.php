@@ -109,5 +109,42 @@ class NewsExtension extends DataExtension {
 	public function allTags() {
 		return Tag::get();
 	}
+
+    /**
+     * Get all the items from a single newsholderPage.
+     * @param $limit integer with chosen limit. Called from template via <% loop $NewsArchiveByHolderID(321,5) %> for the page with ID 321 and 5 latest items.
+     * @todo many things, isn't finished
+     * @author Marcio Barrientos
+     */
+    public function NewsArchiveByHolderID($holderID = null, $limit = 5 ){
+        if($limit == 0){
+            $limit = null;
+        }
+
+        if(class_exists('Translatable')){
+            $filter = array(
+                'Live' => 1,
+                'Locale' => Translatable::current_lang() ,
+                'NewsHolderPageID' => $holderID
+            );
+        }
+        else{
+            $filter = array(
+                'Live' => 1,
+                'NewsHolderPageID' => $holderID
+            );
+        }
+
+        $news = News::get()
+            ->filter($filter)
+            ->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
+            ->limit($limit);
+
+        if($news->count() == 0){
+            return null;
+        }
+
+        return $news;
+    }
 	
 }
