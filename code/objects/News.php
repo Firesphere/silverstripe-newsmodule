@@ -54,6 +54,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	private static $many_many = array(
 		'Tags' => 'Tag',
 	);
+	
+	private static $summary_fields = array();
+	
+	private static $searchable_fields = array();
 
 	private static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
 	/**
@@ -78,16 +82,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-	
-	/** 
-	 * Why am I casting here? Probably not needed.
-	 * @redundant Go die in a fire casting. I don't need you.
-	 * @var array() Really? Yes, really.
-	 */
-	private static $casting = array(
-		'FilterDate' => 'Datetime',
-	);
-	
+
 	/**
 	 * Define singular name translatable
 	 * @return type string Singular name
@@ -111,24 +106,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			return parent::plural_name();
 		}
 	}
-	
-		
-	public function getFilterDate(){
-		if($this->PublishFrom != null){
-			return $this->PublishFrom;
-		}
-		return $this->Created;
-	}
 
 	/**
 	 * Define sumaryfields;
 	 * @return array of summaryfields
 	 */
 	public function summaryFields() {
+		$summaryFields = parent::summaryFields();
 		$summaryFields = array(
 			'Title' => _t($this->class . '.TITLE', 'Titel'),
 			'Author' => _t($this->class . '.AUTHOR', 'Author'),
-			'Created' => _t($this->class . 'PUBLISH', 'Publish date'),
 		);
 		$pages = NewsHolderPage::get();
 		if($pages->count() > 1){
@@ -140,8 +127,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$summaryFields['fetchLocale'] = _t($this->class . '.LOCALE', 'Language');
 			}
 		}
-		$this->extend('summary_fields', $summaryFields);
-
 		return $summaryFields;
 	}
 	
@@ -209,18 +194,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				);
 		}
 		return $fields;
-	}
-	
-	/**
-	 * This is for sorting the newsitems by either one of them. Keep it clean!
-	 * Or not. Could work any way.
-	 * @return Date of publish
-	 */
-	public function fetchPublish(){
-		if(!$this->PublishFrom){
-			return $this->Created;
-		}
-		return $this->PublishFrom;
 	}
 	
 	/**
