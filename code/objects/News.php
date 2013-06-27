@@ -113,9 +113,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function summaryFields() {
 		$summaryFields = parent::summaryFields();
-		$summaryFields = array(
-			'Title' => _t($this->class . '.TITLE', 'Titel'),
-			'Author' => _t($this->class . '.AUTHOR', 'Author'),
+		$summaryFields = array_merge(
+			$summaryFields, 
+			array(
+				'Title' => _t($this->class . '.TITLE', 'Titel'),
+				'Author' => _t($this->class . '.AUTHOR', 'Author'),
+				'PublishFrom' => _t($this->class . '.PUBLISH', 'Publish from'),
+			)
 		);
 		$pages = NewsHolderPage::get();
 		if($pages->count() > 1){
@@ -137,6 +141,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
 		unset($searchableFields['NewsHolderPage.Title']);
+		unset($searchableFields['PublishFrom']);
 		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
@@ -437,6 +442,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		}
 		if(!$this->Type || $this->Type == ''){
 			$this->Type = 'news';
+		}
+		if(!$this->PublishFrom){
+			$this->PublishFrom = date('Y-m-d');
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
