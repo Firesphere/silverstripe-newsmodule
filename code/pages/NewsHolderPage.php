@@ -50,6 +50,9 @@ class NewsHolderPage extends Page {
 			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
+		/** Backwards compatibility for upgraders. Update the PublishFrom field */
+		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
+		DB::query($sql);
 	}
 	
 	/**
