@@ -1,10 +1,11 @@
-# silverstripe-newsmodule
+# On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
-I have decided to STOP development on the 3.0 version of this module. I feel it's taking up too much time, without giving anything back.
-Bugfixes will be deployed if needed, but new features will NOT be ported to the 3.0 branch unless explicitly asked for.
-
-/Signed Simon
+Development to master_3.0 has come to a full stop. Only bugfixes will be considered.
+Reversioning to 2.0, since it's the smart thing to do. Version 2.0 is a MAJOR upgrade to 1.0.
+It is backward compatible, although it might break on little things. Nothing so far found. Advised way to go is using Silverstripe 3.1+ and go with this module.
+Requirements are updated, features are very, very, very much extended, I think this is now at the edge of what a newsmodule should have.
+This also means, I have removed all feature branches. They will be created if needed again.
 
 ### REQUEST
 
