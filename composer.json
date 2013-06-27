@@ -21,7 +21,6 @@
 		"composer/installers": "*",
 		"colymba/GridFieldBulkEditingTools" : "1.*",
 		"UndefinedOffset/SortableGridField" : "*",
-		"normann/gridfieldpaginatorwithshowall" : "*"
 	},
 	"suggest": {
 		"silverstripe/translatable": "*",

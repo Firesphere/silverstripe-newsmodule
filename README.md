@@ -43,7 +43,6 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 * [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/cms)
 * [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
 * [`SortableGridField`](https://github.com/UndefinedOffset/SortableGridField)
-* [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
 ### Child grouping support
 
@@ -56,6 +55,7 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 ## Optional
 
 * [`Silverstripe Translatable`](https://github.com/silverstripe/silverstripe-translatable)
+* [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
 
