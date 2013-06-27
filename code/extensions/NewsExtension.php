@@ -27,12 +27,14 @@ class NewsExtension extends DataExtension {
 		if(class_exists('Translatable')){
 			$filter = array(
 				'Live' => 1, 
-				'Locale' => Translatable::current_lang()
+				'Locale' => Translatable::current_lang(),
+                'PublishFrom:LessThan' => date('Y-m-d')
 			);
 		}
 		else{
 			$filter = array(
 				'Live' => 1,
+                'PublishFrom:LessThan' => date('Y-m-d')
 			);
 		}
 		/**
@@ -50,7 +52,6 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(
 						array(
 							'ID' => $otherNews->ID
@@ -63,7 +64,6 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(
 						array(
 							'ID' => $otherNews->ID
@@ -75,14 +75,12 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->limit($limit);				
 			}
 		}
@@ -125,19 +123,20 @@ class NewsExtension extends DataExtension {
             $filter = array(
                 'Live' => 1,
                 'Locale' => Translatable::current_lang() ,
-                'NewsHolderPageID' => $holderID
+                'NewsHolderPageID' => $holderID,
+                'PublishFrom:LessThan' => date('Y-m-d')
             );
         }
         else{
             $filter = array(
                 'Live' => 1,
-                'NewsHolderPageID' => $holderID
+                'NewsHolderPageID' => $holderID,
+                'PublishFrom:LessThan' => date('Y-m-d')
             );
         }
 
         $news = News::get()
             ->filter($filter)
-            ->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
             ->limit($limit);
 
         if($news->count() == 0){
