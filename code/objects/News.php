@@ -370,7 +370,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			$link->hideUnless('Type')->isEqualTo('external');
 			$html->hideUnless('Type')->isEqualTo('news');
 		}
-		
+		$helpText = "Publish from is auto-filled with a date if it isn't set. Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won't go live if it isn't set to true.";
+		$fields->addFieldToTab(
+			'Root',
+			Tab::create(
+				'Help',
+				_t($this->class . '.HELPTAB', 'Help'),
+				ReadonlyField::create('', _t($this->class . '.BASEHELPLABEL', 'help'), _t($this->class . '.BASEHELPTEXT', $helpText))
+			
+			)
+		);
 		return($fields);
 	}
 
