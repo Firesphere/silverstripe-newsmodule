@@ -8,7 +8,7 @@
 	      <div class="noImage">
 	      <% end_if %>
         <h1>$Title</h1>
-	<h3>$Author on <% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
+	<h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	<br />
 	<div class="Content" contenteditable="true">
 	<% if Content %>
@@ -41,7 +41,7 @@
 	<% if AllowComments %>
 	<hr />
 	<% if Comments && Commenting %>
-	<h3><% _t('NewsHolderPage_show.COMMENTS', 'Comments') %></h3>
+	<h3><%t NewsHolderPage.ss.COMMENTS "Comments" %></h3>
 	<section id="comments">
 	<ul>
 	<% loop Comments %>

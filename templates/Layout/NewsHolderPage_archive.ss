@@ -11,11 +11,11 @@
 		<% if Type == external && Top.SiteConfig.ReturnExternal %>
 			<h2><a href='$External' target="_blank">$Title</a></h2>
 		<% else_if Type == download && Top.SiteConfig.ReturnExternal %>
-			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<% _t('DOWNLOADABLE', 'Download') %>)</a></h2>
+			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.ss.DOWNLOADABLE "Download" %>)</a></h2>
 		<% else %>
 			<h2><a href="$Link">$Title</a></h2>
 		<% end_if %>
-	  <h3><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
+	  <h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	  <% if Synopsis %>
 		<p>$Synopsis</p>
 	  <% else %>

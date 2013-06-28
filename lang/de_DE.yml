@@ -63,11 +63,11 @@ de_DE:
       EMAIL: "E-Mail Adresse"
       WEBSITE: "Website"
       COMMENT: "Kommentar"
-    NewsHolderPage_show.ss:
-      COMMENTS: "Kommentare"
-    NewsHolderPage_tag.ss:
-      TAG: "Tag"
-      ALLTAGS: "Alle Tags"
+  NewsHolderPage_show.ss:
+    COMMENTS: "Kommentare"
+  NewsHolderPage_tag.ss:
+    TAG: "Tag"
+    ALLTAGS: "Alle Tags"
   CommentReport:
     TITLE: "Kommentarreport"
     NEWSTITLE: "Überschrift"
