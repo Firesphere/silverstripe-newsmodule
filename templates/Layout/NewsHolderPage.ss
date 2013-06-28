@@ -2,6 +2,8 @@
   <div id="container">
     <div id="homepage">
       <section id="latest_work">
+          
+          
 <% if allNews %>
       <% loop allNews %>
       <article class="one_third $FirstLast <% if IsThird %>First<% end_if %>">
@@ -10,18 +12,18 @@
 		<% if Type == external && SiteConfig.ReturnExternal %>
 			<h2><a href='$External' target="_blank">$Title</a></h2>
 		<% else_if Type == download && SiteConfig.ReturnExternal %>
-			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<% _t('DOWNLOADABLE', 'Download') %>)</a></h2>
+			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.ss.DOWNLOADABLE "Download" %>)</a></h2>
 		<% else %>
 			<h2><a href="$Link">$Title</a></h2>
 		<% end_if %>
-	  <h3><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %> by $Author</h3>
+	  <h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	  <% if Synopsis %>
 		<p>$Synopsis</p>
 	  <% else %>
 		<p>$Content.Summary</p>
 	  <% end_if %>
 	  <% if not SiteConfig.ReturnExternal %>
-		<footer class="more"><a href="$Link">Read More &raquo;</a></footer>
+		<footer class="more"><a href="$Link"><%t NewsHolderPage.ss.READMORE "Read More &raquo;" %></a></footer>
 	  <% end_if %>
 	</div>
 	  <% if Tags.Count > 0 %>

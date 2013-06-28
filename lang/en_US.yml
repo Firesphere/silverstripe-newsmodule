@@ -105,3 +105,8 @@ en_US:
     NEWSTITLE: "News title"
     NEWSCOUNT: "Total items linked"
     TAGTITLE: "Search for tag"
+  NewsHolderPage.ss:
+    DATEPUBLISH: "{date} by {author}"
+    DOWNLOADABLE: "Download"
+    READMORE: "Read More &raquo;"
+    

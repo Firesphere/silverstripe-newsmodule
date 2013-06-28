@@ -534,4 +534,21 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
 	}
 
+        /**
+         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
+         * @return string
+         */
+        public function getPublished() {
+            $format = i18n::get_date_format();            
+            return $this->dbObject('PublishFrom')->Format($format);
+        }
+        
+        /**
+         * @see $this->getPublished()
+         * @return string
+         */
+        public function getCreated() {
+            $format = i18n::get_date_format();           
+            return $this->dbObject('Created')->Format($format);
+        }        
 }
