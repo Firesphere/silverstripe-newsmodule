@@ -141,12 +141,18 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
 		unset($searchableFields['NewsHolderPage.Title']);
+        unset($searchableFields['NewsHolderPage.Author']);
 		unset($searchableFields['PublishFrom']);
 		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
 				'title'  => _t($this->class . '.TITLE','Title')
 			);
+        $searchableFields['Author'] = array(
+            'field'  => 'TextField',
+            'filter' => 'PartialMatchFilter',
+            'title'  => _t($this->class . '.AUTHOR','Author')
+        );
 		$pages = NewsHolderPage::get();
 		if($pages->count() > 1){
 			$searchableFields['NewsHolderPageID'] = array(
