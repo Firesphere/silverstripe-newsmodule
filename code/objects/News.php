@@ -455,8 +455,15 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(!$this->Type || $this->Type == ''){
 			$this->Type = 'news';
 		}
+		/** Set PublishFrom to today to prevent errors with sorting. New since 2.0, backward compatible. */
 		if(!$this->PublishFrom){
 			$this->PublishFrom = date('Y-m-d');
+		}
+		/**
+		 * Make sure the link is valid.
+		 */
+		if(substr($this->External,0,4) != 'http' && $this->External != ''){
+			$this->External = 'http://'.$this->External;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
