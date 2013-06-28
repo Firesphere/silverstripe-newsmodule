@@ -88,3 +88,5 @@ de_DE:
     DATEPUBLISH: "Geschrieben am {date} von {author}"
     DOWNLOADABLE: "Download"
     READMORE: "Mehr lesen &raquo;"
+    PREV: "vorherige"
+    NEXT: "nächste"    

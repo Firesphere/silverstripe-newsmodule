@@ -109,4 +109,6 @@ en_US:
     DATEPUBLISH: "{date} by {author}"
     DOWNLOADABLE: "Download"
     READMORE: "Read More &raquo;"
+    PREV: "prev"
+    NEXT: "next"
     
