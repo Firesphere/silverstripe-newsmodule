@@ -321,6 +321,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			
 			/**
 			 * If commenting is allowed globally, show the comment-tab.
+                         * Otherwise hide the comment checkbox
 			 */
 			if($siteConfig->Comments){
 				$fields->addFieldToTab(
@@ -336,7 +337,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 						)
 					)
 				);
-			}
+			} else {
+                            $fields->removeByName('Commenting');
+                        }
 			/**
 			 * Note the requirements! Otherwise, things might break!
 			 * If the Slideshow is enabled, show it's gridfield and features
