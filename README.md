@@ -37,6 +37,10 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 ## Maintainer Contacts
 
 * Simon "Sphere" Erkelens `github[at]casa-laguna[dot]net`
+* I'm also on twitter. [`SphereSilver`](https://twitter.com/SphereSilver)
+
+E-mail me your twitter contact if you added something and like to be mentioned!
+
 
 ## Requirements
 
