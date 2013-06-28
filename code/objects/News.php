@@ -59,13 +59,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	private static $searchable_fields = array();
 
-	private static $default_sort = 'IF(PublishFrom, PublishFrom, News.Created) DESC';
-	/**
-	 * Disable the above and enable the line below, if you want to use the cached feature
-	 * Although I don't think the caching helps, If you want to use it, don't use the PublishFrom and comment the sort above.
-	 * And uncomment the sort below.
-	 */
-//	public static $default_sort = 'News.Created DESC';
+	private static $default_sort = 'News.PublishFrom DESC';
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
@@ -203,6 +197,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Unless you're really motivated. Don't read this. It's too much.
+	 * @todo Clean this up. Make functions for the yes/no features and such to keep things readable.	
 	 * @return FieldList with the Fields required. Who would've guessed?!
 	 */
 	public function getCMSFields() {
@@ -528,10 +523,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
         /**
          * Why oh why does $Date.Nice still not use i18n::get_date_format()??
 	 * // If I recall correctly, this is a known issue with i18n class.
+	 * @todo Fix this. It bugs out, for example, English notation(?) is MMM d Y, the three M make it go JunJunJun 1, 2013. BAD!
+	 * Temporary fix: Removed from template.
          * @return string
          */
         public function getPublished() {
-            $format = i18n::get_date_format();            
+		return date('d-m-Y', strtotime($this->PublishFrom));
+            $format = i18n::get_date_format();
             return $this->dbObject('PublishFrom')->Format($format);
         }
         
