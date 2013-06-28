@@ -523,10 +523,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
         /**
          * Why oh why does $Date.Nice still not use i18n::get_date_format()??
 	 * // If I recall correctly, this is a known issue with i18n class.
+	 * @todo Fix this. It bugs out, for example, English notation(?) is MMM d Y, the three M make it go JunJunJun 1, 2013. BAD!
+	 * Temporary fix: Removed from template.
          * @return string
          */
         public function getPublished() {
-            $format = i18n::get_date_format();            
+		return date('d-m-Y', strtotime($this->PublishFrom));
+            $format = i18n::get_date_format();
             return $this->dbObject('PublishFrom')->Format($format);
         }
         
