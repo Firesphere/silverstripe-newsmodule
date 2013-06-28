@@ -321,6 +321,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			
 			/**
 			 * If commenting is allowed globally, show the comment-tab.
+                         * Otherwise hide the comment checkbox
 			 */
 			if($siteConfig->Comments){
 				$fields->addFieldToTab(
@@ -336,7 +337,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 						)
 					)
 				);
-			}
+			} else {
+                            $fields->removeByName('Commenting');
+                        }
 			/**
 			 * Note the requirements! Otherwise, things might break!
 			 * If the Slideshow is enabled, show it's gridfield and features
@@ -534,4 +537,21 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
 	}
 
+        /**
+         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
+         * @return string
+         */
+        public function getPublished() {
+            $format = i18n::get_date_format();            
+            return $this->dbObject('PublishFrom')->Format($format);
+        }
+        
+        /**
+         * @see $this->getPublished()
+         * @return string
+         */
+        public function getCreated() {
+            $format = i18n::get_date_format();           
+            return $this->dbObject('Created')->Format($format);
+        }        
 }

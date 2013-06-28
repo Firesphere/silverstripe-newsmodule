@@ -5,12 +5,12 @@
 		<% if Type == external %>
 			<h2><a href='$External' target="_blank">$Title</a></h2>
 		<% else_if Type == download %>
-			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<% _t('DOWNLOADABLE', 'Download') %>)</a></h2>
+			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.ss.DOWNLOADABLE "Download" %>)</a></h2>
 		<% else %>
 			<h2><a href="$Link">$Title</a></h2>
 		<% end_if %>
 	  <h3>$Author</h3>
-	<i><% if PublishFrom %>$PublishFrom.Format(d-m-Y)<% else %>$Created.Format(d-m-Y)<% end_if %></i>
+	<i><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></i>
 	<% if Synopsis %>
 	  <p>$Synopsis</p>
 	  <% else %>
@@ -26,7 +26,7 @@
 	  </div>
 	  <br />
 	  <% end_if %>
-          <footer class="more"><a href="$Link">Read More &raquo;</a></footer>
+          <footer class="more"><a href="$Link"><%t NewsHolderPage.ss.READMORE "Read More &raquo;" %></a></footer>
 		      </div>	  
         </article>
 	      <% end_loop %>
