@@ -27,12 +27,14 @@ class NewsExtension extends DataExtension {
 		if(class_exists('Translatable')){
 			$filter = array(
 				'Live' => 1, 
-				'Locale' => Translatable::current_lang()
+				'Locale' => Translatable::current_lang(),
+                'PublishFrom:LessThan' => date('Y-m-d')
 			);
 		}
 		else{
 			$filter = array(
 				'Live' => 1,
+                'PublishFrom:LessThan' => date('Y-m-d')
 			);
 		}
 		/**
@@ -50,7 +52,6 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(
 						array(
 							'ID' => $otherNews->ID
@@ -63,7 +64,6 @@ class NewsExtension extends DataExtension {
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->exclude(
 						array(
 							'ID' => $otherNews->ID
@@ -75,14 +75,12 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
 					->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
 					->limit($limit);				
 			}
 		}
@@ -109,5 +107,43 @@ class NewsExtension extends DataExtension {
 	public function allTags() {
 		return Tag::get();
 	}
+
+    /**
+     * Get all the items from a single newsholderPage.
+     * @param $limit integer with chosen limit. Called from template via <% loop $NewsArchiveByHolderID(321,5) %> for the page with ID 321 and 5 latest items.
+     * @todo many things, isn't finished
+     * @author Marcio Barrientos
+     */
+    public function NewsArchiveByHolderID($holderID = null, $limit = 5 ){
+        if($limit == 0){
+            $limit = null;
+        }
+
+        if(class_exists('Translatable')){
+            $filter = array(
+                'Live' => 1,
+                'Locale' => Translatable::current_lang() ,
+                'NewsHolderPageID' => $holderID,
+                'PublishFrom:LessThan' => date('Y-m-d')
+            );
+        }
+        else{
+            $filter = array(
+                'Live' => 1,
+                'NewsHolderPageID' => $holderID,
+                'PublishFrom:LessThan' => date('Y-m-d')
+            );
+        }
+
+        $news = News::get()
+            ->filter($filter)
+            ->limit($limit);
+
+        if($news->count() == 0){
+            return null;
+        }
+
+        return $news;
+    }
 	
 }

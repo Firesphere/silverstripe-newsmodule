@@ -30,6 +30,9 @@ class SlideshowImage extends DataObject {
 	public function getCMSFields($params = null) {
 		$fields = parent::getCMSFields($params);
 		$fields->removeFieldsFromTab('Root.Main', array('NewsID','SortOrder'));
+        $fields->addFieldToTab('Root.Main', new TextField('Title', _t($this->class . '.TITLE', 'Title')));
+        $fields->addFieldToTab('Root.Main', new HtmlEditorField('Description', _t($this->class . '.DESCRIPTION', 'Description')));
+        $fields->addFieldToTab('Root.Main', new UploadField('Image', _t($this->class . '.IMAGE', 'Image')));
 		return $fields;
 	}
 	
