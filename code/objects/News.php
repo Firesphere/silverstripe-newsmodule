@@ -327,6 +327,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			
 			/**
 			 * If commenting is allowed globally, show the comment-tab.
+                         * Otherwise hide the comment checkbox
 			 */
 			if($siteConfig->Comments){
 				$fields->addFieldToTab(
@@ -342,7 +343,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 						)
 					)
 				);
-			}
+			} else {
+                            $fields->removeByName('Commenting');
+                        }
 			/**
 			 * Note the requirements! Otherwise, things might break!
 			 * If the Slideshow is enabled, show it's gridfield and features
@@ -458,8 +461,15 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(!$this->Type || $this->Type == ''){
 			$this->Type = 'news';
 		}
+		/** Set PublishFrom to today to prevent errors with sorting. New since 2.0, backward compatible. */
 		if(!$this->PublishFrom){
 			$this->PublishFrom = date('Y-m-d');
+		}
+		/**
+		 * Make sure the link is valid.
+		 */
+		if(substr($this->External,0,4) != 'http' && $this->External != ''){
+			$this->External = 'http://'.$this->External;
 		}
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
@@ -521,6 +531,25 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return $monthItems;
 	}
 
+        /**
+         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
+	 * // If I recall correctly, this is a known issue with i18n class.
+         * @return string
+         */
+        public function getPublished() {
+            $format = i18n::get_date_format();            
+            return $this->dbObject('PublishFrom')->Format($format);
+        }
+        
+        /**
+         * @see $this->getPublished()
+         * @return string
+         */
+        public function getCreated() {
+            $format = i18n::get_date_format();           
+            return $this->dbObject('Created')->Format($format);
+        }        
+
 	/**
 	 * Permissions
 	 */
@@ -539,5 +568,5 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function canView($member = null) {
 		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
 	}
-
+	
 }

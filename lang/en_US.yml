@@ -84,11 +84,11 @@ en_US:
       EMAIL: "E-mailaddress"
       WEBSITE: "Website"
       COMMENT: "Comment"
-    NewsHolderPage_show.ss:
-      COMMENTS: "Comments"
-    NewsHolderPage_tag.ss:
-      TAG: "Tag"
-      ALLTAGS: "All tags"
+  NewsHolderPage_show.ss:
+    COMMENTS: "Comments"
+  NewsHolderPage_tag.ss:
+    TAG: "Tag"
+    ALLTAGS: "All tags"
   CommentReport:
     TITLE: "Comment report"
     NEWSTITLE: "News title"
@@ -105,3 +105,10 @@ en_US:
     NEWSTITLE: "News title"
     NEWSCOUNT: "Total items linked"
     TAGTITLE: "Search for tag"
+  NewsHolderPage.ss:
+    DATEPUBLISH: "{date} by {author}"
+    DOWNLOADABLE: "Download"
+    READMORE: "Read More &raquo;"
+    PREV: "prev"
+    NEXT: "next"
+    
