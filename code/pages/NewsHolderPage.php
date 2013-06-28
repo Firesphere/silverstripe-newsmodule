@@ -154,9 +154,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function getRSSFeed() {
 		$return = News::get()
-			->filter(array('Live' => 1))
-			->where('PublishFrom IS NULL OR PublishFrom <= ' . date('Y-m-d'))
-			->sort('IF(PublishFrom, PublishFrom, Created)', "DESC")
+			->filter(
+				array(
+					'Live' => 1,
+					'PublishFrom:LessThan' => date('Y-m-d'),
+				)
+			)
 			->limit(10);
 		return $return;
 	}
@@ -210,6 +213,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		// Default filter.
 		$filter = array(
 			'NewsHolderPageID' => $this->ID,
+			'PublishFrom:LessThan' => date('Y-m-d'), 
 		);
 		// Filter based on login-status.
 		$idFilter = $this->checkPermission('id');
@@ -226,8 +230,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			else{
 				// get the news.
 				$filter = array_merge($segmentFilter,$filter);
-				$news = News::get()->filter($filter)
-					->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
+				$news = News::get()->filter($filter);
 				if($news->count() > 0){
 					$news = $news->first();
 					return $news;
@@ -288,9 +291,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			elseif($tagItems->News()->count() > 0 && $news){
 				$news = News::get()
-					->filter('Tags.ID:ExactMatch', $tagItems->ID)
-					->filter(array('Live' => 1))
-					->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
+					->filter(array(
+						'Live' => 1,
+						'Tags.ID:ExactMatch' => $tagItems->ID,
+						'PublishFrom:LessThan' => date('Y-m-d'),
+						)
+					);
 				$return = $news;
 			}				
 			else{
@@ -327,11 +333,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$SiteConfig = SiteConfig::current_site_config();
 		$filter = array(
 			'Live' => 1, 
-			'NewsHolderPageID' => $this->ID
+			'NewsHolderPageID' => $this->ID,
+			'PublishFrom:LessThan' => date('Y-m-d'),
 		);
 		$allEntries = News::get()
-			->filter($filter)
-			->where('PublishFrom IS NULL OR PublishFrom <= \'' . date('Y-m-d') . '\'');
+			->filter($filter);
 		/**
 		 * Pagination pagination pagination.
 		 */
@@ -377,10 +383,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 				array(
 					'Live' => 1, 
 					'NewsHolderPageID' => $this->ID,
-					'Created:PartialMatch' => $year.'-'.$month
+					'PublishFrom:PartialMatch' => $year.'-'.$month,
+					'PublishFrom:LessThan' => date('Y-m-d')
 				)
-			)
-			->where('PublishFrom LIKE \''.$year.'-'.$month.'%\' OR PublishFrom IS NULL');
+			);
 		/**
 		 * Pagination pagination pagination.
 		 */
