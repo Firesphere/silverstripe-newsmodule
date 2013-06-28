@@ -518,6 +518,25 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		return $monthItems;
 	}
 
+        /**
+         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
+	 * // If I recall correctly, this is a known issue with i18n class.
+         * @return string
+         */
+        public function getPublished() {
+            $format = i18n::get_date_format();            
+            return $this->dbObject('PublishFrom')->Format($format);
+        }
+        
+        /**
+         * @see $this->getPublished()
+         * @return string
+         */
+        public function getCreated() {
+            $format = i18n::get_date_format();           
+            return $this->dbObject('Created')->Format($format);
+        }        
+
 	/**
 	 * Permissions
 	 */
@@ -536,22 +555,5 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	public function canView($member = null) {
 		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
 	}
-
-        /**
-         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
-         * @return string
-         */
-        public function getPublished() {
-            $format = i18n::get_date_format();            
-            return $this->dbObject('PublishFrom')->Format($format);
-        }
-        
-        /**
-         * @see $this->getPublished()
-         * @return string
-         */
-        public function getCreated() {
-            $format = i18n::get_date_format();           
-            return $this->dbObject('Created')->Format($format);
-        }        
+	
 }
