@@ -43,5 +43,23 @@ class NewsAdmin extends ModelAdmin {
 		}
 		return $form;
 	}
+
+    /**
+     * List only newsitems from current subsite.
+     * @author Marcio Barrientos
+     * @return List $list
+     */
+    public function getList() {
+        $list = parent::getList();
+        if($this->modelClass == 'News' && class_exists('Subsite')) {
+            $filter = array();
+            foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
+                array_push($filter,$holderpage->ID);
+            }
+            $list = $list->filter('NewsHolderPageID', $filter);
+        }
+
+        return $list;
+    }
 }
 

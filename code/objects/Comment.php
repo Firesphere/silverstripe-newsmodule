@@ -69,6 +69,15 @@ class Comment extends DataObject {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeByName('MD5Email');
+        $fields->addFieldToTab('Root.Main', new TextField('Title', _t($this->class . '.TITLE', 'Title')));
+        $fields->addFieldToTab('Root.Main', new TextField('Name', _t($this->class . '.NAME', 'Name')));
+        $fields->addFieldToTab('Root.Main', new TextField('Email', _t($this->class . '.EMAIL', 'Email')));
+        $fields->addFieldToTab('Root.Main', new TextField('URL', _t($this->class . '.URL', 'URL')));
+        $fields->addFieldToTab('Root.Main', new HtmlEditorField('Comment', _t($this->class . '.COMMENT', 'Comment')));
+        $fields->addFieldToTab('Root.Main', new CheckboxField('AkismetMarked', _t($this->class . '.AKISMETMARKED', 'Akismet Marked')));
+        $fields->addFieldToTab('Root.Main', new CheckboxField('Visible', _t($this->class . '.VISIBLE', 'Visible')));
+        $fields->addFieldToTab('Root.Main', new CheckboxField('ShowGravatar', _t($this->class . '.GRAVATAR', 'Show Gravatar')));
+        $fields->addFieldToTab('Root.Main', new DropdownField('NewsID', _t($this->class . '.NEWS', 'News'), News::get()->map('ID','Title')));
 		return $fields;
 	}
 	
