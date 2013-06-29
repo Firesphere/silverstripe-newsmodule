@@ -8,7 +8,10 @@
       <% loop allNews %>
       <article class="one_third $FirstLast <% if IsThird %>First<% end_if %>">
 	      	      <div class="articleContainer">
-	      <% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a><% end_if %>
+	      <% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a>
+	      <% else_if Top.SiteConfig.DefaultImage %>
+		 <a href="$Link" class="impressionLink">$Top.SiteConfig.DefaultImage.SetSize(50,50)</a>
+	      <% end_if %>
 		<% if Type == external && Top.SiteConfig.ReturnExternal %>
 			<h2><a href='$External' target="_blank">$Title</a></h2>
 		<% else_if Type == download && Top.SiteConfig.ReturnExternal %>

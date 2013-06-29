@@ -49,7 +49,7 @@
 	<li class="comment_$EvenOdd">
 		<header>
 			<figure>
-				<img src="http://www.gravatar.com/avatar/<% if ShowGravatar %>$MD5Email<% end_if %>?default=http%3A%2F%2Fwww.casa-laguna.net%2Fimages%2Fnessie_grav.png&amp;s=32" width="32" height="32" alt="$Name" />
+				<img src="http://www.gravatar.com/avatar/<% if ShowGravatar %>$MD5Email<% end_if %>?default=<% if Top.SiteConfig.DefaultGravatarImage %>{$Top.BaseHref}$Top.SiteConfig.DefaultGravatarImage.Link<% else_if Top.SiteConfig.DefaultGravatar %>$Top.SiteConfig.DefaultGravatar<% end_if %>&amp;s=32" width="32" height="32" alt="$Name" />
 			</figure>
 		<address><strong>$Title</strong> by <strong><% if URL %><a href="$URL">$Name</a><% else %>$Name<% end_if %></strong></address> <time datetime="$Created">on $Created.Format(d-m-Y)</time>
 		</header>
@@ -73,7 +73,11 @@
       <div>$SetSize(410,440)</div>
       <% end_with %>
     </figure>
-	    <% else %>
+	<% else_if Top.SiteConfig.DefaultImage %>
+	</figcaption>
+	    <div>$Top.SiteConfig.DefaultImage.SetSize(410,440)</div>
+	</figure>
+	<% else %>
 	    </div>
       <% end_if %>
 <% end_with %>

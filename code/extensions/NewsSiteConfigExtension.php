@@ -37,6 +37,11 @@ class NewsSiteConfigExtension extends DataExtension {
 		'AllowAuthors' => 'Boolean(false)',
 	);
 	
+	private static $has_one = array(
+		'DefaultImage' => 'Image',
+		'DefaultGravatarImage' => 'Image',
+	);
+	
 	/**
 	 * Update the SiteConfig with the news-settings.
 	 * @param FieldList $fields of current FieldList of SiteConfig
@@ -54,7 +59,8 @@ class NewsSiteConfigExtension extends DataExtension {
 						_t($this->class . '.NEWS','News'), // Title
 						CheckboxField::create('UseAbstract', _t($this->class . '.ABSTRACT', 'Use abstract/summary')),
 						CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
-						NumericField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page'))
+						NumericField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
+						UploadField::create('DefaultImage', _t($this->class . '.DEFAULTIMPRESSION', 'Default Impressionimage'))
 					),
 					/** External linking options */
 					Tab::create(
@@ -73,6 +79,7 @@ class NewsSiteConfigExtension extends DataExtension {
 						EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to me')),
 						CheckboxField::create('Gravatar', _t($this->class . '.GRAVATAR', 'Use Gravatar-Image')),
 						TextField::create('DefaultGravatar', _t($this->class . '.GRAVURL', 'Default Gravatar-image url')),
+						UploadField::create('DefaultGravatarImage', _t($this->class . '.UPLOADGRAVATAR', 'Or upload a default Gravatar image')),
 						NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size (32 for 32x32px)')),
 						TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
 						CheckboxField::create('ExtraSecurity', _t($this->class . '.SPAMPROTECTION', 'Use an extra field for spamprotection')),

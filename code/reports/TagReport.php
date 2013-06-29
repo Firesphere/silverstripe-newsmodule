@@ -1,6 +1,6 @@
 <?php
 /**
- * Content side-report listing newsitems with broken comments
+ * Content side-report listing tags and amount of usage.
  * 
  * @package News/Blog module
  * @author Simon 'Sphere'
