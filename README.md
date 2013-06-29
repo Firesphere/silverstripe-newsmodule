@@ -73,13 +73,15 @@ After releasing 1.4.2, I noticed I needed to redesign my version-numbering. So h
  * The third number is a minor feature release. This means a feature is added, but it's not a big deal. They might include minor features like help, but never a big upgrade.
  * The fourth number is a hotfix. It's just something that might bug. Or a small fix. Or a quick fix for a bug.
 
+Major feature and Master releases are also defined in the milestones. So you know what issues will be resolved for that version.
+
 I think this tagging method should be the best way to go. As you can see, this README update is 1.4.8.1. Meaning:
 1. It's master version 1
 4. This is my current major release but no breaking changes to version 1
 8. I just fixed publishfrom, although it was a major bug, the update is minor.
 1. Well, to make a full feature release of this tiny readme update?
 
-Note, this means features and hotfixes in the 4th digit doesn't mean it's a hotfix, nor does it mean it's a release. It can be both! (I understand this might cause some problems, but I don't want to go to 5 numbers)
+Note, this means features and hotfixes in the 4th digit doesn't mean it's a hotfix, nor does it mean it's a release, or a feature. It can be both! (I understand this might cause some problems, but I don't want to go to 5 numbers)
 
 ## Work in progress
 
@@ -88,24 +90,23 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 ## Features
 
 * Handle news and impressions besides the news.
-* Support for OG-data on some servers (some servers refuse for some reason). Check here for the OG-module: [`OpenGraph module`](https://github.com/tractorcow/silverstripe-opengraph)
 * History of URL-segments.
 * Support for custom comments.
+* Preferred anti-spam method is NOT using a Captcha.
 * Akismet support. Akismet class included in thirdparty dir. Remove it if you have it included already.
 * Option to add an "Extra" titled field. If this field is not empty, the post is considered spam. In your CSS, position it absolute and very, very, very much outside the screen.
-* Preferred anti-spam method is NOT using a Captcha.
-* Globally available NewsArchive function.
+* Option to add a noscript-field. For the same reason as the Extra, but vice versa, it shouldn't be in the post, if it is, it's spam.
+* Globally available NewsArchive function, read the comments in the NewsExtension class for more.
 * Geshi code-rendering support. use `[code type=php]your code here[/code]`
 * Tweet rendering by Twitter. Include the twitter widget JS and in your content, just do [tweet id=tweetID]
 * Configurable from the SiteConfig.
 * GridField overview, less clutter in the SiteTree.
 * RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly by some versions of the HTTP class in the RSS-entry builder!)
-* If you include and setup my [`Silverstripe Social`](https://github.com/Firesphere/silverstripe-social) you can make it auto-post new items to Twitter.
 * Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
 * Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
 * Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
 * Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
-* The publish-date is the date on the frontpage. Sorting via PublishFrom is leveled above the Created, unless it's null.
+* The publish-date is the date on the frontpage.
 * Slideshow option. Just add pictures and use [slideshow] in your $Content
 * Posts per Page and Pagination. If set to 0, it won't paginate.
 * Reports on comments, how much of them are marked by Akismet and how many are hidden.
@@ -134,7 +135,7 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 ## Installation
 
 If you don't have a github account, just download:
- 1. Click on the big "ZIP" button at the top.
+ 1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).
  2. Extract the zip to your site-root
  3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
 A default page will be created if possible.
@@ -175,11 +176,14 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 * Integrate Facebook OAuth to automagically post when a new item is created (FB OAuth is really crappy :( ).
 * Add a "Fetch me a beer" function. Should be useful I think.
-* Add a noscript field to prevent botspam.
+
+## Notes
+
+As of version 2.0, multiple developers have contributed. Many thanks to them! Also, translators, thank you a lot!
 
 ## Known Issues
 
-* None at the moment.
+* See the Issues-list on Github.
 * Version 3.0 is outdated as hell.
 * No, I'm serious, Master_3.0 is really far behind.
 
@@ -188,6 +192,7 @@ If you set optional extra anti-spam method, the commentform will contain a field
 * Improvements.
 * Translations.
 * Beer.
+* Did I mention beer?
 
 ## Other
 
