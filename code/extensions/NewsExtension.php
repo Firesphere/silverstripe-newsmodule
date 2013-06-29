@@ -26,7 +26,7 @@ class NewsExtension extends DataExtension {
 		$Params = $this->owner->getURLParams();
 		$filter = array(
 			'Live' => 1,
-			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow'))
+			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow'))
 		);
 		if(class_exists('Translatable')){
 			$filter['Locale'] = Translatable::get_current_locale();
@@ -107,7 +107,7 @@ class NewsExtension extends DataExtension {
 	$filter = array(
 	    'Live' => 1,
 	    'NewsHolderPageID' => $holderID,
-	    'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow'))
+	    'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow'))
 	);
 	if($limit == 0){
             $limit = null;

@@ -162,7 +162,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			->filter(
 				array(
 					'Live' => 1,
-					'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
+					'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
 				)
 			)
 			->limit(10);
@@ -217,7 +217,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		// Default filter.
 		$filter = array(
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')), 
+			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')), 
 		);
 		// Filter based on login-status.
 		$segmentFilter = $this->checkPermission('segment');
@@ -271,7 +271,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 					->filter(array(
 						'Live' => 1,
 						'Tags.ID:ExactMatch' => $tagItems->ID,
-						'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
+						'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
 						)
 					);
 				$return = $news;
@@ -312,7 +312,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$filter = array(
 			'Live' => 1, 
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
+			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
 		);
 		if(isset($Params['Action']) && $Params['Action'] == 'archive'){
 			$filter = array_merge($filter, $this->generateArchiveFilter($Params));
