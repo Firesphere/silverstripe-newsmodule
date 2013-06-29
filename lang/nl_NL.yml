@@ -19,6 +19,7 @@ nl_NL:
     NEWSMAIL: "Stuur e-mail notificatie naar"
     GRAVATAR: "Toon de Gravatar afbeelding van de reageerder"
     GRAVURL: "Standaard Gravatar als de reageerder geen heeft"
+    UPLOADGRAVATAR: "Of upload een standaard Gravatar-afbeelding"
     GRAVSIZE: "Formaat van de Gravatar afbeelding (b.v. 32 voor een 32x32 afbeelding)"
     AKISMET: "Akismet API sleutel"
     SPAMPROTECTION: "Gebruik een extra veld als spam-bescherming"
