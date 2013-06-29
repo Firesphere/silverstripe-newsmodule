@@ -24,18 +24,12 @@ class NewsExtension extends DataExtension {
 			$limit = null;
 		}
 		$Params = $this->owner->getURLParams();
+		$filter = array(
+			'Live' => 1,
+			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow'))
+		);
 		if(class_exists('Translatable')){
-			$filter = array(
-				'Live' => 1, 
-				'Locale' => Translatable::current_lang(),
-                'PublishFrom:LessThan' => date('Y-m-d')
-			);
-		}
-		else{
-			$filter = array(
-				'Live' => 1,
-                'PublishFrom:LessThan' => date('Y-m-d')
-			);
+			$filter['Locale'] = Translatable::get_current_locale();
 		}
 		/**
 		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
@@ -43,9 +37,7 @@ class NewsExtension extends DataExtension {
 		if($Params['Action'] == 'show' && $related) {
 			$otherNews = News::get()
 				->filter(
-					array(
-						'URLSegment' => $Params['ID']
-					)
+					array('URLSegment' => $Params['ID'])
 				)
 				->first();
 			if($random){
@@ -53,9 +45,7 @@ class NewsExtension extends DataExtension {
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->exclude(
-						array(
-							'ID' => $otherNews->ID
-						)
+						array('ID' => $otherNews->ID)
 					)
 					->sort('RAND()')
 					->limit($limit);
@@ -65,9 +55,7 @@ class NewsExtension extends DataExtension {
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->exclude(
-						array(
-							'ID' => $otherNews->ID
-						)
+						array('ID' => $otherNews->ID)
 					)
 					->limit($limit);
 			}
@@ -81,7 +69,7 @@ class NewsExtension extends DataExtension {
 			else{
 				$news = News::get()
 					->filter($filter)
-					->limit($limit);				
+					->limit($limit);
 			}
 		}
 		if($news->count() == 0){
@@ -112,27 +100,20 @@ class NewsExtension extends DataExtension {
      * Get all the items from a single newsholderPage.
      * @param $limit integer with chosen limit. Called from template via <% loop $NewsArchiveByHolderID(321,5) %> for the page with ID 321 and 5 latest items.
      * @todo many things, isn't finished
+     * @fixed I refactored a bit. Only makes for a smaller function.
      * @author Marcio Barrientos
      */
     public function NewsArchiveByHolderID($holderID = null, $limit = 5 ){
-        if($limit == 0){
+	$filter = array(
+	    'Live' => 1,
+	    'NewsHolderPageID' => $holderID,
+	    'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow'))
+	);
+	if($limit == 0){
             $limit = null;
         }
-
         if(class_exists('Translatable')){
-            $filter = array(
-                'Live' => 1,
-                'Locale' => Translatable::current_lang() ,
-                'NewsHolderPageID' => $holderID,
-                'PublishFrom:LessThan' => date('Y-m-d')
-            );
-        }
-        else{
-            $filter = array(
-                'Live' => 1,
-                'NewsHolderPageID' => $holderID,
-                'PublishFrom:LessThan' => date('Y-m-d')
-            );
+	    $filter['Locale'] = Translatable::get_current_locale();
         }
 
         $news = News::get()
