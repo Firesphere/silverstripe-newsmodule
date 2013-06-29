@@ -59,7 +59,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	private static $searchable_fields = array();
 
-	private static $default_sort = 'News.PublishFrom DESC';
+	private static $default_sort = 'PublishFrom DESC';
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.

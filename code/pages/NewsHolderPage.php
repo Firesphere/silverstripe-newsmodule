@@ -53,6 +53,11 @@ class NewsHolderPage extends Page {
 		/** Backwards compatibility for upgraders. Update the PublishFrom field */
 		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
 		DB::query($sql);
+		/** If the Translatable is added lateron, update the locale to at least have some value */
+		if(class_exists('Translatable')){
+			$sqlLang = "UPDATE `News` SET `Locale` = '".Translatable::get_current_locale()."' WHERE Locale IS NULL";
+			DB::query($sqlLang);
+		}
 	}
 	
 	/**
@@ -157,7 +162,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			->filter(
 				array(
 					'Live' => 1,
-					'PublishFrom:LessThan' => date('Y-m-d'),
+					'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
 				)
 			)
 			->limit(10);
@@ -205,7 +210,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public? (yes, it needs to be public)
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @todo clean up more. Still unhappy with this mess.
 	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
 	 */
 	public function getNews(){
@@ -213,37 +217,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 		// Default filter.
 		$filter = array(
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d'), 
+			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')), 
 		);
 		// Filter based on login-status.
-		$idFilter = $this->checkPermission('id');
 		$segmentFilter = $this->checkPermission('segment');
 		// Skip if we're not on show or archive.
 		if($Params['Action'] == 'show'){
-			// Redirect if the ID is numeric
-			if(is_numeric($Params['ID'])){
-				$filter = array_merge($idFilter,$filter);
-				$news = News::get()->filter($filter)->first();
-				$link = $this->Link('show/').$news->URLSegment;
-				$this->redirect($link, 301);
-			}
-			else{
-				// get the news.
-				$filter = array_merge($segmentFilter,$filter);
-				$news = News::get()->filter($filter);
-				if($news->count() > 0){
-					$news = $news->first();
-					return $news;
-				}
-				else{
-					$renamed = Renamed::get()->filter(array('OldLink' => $Params['ID']));
-					if($renamed->count() > 0){
-						$link = ($renamed->first()->News()->Link());
-						$this->redirect($link, 301);
-					}
-				}
-			}
-			return false;
+			$filter = array_merge($segmentFilter,$filter);
+			$news = News::get()->filter($filter)->first();
+			return $news;
 		}
 	}
 	
@@ -257,22 +239,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 		/**
 		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
 		 */
-		$idFilter = array(
-			'ID' => $Params['ID']
-		);
 		$segmentFilter = array(
-			'URLSegment' => $Params['ID']
+			'URLSegment' => Convert::raw2sql($Params['ID']),
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
-			$idFilter['Live'] = 1;
 			$segmentFilter['Live'] = 1;
 		}
-		if($type == 'id'){
-			return $idFilter;
-		}
-		elseif($type == 'segment'){
-			return $segmentFilter;
-		}
+		return $segmentFilter;
 	}
 	
 	/**
@@ -285,7 +258,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function getTags($news = false){
 		$Params = $this->getURLParams();
 		if(isset($Params['ID']) && $Params['ID'] != null){
-			$tagItems = Tag::get()->filter(array('URLSegment' => $Params['ID']))->first();
+			$tagItems = Tag::get()
+				->filter(
+					array('URLSegment' => Convert::raw2sql($Params['ID']))
+				)
+				->first();
 			if($tagItems->News()->count() > 0 && !$news){
 				$return = $tagItems;
 			}
@@ -294,7 +271,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 					->filter(array(
 						'Live' => 1,
 						'Tags.ID:ExactMatch' => $tagItems->ID,
-						'PublishFrom:LessThan' => date('Y-m-d'),
+						'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
 						)
 					);
 				$return = $news;
@@ -335,7 +312,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$filter = array(
 			'Live' => 1, 
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d'),
+			'PublishFrom:LessThan' => date('Y-m-d', strtotime('Tomorrow')),
 		);
 		if(isset($Params['Action']) && $Params['Action'] == 'archive'){
 			$filter = array_merge($filter, $this->generateArchiveFilter($Params));
