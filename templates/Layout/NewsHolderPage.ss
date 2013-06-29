@@ -42,7 +42,9 @@
 	      <% end_loop %>
 	      <% end_if %>
       </section>
-
+	    <div id="sidebar">
+		    <% include ArchiveOverview %>
+	    </div>
     </div>
         <div class="clear"></div>
 	      <div class='pagination'>

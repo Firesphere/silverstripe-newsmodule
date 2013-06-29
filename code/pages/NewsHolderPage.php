@@ -331,11 +331,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
+		$Params = $this->getURLParams();
 		$filter = array(
 			'Live' => 1, 
 			'NewsHolderPageID' => $this->ID,
 			'PublishFrom:LessThan' => date('Y-m-d'),
 		);
+		if(isset($Params['Action']) && $Params['Action'] == 'archive'){
+			$filter = array_merge($filter, $this->generateArchiveFilter($Params));
+		}
 		$allEntries = News::get()
 			->filter($filter);
 		/**
@@ -360,9 +364,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * If no month or year is set, current month/year is assumed
 	 * @todo sidebar with year/month grouping.
 	 */
-	public function getArchive(){
-		$SiteConfig = SiteConfig::current_site_config();
-		$Params = $this->getURLParams();
+	public function generateArchiveFilter($Params){
 		if(!isset($Params['ID'])){
 			$month = date('m');
 			$year = date('Y');
@@ -373,35 +375,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		else{
 			$year = $Params['ID'];
-			$month = $Params['OtherID'];
+			$month = date_parse('01-'.$Params['OtherID'].'-1970');
 		}
-		/**
-		 * This needs cleanup.
-		 */
-		$allEntries = News::get()
-			->filter(
-				array(
-					'Live' => 1, 
-					'NewsHolderPageID' => $this->ID,
-					'PublishFrom:PartialMatch' => $year.'-'.$month,
-					'PublishFrom:LessThan' => date('Y-m-d')
-				)
-			);
-		/**
-		 * Pagination pagination pagination.
-		 */
-		if($allEntries->count() > $SiteConfig->PostsPerPage){
-			$records = PaginatedList::create($allEntries,$this->request);
-			if($SiteConfig->PostsPerPage == 0){
-				$records->setPageStart(1);
-				$records->setLimititems(0);
-			}
-			else{
-				$records->setPageLength($SiteConfig->PostsPerPage);
-			}
-			return $records;
-		}
-		return $allEntries;
+		$archivefilter = array(
+			'PublishFrom:PartialMatch' => $year.'-'.$month['month']
+		);
+		return $archivefilter;
 	}
 	
 	/**
