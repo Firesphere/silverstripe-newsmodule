@@ -8,6 +8,7 @@ nl_NL:
     ABSTRACT: "Samenvatting/Abstract"
     TWEETPOST: "Tweet na posten"
     PPP: "Aantal posts per pagina"
+    DEFAULTIMPRESSION: "Standaard impressie afbeelding"
     EXTERNAL: "Extern linken"
     ALLOWEXT: "Extern linken toegestaan"
     ALLOWDOWN: "Downloads toegestaan"
