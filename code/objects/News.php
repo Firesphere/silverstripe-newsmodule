@@ -517,12 +517,12 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string of year|month. With 4 characters, unless it's the year 10000. Or a month, ofcourse.
 	 */
 	public function getYearCreated(){
-		$yearItems = date('Y', strtotime($this->Created));
+		$yearItems = date('Y', strtotime($this->PublishFrom));
 		return $yearItems;
 	}
 
 	public function getMonthCreated(){
-		$monthItems = date('F', strtotime($this->Created));
+		$monthItems = date('F', strtotime($this->PublishFrom));
 		return $monthItems;
 	}
 
@@ -530,23 +530,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
          * Why oh why does $Date.Nice still not use i18n::get_date_format()??
 	 * // If I recall correctly, this is a known issue with i18n class.
 	 * @todo Fix this. It bugs out, for example, English notation(?) is MMM d Y, the three M make it go JunJunJun 1, 2013. BAD!
-	 * Temporary fix: Removed from template.
+	 * Temporary fix: Forced to use d-m-Y
          * @return string
          */
         public function getPublished() {
 		return date('d-m-Y', strtotime($this->PublishFrom));
             $format = i18n::get_date_format();
             return $this->dbObject('PublishFrom')->Format($format);
-        }
-        
-        /**
-         * @see $this->getPublished()
-         * @return string
-         */
-        public function getCreated() {
-            $format = i18n::get_date_format();           
-            return $this->dbObject('Created')->Format($format);
-        }        
+        }      
 
 	/**
 	 * Permissions
