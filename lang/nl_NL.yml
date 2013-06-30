@@ -85,11 +85,13 @@ nl_NL:
       EMAIL: "E-mailadres"
       WEBSITE: "Website"
       COMMENT: "Reactie"
-    NewsHolderPage_show.ss:
-      COMMENTS: "Reacties"
-    NewsHolderPage_tag.ss:
-      TAG: "Tag"
-      ALLTAGS: "All tags"
+  NewsHolderPage_show.ss:
+    COMMENTS: "Reacties"
+    BYWHO: "door"
+    ONDATE: "op" 
+  NewsHolderPage_tag.ss:
+    TAG: "Tag"
+    ALLTAGS: "All tags"
   CommentReport:
     TITLE: "Reacties rapportage"
     NEWSTITLE: "Titel nieuwsbericht"

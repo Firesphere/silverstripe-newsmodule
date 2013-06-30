@@ -35,6 +35,8 @@ class Comment extends DataObject {
 		'Created',
 		'AkismetMarked',
 	);
+	
+	private static $default_sort = 'AkismetMarked ASC, Created DESC';
 
 	/**
 	 * Define singular name translatable
