@@ -181,6 +181,12 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 As of version 2.0, multiple developers have contributed. Many thanks to them! Also, translators, thank you a lot!
 
+Thinking of helping? Read this: https://github.com/Firesphere/silverstripe-newsmodule/wiki/Contributing
+
+### Also, if you can't answer the following question, you are not allowed to help :P
+
+"The cow, what do you think of it?"
+
 ## Known Issues
 
 * See the Issues-list on Github.
