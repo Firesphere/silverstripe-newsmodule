@@ -441,7 +441,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
 	 * The NewsHolderPage should NEVER be doubled.
-	 * @todo Actually implement the translatable part :)
+	 * @todo Make sure the NHP-setting works as it should. I think there might be bugs in this method of checking.
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
@@ -491,6 +491,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Check it at my repos: Silverstripe-Social.
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 * It doesn't auto-tweet if the publish-date is in the future. Also, it won't tweet when it's that date!
+		 * @todo refactor this to a facebook/twitter oAuth method that a dev spent more time on developing than I did on my Social-module. It's outdated.
 		 */
 		if(class_exists('TwitterController')){
 			if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
