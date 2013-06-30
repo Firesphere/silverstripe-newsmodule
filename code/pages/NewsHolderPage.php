@@ -160,10 +160,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function getRSSFeed() {
 		$return = News::get()
 			->filter(
-				array(
-					'Live' => 1,
-					'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
-				)
+				array('Live' => 1)
+			)
+			->exclude(
+				array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s'))
 			)
 			->limit(10);
 		return $return;
@@ -178,7 +178,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	private function needsRedirect(){
 		$Params = $this->getURLParams();
 		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID'])){
-			if(isset($Params['ID']) && is_numeric($Params['ID'])){
+			if(is_numeric($Params['ID'])){
 				$redirect = News::get()->filter('ID', $Params['ID'])->first();
 				if($redirect->ID > 0){
 					$this->redirect($redirect->Link(), 301);
@@ -217,14 +217,16 @@ class NewsHolderPage_Controller extends Page_Controller {
 		// Default filter.
 		$filter = array(
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')), 
+		);
+		$exclude = array(
+			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
 		);
 		// Filter based on login-status.
 		$segmentFilter = $this->checkPermission('segment');
 		// Skip if we're not on show or archive.
 		if($Params['Action'] == 'show'){
 			$filter = array_merge($segmentFilter,$filter);
-			$news = News::get()->filter($filter)->first();
+			$news = News::get()->filter($filter)->exclude($exclude)->first();
 			return $news;
 		}
 	}
@@ -271,9 +273,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 					->filter(array(
 						'Live' => 1,
 						'Tags.ID:ExactMatch' => $tagItems->ID,
-						'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
 						)
-					);
+					)
+					->exclude(array(
+						'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
+					));
 				$return = $news;
 			}				
 			else{
@@ -312,13 +316,16 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$filter = array(
 			'Live' => 1, 
 			'NewsHolderPageID' => $this->ID,
-			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow')),
+		);
+		$exclude = array(
+			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
 		);
 		if(isset($Params['Action']) && $Params['Action'] == 'archive'){
 			$filter = array_merge($filter, $this->generateArchiveFilter($Params));
 		}
 		$allEntries = News::get()
-			->filter($filter);
+			->filter($filter)
+			->exclude($exclude);
 		/**
 		 * Pagination pagination pagination.
 		 */

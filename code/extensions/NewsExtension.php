@@ -26,7 +26,9 @@ class NewsExtension extends DataExtension {
 		$Params = $this->owner->getURLParams();
 		$filter = array(
 			'Live' => 1,
-			'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow'))
+		);
+		$exclude = array(
+			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s')
 		);
 		if(class_exists('Translatable')){
 			$filter['Locale'] = Translatable::get_current_locale();
@@ -39,13 +41,17 @@ class NewsExtension extends DataExtension {
 				->filter(
 					array('URLSegment' => $Params['ID'])
 				)
+				->exclude($exclude)
 				->first();
 			if($random){
 				$news = News::get()
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->exclude(
-						array('ID' => $otherNews->ID)
+						array_merge(
+							$exclude, 
+							array('ID' => $otherNews->ID)
+						)
 					)
 					->sort('RAND()')
 					->limit($limit);
@@ -55,7 +61,10 @@ class NewsExtension extends DataExtension {
 					->filter('Tags.ID:ExactMatch', $otherNews->Tags()->column('ID'))
 					->filter($filter)
 					->exclude(
-						array('ID' => $otherNews->ID)
+						array_merge(
+							$exclude,
+							array('ID' => $otherNews->ID)
+						)
 					)
 					->limit($limit);
 			}
@@ -63,12 +72,14 @@ class NewsExtension extends DataExtension {
 			if($random){
 				$news = News::get()
 					->filter($filter)
+					->exclude($exclude)
 					->sort('RAND()')
 					->limit($limit);
 			}
 			else{
 				$news = News::get()
 					->filter($filter)
+					->exclude($exclude)
 					->limit($limit);
 			}
 		}
@@ -107,7 +118,6 @@ class NewsExtension extends DataExtension {
 	$filter = array(
 	    'Live' => 1,
 	    'NewsHolderPageID' => $holderID,
-	    'PublishFrom:LessThan' => date('Y-m-d H:i:s', strtotime('Tomorrow'))
 	);
 	if($limit == 0){
             $limit = null;
@@ -115,9 +125,12 @@ class NewsExtension extends DataExtension {
         if(class_exists('Translatable')){
 	    $filter['Locale'] = Translatable::get_current_locale();
         }
-
+	$exclude = array(
+		'PublishFrom:GreaterThan' => date('Y-m-d H:i:s')
+	);
         $news = News::get()
             ->filter($filter)
+	    ->exclude($exclude)
             ->limit($limit);
 
         if($news->count() == 0){
