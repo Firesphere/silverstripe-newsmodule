@@ -35,6 +35,8 @@ class NewsSiteConfigExtension extends DataExtension {
 		'ReturnExternal' => 'Boolean(true)',
 		/** Security settings */
 		'AllowAuthors' => 'Boolean(false)',
+		'AllowTags' => 'Boolean(true)',
+		'AllowExport' => 'Boolean(false)',
 	);
 	
 	private static $has_one = array(
@@ -102,7 +104,9 @@ class NewsSiteConfigExtension extends DataExtension {
 					Tab::create(
 						'Security',
 						_t($this->class . '.SEC', 'Security'),
-						CheckboxField::create('AllowAuthors', _t($this->class . '.ALLOWAUTHOR', 'Allow Content Authors to edit the newsconfiguration'))
+						CheckboxField::create('AllowAuthors', _t($this->class . '.ALLOWAUTHOR', 'Allow Content Authors to edit the newsconfiguration')),
+//						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')),
+						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items'))
 					)
 				);
 			}

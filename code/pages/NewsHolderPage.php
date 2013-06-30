@@ -210,7 +210,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public? (yes, it needs to be public)
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @return boolean or object. If object, we are successfully on a page. If boolean, it's baaaad.
+	 * @return object of Newsitem.
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
@@ -223,12 +223,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 		);
 		// Filter based on login-status.
 		$segmentFilter = $this->checkPermission('segment');
-		// Skip if we're not on show or archive.
+		// Skip if we're not on show.
 		if($Params['Action'] == 'show'){
 			$filter = array_merge($segmentFilter,$filter);
 			$news = News::get()->filter($filter)->exclude($exclude)->first();
 			return $news;
 		}
+		return array();
 	}
 	
 	/**
@@ -298,9 +299,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$siteConfig = SiteConfig::current_site_config();
 		$newsItem = $this->getNews();
 		if ($newsItem) {
-			$newsItem->AllowComments = $siteConfig->Comments;
+			/** If either one of these is false, no comments are allowed */
+			$newsItem->AllowComments = ($siteConfig->Comments && $newsItem->Commenting);
 			return($newsItem);
 		}
+		return array(); /** Return an empty page. Somehow the visitor ended up here, so at least give him something */
 	}
 	
 	public function currentTag(){
@@ -308,6 +311,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
+	 * @todo can this be made smaller? Would be nice!
 	 * @return object The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
@@ -369,85 +373,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * I'm tired of writing comments!
-	 * Ok, well, here, I build a form. Nice, huh?
 	 * @return form for Comments
 	 */
 	public function CommentForm(){
-		// I don't know if this is needed, I think it's handled in the template already.
-		// But it's not bad for safety.
 		$siteconfig = SiteConfig::current_site_config();
-		/**
-		 * Are comments allowed? 
-		 */
-		if(!$siteconfig->Comments){
-			return false;
-		}
 		$params = $this->getURLParams();
-		$return = 'CommentForm';
-		$field = array();
-
-		/**
-		 * Include the ID of the current item. Otherwise we can't link correctly. 
-		 */
-		$NewsID = $this->request->postVar('NewsID');
-		if($NewsID == null){
-			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
-			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
-		}
-		$field[] = TextField::create('Name', _t($this->class . '.COMMENT.NAME', 'Name'));
-		$field[] = TextField::create('Title', _t($this->class . '.COMMENT.TITLE', 'Comment title'));
-		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
-		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
-		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
-		/**
-		 * See the README.md about this!
-		 */
-		if($siteconfig->ExtraSecurity){
-			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
-		}
-		if($siteconfig->NoscriptSecurity){
-			$field[] = LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>');
-		}
-		$fields = FieldList::create(
-			$field
-		);
-		
-		 $actions = FieldList::create(
-			FormAction::create('CommentStore', 'Send')
-		);
-		$required_fields = array(
-			'Name',
-			'Title',
-			'Email',
-			'Comment'
-		); 
-		$validator = RequiredFields::create($required_fields);
-
-		return(Form::create($this, $return, $fields, $actions, $validator));
-	}
-	
-	/**
-	 * Store it.
-	 * And also check if it's no double-post. Limited to 60 seconds, but it can be differed.
-	 * I wonder if this is XSS safe? The saveInto does this for me, right?
-	 * @param array $data
-	 * @param object $form 
-	 */
-	public function CommentStore($data, $form){
-		/**
-		 * If the "Extra" field is filled, we have a bot.
-		 * Also, the nsas (<noscript> Anti Spam) is a bot. Bot's don't use javascript.
-		 * Note, a legitimate visitor that has JS disabled, will be unable to post!
-		 */
-		if(!isset($data['Extra']) || $data['Extra'] == '' || isset($data['nsas'])){
-			$data['Comment'] = Convert::raw2sql($data['Comment']);
-			if(!Comment::get()->where('Comment LIKE \'' . $data['Comment'] . '\' AND ABS(TIMEDIFF(NOW(), Created)) < 60')->count()){
-				$comment = new Comment();
-				$form->saveInto($comment);
-				$comment->NewsID = $data['NewsID'];
-				$comment->write();
-			}
-		}
-		$this->redirectBack();
+		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
 	}
 }

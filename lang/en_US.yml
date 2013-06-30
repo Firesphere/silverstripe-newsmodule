@@ -88,6 +88,8 @@ en_US:
       COMMENT: "Comment"
   NewsHolderPage_show.ss:
     COMMENTS: "Comments"
+    BYWHO: "by"
+    ONDATE: "on"
   NewsHolderPage_tag.ss:
     TAG: "Tag"
     ALLTAGS: "All tags"
