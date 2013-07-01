@@ -289,6 +289,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return array(); /** Return an empty page. Somehow the visitor ended up here, so at least give him something */
 	}
 	
+	/** Redundant */
 	public function currentTag(){
 		return $this->getTags();
 	}
