@@ -249,25 +249,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function getTags($news = false){
 		$Params = $this->getURLParams();
 		if(isset($Params['ID']) && $Params['ID'] != null){
-			$tagItems = Tag::get()
+			$tag = Tag::get()
 				->filter(
 					array('URLSegment' => Convert::raw2sql($Params['ID']))
 				)
 				->first();
-			if($tagItems->News()->count() > 0 && !$news){
-				$return = $tagItems;
+			if(!$news){
+				$return = $tag;
 			}
-			elseif($tagItems->News()->count() > 0 && $news){
-				$news = News::get()
-					->filter(array(
-						'Live' => 1,
-						'Tags.ID:ExactMatch' => $tagItems->ID,
-						)
+			elseif($tag->News()->count() > 0 && $news){
+				/** Somehow, it really has to be an ArrayList of NewsItems. <% loop Tag.News %> doesn't work :( */
+				$return = $tag->News()
+					->filter(array('Live' => 1)
 					)
-					->exclude(array(
-						'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
-					));
-				$return = $news;
+					->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')));
 			}				
 			else{
 				$this->redirect('tag');
