@@ -79,14 +79,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @var array, again.
 	 */
 	private static $allowed_actions = array(
-		'allNews',
 		'show',
 		'tag',
 		'tags',
 		'rss',
 		'archive',
 		'CommentForm',
-		'CommentStore',
 	);
 
 	/**
@@ -188,20 +186,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 				}
 			}
 			else{
-				$news = News::get()->filter(
-					array(
-						'URLSegment' => $Params['ID'],
-						'NewsHolderPageID' => $this->ID
-					)
-				);
-				if($news->count() == 0){
-					$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
-					if($renamed->count() > 0){
-						$this->redirect($renamed->First()->News()->Link(), 301);
-					}
-					else{
-						$this->redirect($this->Link(), 404);
-					}
+				$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
+				if($renamed->count() > 0){
+					$this->redirect($renamed->First()->News()->Link(), 301);
 				}
 			}
 		}
@@ -255,6 +242,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Get the correct tags.
 	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
 	 * @todo Implement translations?
+	 * @todo this is somewhat unclean. One uses actual tags, the other a newsitem to get the tags.
 	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
 	 * @return type DataObject or DataList with tags or news.
 	 */
