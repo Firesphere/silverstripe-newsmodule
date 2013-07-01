@@ -78,13 +78,12 @@ nl_NL:
   NewsHolderPage:
     DESCRIPTION: "Algemene nieuwsitems overzichtspagina"
     DEFAULTPAGETITLE: "Nieuwspagina"
-  NewsHolderPage_Controller:
-    COMMENT:
-      NAME: "Naam"
-      TITLE: "Titel"
-      EMAIL: "E-mailadres"
-      WEBSITE: "Website"
-      COMMENT: "Reactie"
+  CommentForm:
+    NAME: "Naam"
+    TITLE: "Titel"
+    EMAIL: "E-mailadres"
+    WEBSITE: "Website"
+    COMMENT: "Reactie"
   NewsHolderPage_show.ss:
     COMMENTS: "Reacties"
     BYWHO: "door"
