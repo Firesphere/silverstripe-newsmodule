@@ -137,6 +137,30 @@ class Comment extends DataObject {
 	}
 	
 	/**
+	 * Setup the Gravatar, because handling from the template is messy.
+	 */
+	public function getGravatar(){
+		$SiteConfig = SiteConfig::current_site_config();
+		if($SiteConfig->DefaultGravatarImageID != 0){
+			$default = urlencode(Director::absoluteBaseURL().$SiteConfig->DefaultGravatarImage()->Link());
+		}
+		elseif($SiteConfig->DefaultGravatar != ''){
+			$default = urlencode($SiteConfig->DefaultGravatar);
+		}
+		else{
+			$default = '';
+		}
+		if($SiteConfig->GravatarSize){
+			$GravatarSize = $SiteConfig->GravatarSize;
+		}
+		else{
+			$GravatarSize = '32';
+		}
+		$link = 'http://www.gravatar.com/avatar/$MD5Email?default='.$default.'&amp;s='.$GravatarSize;
+		return $link;
+	}
+	
+	/**
 	 * I would actually advice to change a few things here, personally.
 	 * Examples:
 	 * Add an info e-mail field to your siteconfig, and use that field as your reference for the setTo.
