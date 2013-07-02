@@ -49,7 +49,9 @@
 	<li class="comment_$EvenOdd">
 		<header>
 			<figure>
-				<img src="http://www.gravatar.com/avatar/<% if ShowGravatar %>$MD5Email<% end_if %>?default=<% if Top.SiteConfig.DefaultGravatarImage %>{$Top.BaseHref}$Top.SiteConfig.DefaultGravatarImage.Link<% else_if Top.SiteConfig.DefaultGravatar %>$Top.SiteConfig.DefaultGravatar<% end_if %>&amp;s=32" width="32" height="32" alt="$Name" />
+				<% if ShowGravatar %>
+				<img src="$Gravatar" width="$Top.SiteConfig.GravatarSize" height="$Top.SiteConfig.GravatarSize" alt="$Name" />
+				<% end_if %>
 			</figure>
 		<address><strong>$Title</strong><%t NewsHolderPage_show.ss.BYWHO "by" %> <strong><% if URL %><a href="$URL">$Name</a><% else %>$Name<% end_if %></strong></address> <time datetime="$Created"><%t NewsHolderPage_show.ss.ONDATE "on" %> $Created.Format(d-m-Y)</time>
 		</header>
