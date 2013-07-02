@@ -43,11 +43,11 @@ class NewsAdmin extends ModelAdmin {
 					)
 				);
 		}
-		elseif(!$siteConfig->AllowTags) {
-			/** @todo also remove Tag from the root. This is not the way, feature disabled in NewsSiteConfigExtension */
-			$form->Fields()->removeByName('Tag');
-		}
-		if(!$siteConfig->AllowExport){
+//		elseif(!$siteConfig->AllowTags) {
+//			/** @todo also remove Tag from the root. This is not the way, feature disabled in NewsSiteConfigExtension */
+//			$form->Fields()->removeByName('Tag');
+//		}
+		if($this->modelClass == "News" && !$siteConfig->AllowExport){
 			$form->Fields()
 				->fieldByName("News")
 				->getConfig()
