@@ -33,7 +33,7 @@
 <div class="wrapper row2">
   <div id="container">
     <div id="homepage">
-      <% include TaggedItems %>
+      <% include TaggedItems  Top=$Top %>
     </div>
         <div class="clear"></div>
   </div>
