@@ -37,6 +37,9 @@ class NewsSiteConfigExtension extends DataExtension {
 		'AllowAuthors' => 'Boolean(false)',
 		'AllowTags' => 'Boolean(true)',
 		'AllowExport' => 'Boolean(false)',
+		'AllowSlideshow' => 'Boolean(true)',
+		/** Social data */
+		'TwitterAccount' => 'Varchar(255)',
 	);
 	
 	private static $has_one = array(
@@ -94,6 +97,14 @@ class NewsSiteConfigExtension extends DataExtension {
 						CheckboxField::create('EnableSlideshow', _t($this->class . '.SLIDESHOW', 'Allow the use of slideshow feature')),
 						CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
 						TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
+					),
+					Tab::create(
+						'Help',
+						_t($this->class . '.HELP', 'Help'),
+						ReadonlyField::create('generalhelp', _t($this->class . '.NEWSHELP', 'News help'), _t($this->class . '.NEWSHELPTEXT', 'In the news-settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.')),
+						ReadonlyField::create('externalhelp', _t($this->class . '.EXTERNALHELP', 'External help'), _t($this->class . '.EXTERNALHELPTEXT', 'Allow or disallow content-authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.')),
+						ReadonlyField::create('commenthelp', _t($this->class . '.COMMENTHELP', 'Comment help'), _t($this->class . '.COMMENTHELPTEXT', 'Comment help is tbd.')),
+						ReadonlyField::create('slideshowhelp', _t($this->class . '.SLIDESHOWHELP', 'Slideshow help'), _t($this->class . '.SLIDESHOWHELPTEXT', 'Slideshow settings, like what to do. TBD'))
 					)
 				),
 				'Access'
@@ -106,7 +117,8 @@ class NewsSiteConfigExtension extends DataExtension {
 						_t($this->class . '.SEC', 'Security'),
 						CheckboxField::create('AllowAuthors', _t($this->class . '.ALLOWAUTHOR', 'Allow Content Authors to edit the newsconfiguration')),
 //						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')),
-						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items'))
+						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items')),
+						CheckboxField::create('AllowSlideshow', _t($this->class . '.ALLOWSLIDESHOW', 'Allow the usage of the slideshow-feature'))
 					)
 				);
 			}
