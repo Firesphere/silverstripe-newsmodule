@@ -29,6 +29,8 @@ en_US:
     SLIDESIZE: "Maximum size of the full-size images. E.g. 1024x768"
     SEC: "Security"
     ALLOWAUTHOR: "Allow content authors to edit news-settings"
+    ALLOWEXPORT: "Allow content authors to export all data"
+    ALLOWSLIDESHOW: "Allow the usage of the slideshow (in beta)"
   Commment:
     SINGULARNAME: "Comment"
     PLURALNAME: "Comments"
