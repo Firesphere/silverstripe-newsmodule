@@ -2,7 +2,8 @@
 /**
  * Add shortcode features.
  *
- * @author Simon 'Sphere' Erkelens
+ * @package News/blog module
+ * @author Simon 'Sphere'
  */
 class ExtraShortcodeParser {
 	

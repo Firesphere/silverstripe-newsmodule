@@ -91,6 +91,7 @@ class NewsExtension extends DataExtension {
 
 	/**
 	 * Get the NewsItems as groupedList for global archive-listing.
+	 * @todo obey translatable maybe? I think it's supported by default, but I could be wrong	
 	 * @return GroupedList of NewsItems.
 	 */
 	public function getArchiveList(){
