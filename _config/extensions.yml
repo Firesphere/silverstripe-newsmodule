@@ -12,4 +12,4 @@ LeftAndMain:
     ['NewsLeftAndMainExtension']
 GoogleSiteMap:
   register:
-    'News'
+    ['News']

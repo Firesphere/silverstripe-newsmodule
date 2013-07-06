@@ -61,18 +61,18 @@ class NewsAdmin extends ModelAdmin {
      * @author Marcio Barrientos
      * @return List $list
      */
-    public function getList() {
-        $list = parent::getList();
-	$siteConfig = SiteConfig::current_site_config();
-        if($this->modelClass == 'News' && class_exists('Subsite')) {
-            $filter = array();
-            foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
-                array_push($filter,$holderpage->ID);
-            }
-            $list = $list->filter('NewsHolderPageID', $filter);
-        }
+	public function getList() {
+		$list = parent::getList();
+		$siteConfig = SiteConfig::current_site_config(); // Unused? @Marcio Barrientos
+		if($this->modelClass == 'News' && class_exists('Subsite')) {
+			$filter = array();
+			foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
+				array_push($filter,$holderpage->ID);
+			}
+			$list = $list->filter('NewsHolderPageID', $filter);
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 }
 
