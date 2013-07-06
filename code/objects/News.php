@@ -30,6 +30,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Content' => 'HTMLText',
 		'PublishFrom' => 'Date',
 		'Tweeted' => 'Boolean(false)',
+		'FBPosted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
 		'Locale' => 'Varchar(10)',
@@ -491,18 +492,27 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Check it at my repos: Silverstripe-Social.
 		 * It auto-tweets your new Newsitem. If the TwitterController exists ofcourse.
 		 * It doesn't auto-tweet if the publish-date is in the future. Also, it won't tweet when it's that date!
-		 * @todo refactor this to a facebook/twitter oAuth method that a dev spent more time on developing than I did on my Social-module. It's outdated.
+		 * @todo refactor this to a facebook/twitter oAuth method that a dev spent more time on developing than I did on my Social-module.
 		 */
 		if(class_exists('TwitterController')){
-			if($this->Live && ($this->PublishDate = null || $this->PublishDate <= date('Y-m-d')) && !$this->Tweeted && $siteConfig->TweetOnPost){
-				TwitterController::postTweet($this->Title, $this->AbsoluteLink());
+			if($this->Live && $this->PublishDate <= date('Y-m-d') && !$this->Tweeted && $siteConfig->TweetOnPost){
 				$this->Tweeted = true;
 				$this->write();
 			}
 		}
-		/**
-		 * I should implement the Post To Facebook option here.
-		 */
+		if(class_exists('FacebookController')){
+			if(!$this->FBPosted && $this->Live && $this->PublishDate <= date('Y-m-d')){
+				if($this->Impression()->ID > 0){
+					$impression = Director::absoluteBaseURL($this->Impression()->Link());
+				}
+				else{
+					$impression = null;
+				}
+				FacebookController::postFacebook($this->Title, $this->AbsoluteLink(), $impression);
+				$this->FBPosted = true;
+				$this->write();
+			}
+		}
 	}
 
 	/**

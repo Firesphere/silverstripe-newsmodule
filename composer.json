@@ -24,7 +24,8 @@
 	},
 	"suggest": {
 		"silverstripe/translatable": "*",
-		"unclecheese/display-logic": "*"
+		"unclecheese/display-logic": "*",
+		"firesphere/social": "*"
 	},
 	"extra": {
 		"installer-name": "silverstripe-newsmodule"
