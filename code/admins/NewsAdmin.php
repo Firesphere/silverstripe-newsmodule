@@ -43,10 +43,6 @@ class NewsAdmin extends ModelAdmin {
 					)
 				);
 		}
-//		elseif(!$siteConfig->AllowTags) {
-//			/** @todo also remove Tag from the root. This is not the way, feature disabled in NewsSiteConfigExtension */
-//			$form->Fields()->removeByName('Tag');
-//		}
 		if($this->modelClass == "News" && !$siteConfig->AllowExport){
 			$form->Fields()
 				->fieldByName("News")
@@ -56,23 +52,23 @@ class NewsAdmin extends ModelAdmin {
 		return $form;
 	}
 
-    /**
-     * List only newsitems from current subsite.
-     * @author Marcio Barrientos
-     * @return List $list
-     */
-    public function getList() {
-        $list = parent::getList();
-	$siteConfig = SiteConfig::current_site_config();
-        if($this->modelClass == 'News' && class_exists('Subsite')) {
-            $filter = array();
-            foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
-                array_push($filter,$holderpage->ID);
-            }
-            $list = $list->filter('NewsHolderPageID', $filter);
-        }
+	/**
+	 * List only newsitems from current subsite.
+	 * @author Marcio Barrientos
+	 * @return List $list
+	 */
+	public function getList() {
+		$list = parent::getList();
+		$siteConfig = SiteConfig::current_site_config(); // Unused? @Marcio Barrientos
+		if($this->modelClass == 'News' && class_exists('Subsite')) {
+			$filter = array();
+			foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
+				array_push($filter,$holderpage->ID);
+			}
+			$list = $list->filter('NewsHolderPageID', $filter);
+		}
 
-        return $list;
-    }
+		return $list;
+	}
 }
 
