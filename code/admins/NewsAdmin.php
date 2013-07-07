@@ -43,10 +43,6 @@ class NewsAdmin extends ModelAdmin {
 					)
 				);
 		}
-//		elseif(!$siteConfig->AllowTags) {
-//			/** @todo also remove Tag from the root. This is not the way, feature disabled in NewsSiteConfigExtension */
-//			$form->Fields()->removeByName('Tag');
-//		}
 		if($this->modelClass == "News" && !$siteConfig->AllowExport){
 			$form->Fields()
 				->fieldByName("News")
@@ -56,11 +52,11 @@ class NewsAdmin extends ModelAdmin {
 		return $form;
 	}
 
-    /**
-     * List only newsitems from current subsite.
-     * @author Marcio Barrientos
-     * @return List $list
-     */
+	/**
+	 * List only newsitems from current subsite.
+	 * @author Marcio Barrientos
+	 * @return List $list
+	 */
 	public function getList() {
 		$list = parent::getList();
 		$siteConfig = SiteConfig::current_site_config(); // Unused? @Marcio Barrientos
