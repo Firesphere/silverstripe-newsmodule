@@ -18,6 +18,7 @@ class NewsExtension extends DataExtension {
 	 *	Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
 	 *	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
 	 * @todo implement subsites
+	 * @todo clean this up. It's a mess. It's too long and too unreadable.
 	 */
 	public function NewsArchive($limit = 5, $random = null, $related = null) {
 		if($limit == 0){
