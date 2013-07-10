@@ -19,11 +19,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	private static $db = array(
 		'Title' => 'Varchar(255)',
-		/**
-		 * Author is a troublemaker. Please tell me, 
-		 * should I either auto-set the username from currentmember, 
-		 * or use the textfield I'm using now (Lazy implementation).
-		 */
+		/** Author might be handled via Member, but that's not useful if you want a non-member to post in his/her name */
 		'Author' => 'Varchar(255)',
 		'URLSegment' => 'Varchar(255)',
 		'Synopsis' => 'Text',
@@ -44,6 +40,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Impression' => 'Image',
 		/** If you want to have a download-file */
 		'Download' => 'File',
+		'Author' => 'Author',
 	);
 	
 	private static $has_many = array(
@@ -482,6 +479,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				}
 			}
 		}
+		$author = Author::get()->filter('OriginalName', $this->Author);
+		if($author->count() == 0){
+			$author = Author::create();
+			$author->OriginalName = $this->Author;
+			$author->write();
+		}
+		else{
+			$author = $author->first();
+		}
+		$this->AuthorID = $author->ID;
 	}
 	
 	public function onAfterWrite(){
