@@ -50,6 +50,7 @@ class NewsHolderPage extends Page {
 			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
+		/** @todo fix backward compatibility for Author-method */
 		/** Backwards compatibility for upgraders. Update the PublishFrom field */
 		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
 		DB::query($sql);
@@ -224,11 +225,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @param type $type string with returntype setting.
 	 * @return type $filter array for the filter.
 	 */
-	private function checkPermission($type){
+	private function checkPermission(){
 		$Params = $this->getURLParams();
-		/**
-		 * Let the member, if he has access to the NewsAdmin, preview the post even if it's not published yet.
-		 */
 		$segmentFilter = array(
 			'URLSegment' => Convert::raw2sql($Params['ID']),
 		);
@@ -260,8 +258,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			elseif($tag->News()->count() > 0 && $news){
 				/** Somehow, it really has to be an ArrayList of NewsItems. <% loop Tag.News %> doesn't work :( */
 				$return = $tag->News()
-					->filter(array('Live' => 1)
-					)
+					->filter(array('Live' => 1))
 					->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')));
 			}				
 			else{
@@ -308,8 +305,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
 		);
-		if(isset($Params['Action']) && $Params['Action'] == 'archive'){
-			$filter = array_merge($filter, $this->generateArchiveFilter($Params));
+		if(isset($Params['Action'])){
+			$mergeFilter = $this->generateAddedFilter($Params);
+			if(!$mergeFilter){
+				$this->Redirect($this->Link(), 404);
+			}
+			else{
+				$filter = array_merge($filter, $mergeFilter);
+			}
 		}
 		$allEntries = News::get()
 			->filter($filter)
@@ -330,29 +333,39 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return $allEntries;
 	}
-	
+
 	/**
-	 * Get the items, per month/year
+	 * Get the items, per month/year/author
 	 * If no month or year is set, current month/year is assumed
-	 * @todo sidebar with year/month grouping.
 	 */
-	public function generateArchiveFilter($Params){
-		if(!isset($Params['ID'])){
-			$month = date('m');
-			$year = date('Y');
+	public function generateAddedFilter($Params){
+		/** Archive */
+		if($Params['Action'] == 'archive'){
+			if(!isset($Params['ID'])){
+				$month = date('m');
+				$year = date('Y');
+			}
+			elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
+				$year = $Params['ID'];
+				$month = '';
+			}
+			else{
+				$year = $Params['ID'];
+				$month = date_parse('01-'.$Params['OtherID'].'-1970');
+			}
+			$archivefilter = array(
+				'PublishFrom:PartialMatch' => $year.'-'.$month['month']
+			);
+			return $archivefilter;
 		}
-		elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
-			$year = $Params['ID'];
-			$month = '';
+		/** Author */
+		if($Params['Action'] == 'author'){
+			$authorfilter = array(
+				'Author.URLSegment:ExactMatch' => $Params['ID']
+			);
+			return $authorfilter;
 		}
-		else{
-			$year = $Params['ID'];
-			$month = date_parse('01-'.$Params['OtherID'].'-1970');
-		}
-		$archivefilter = array(
-			'PublishFrom:PartialMatch' => $year.'-'.$month['month']
-		);
-		return $archivefilter;
+		return false;
 	}
 	
 	/**
