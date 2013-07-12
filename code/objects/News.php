@@ -40,7 +40,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'Impression' => 'Image',
 		/** If you want to have a download-file */
 		'Download' => 'File',
-		'Author' => 'Author',
+		'AuthorHelper' => 'AuthorHelper',
 	);
 	
 	private static $has_many = array(
@@ -479,9 +479,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				}
 			}
 		}
-		$author = Author::get()->filter('OriginalName', $this->Author);
+		$author = AuthorHelper::get()->filter('OriginalName', $this->Author);
 		if($author->count() == 0){
-			$author = Author::create();
+			$author = AuthorHelper::create();
 			$author->OriginalName = $this->Author;
 			$author->write();
 		}
@@ -507,19 +507,19 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$this->write();
 			}
 		}
-		if(class_exists('FacebookController')){
-			if(!$this->FBPosted && $this->Live && $this->PublishDate <= date('Y-m-d')){
-				if($this->Impression()->ID > 0){
-					$impression = Director::absoluteBaseURL($this->Impression()->Link());
-				}
-				else{
-					$impression = null;
-				}
-				FacebookController::postFacebook($this->Title, $this->AbsoluteLink(), $impression);
-				$this->FBPosted = true;
-				$this->write();
-			}
-		}
+//		if(class_exists('FacebookController')){
+//			if(!$this->FBPosted && $this->Live && $this->PublishDate <= date('Y-m-d')){
+//				if($this->Impression()->ID > 0){
+//					$impression = Director::absoluteBaseURL($this->Impression()->Link());
+//				}
+//				else{
+//					$impression = null;
+//				}
+//				FacebookController::postFacebook($this->Title, $this->AbsoluteLink(), $impression);
+//				$this->FBPosted = true;
+//				$this->write();
+//			}
+//		}
 	}
 
 	/**
