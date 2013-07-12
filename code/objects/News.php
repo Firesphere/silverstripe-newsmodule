@@ -296,6 +296,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$tags
 			)
 		);
+		$date->setConfig('dateformat', 'yyyy-MM-dd');
 
 		/**
 		 * Add a link to the frontpage version of the item.
