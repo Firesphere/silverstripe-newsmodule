@@ -3,7 +3,8 @@
  * Take the Form-creation outside of the page. This is a cleaner way of getting everything correct.
  * This split makes sure things are easier to view, read and edit.
  *
- * @author Simon 'Sphere' Erkelens
+ * @package News/blog module
+ * @author Simon 'Sphere'
  */
 class CommentForm extends Form {
 	

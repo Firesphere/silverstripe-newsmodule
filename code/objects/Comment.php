@@ -162,9 +162,6 @@ class Comment extends DataObject {
 	
 	/**
 	 * I would actually advice to change a few things here, personally.
-	 * Examples:
-	 * Add an info e-mail field to your siteconfig, and use that field as your reference for the setTo.
-	 * Also, the From could be $this->Email, so you could reply if needed. (Unless you decided E-mail is not required)
 	 */
 	public function onAfterWrite(){
 		$SiteConfig = SiteConfig::current_site_config();

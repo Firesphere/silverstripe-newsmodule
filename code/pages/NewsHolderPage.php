@@ -361,7 +361,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		/** Author */
 		if($Params['Action'] == 'author'){
 			$authorfilter = array(
-				'Author.URLSegment:ExactMatch' => $Params['ID']
+				'AuthorHelper.URLSegment:ExactMatch' => $Params['ID']
 			);
 			return $authorfilter;
 		}

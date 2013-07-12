@@ -6,7 +6,7 @@
  * @package News/blog module
  * @author Simon 'Sphere' Erkelens
  */
-class Author extends DataObject {
+class AuthorHelper extends DataObject {
 	
 	private static $db = array(
 		'OriginalName' => 'Varchar(255)',

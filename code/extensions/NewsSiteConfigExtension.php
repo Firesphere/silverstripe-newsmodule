@@ -119,7 +119,8 @@ class NewsSiteConfigExtension extends DataExtension {
 //						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')),
 						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items')),
 						CheckboxField::create('AllowSlideshow', _t($this->class . '.ALLOWSLIDESHOW', 'Allow the usage of the slideshow-feature'))
-					)
+					),
+					'Help'
 				);
 			}
 		}
