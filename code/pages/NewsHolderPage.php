@@ -246,6 +246,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function getTags($news = false){
 		$Params = $this->getURLParams();
+		$return = null;
 		if(isset($Params['ID']) && $Params['ID'] != null){
 			$tag = Tag::get()
 				->filter(
@@ -255,14 +256,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 			if(!$news){
 				$return = $tag;
 			}
-			elseif($tag->News()->count() > 0 && $news){
+			elseif($news && $tag->ID){
 				/** Somehow, it really has to be an ArrayList of NewsItems. <% loop Tag.News %> doesn't work :( */
 				$return = $tag->News()
 					->filter(array('Live' => 1))
 					->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')));
 			}				
 			else{
-				$this->redirect('tag');
+				$this->redirect($this->Link('tags'), 404);
 			}
 		}
 		else{
