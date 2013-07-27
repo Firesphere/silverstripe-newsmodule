@@ -480,10 +480,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				}
 			}
 		}
-		$author = AuthorHelper::get()->filter('OriginalName', $this->Author);
+		$this->Author = trim($this->Author);
+		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
 		if($author->count() == 0){
 			$author = AuthorHelper::create();
-			$author->OriginalName = $this->Author;
+			$author->OriginalName = trim($this->Author);
 			$author->write();
 		}
 		else{
