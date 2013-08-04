@@ -9,11 +9,11 @@
  * @todo Semantics
  * @todo Cleanup and integration with newsholderpage.
  * @method NewsHolderPage NewsHolderPage this NewsItem belongs to
- * @method Impression Image the Impression for this NewsItem
- * @method Comments Comment Comments on this NewsItem
+ * @method Image Impression the Impression for this NewsItem
+ * @method Comment Comment Comments on this NewsItem
  * @method Renamed Renamed changed URLSegments
- * @method SlideshowImages SlideshowImage Images for the slideshow-feature
- * @method Tags Tag Added Tags for this Item.
+ * @method SlideshowImage SlideshowImages for the slideshow-feature
+ * @method Tag Tags Added Tags for this Item.
  */
 class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
 
@@ -61,7 +61,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
-	 * @var type array of defaults. Commenting is true, SiteConfig overrides this!
+	 * @var array $defaults. Commenting is true, SiteConfig overrides this!
 	 */
 	private static $defaults = array(
 		'Commenting' => true,
@@ -69,7 +69,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * On large databases, this is a small performance improvement.
-	 * @var type array of indexes.
+	 * @var array $indexes.
 	 */
 	private static $indexes = array(
 		'URLSegment' => true,
@@ -77,7 +77,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Define singular name translatable
-	 * @return type string Singular name
+	 * @return string Singular name
 	 */
 	public function singular_name() {
 		if (_t($this->class . '.SINGULARNAME')) {
@@ -89,7 +89,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Define plural name translatable
-	 * @return type string Plural name
+	 * @return string Plural name
 	 */
 	public function plural_name() {
 		if (_t($this->class . '.PLURALNAME')) {
@@ -101,7 +101,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Define sumaryfields;
-	 * @return array of summaryfields
+	 * @return array $summaryFields
 	 */
 	public function summaryFields() {
 		$summaryFields = parent::summaryFields();
@@ -128,7 +128,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Define translatable searchable fields
-	 * @return array Searchable Fields translatable
+	 * @return array $searchableFields translatable
 	 */
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
@@ -171,8 +171,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Setup the translatable dropdown sources.
-	 * @param type $_params
-	 * @return type array of fields
+	 * @param array $_params
+	 *   'fieldClasses': Associative array of field names as keys and FormField classes as values
+	 *   'restrictFields': Numeric array of a field name whitelist
+	 * @return FieldList $fields
 	 */
 	public function scaffoldSearchFields($_params = null){
 		$fields = parent::scaffoldSearchFields($_params);
@@ -201,8 +203,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Unless you're really motivated. Don't read this. It's too much.
-	 * @todo Clean this up. Make functions for the yes/no features and such to keep things readable.	
-	 * @return FieldList with the Fields required. Who would've guessed?!
+	 * @todo Clean this up. Make functions for the yes/no features and such to keep things readable.
+	 * @return FieldList $fields The Fields required. Who would've guessed?!
 	 */
 	public function getCMSFields() {
 		$siteConfig = SiteConfig::current_site_config();
@@ -275,11 +277,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$fields = FieldList::create(TabSet::create('Root'));
 		
 		$fields->addFieldsToTab(
-			'Root', // what tab
+			'Root',
 			Tab::create(
-				'Main', // Name
-				_t($this->class . '.MAIN', 'Main'), // Title
-				/** The fields */
+				'Main',
+				_t($this->class . '.MAIN', 'Main'),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
 				$multiple,
@@ -299,11 +300,13 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$date->setConfig('dateformat', 'yyyy-MM-dd');
 
 		/**
-		 * Add a link to the frontpage version of the item.
 		 * The following items are all has_one or has_many relations.
 		 * No use for showing them initially.
 		 */
 		if($this->ID){
+			/**
+			 * Add a link to the admin, so the writer can easily (pre)view the item.
+			 */
 			$fields->addFieldToTab(
 				'Root.Main',
 				LiteralField::create('Dummy',
@@ -366,13 +369,16 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		
 		/**
 		 * If UncleCheese's module Display Logic is available, upgrade the visible fields!
-		 * @todo make this actually work. Contact @_UncleCheese_
 		 */
 		if(class_exists('DisplayLogicFormField') && count($typeArray) > 1){
 			$file->hideUnless('Type')->isEqualTo('download');
 			$link->hideUnless('Type')->isEqualTo('external');
 			$html->hideUnless('Type')->isEqualTo('news');
 		}
+		/**
+		 * Setup the help features.
+		 * @todo fix all helptexts
+		 */
 		$helpText = "Publish from is auto-filled with a date if it isn't set. Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won't go live if it isn't set to true.";
 		$fields->addFieldToTab(
 			'Root',
@@ -388,7 +394,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Setup available locales.
-	 * @return type ArrayList of available locale's.
+	 * @return ArrayList $locales of available locale's.
 	 */
 	public function fetchLocale(){
 		$locales = Translatable::get_existing_content_languages();
@@ -397,6 +403,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * Free guess on what this button does.
+	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
 		if ($Page = $this->NewsHolderPage()) {
@@ -406,8 +413,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 
 	/**
 	 * This is quite handy, for meta-tags and such.
-	 * @param $action string, the added URLSegment, the actual function that'll return the news.
-	 * @return link. To the item. (Yeah, I'm super cereal here)
+	 * @param string $action The added URLSegment, the actual function that'll return the news.
+	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink($action = 'show/'){
 		if($Page = $this->NewsHolderPage()){
@@ -418,7 +425,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * All the upcoming OG-functions are related to the OG module.
 	 * This bugs in live, works in development. Shoot me?
-	 * @return type image, or, if not available, it's holder-page's image.
+	 * @return Image null or, if not available, it's holder-page's image.
 	 */
 	public function getOGImage(){
 		if($this->Impression()->ID > 0){
@@ -431,7 +438,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	/**
 	 * Guess again.
-	 * @return type String
+	 * @return String
 	 */
 	public function getOGTitle(){
 		return $this->Title;
@@ -441,6 +448,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
 	 * The NewsHolderPage should NEVER be doubled.
 	 * @todo Make sure the NHP-setting works as it should. I think there might be bugs in this method of checking.
+	 * @todo slim down. Not everything here needs to be in onBeforeWrite.
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
@@ -509,38 +517,37 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$this->write();
 			}
 		}
-//		if(class_exists('FacebookController')){
-//			if(!$this->FBPosted && $this->Live && $this->PublishDate <= date('Y-m-d')){
-//				if($this->Impression()->ID > 0){
-//					$impression = Director::absoluteBaseURL($this->Impression()->Link());
-//				}
-//				else{
-//					$impression = null;
-//				}
-//				FacebookController::postFacebook($this->Title, $this->AbsoluteLink(), $impression);
-//				$this->FBPosted = true;
-//				$this->write();
-//			}
-//		}
+		/** Facebook is still broken :( */
 	}
 
 	/**
 	 * test whether the URLSegment exists already on another Newsitem
-	 * @return boolean if urlsegment already exists yes or no.
+	 * @return boolean URLSegment already exists yes or no.
 	 */
 	public function LookForExistingURLSegment($URLSegment) {
-		return(News::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
+		return(News::get()
+			->filter(
+				array("URLSegment" => $URLSegment)
+			)
+			->exclude(
+				array("ID" => $this->ID)
+			)
+			->count() != 0);
 	}
 
 	/**
-	 * Returns the year and month this news item was posted in, this is for Grouping in template..
-	 * @return string of year|month. With 4 characters, unless it's the year 10000. Or a month, ofcourse.
+	 * Get the year this object is created.
+	 * @return string $yearItems String of 4 numbers representing the year
 	 */
 	public function getYearCreated(){
 		$yearItems = date('Y', strtotime($this->PublishFrom));
 		return $yearItems;
 	}
 
+	/**
+	 * Get the month this object is published
+	 * @return string $monthItems double-digit representation of the month this object was published.
+	 */
 	public function getMonthCreated(){
 		$monthItems = date('F', strtotime($this->PublishFrom));
 		return $monthItems;
@@ -555,8 +562,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
          */
         public function getPublished() {
 		return date('d-m-Y', strtotime($this->PublishFrom));
-            $format = i18n::get_date_format();
-            return $this->dbObject('PublishFrom')->Format($format);
+		$format = i18n::get_date_format();
+		return $this->dbObject('PublishFrom')->Format($format);
         }      
 
 	/**

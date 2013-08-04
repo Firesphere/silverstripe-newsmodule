@@ -5,27 +5,29 @@
  * @package News/Blog module
  * @author Simon `Sphere`
  * @method Image Image Image for this group
- * @method News News NewsItem this image belongs to
+ * @method News News this image belongs to
  */
 class SlideshowImage extends DataObject {
-	
+
+	/** @var array $db */
 	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
 		'SortOrder' => 'Int',
 	);
 	
-	/**
-	 * In case you hadn't guessed. This thingy has images.
-	 * @var array. I know.
-	 */
+	/** @var array $has_one */
 	private static $has_one = array(
 		'Image' => 'Image',
 		'News' => 'News',
 	);
 
-	public function getCMSFields($params = null) {
-		$fields = parent::getCMSFields($params);
+	/**
+	 * Setup the CMSFields
+	 * @return FieldList $fields Fields to be shown in the admin.
+	 */
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
 		$fields->removeFieldsFromTab('Root.Main', array('NewsID','SortOrder'));
 		$fields->addFieldsToTab(
 			'Root.Main',

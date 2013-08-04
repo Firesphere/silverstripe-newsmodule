@@ -8,11 +8,16 @@
  */
 class CommentForm extends Form {
 	
+	/**
+	 * Setup the Commenting-form for posting comments
+	 * @param Controller $controller The current controller
+	 * @param String $name Name of the field
+	 * @param SiteConfig $siteconfig Current active SiteConfig
+	 * @param array $params Current URL Parameters
+	 */
 	public function __construct($controller, $name, $siteconfig, $params) {
 		$field = array();
-		/**
-		 * Include the ID of the current item. Otherwise we can't link correctly. 
-		 */
+		/** Include the ID of the current item. Otherwise we can't link correctly. */
 		$NewsID = Controller::curr()->request->postVar('NewsID');
 		if($NewsID == null){
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
@@ -23,9 +28,7 @@ class CommentForm extends Form {
 		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
 		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
 		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
-		/**
-		 * See the README.md about this!
-		 */
+		/** Check the Readme.MD for details about extra spam-protection */
 		if($siteconfig->ExtraSecurity){
 			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
 		}
@@ -54,8 +57,8 @@ class CommentForm extends Form {
 	 * Store it.
 	 * And also check if it's no double-post. Limited to 60 seconds, but it can be differed.
 	 * I wonder if this is XSS safe? The saveInto does this for me, right?
-	 * @param array $data
-	 * @param object $form 
+	 * @param array $data Posted data as array
+	 * @param Form $form FormObject containing the entire Form as an Object.
 	 */
 	public function CommentStore($data, $form){
 		/**

@@ -12,10 +12,7 @@
  */
 class Tag extends DataObject {
 	
-	/**
-	 * Not too exciting. Description is optional, Could be useful if you have very cryptic tags ;)
-	 * @var type 
-	 */
+	/** @var array $db database-fields */
 	private static $db = array(
 		'Title' => 'Varchar(255)',
 		'Description' => 'HTMLText',
@@ -24,10 +21,12 @@ class Tag extends DataObject {
 		'SortOrder' => 'Int',
 	);
 	
+	/** @var array $has_one relationships. */
 	private static $has_one = array(
 		'Impression' => 'Image',
 	);
 	
+	/** @var array $belongs_many_many of belongings */
 	private static $belongs_many_many = array(
 		'News' => 'News',
 	);
@@ -35,19 +34,21 @@ class Tag extends DataObject {
 	/**
 	 * CMS seems to ignore this unless sortable is enabled.
 	 * Input appreciated.
-	 * @var type string of sortorder.
+	 * @var string $default_sort sortorder of this object.
 	 */
 	private static $default_sort = 'SortOrder ASC';
 	
 	/**
 	 * Create indexes.
+	 * @var array $indexes Index for the database
 	 */
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
+	
 	/**
 	 * Define singular name translatable
-	 * @return type Singular name
+	 * @return string Singular name
 	 */
 	public function singular_name() {
 		if (_t($this->class . '.SINGULARNAME')) {
@@ -59,7 +60,7 @@ class Tag extends DataObject {
 	
 	/**
 	 * Define plural name translatable
-	 * @return type Plural name
+	 * @return string Plural name
 	 */
 	public function plural_name() {
 		if (_t($this->class . '.PLURALNAME')) {
@@ -71,7 +72,7 @@ class Tag extends DataObject {
 	
 	/**
 	 * @todo fix sortorder
-	 * @return type FieldList of fields that are editable.
+	 * @return FieldList $fields Fields that are editable.
 	 */
 	public function getCMSFields() {
 		/** Setup new Root Fieldlist */

@@ -11,12 +11,15 @@
  */
 class NewsHolderPage extends Page {
 
+	/** @var string $description PageType's description */
 	private static $description = 'HolderPage for newsitems';
-   
+
+	/** @var array $has_many many-to-one relationships */
 	private static $has_many = array(
 		'Newsitems' => 'News',
 	);
 	
+	/** @var array $allowed_children Allowed Children */
 	private static $allowed_children = array(
 		'News',
 	);
@@ -66,6 +69,7 @@ class NewsHolderPage extends Page {
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
 	 * Isn't this supposed to be handled in the allowed_children?
 	 * Anyway. If you don't like children... Rename this.
+	 * @return DataObjectSet NewsItems Items belonging to this page
 	 */
 	public function Children(){
 		return $this->Newsitems();
@@ -77,7 +81,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * We allow a lot, right?
-	 * @var array, again.
+	 * @var array $allowed_actions, again.
 	 */
 	private static $allowed_actions = array(
 		'show',
@@ -124,7 +128,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Or ignored, that could be it too.
 	 */
 	public function MetaDescription(){
+		/** @var URLParams */
 		$Params = $this->getURLParams();
+		/** @var News DataObject of Newsitems */
 		$news = $this->getNews();
 		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->MetaDescription .= ' '.$news->Title;
