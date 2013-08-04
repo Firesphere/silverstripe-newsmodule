@@ -36,6 +36,7 @@ class NewsExtension extends DataExtension {
 		}
 		/**
 		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
+		 * @todo rewrite to the filter/exclude coming from a separate function. Should be more readable.
 		 */
 		if($Params['Action'] == 'show' && $related) {
 			$otherNews = News::get()

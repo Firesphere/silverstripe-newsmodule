@@ -7,9 +7,7 @@
  */
 class NewsSiteConfigExtension extends DataExtension {
 
-	/**
-	 * @var type array of all the extra's we need for setting everything up.
-	 */
+	/** @var array $db Contains all the extra's we need for setting everything up. */
 	private static $db = array(
 		/** Default options */
 		'UseAbstract' => 'Boolean(true)',
@@ -42,6 +40,7 @@ class NewsSiteConfigExtension extends DataExtension {
 		'TwitterAccount' => 'Varchar(255)',
 	);
 	
+	/** @var array $has_one Contains all the one-to-many relations */
 	private static $has_one = array(
 		'DefaultImage' => 'Image',
 		'DefaultGravatarImage' => 'Image',
@@ -56,12 +55,12 @@ class NewsSiteConfigExtension extends DataExtension {
 			$fields->addFieldToTab(
 				'Root', // What tab
 				TabSet::create(
-					'Newssettings', // name
-					_t($this->class . '.NEWSCOMMENTS', 'News settings'), // title
+					'Newssettings',
+					_t($this->class . '.NEWSCOMMENTS', 'News settings'),
 					/** General news settings */
 					Tab::create(
-						'News', // Name
-						_t($this->class . '.NEWS','News'), // Title
+						'News',
+						_t($this->class . '.NEWS','News'),
 						CheckboxField::create('UseAbstract', _t($this->class . '.ABSTRACT', 'Use abstract/summary')),
 						CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
 						NumericField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
@@ -92,8 +91,8 @@ class NewsSiteConfigExtension extends DataExtension {
 					),
 					/** Slideshow settings */
 					Tab::create(
-						'Slideshowsettings', // name
-						_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'), // title
+						'Slideshowsettings',
+						_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'),
 						CheckboxField::create('EnableSlideshow', _t($this->class . '.SLIDESHOW', 'Allow the use of slideshow feature')),
 						CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
 						TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
@@ -116,7 +115,7 @@ class NewsSiteConfigExtension extends DataExtension {
 						'Security',
 						_t($this->class . '.SEC', 'Security'),
 						CheckboxField::create('AllowAuthors', _t($this->class . '.ALLOWAUTHOR', 'Allow Content Authors to edit the newsconfiguration')),
-//						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')),
+//						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')), @todo fix this to make it work.
 						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items')),
 						CheckboxField::create('AllowSlideshow', _t($this->class . '.ALLOWSLIDESHOW', 'Allow the usage of the slideshow-feature'))
 					),

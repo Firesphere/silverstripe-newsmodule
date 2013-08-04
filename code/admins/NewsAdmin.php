@@ -55,7 +55,7 @@ class NewsAdmin extends ModelAdmin {
 	/**
 	 * List only newsitems from current subsite.
 	 * @author Marcio Barrientos
-	 * @return List $list
+	 * @return ArrayList $list
 	 */
 	public function getList() {
 		$list = parent::getList();

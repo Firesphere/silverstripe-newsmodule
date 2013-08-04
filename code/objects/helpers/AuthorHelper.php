@@ -5,6 +5,7 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere' Erkelens
+ * @method News NewsItems The linked Newsitems to this author
  */
 class AuthorHelper extends DataObject {
 	
