@@ -89,6 +89,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'tags',
 		'rss',
 		'archive',
+		'author',
 		'CommentForm',
 	);
 
@@ -127,9 +128,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Or ignored, that could be it too.
 	 */
 	public function MetaDescription(){
-		/** @var URLParams */
 		$Params = $this->getURLParams();
-		/** @var News DataObject of Newsitems */
+		/** @var News DataObject|DataObjectSet of Newsitems */
 		$news = $this->getNews();
 		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->MetaDescription .= ' '.$news->Title;
@@ -181,21 +181,19 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	private function needsRedirect(){
 		$Params = $this->getURLParams();
-		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID'])){
-			if(is_numeric($Params['ID'])){
-				$redirect = News::get()->filter('ID', $Params['ID'])->first();
-				if($redirect->ID > 0){
-					$this->redirect($redirect->Link(), 301);
-				}
-				else{
-					$this->redirect($this->Link(), 404);
-				}
+		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID']) && is_numeric($Params['ID'])){
+			$redirect = News::get()->filter('ID', $Params['ID'])->first();
+			if($redirect->ID > 0){
+				$this->redirect($redirect->Link(), 301);
 			}
 			else{
-				$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
-				if($renamed->count() > 0){
-					$this->redirect($renamed->First()->News()->Link(), 301);
-				}
+				$this->redirect($this->Link(), 404);
+			}
+		}
+		else{
+			$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
+			if($renamed->count() > 0){
+				$this->redirect($renamed->First()->News()->Link(), 301);
 			}
 		}
 	}
@@ -207,15 +205,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
-		// Default filter.
-		$filter = array(
-			'NewsHolderPageID' => $this->ID,
-		);
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
 		);
-		// Filter based on login-status.
-		$segmentFilter = $this->checkPermission('segment');
+		/** @var array $segmentFilter Array containing the filter for current or any item */
+		$segmentFilter = $this->setupFilter($Params);
 		// Skip if we're not on show.
 		if($Params['Action'] == 'show'){
 			$filter = array_merge($segmentFilter,$filter);
@@ -230,15 +224,16 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @param type $type string with returntype setting.
 	 * @return type $filter array for the filter.
 	 */
-	private function checkPermission(){
-		$Params = $this->getURLParams();
-		$segmentFilter = array(
+	private function setupFilter($Params){
+		// Default filter.
+		$filter = array(
+			'NewsHolderPageID' => $this->ID,
 			'URLSegment' => Convert::raw2sql($Params['ID']),
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
-			$segmentFilter['Live'] = 1;
+			$filter['Live'] = 1;
 		}
-		return $segmentFilter;
+		return $filter;
 	}
 	
 	/**
@@ -304,37 +299,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
 		$Params = $this->getURLParams();
-		$filter = array(
-			'Live' => 1, 
-			'NewsHolderPageID' => $this->ID,
-		);
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
 		);
-		if(isset($Params['Action'])){
-			$mergeFilter = $this->generateAddedFilter($Params);
-			if(!$mergeFilter){
-				$this->Redirect($this->Link(), 404);
-			}
-			else{
-				$filter = array_merge($filter, $mergeFilter);
-			}
+		$filter = $this->generateAddedFilter($Params);
+		if(!$filter){
+			$this->Redirect($this->Link(), 404);
 		}
 		$allEntries = News::get()
 			->filter($filter)
 			->exclude($exclude);
-		/**
-		 * Pagination pagination pagination.
-		 */
-		if($allEntries->count() > $SiteConfig->PostsPerPage){
+		/** Pagination pagination pagination. */
+		if($allEntries->count() > $SiteConfig->PostsPerPage && $SiteConfig->PostsPerPage > 0){
 			$records = PaginatedList::create($allEntries,$this->request);
-			if($SiteConfig->PostsPerPage == 0){
-				$records->setPageStart(1);
-				$records->setLimititems(0);
-			}
-			else{
-				$records->setPageLength($SiteConfig->PostsPerPage);
-			}
+			$records->setPageLength($SiteConfig->PostsPerPage);
 			return $records;
 		}
 		return $allEntries;
@@ -345,6 +323,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * If no month or year is set, current month/year is assumed
 	 */
 	public function generateAddedFilter($Params){
+		/** @var array $filter Generic/default filter */
+		$filter = array(
+			'Live' => 1, 
+			'NewsHolderPageID' => $this->ID,
+		);
 		/** Archive */
 		if($Params['Action'] == 'archive'){
 			if(!isset($Params['ID'])){
@@ -359,19 +342,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 				$year = $Params['ID'];
 				$month = date_parse('01-'.$Params['OtherID'].'-1970');
 			}
-			$archivefilter = array(
-				'PublishFrom:PartialMatch' => $year.'-'.$month['month']
-			);
-			return $archivefilter;
+			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month['month'];
 		}
 		/** Author */
 		if($Params['Action'] == 'author'){
-			$authorfilter = array(
-				'AuthorHelper.URLSegment:ExactMatch' => $Params['ID']
-			);
-			return $authorfilter;
+			$filter['AuthorHelper.URLSegment:ExactMatch'] = $Params['ID'];
 		}
-		return false;
+		return $filter;
 	}
 	
 	/**
