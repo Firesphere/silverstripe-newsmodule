@@ -176,7 +176,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * This feature is cleaner for redirection.
 	 * Saves requests to the database if I'm not mistaken.
-	 * @todo Find a cleaner way to do this. This is ugly.
 	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
