@@ -162,7 +162,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return type DataList with Newsitems
 	 */
 	public function getRSSFeed() {
-		$return = News::get()
+		$return = $this->NewsItems()
 			->filter(
 				array('Live' => 1)
 			)
@@ -181,8 +181,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	private function needsRedirect(){
 		$Params = $this->getURLParams();
 		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID']) && is_numeric($Params['ID'])){
-			$redirect = News::get()->filter('ID', $Params['ID'])->first();
-			if($redirect->ID > 0){
+			if($Params['ID'] > 0){
+				$redirect = $this->Newsitems()->filter('ID', $Params['ID'])->first();
 				$this->redirect($redirect->Link(), 301);
 			}
 			else{
@@ -209,13 +209,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 		);
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
-		// Skip if we're not on show.
-		if($Params['Action'] == 'show'){
-			$filter = array_merge($segmentFilter,$filter);
-			$news = News::get()->filter($filter)->exclude($exclude)->first();
-			return $news;
-		}
-		return array();
+		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
+		return $news;
 	}
 	
 	/**
@@ -240,8 +235,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
 	 * @todo Implement translations?
 	 * @todo this is somewhat unclean. One uses actual tags, the other a newsitem to get the tags.
-	 * @param type $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
-	 * @return type DataObject or DataList with tags or news.
+	 * @param Boolean $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
+	 * @return DataObject|DataList with tags or news.
 	 */
 	public function getTags($news = false){
 		$Params = $this->getURLParams();
@@ -305,7 +300,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if(!$filter){
 			$this->Redirect($this->Link(), 404);
 		}
-		$allEntries = News::get()
+		$allEntries = $this->Newsitems()
 			->filter($filter)
 			->exclude($exclude);
 		/** Pagination pagination pagination. */
@@ -320,6 +315,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Get the items, per month/year/author
 	 * If no month or year is set, current month/year is assumed
+	 * @todo cleanup the month-method maybe?
+	 * @param Array $Params URL parameters
+	 * @return Array $filter Filtering for the allNews getter
 	 */
 	public function generateAddedFilter($Params){
 		/** @var array $filter Generic/default filter */
