@@ -8,6 +8,7 @@
  * @author Simon 'Sphere'
  * @method Newsitems News Newsitems linked to this page (for Translatable)
  * @todo WHOAH! This thing is fat. Slim it down boy!
+ * @todo besides the general getters, the news-functions should be in the model
  */
 class NewsHolderPage extends Page {
 
@@ -95,7 +96,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * Include the tagcloud scripts. Configure in newsmodule.js!
-	 * Annoying date features. Override! 
 	 */
 	public function init() {
 		parent::init();
@@ -146,7 +146,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * I should make this configurable from SiteTree?
 	 * Generate an RSS-feed.
 	 * @todo obey translatable.
-	 * @return type RSS-feed output.
+	 * @return RSSFeed $rss RSS-feed output.
 	 */
 	public function rss(){ 
 		$rss = RSSFeed::create(
@@ -159,7 +159,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * @todo make language-specific versions
-	 * @return type DataList with Newsitems
+	 * @return DataList $return with Newsitems
 	 */
 	public function getRSSFeed() {
 		$return = $this->NewsItems()
@@ -200,7 +200,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * General getter. Should this even be public? (yes, it needs to be public)
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @return object of Newsitem.
+	 * @return News $news Current newsitem selected.
 	 */
 	public function getNews(){
 		$Params = $this->getURLParams();
@@ -215,8 +215,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Check the user-permissions.
-	 * @param type $type string with returntype setting.
-	 * @return type $filter array for the filter.
+	 * @param String $type returntype setting.
+	 * @return Array $filter filter for general getter.
 	 */
 	private function setupFilter($Params){
 		// Default filter.
