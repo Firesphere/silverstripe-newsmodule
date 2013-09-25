@@ -118,4 +118,23 @@ class Tag extends DataObject {
 		return(Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
+	/**
+	 * Permissions
+	 */
+	public function canCreate($member = null) {
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+	}
+
+	public function canEdit($member = null) {
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+	}
+
+	public function canDelete($member = null) {
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+	}
+
+	public function canView($member = null) {
+		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+	}
+
 }
