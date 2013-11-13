@@ -184,6 +184,13 @@ As of version 2.0, multiple developers have contributed. Many thanks to them! Al
 
 Thinking of helping? Read this: https://github.com/Firesphere/silverstripe-newsmodule/wiki/Contributing
 
+To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 358. Change that one line to these three:
+```
+		$form = (CommentForm::create($this, 'CommentForm', $siteconfig, $params));
+		$protector = SpamProtectorManager::update_form($form, 'Message');
+		return $form;
+```
+
 ### Also, if you can't answer the following question, you are not allowed to help :P
 
 "The cow, what do you think of it?"
