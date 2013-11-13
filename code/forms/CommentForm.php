@@ -38,8 +38,8 @@ class CommentForm extends Form {
 		$fields = FieldList::create(
 			$field
 		);
-		
-		 $actions = FieldList::create(
+
+		$actions = FieldList::create(
 			FormAction::create('CommentStore', 'Send')
 		);
 		$required_fields = array(

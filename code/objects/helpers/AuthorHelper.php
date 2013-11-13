@@ -24,6 +24,7 @@ class AuthorHelper extends DataObject {
 	
 	public function onBeforeWrite()	{
 		parent::onBeforeWrite();
+		$this->OriginalName = trim($this->OriginalName);
 		if(!$this->URLSegment){
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->OriginalName);
 		}

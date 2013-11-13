@@ -170,6 +170,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 * In javascript/newsmodule.js, you can configure the tagcloud. Which element it should trigger on, etc.
 * Check the templates, Replace placeholder texts!
 * Set optional extra anti-spam methods in your SiteConfig
+* The slideshow-feature requires you (or your developer) to include a slideshow-javascript. It's not included. Edit the templates in \templates\includes\NewsSlideshow*.ss as needed for the slideshow to work.
 If you set optional extra anti-spam method, the commentform will contain a field with the ID "Extra", position it "on the other side of the street", e.g. a position absolute with in your css #Extra.field{ left: -9000; }
 
 ## Plans
