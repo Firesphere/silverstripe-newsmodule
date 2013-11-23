@@ -45,9 +45,9 @@ class NewsHolderPage extends Page {
 			 * This is to make sure we don't create any orphans by upgrading.
 			 * It shouldn't be necessary, but we prefer to be safe over being sorry.
 			 */
-			$newsItems = News::get();
-			foreach($newsItems as $newsItem){
-				if($newsItem->NewsHolderPageID == 0){
+			$newsItems = News::get()->filter(array('NewsHolderPageID' => 0));
+			if($newsItems->count()){
+				foreach($newsItems as $newsItem){
 					$newsItem->NewsHolderPageID = $this->ID;
 					$newsItem->write();
 				}
@@ -68,8 +68,6 @@ class NewsHolderPage extends Page {
 	/**
 	 * Support for children.
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
-	 * Isn't this supposed to be handled in the allowed_children?
-	 * Anyway. If you don't like children... Rename this.
 	 * @return DataObjectSet NewsItems Items belonging to this page
 	 */
 	public function Children(){
@@ -243,9 +241,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$return = null;
 		if(isset($Params['ID']) && $Params['ID'] != null){
 			$tag = Tag::get()
-				->filter(
-					array('URLSegment' => Convert::raw2sql($Params['ID']))
-				)
+				->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))
 				->first();
 			if(!$news){
 				$return = $tag;
