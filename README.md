@@ -203,6 +203,7 @@ To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 358. 
 
 ## Requests
 
+* Beer.
 * Improvements.
 * Translations.
 * Beer.
