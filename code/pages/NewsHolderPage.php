@@ -261,6 +261,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return $return;
 	}
+		
+	/** Redundant */
+	public function currentTag(){
+		return $this->getTags();
+	}
 	
 	/**
 	 * If we're on a newspage, we need to get the newsitem
@@ -276,15 +281,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return array(); /** Return an empty page. Somehow the visitor ended up here, so at least give him something */
 	}
-	
-	/** Redundant */
-	public function currentTag(){
-		return $this->getTags();
-	}
 
 	/**
 	 * @todo can this be made smaller? Would be nice!
-	 * @return object The newsitems, sliced by the amount of length. Set to wished value
+	 * @return object $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
@@ -334,8 +334,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 			else{
 				$year = $Params['ID'];
 				$month = date_parse('01-'.$Params['OtherID'].'-1970');
+				$month = $month['month'];
 			}
-			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month['month'];
+			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
 		}
 		/** Author */
 		if($Params['Action'] == 'author'){

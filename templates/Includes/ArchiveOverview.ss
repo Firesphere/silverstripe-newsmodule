@@ -8,7 +8,7 @@
 			<ul class="Children">
 				<% loop Children.GroupedBy(MonthCreated) %>
 				<li class="$FirstLast <% if Middle %>Middle<% end_if %>">
-						<a href="$Top.Link(archive)/{$Up.Up.YearCreated}/$MonthCreated">$MonthCreated</a>
+						<a href="$Top.Link(archive)/{$Up.Up.YearCreated}/$MonthCreated">$Children.First.PublishFrom.FormatI18N("%B")</a>
 						<% if Middle || First %>
 						&nbsp;|&nbsp;
 						<% end_if %>
