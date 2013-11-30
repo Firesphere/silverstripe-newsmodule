@@ -119,6 +119,27 @@ class Tag extends DataObject {
 	}
 
 	/**
+	 * Free guess on what this button does.
+	 * @return string Link to this object.
+	 */
+	public function Link($action = 'tag/') {
+		if ($Page = NewsHolderPage::get()->first()) {
+			return($Page->Link($action).$this->URLSegment);
+		}
+	}
+
+	/**
+	 * This is quite handy, for meta-tags and such.
+	 * @param string $action The added URLSegment, the actual function that'll return the tag.
+	 * @return string Link. To the item. (Yeah, I'm super cereal here)
+	 */
+	public function AbsoluteLink($action = 'tag/'){
+		if ($Page = NewsHolderPage::get()->first()) {
+			return(Director::absoluteURL($Page->Link($action)). $this->URLSegment);
+		}		
+	}
+	
+	/**
 	 * Permissions
 	 */
 	public function canCreate($member = null) {
@@ -134,7 +155,6 @@ class Tag extends DataObject {
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return true;
 	}
-
 }
