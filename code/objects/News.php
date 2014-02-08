@@ -8,7 +8,7 @@
  * @author Simon 'Sphere'
  * @todo Semantics
  * @todo Cleanup and integration with newsholderpage.
- * @method NewsHolderPage NewsHolderPage this NewsItem belongs to
+ * @method NewsHolderPage NewsHolderPages this NewsItem belongs to
  * @method Image Impression the Impression for this NewsItem
  * @method Comment Comment Comments on this NewsItem
  * @method Renamed Renamed changed URLSegments
@@ -29,7 +29,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'FBPosted' => 'Boolean(false)',
 		'Live' => 'Boolean(true)',
 		'Commenting' => 'Boolean(true)',
-		'Locale' => 'Varchar(10)',
 		/** This is for the external location of a link */
 		'Type' => 'Enum("news,external,download","news")',
 		'External' => 'Varchar(255)',
@@ -51,6 +50,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	
 	private static $many_many = array(
 		'Tags' => 'Tag',
+	);
+	
+	private static $belongs_many_many = array(
+		'NewsHolderPages' => 'NewsHolderPage',
 	);
 	
 	private static $summary_fields = array();
@@ -113,16 +116,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				'PublishFrom' => _t($this->class . '.PUBLISH', 'Publish from'),
 			)
 		);
-		$pages = NewsHolderPage::get();
-		if($pages->count() > 1){
-			$summaryFields['NewsHolderPage.Title'] = _t($this->class . '.PARENTPAGE', 'Parent holderpage');
-		}
-		if(class_exists('Translatable')){
-			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
-			if(count($translatable) > 1){
-				$summaryFields['fetchLocale'] = _t($this->class . '.LOCALE', 'Language');
-			}
-		}
 		return $summaryFields;
 	}
 	
@@ -132,8 +125,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function searchableFields(){
 		$searchableFields = parent::searchableFields();
-		unset($searchableFields['NewsHolderPage.Title']);
-		unset($searchableFields['NewsHolderPage.Author']);
 		unset($searchableFields['PublishFrom']);
 		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
@@ -145,60 +136,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'filter' => 'PartialMatchFilter',
 			'title'  => _t($this->class . '.AUTHOR','Author')
 		);
-		$pages = NewsHolderPage::get();
-		if($pages->count() > 1){
-			$searchableFields['NewsHolderPageID'] = array(
-				'title' => _t($this->class . '.PARENTPAGE', 'Parent holderpage'),
-				'filter' => 'PartialMatchFilter',
-				'field' => 'DropdownField',
-			);
-		}
-		/**
-		 * Add the translatable dropdown if we can translate.
-		 */
-		if(class_exists('Translatable')){
-			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
-			if(count($translatable) > 1){
-				$searchableFields['Locale'] = array(
-					'title' => _t($this->class . '.LOCALE', 'Language'),
-					'filter' => 'ExactMatchFilter',
-					'field' => 'DropdownField',
-				);
-			}
-		}
 		return $searchableFields;
-	}
-	
-	/**
-	 * Setup the translatable dropdown sources.
-	 * @param array $_params
-	 *   'fieldClasses': Associative array of field names as keys and FormField classes as values
-	 *   'restrictFields': Numeric array of a field name whitelist
-	 * @return FieldList $fields
-	 */
-	public function scaffoldSearchFields($_params = null){
-		$fields = parent::scaffoldSearchFields($_params);
-		/**
-		 * If there's a locale-field, fill it. Weird that this can't be done in the original function.
-		 */
-		if($fields->fieldByName('Locale') != null){
-			$fields->fieldByName('Locale')
-				->setSource(
-					array_merge(
-						array('' => _t($this->class . '.ANY', 'Any language')), 
-						Translatable::get_existing_content_languages('NewsHolderPage')
-					)
-				);
-		}
-		if($fields->fieldByName('NewsHolderPageID') != null){
-			$source = NewsHolderPage::get();
-			$source = $source->map('ID', 'Title');
-			$fields->fieldByName('NewsHolderPageID')
-				->setSource(
-					$source
-				);
-		}
-		return $fields;
 	}
 	
 	/**
@@ -254,24 +192,29 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * And if there's no translatable at all, we create a literalfield as well, because we need the field in the list.
 		 * This better not break?
 		 */
+		$enabled = false;
 		if(class_exists('Translatable')){
-			$translatable = Translatable::get_existing_content_languages('NewsHolderPage');
-			if(count($translatable) > 1){
-				$translate = DropdownField::create('Locale', _t($this->class . '.LOCALE', 'Locale'), $translatable);
-			}
-			else{
-				$translate = LiteralField::create('Locale', '');
-			}
+			$enabled = Translatable::disable_locale_filter();
 		}
-		else{
-			$translate = LiteralField::create('Locale', '');
+		$pages = NewsHolderPage::get();
+		if(count($pages) > 1){
+			$pagelist = array();
+			if(class_exists('Translatable')){
+				foreach($pages as $page) {
+					$pagelist[$page->ID] = $page->Title . ' ' . $page->Locale;
+				}
+			}
+			else {
+				$pagelist = $pages->map('ID', 'Title');
+			}
+			$translate = ListboxField::create('NewsHolderPages', _t($this->class . '.LINKEDPAGES', 'Linked pages'), $pagelist);
+			$translate->setMultiple(true);
 		}
-		/** Allow for multiple root newsholderpages. */
-		/** @todo fix a neater way to display this in the admin. Requires a new ModelAdmin extension-module. TBA(tm) */
-		$multiple = LiteralField::create('NoMultiple', '');
-		$HolderPages = NewsHolderPage::get();
-		if($HolderPages->count() > 1){
-			$multiple = DropdownField::create('NewsHolderPageID', _t($this->class . '.HOLDERPAGE', 'Parent holderpage'), $HolderPages->map('ID', 'Title'));
+		else {
+			$translate = LiteralField('NoMultiple', '');
+		}
+		if($enabled) {
+			Translatable::enable_locale_filter();
 		}
 		/** Setup new root tab */
 		$fields = FieldList::create(TabSet::create('Root'));
@@ -283,7 +226,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				_t($this->class . '.MAIN', 'Main'),
 				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
 				$translate,
-				$multiple,
 				$type,
 				$summ,
 				$link,
@@ -393,22 +335,14 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	/**
-	 * Setup available locales.
-	 * @return ArrayList $locales of available locale's.
-	 */
-	public function fetchLocale(){
-		$locales = Translatable::get_existing_content_languages();
-		return($locales[$this->NewsHolderPage()->Locale]);
-	}
-
-	/**
 	 * Free guess on what this button does.
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
-		if ($Page = $this->NewsHolderPage()) {
+		if ($Page = $this->NewsHolderPages()->first()) {
 			return($Page->Link($action).$this->URLSegment);
 		}
+		return false;
 	}
 
 	/**
@@ -417,8 +351,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink($action = 'show/'){
-		if($Page = $this->NewsHolderPage()){
-			return(Director::absoluteURL($Page->Link($action)). $this->URLSegment);
+		if($Page = $this->Link($action)){
+			return(Director::absoluteURL($Page));
 		}		
 	}
 		
@@ -452,13 +386,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if((!$this->Locale || !class_exists('Translatable') || $this->Locale == '') && !$this->NewsHolderPageID){
+		if(!class_exists('Translatable') && !$this->NewsHolderPages()->count()){
 			$page = NewsHolderPage::get()->first();
-			$this->NewsHolderPageID = $page->ID;
-		}
-		elseif(!$this->NewsHolderPageID){
-			$page = Translatable::get_one_by_locale('NewsHolderPage', $this->Locale);
-			$this->NewsHolderPageID = $page->ID;
+			$this->NewsHolderPages()->add($page);
 		}
 		if(!$this->Type || $this->Type == ''){
 			$this->Type = 'news';

@@ -14,10 +14,10 @@ class NewsHolderPage extends Page {
 
 	/** @var string $description PageType's description */
 	private static $description = 'HolderPage for newsitems';
-
-	/** @var array $has_many many-to-one relationships */
-	private static $has_many = array(
-		'Newsitems' => 'News',
+	
+	/** @var array $many_many many-to-many relationships */
+	private static $many_many = array(
+		'Newsitems' => 'News'
 	);
 	
 	/** @var array $allowed_children Allowed Children */
@@ -90,7 +90,12 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'archive',
 		'author',
 		'CommentForm',
+		'migrate',
 	);
+	
+	protected $current_item;
+	
+	protected $current_tag;
 
 	/**
 	 * Include the tagcloud scripts. Configure in newsmodule.js!
@@ -98,6 +103,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function init() {
 		parent::init();
 		$this->needsRedirect();
+		$this->setNews();
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
@@ -108,7 +114,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function MetaTitle(){
 		$Params = $this->getURLParams();
-		$news = $this->getNews();
+		$news = $this->current_item;
 		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->Title = $news->Title . ' - ' . $this->Title;
 		}
@@ -128,7 +134,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function MetaDescription(){
 		$Params = $this->getURLParams();
 		/** @var News DataObject|DataObjectSet of Newsitems */
-		$news = $this->getNews();
+		$news = $this->current_item;
 		if($Params['Action'] == 'show' && $news->ID > 0){
 			$this->MetaDescription .= ' '.$news->Title;
 		}
@@ -196,11 +202,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * General getter. Should this even be public? (yes, it needs to be public)
+	 * General setter.
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
 	 * @return News $news Current newsitem selected.
 	 */
-	public function getNews(){
+	public function setNews(){
 		$Params = $this->getURLParams();
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
@@ -208,7 +214,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
 		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
-		return $news;
+		$this->current_item = $news;
+	}
+	
+	/**
+	 * 
+	 * @return News The current newsitem
+	 */
+	public function getNews() {
+		return $this->current_item;
 	}
 	
 	/**
@@ -219,7 +233,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	private function setupFilter($Params){
 		// Default filter.
 		$filter = array(
-			'NewsHolderPageID' => $this->ID,
 			'URLSegment' => Convert::raw2sql($Params['ID']),
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
@@ -273,7 +286,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function currentNewsItem(){
 		$siteConfig = SiteConfig::current_site_config();
-		$newsItem = $this->getNews();
+		$newsItem = $this->current_item;
 		if ($newsItem) {
 			/** If either one of these is false, no comments are allowed */
 			$newsItem->AllowComments = ($siteConfig->Comments && $newsItem->Commenting);
@@ -284,7 +297,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 
 	/**
 	 * @todo can this be made smaller? Would be nice!
-	 * @return object $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
+	 * @return ArrayList $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
 		$SiteConfig = SiteConfig::current_site_config();
@@ -293,9 +306,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
 		);
 		$filter = $this->generateAddedFilter($Params);
-		if(!$filter){
-			$this->Redirect($this->Link(), 404);
-		}
 		$allEntries = $this->Newsitems()
 			->filter($filter)
 			->exclude($exclude);
@@ -319,7 +329,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		/** @var array $filter Generic/default filter */
 		$filter = array(
 			'Live' => 1, 
-			'NewsHolderPageID' => $this->ID,
 		);
 		/** Archive */
 		if($Params['Action'] == 'archive'){
@@ -353,5 +362,16 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$siteconfig = SiteConfig::current_site_config();
 		$params = $this->getURLParams();
 		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
+	}
+	
+	/**
+	 * This is to migrate existing newsitems to the new release with the new relational method.
+	 * It is forward-non-destructive.
+	 */
+	public function migrate() {
+		$newsitems = News::get();
+		foreach($newsitems as $newsitem) {
+			$newsitem->NewsHolderPages()->add($newsitem->NewsHolderPage());
+		}
 	}
 }
