@@ -1,11 +1,19 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
-Development to master_3.0 has come to a full stop. Only bugfixes will be considered.
-Reversioning to 2.0, since it's the smart thing to do. Version 2.0 is a MAJOR upgrade to 1.0.
-It is backward compatible, although it might break on little things. Nothing so far found. Advised way to go is using Silverstripe 3.1+ and go with this module.
-Requirements are updated, features are very, very, very much extended, I think this is now at the edge of what a newsmodule should have.
-This also means, I have removed all feature branches. They will be created if needed again.
+# IMPORTANT NOTICE
+=======================
+If you are using any version previous to the newly released version 3.0, please be aware that compatibility issues might occur.
+Most important is to migrate your current version to the new one.
+For this, a Forward-breaking method has been added to the page, which you need to run.
+
+Ofcourse, you need to run a dev/build. After that, you need to migrate.
+
+This url would be ```http://www.yourdomain.com/yournewspage/migrate```
+
+If you don't migrate up, you'll probably have problems with this new release.
+
+This release is deemed as stable by me, but it does have some untested, non-breaking, features. If you encounter any problems, contact me.
 
 ### REQUEST
 

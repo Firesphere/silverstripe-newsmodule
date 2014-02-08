@@ -1,7 +1,7 @@
 <div class="wrapper row1">
   <section id="shout" class="clear">
-<% with currentNewsItem %>
-	    <% if Impression %>
+<% with $currentNewsItem %>
+	    <% if $Impression %>
     <figure>
       <figcaption>
 	      <% else %>
@@ -11,20 +11,20 @@
 	<h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	<br />
 	<div class="Content" contenteditable="true">
-	<% if Content %>
+	<% if $Content %>
 		$Content
 	<% else %>
 		$Synopsis
 	<% end_if %>
-	<% if not Type == news %>
-		<% if Type == External %>
+	<% if not $Type == news %>
+		<% if $Type == External %>
 			<a href="$External" target="_blank">$Title</a>
-		<% else_if Type == Download %>
+		<% else_if $Type == Download %>
 			<a href="$Download.Link">$Title</a>
 		<% end_if %>
 	<% end_if %>
 	</div>
-	  <% if Tags.Count > 0 %>
+	  <% if $Tags.Count > 0 %>
 	  <br />
 	  <div class="small">
 		<% loop Tags %>
@@ -44,12 +44,12 @@
 	<h3><%t NewsHolderPage_show.ss.COMMENTS "Comments" %></h3>
 	<section id="comments">
 	<ul>
-	<% loop Comments %>
-	<% if AkismetMarked == 0 %>
+	<% loop $Comments %>
+	<% if $AkismetMarked == 0 %>
 	<li class="comment_$EvenOdd">
 		<header>
 			<figure>
-				<% if ShowGravatar %>
+				<% if $ShowGravatar %>
 				<img src="$Gravatar" width="$Top.SiteConfig.GravatarSize" height="$Top.SiteConfig.GravatarSize" alt="$Name" />
 				<% end_if %>
 			</figure>
@@ -57,7 +57,7 @@
 		</header>
 		<section>
 		$Comment
-		<br />$Gravatar
+		<br />
 		</section>
 	</li>
 	<% end_if %>
@@ -68,13 +68,13 @@
 	<% end_if %>
 	$Up.CommentForm
 	<% end_if %>
-	    <% if Impression %>
+	    <% if $Impression %>
       </figcaption>
-	    <% with Impression %>
+	    <% with $Impression %>
       <div>$SetSize(410,440)</div>
       <% end_with %>
     </figure>
-	<% else_if Top.SiteConfig.DefaultImage %>
+	<% else_if $Top.SiteConfig.DefaultImage %>
 	</figcaption>
 	    <div>$Top.SiteConfig.DefaultImage.SetSize(410,440)</div>
 	</figure>
