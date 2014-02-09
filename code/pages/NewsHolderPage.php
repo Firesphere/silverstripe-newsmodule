@@ -58,11 +58,6 @@ class NewsHolderPage extends Page {
 		/** Backwards compatibility for upgraders. Update the PublishFrom field */
 		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
 		DB::query($sql);
-		/** If the Translatable is added lateron, update the locale to at least have some value */
-		if(class_exists('Translatable')){
-			$sqlLang = "UPDATE `News` SET `Locale` = '".Translatable::get_current_locale()."' WHERE Locale IS NULL";
-			DB::query($sqlLang);
-		}
 	}
 	
 	/**
