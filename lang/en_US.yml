@@ -87,11 +87,11 @@ en_US:
     EMAIL: "E-mailaddress"
     WEBSITE: "Website"
     COMMENT: "Comment"
-  NewsHolderPage_show.ss:
+  NewsHolderPage_show:
     COMMENTS: "Comments"
     BYWHO: "by"
     ONDATE: "on"
-  NewsHolderPage_tag.ss:
+  NewsHolderPage_tag:
     TAG: "Tag"
     ALLTAGS: "All tags"
   CommentReport:
@@ -110,7 +110,7 @@ en_US:
     NEWSTITLE: "News title"
     NEWSCOUNT: "Total items linked"
     TAGTITLE: "Search for tag"
-  NewsHolderPage.ss:
+  NewsHolderPage:
     DATEPUBLISH: "{date} by {author}"
     DOWNLOADABLE: "Download"
     READMORE: "Read More &raquo;"

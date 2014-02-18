@@ -101,9 +101,9 @@ es:
       EMAIL: "Correo electrónico"
       WEBSITE: "Sitio web"
       COMMENT: "Comentario"
-    NewsHolderPage_show.ss:
+    NewsHolderPage_show:
       COMMENTS: "Comentarios"
-    NewsHolderPage_tag.ss:
+    NewsHolderPage_tag:
       TAG: "Etiqueta"
       ALLTAGS: "Todas las etiquetas"
   CommentReport:
