@@ -1,4 +1,4 @@
-nl_NL:
+nl:
   NewsAdmin:
     MENUTITLE: "Nieuws"
     ActionAdd: "Nieuwsbericht toevoegen"
