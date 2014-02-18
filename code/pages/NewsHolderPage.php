@@ -33,7 +33,7 @@ class NewsHolderPage extends Page {
 		parent::requireDefaultRecords();
 		if(NewsHolderPage::get()->count() == 0){
 			$page = NewsHolderPage::create();
-			$page->Title = _t($this->class . '.DEFAULTPAGETITLE', 'Newspage');
+			$page->Title = _t('NewsHolderPage.DEFAULTPAGETITLE', 'Newspage');
 			$page->Content = '';
 			$page->URLSegment = 'news';
 			$page->Sort = 1;

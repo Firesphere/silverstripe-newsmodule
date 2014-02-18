@@ -83,8 +83,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Singular name
 	 */
 	public function singular_name() {
-		if (_t($this->class . '.SINGULARNAME')) {
-			return _t($this->class . '.SINGULARNAME');
+		if (_t('News.SINGULARNAME')) {
+			return _t('News.SINGULARNAME');
 		} else {
 			return parent::singular_name();
 		} 
@@ -95,8 +95,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Plural name
 	 */
 	public function plural_name() {
-		if (_t($this->class . '.PLURALNAME')) {
-			return _t($this->class . '.PLURALNAME');
+		if (_t('News.PLURALNAME')) {
+			return _t('News.PLURALNAME');
 		} else {
 			return parent::plural_name();
 		}
@@ -111,9 +111,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$summaryFields = array_merge(
 			$summaryFields, 
 			array(
-				'Title' => _t($this->class . '.TITLE', 'Title'),
-				'Author' => _t($this->class . '.AUTHOR', 'Author'),
-				'PublishFrom' => _t($this->class . '.PUBLISH', 'Publish from'),
+				'Title' => _t('News.TITLE', 'Title'),
+				'Author' => _t('News.AUTHOR', 'Author'),
+				'PublishFrom' => _t('News.PUBLISH', 'Publish from'),
 			)
 		);
 		return $summaryFields;
@@ -129,12 +129,12 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$searchableFields['Title'] = array(
 				'field'  => 'TextField',
 				'filter' => 'PartialMatchFilter',
-				'title'  => _t($this->class . '.TITLE','Title')
+				'title'  => _t('News.TITLE','Title')
 			);
 		$searchableFields['Author'] = array(
 			'field'  => 'TextField',
 			'filter' => 'PartialMatchFilter',
-			'title'  => _t($this->class . '.AUTHOR','Author')
+			'title'  => _t('News.AUTHOR','Author')
 		);
 		return $searchableFields;
 	}
@@ -150,26 +150,26 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 * Configuration options from SiteConfig
 		 */
 		$typeArray = array(
-			'news' => _t($this->class . '.NEWSITEMTYPE', 'Newsitem'),
+			'news' => _t('News.NEWSITEMTYPE', 'Newsitem'),
 		);
 		$link = LiteralField::create('External', '');
 		$file = LiteralField::create('Download', '');
 		if($siteConfig->AllowExternals){
-			$typeArray['external'] = _t($this->class . '.EXTERNALTYPE', 'External link');
-			$link = TextField::create('External', _t($this->class . '.EXTERNAL', 'External link'));
+			$typeArray['external'] = _t('News.EXTERNALTYPE', 'External link');
+			$link = TextField::create('External', _t('News.EXTERNAL', 'External link'));
 		}
 		if($siteConfig->AllowDownloads){
-			$typeArray['download'] = _t($this->class . '.DOWNLOADTYPE', 'Download');
-			$file = UploadField::create('Download', _t($this->class . '.DOWNLOAD', 'Downloadable file'));
+			$typeArray['download'] = _t('News.DOWNLOADTYPE', 'Downloadable file');
+			$file = UploadField::create('Download', _t('News.DOWNLOAD', 'Downloadable file'));
 		}
 		if(count($typeArray) > 1){
-			$type = OptionsetField::create('Type', _t($this->class . '.NEWSTYPE', 'Type of item'), $typeArray, $this->Type);
+			$type = OptionsetField::create('Type', _t('News.NEWSTYPE', 'Type of item'), $typeArray, $this->Type);
 		}
 		else{
 			$type = LiteralField::create('Type', '');
 		}
 		if($siteConfig->UseAbstract){
-			$summ = TextareaField::create('Synopsis', _t($this->class . '.SUMMARY', 'Summary/Abstract'));
+			$summ = TextareaField::create('Synopsis', _t('News.SUMMARY', 'Summary/Abstract'));
 		}
 		else{
 			$summ = LiteralField::create('Synopsis', '');
@@ -180,10 +180,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		 */
 		if(!$this->ID){
 			$this->Author = Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$tags = ReadonlyField::create('Tags', _t($this->class . '.TAGS', 'Tags'), _t($this->class . '.TAGAFTERID', 'Tags can be added after the newsitem is saved once'));
+			$tags = ReadonlyField::create('Tags', _t('News.TAGS', 'Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
 			$this->Type = 'news';
 		} else {
-			$tags = CheckboxSetField::create('Tags', _t($this->class . '.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$tags = CheckboxSetField::create('Tags', _t('News.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
 		}
 
 		/**
@@ -207,7 +207,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			else {
 				$pagelist = $pages->map('ID', 'Title');
 			}
-			$translate = ListboxField::create('NewsHolderPages', _t($this->class . '.LINKEDPAGES', 'Linked pages'), $pagelist);
+			$translate = ListboxField::create('NewsHolderPages', _t('News.LINKEDPAGES', 'Linked pages'), $pagelist);
 			$translate->setMultiple(true);
 		}
 		else {
@@ -223,19 +223,19 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Root',
 			Tab::create(
 				'Main',
-				_t($this->class . '.MAIN', 'Main'),
-				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
+				_t('News.MAIN', 'Main'),
+				$text = TextField::create('Title', _t('News.TITLE', 'Title')),
 				$translate,
 				$type,
 				$summ,
 				$link,
-				$html = HTMLEditorField::create('Content', _t($this->class . '.CONTENT', 'Content')),
+				$html = HTMLEditorField::create('Content', _t('News.CONTENT', 'Content')),
 				$file,
-				$auth = TextField::create('Author', _t($this->class . '.AUTHOR', 'Author')),
-				$date = DateField::create('PublishFrom', _t($this->class . '.PUBDATE', 'Publish from this date on'))->setConfig('showcalendar', true),
-				$live = CheckboxField::create('Live', _t($this->class . '.PUSHLIVE', 'Publish (Note, even with publish-date, it must be checked!)')),
-				$alco = CheckboxField::create('Commenting', _t($this->class . '.COMMENTING', 'Allow comments on this item')),
-				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression')),
+				$auth = TextField::create('Author', _t('News.AUTHOR', 'Author')),
+				$date = DateField::create('PublishFrom', _t('News.PUBDATE', 'Publish from'))->setConfig('showcalendar', true),
+				$live = CheckboxField::create('Live', _t('News.PUSHLIVE', 'Published')),
+				$alco = CheckboxField::create('Commenting', _t('News.COMMENTING', 'Allow comments on this item')),
+				$uplo = UploadField::create('Impression', _t('News.IMPRESSION', 'Impression image')),
 				$tags
 			)
 		);
@@ -273,10 +273,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 					'Root',
 					Tab::create(
 						'Comments',
-						_t($this->class . '.COMMENTS', 'Comments'),
+						_t('News.COMMENTS', 'Comments'),
 						GridField::create(
 							'Comment', 
-							_t($this->class . '.COMMENTS', 'Comments'),
+							_t('News.COMMENTS', 'Comments'),
 							$this->Comments(), 
 							GridFieldConfig_RelationEditor::create()
 						)
@@ -297,10 +297,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 					'Root',
 					Tab::create(
 						'SlideshowImages',
-						_t($this->class . '.SLIDE', 'Slideshow'),
+						_t('News.SLIDE', 'Slideshow'),
 						$gridfield = GridField::create(
 							'SlideshowImage',
-							_t($this->class . '.IMAGES', 'Slideshow Images'),
+							_t('News.IMAGES', 'Slideshow images'),
 							$this->SlideshowImages()
 								->sort('SortOrder'), 
 							$gridFieldConfig)
@@ -326,8 +326,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			'Root',
 			Tab::create(
 				'Help',
-				_t($this->class . '.HELPTAB', 'Help'),
-				ReadonlyField::create('', _t($this->class . '.BASEHELPLABEL', 'help'), _t($this->class . '.BASEHELPTEXT', $helpText))
+				_t('News.HELPTAB', 'Help'),
+				ReadonlyField::create('', _t('News.BASEHELPLABEL', 'Help'), _t('News.BASEHELPTEXT', $helpText))
 			
 			)
 		);
