@@ -111,7 +111,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$summaryFields = array_merge(
 			$summaryFields, 
 			array(
-				'Title' => _t($this->class . '.TITLE', 'Titel'),
+				'Title' => _t($this->class . '.TITLE', 'Title'),
 				'Author' => _t($this->class . '.AUTHOR', 'Author'),
 				'PublishFrom' => _t($this->class . '.PUBLISH', 'Publish from'),
 			)
