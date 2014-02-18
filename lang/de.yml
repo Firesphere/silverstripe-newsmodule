@@ -1,92 +1,126 @@
 de:
   NewsAdmin:
-    MENUTITLE: "Neuigkeiten"
-    ActionAdd: "Meldung hinzufügen"
-  NewsSiteConfigDecorator:
-    NEWS: "Einstellungen für Neuigkeiten"
-    TWEETPOST: "Tweet schicken nach der Veröffentlichung einer neuen Meldung"
-    PPP: "Anzahl Meldungen pro Seite"
-    COMMENTSSETTINGS: "Kommentare"
-    COMMENTS: "Kommentare zu Meldungen erlauben"
-    APPROVE: "Kommentare müssen freigegeben werden"
-    GRAVATAR: "Gravatar Bild des Kommentators anzeigen"
-    GRAVURL: "Standard Gravatar Bild falls Kommentator keines hat"
-    GRAVSIZE: "Grösse des Gravatar Bildes (z.B. 32 für ein 32x32 Bild)"
-    AKISMET: "Akismet API Schlüssel"
-    SLIDESHOWSETTINGS: "Diaserie"
-    SLIDEINITIAL: "Nur erstes Bild anzeigen"
-    SLIDESIZE: "Maximale Grösse der Bilder in Großformat-Anzeige. Z.B. 1024x768"
-    AUTOARCHIVE: "Meldungen älter als die angegebene Anzahl Tage archivieren"
-    AUTOARCHIVEDAYS: "Nach X Tagen archivieren"
+    MENUTITLE: Neuigkeiten
+    ActionAdd: 'Meldung hinzufügen'
+  NewsSiteConfigExtension:
+    NEWS: Nachrichten
+    ABSTRACT: 'Zusammenfassung verwenden'
+    TWEETPOST: 'Neue Nachricten auf Twitter posten'
+    PPP: 'Nachrichten pro Seite'
+    EXTERNAL: 'Externe Verlinkungen'
+    ALLOWEXT: 'Externe Verlinkungen erlauben'
+    ALLOWDOWN: 'Downloads erlauben'
+    COMMENTSSETTINGS: Kommentare
+    COMMENTS: 'Kommentare bei Nachrichten erlauben'
+    APPROVE: 'Kommentare müssen genehmigt werden'
+    AKISMET: 'Akismet API Schlüssel'
+    SPAMPROTECTION: 'Zusätzliches Feld für Spamschutz verwenden'
+    NOSCRIPTSPAM: 'Noscript-Feld für Spamschutz verwenden'
+    SLIDESHOWSETTINGS: Diashow
+    SLIDEINITIAL: 'Nur das erste Bild anzeigen'
+    SLIDESIZE: 'Maximalgröße für große Bilder, z.B. 1024x768'
+    SEC: Sicherheit
+    ALLOWAUTHOR: 'Inhaltsautoren dürfen Nachrichteneinstellungen bearbeiten'
+    ALLOWEXPORT: 'Inhaltsautoren dürfen alle Daten exportieren'
+    ALLOWSLIDESHOW: 'Verwendung der Slideshow erlauben (beta)'
+    COMMENTHELP: 'Kommentar Hilfe'
+    EXTERNALHELP: 'Externe Verlinkung Hilfe'
+    HELP: Hilfe
+    NEWSCOMMENTS: 'Nachrichteneinstellungen'
+    NEWSHELP: 'Nachrichten Hilfe'
+    RETURNEXT: 'Externe Verlinkungen in einer neuen Registerkarte bzw. neuem Fenster öffnen'
+    SLIDESHOWHELP: 'Diashow Hilfe'
   Commment:
-    SINGULARNAME: "Kommentar"
-    PLURALNAME: "Kommentare"
+    SINGULARNAME: Kommentar
+    PLURALNAME: Kommentare
   News:
-    SINGULARNAME: "Meldung"
-    PLURALNAME: "Meldungen"
-    MAIN: "Haupt"
-    CREATED: "Erstellt"
-    LOCALE: "Sprache"
-    HELPTAB: "Hilfe"
-    HELPTITLE: "Hilfe"
-    HELP: "Es ist wichtig zu beachten, dass das Veröffentlichungsdatum erfordert, dass die Check-Box gesetzt ist! Das Veröffentlichungsdatum ist optional. Achtung: es wird nicht automatisch ein Tweet geschickt, wenn die Nachricht veröffentlicht wird!"
-    TITLE: "Titel"
-    CONTENT: "Inhalt"
-    AUTHOR: "Autor"
-    PUBDATE: "Ab diesem Tag veröffentlichen"
-    PUSHLIVE: "Veröffentlicht"
-    COMMENTING: "Kommentare zu dieser Meldung erlauben"
-    IMPRESSION: "Bild"
-    TAGS: "Tags"
-    COMMENTS: "Kommentare"
-    SLIDE: "Diaserie"
-    IMAGES: "Bilder zur Diaserie"
+    SINGULARNAME: Meldung
+    PLURALNAME: Meldungen
+    MAIN: Haupt
+    HELPTAB: Hilfe
+    BASEHELPLABEL: Hilfe
+    CREATED: Erstellt
+    LOCALE: Sprache
+    HELPTITLE: Hilfe
+    TITLE: Titel
+    CONTENT: Inhalt
+    AUTHOR: Autor
+    PUBDATE: 'Ab diesem Tag veröffentlichen'
+    PUSHLIVE: Veröffentlicht
+    COMMENTING: 'Kommentare zu dieser Meldung erlauben'
+    IMPRESSION: 'Bild'
+    ANY: 'Jede Sprache'
+    TAGS: Tags
+    COMMENTS: Kommentare
+    SLIDE: Diaserie
+    IMAGES: 'Bilder zur Diaserie'
+    EXTERNALTYPE: 'Externe Verlinkung'
+    DOWNLOADTYPE: 'Datei-Download'
+    SUMMARY: Zusammenfassung
+    DOWNLOAD: 'Datei-Download'
+    EXTERNAL: 'Externe Verlinkung'
+    LINKEDPAGES: 'Verlinkte Seiten'
   SlideshowImage:
-    SINGULARNAME: "Diaserieschau"
-    PLURALNAME: "Diaserien"
-    TITLE: "Titel"
-    DESCRIPTION: "Beschreibung"
+    SINGULARNAME: 'Diaserieschau'
+    PLURALNAME: 'Diaserien'
+    TITLE: Titel
+    DESCRIPTION: Beschreibung
+    IMAGE: Bild
   Tag:
-    SINGULARNAME: "Tag"
-    PLURALNAME: "Tags"
-    MAIN: "Haupt"
-    TITLE: "Titel"
-    DESCRIPTION: "Beschreibung"
-    IMPRESSION: "Bild"
+    SINGULARNAME: Tag
+    PLURALNAME: Tags
+    MAIN: Haupt
+    TITLE: Titel
+    DESCRIPTION: Beschreibung
+    IMPRESSION: 'Bild'
   NewsHolderPage:
-    DESCRIPTION: "HolderPage for newsitems"
-    DEFAULTPAGETITLE: "Aktuelles"
-  NewsHolderPage_Controller:
-    COMMENT:
-      NAME: "Name"
-      TITLE: "Titel"
-      EMAIL: "E-Mail Adresse"
-      WEBSITE: "Website"
-      COMMENT: "Kommentar"
+    DATEPUBLISH: 'Geschrieben am {date} von {author}'
+    DOWNLOADABLE: Download
+    READMORE: 'Mehr lesen &raquo;'
+    PREV: vorherige
+    NEXT: nächste
+  CommentForm:
+    NAME: Name
+    TITLE: Titel
+    EMAIL: 'E-Mail Adresse'
+    WEBSITE: Webseite
+    COMMENT: Kommentar
+    EXTRA: Extra
   NewsHolderPage_show:
-    COMMENTS: "Kommentare"
+    COMMENTS: Kommentare
+    BYWHO: von
   NewsHolderPage_tag:
-    TAG: "Tag"
-    ALLTAGS: "Alle Tags"
+    TAG: Tag
+    ALLTAGS: 'Alle Tags'
   CommentReport:
-    TITLE: "Kommentarreport"
-    NEWSTITLE: "Überschrift"
-    COMMENTCOUNT: "Anzahl der Kommentare"
-    COMMENTSPAM: "Anzahl Spam"
-    COMMENTHIDDEN: "Anzahl versteckt"
-    NEWSSEARCHTITLE: "Search newsitem"
-    COUNTFILTER: "Comment count filter"
-    ANY: "Alle"
-    SPAMCOUNT: "Ein oder mehrere Kommentare sind Spam"
-    HIDDENCOUNT: "Ein oder mehrere Kommentare sind versteckt"
+    TITLE: 'Kommentarreport'
+    NEWSTITLE: 'Überschrift'
+    COMMENTCOUNT: 'Anzahl der Kommentare'
+    COMMENTSPAM: 'Anzahl Spam'
+    COMMENTHIDDEN: 'Anzahl versteckt'
+    NEWSSEARCHTITLE: 'Search newsitem'
+    COUNTFILTER: 'Comment count filter'
+    ANY: Alle
+    SPAMCOUNT: 'Ein oder mehrere Kommentare sind Spam'
+    HIDDENCOUNT: 'Ein oder mehrere Kommentare sind versteckt'
+    COMMENTSPAMCOUNT: 'Spam Kommentare'
+    EDIT: 'Eintrag bearbeiten'
   TagReport:
-    TITLE: "Tag usage report"
-    NEWSTITLE: "Überschrift"
-    NEWSCOUNT: "Total items linked"
-    TAGTITLE: "Nach Tag suchen"
-  NewsHolderPage:
-    DATEPUBLISH: "Geschrieben am {date} von {author}"
-    DOWNLOADABLE: "Download"
-    READMORE: "Mehr lesen &raquo;"
-    PREV: "vorherige"
-    NEXT: "nächste"    
+    TITLE: 'Tag usage report'
+    NEWSTITLE: 'Überschrift'
+    NEWSCOUNT: 'Total items linked'
+    TAGTITLE: 'Nach Tag suchen'
+    EDIT: 'Tag bearbeiten'
+  Comment:
+    COMMENT: Kommentar
+    EMAIL: E-Mail
+    NAME: Name
+    NEWS: Nachrichten
+    PLURALNAME: Kommentare
+    SINGULARNAME: Kommentar
+    TITLE: Titel
+    URL: URL
+    VISIBLE: Sichtbar
+  SiteTree:
+    PLURALNAME: Seiten
+    SINGULARNAME: Seite
