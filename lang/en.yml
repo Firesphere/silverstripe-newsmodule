@@ -1,119 +1,130 @@
 en:
   NewsAdmin:
-    MENUTITLE: "News"
-    ActionAdd: "Add newsitem"
+    MENUTITLE: News
+    ActionAdd: 'Add newsitem'
   NewsSiteConfigExtension:
-    NEWSSETTINGS: "News settings"
-    NEWS: "News"
-    ABSTRACT: "Summary/abstract"
-    TWEETPOST: "Tweet after posting a new item"
-    PPP: "Amount of posts per page"
-    DEFAULTIMPRESSION: "Default impression image for newsitems"
-    EXTERNAL: "External linking"
-    ALLOWEXT: "Allow external links"
-    ALLOWDOWN: "Allow downloads"
-    EXTERNALEXT: "Link external links in a new page"
-    COMMENTSSETTINGS: "Comments"
-    COMMENTS: "Allow comments on items"
-    APPROVE: "Comments must be approved"
-    NEWSMAIL: "Send e-mailnotification of new comment to"
-    GRAVATAR: "Display Gravatar image of commenter"
-    GRAVURL: "Default Gravatar image if commenter doesn't have one"
-    UPLOADGRAVATAR: "Or upload a default Gravatar image"
-    GRAVSIZE: "Size of the Gravatar image (e.g. 32 for a 32x32 image)"
-    AKISMET: "Akismet API Key"
-    SPAMPROTECTION: "Use an extra field as spam-protection"
-    NOSCRIPTSPAM: "Use a noscript field as spam-protection"
-    SLIDESHOWSETTINGS: "Slideshow"
-    SLIDEINITIAL: "Show only the first image"
-    SLIDESIZE: "Maximum size of the full-size images. E.g. 1024x768"
-    SEC: "Security"
-    ALLOWAUTHOR: "Allow content authors to edit news-settings"
-    ALLOWEXPORT: "Allow content authors to export all data"
-    ALLOWSLIDESHOW: "Allow the usage of the slideshow (in beta)"
+    NEWSSETTINGS: 'News settings'
+    NEWS: News
+    ABSTRACT: Summary/abstract
+    TWEETPOST: 'Tweet after posting a new item'
+    PPP: 'Amount of posts per page'
+    DEFAULTIMPRESSION: 'Default impression image for newsitems'
+    EXTERNAL: 'External linking'
+    ALLOWEXT: 'Allow external links'
+    ALLOWDOWN: 'Allow downloads'
+    EXTERNALEXT: 'Link external links in a new page'
+    COMMENTSSETTINGS: Comments
+    COMMENTS: 'Allow comments on items'
+    APPROVE: 'Comments must be approved'
+    NEWSMAIL: 'Send e-mailnotification of new comment to'
+    GRAVATAR: 'Display Gravatar image of commenter'
+    GRAVURL: 'Default Gravatar image if commenter doesn''t have one'
+    UPLOADGRAVATAR: 'Or upload a default Gravatar image'
+    GRAVSIZE: 'Size of the Gravatar image (e.g. 32 for a 32x32 image)'
+    AKISMET: 'Akismet API Key'
+    SPAMPROTECTION: 'Use an extra field as spam-protection'
+    NOSCRIPTSPAM: 'Use a noscript field as spam-protection'
+    SLIDESHOWSETTINGS: Slideshow
+    SLIDEINITIAL: 'Show only the first image'
+    SLIDESIZE: 'Maximum size of the full-size images. E.g. 1024x768'
+    SEC: Security
+    ALLOWAUTHOR: 'Allow content authors to edit news-settings'
+    ALLOWEXPORT: 'Allow content authors to export all data'
+    ALLOWSLIDESHOW: 'Allow the usage of the slideshow (in beta)'
   Commment:
-    SINGULARNAME: "Comment"
-    PLURALNAME: "Comments"
-    COMMENTMAILSUBJECT: "New post titled: "
+    SINGULARNAME: Comment
+    PLURALNAME: Comments
+    COMMENTMAILSUBJECT: 'New post titled: '
   News:
-    SINGULARNAME: "Newsitem"
-    PLURALNAME: "Newsitems"
-    MAIN: "Main"
-    HELPTAB: "Help"
-    BASEHELPLABEL: "Help"
-    BASEHELPTEXT: "Publish from is auto-filled with a date if it isn't set.<br />Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won't go live if it isn't set to true."
-    CREATED: "Created"
-    LOCALE: "Language"
-    HELPTITLE: "Help"
-    TITLE: "Title"
-    CONTENT: "Content"
-    AUTHOR: "Author"
-    PUBDATE: "Publish from this date on"
-    PUSHLIVE: "Published"
-    PUBLISH: "Publishdate"
-    PARENTPAGE: "Parent holderpage"
-    HOLDERPAGE: "Parent holderpage"
-    COMMENTING: "Allow comments on this item"
-    IMPRESSION: "Impression-image"
-    ANY: "Any language"
-    TAGS: "Tags"
-    COMMENTS: "Comments"
-    TAGAFTERID: "Tags can be added after the item has been saved"
-    SLIDE: "Slideshow"
-    IMAGES: "Slideshow images"
-    NEWSITEMTYPE: "Newsitem"
-    EXTERNALTYPE: "External link"
-    DOWNLOADTYPE: "Downloadable file"
-    NEWSTYPE: "Type of item"
-    SUMMARY: "Summary/abstract"
+    SINGULARNAME: Newsitem
+    PLURALNAME: Newsitems
+    MAIN: Main
+    HELPTAB: Help
+    BASEHELPLABEL: Help
+    BASEHELPTEXT: 'Publish from is auto-filled with a date if it isn''t set.<br />Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won''t go live if it isn''t set to true.'
+    CREATED: Created
+    LOCALE: Language
+    HELPTITLE: Help
+    TITLE: Title
+    CONTENT: Content
+    AUTHOR: Author
+    PUBDATE: 'Publish from this date on'
+    PUSHLIVE: Published
+    PUBLISH: Publishdate
+    PARENTPAGE: 'Parent holderpage'
+    HOLDERPAGE: 'Parent holderpage'
+    COMMENTING: 'Allow comments on this item'
+    IMPRESSION: Impression-image
+    ANY: 'Any language'
+    TAGS: Tags
+    COMMENTS: Comments
+    TAGAFTERID: 'Tags can be added after the item has been saved'
+    SLIDE: Slideshow
+    IMAGES: 'Slideshow images'
+    NEWSITEMTYPE: Newsitem
+    EXTERNALTYPE: 'External link'
+    DOWNLOADTYPE: 'Downloadable file'
+    NEWSTYPE: 'Type of item'
+    SUMMARY: Summary/abstract
   SlideshowImage:
-    SINGULARNAME: "Slideshow"
-    PLURALNAME: "Slideshows"
-    TITLE: "Title"
-    DESCRIPTION: "Description"
+    SINGULARNAME: 'Slideshow Image'
+    PLURALNAME: 'Slideshow Imags'
+    TITLE: Title
+    DESCRIPTION: Description
   Tag:
-    SINGULARNAME: "Tag"
-    PLURALNAME: "Tags"
-    MAIN: "Main"
-    TITLE: "Title"
-    DESCRIPTION: "Description"
-    IMPRESSION: "Impression-image"
+    SINGULARNAME: Tag
+    PLURALNAME: Tags
+    MAIN: Main
+    TITLE: Title
+    DESCRIPTION: Description
+    IMPRESSION: Impression-image
   NewsHolderPage:
-    DESCRIPTION: "HolderPage for newsitems"
-    DEFAULTPAGETITLE: "Newspage"
+    DATEPUBLISH: '{date} by {author}'
+    DOWNLOADABLE: Download
+    READMORE: 'Read More &raquo;'
+    PREV: Prev
+    NEXT: Next
+    DESCRIPTION: 'HolderPage for newsitems'
+    PLURALNAME: 'News Holder Pags'
+    SINGULARNAME: 'News Holder Page'
   CommentForm:
-    NAME: "Name"
-    TITLE: "Title"
-    EMAIL: "E-mailaddress"
-    WEBSITE: "Website"
-    COMMENT: "Comment"
+    NAME: Name
+    TITLE: Title
+    EMAIL: E-mailaddress
+    WEBSITE: Website
+    COMMENT: Comment
   NewsHolderPage_show:
-    COMMENTS: "Comments"
-    BYWHO: "by"
-    ONDATE: "on"
+    COMMENTS: Comments
+    BYWHO: by
+    ONDATE: on
   NewsHolderPage_tag:
-    TAG: "Tag"
-    ALLTAGS: "All tags"
+    TAG: Tag
+    ALLTAGS: 'All tags'
   CommentReport:
-    TITLE: "Comment report"
-    NEWSTITLE: "News title"
-    COMMENTCOUNT: "Total amount of comments"
-    COMMENTSPAM: "Total spam comments"
-    COMMENTHIDDEN: "Total hidden comments"
-    NEWSSEARCHTITLE: "Search newsitem"
-    COUNTFILTER: "Comment count filter"
-    ANY: "All"
-    SPAMCOUNT: "One or more spam comments"
-    HIDDENCOUNT: "One or more hidden comments"
+    TITLE: 'Comment report'
+    NEWSTITLE: 'News title'
+    COMMENTCOUNT: 'Total amount of comments'
+    COMMENTSPAM: 'Total spam comments'
+    COMMENTHIDDEN: 'Total hidden comments'
+    NEWSSEARCHTITLE: 'Search newsitem'
+    COUNTFILTER: 'Comment count filter'
+    ANY: All
+    SPAMCOUNT: 'One or more spam comments'
+    HIDDENCOUNT: 'One or more hidden comments'
   TagReport:
-    TITLE: "Tag usage report"
-    NEWSTITLE: "News title"
-    NEWSCOUNT: "Total items linked"
-    TAGTITLE: "Search for tag"
-  NewsHolderPage:
-    DATEPUBLISH: "{date} by {author}"
-    DOWNLOADABLE: "Download"
-    READMORE: "Read More &raquo;"
-    PREV: "prev"
-    NEXT: "next"
-    
+    TITLE: 'Tag usage report'
+    NEWSTITLE: 'News title'
+    NEWSCOUNT: 'Total items linked'
+    TAGTITLE: 'Search for tag'
+  AuthorHelper:
+    PLURALNAME: 'Author Helpers'
+    SINGULARNAME: 'Author Helper'
+  Comment:
+    PLURALNAME: Comments
+    SINGULARNAME: Comment
+  Renamed:
+    PLURALNAME: Renameds
+    SINGULARNAME: Renamed
+  SiteTree:
+    PLURALNAME: Pages
+    SINGULARNAME: Page
