@@ -211,7 +211,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			$translate->setMultiple(true);
 		}
 		else {
-			$translate = LiteralField('NoMultiple', '');
+			$translate = LiteralField::create('NoMultiple', '');
 		}
 		if($enabled) {
 			Translatable::enable_locale_filter();

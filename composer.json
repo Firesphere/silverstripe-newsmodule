@@ -19,7 +19,7 @@
 		"silverstripe/framework": "3.1.*",
 		"silverstripe/cms": "3.1.*",
 		"composer/installers": "*",
-		"colymba/GridField-Bulk-Editing-Tools" : "1.*",
+		"colymba/GridField-Bulk-Editing-Tools" : "*",
 		"UndefinedOffset/SortableGridField" : "*"
 	},
 	"suggest": {
