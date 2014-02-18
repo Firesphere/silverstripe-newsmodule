@@ -13,7 +13,7 @@ class CommentReport extends SS_Report {
 	 * @return String Report Title
 	 */
 	public function title() {
-		return _t($this->class . '.TITLE', 'Newscomment report');
+		return _t('CommentReport.TITLE', 'Comment report');
 	}
 	
 	/**
@@ -64,22 +64,22 @@ class CommentReport extends SS_Report {
 	public function columns() {
 		$fields = array(
 			"Title" => array(
-				"title" => _t($this->class . '.NEWSTITLE', 'Item title'),
+				"title" => _t('CommentReport.NEWSTITLE', 'News title'),
 				'formatting' => sprintf(
 					'<a href=\"admin/news/News/EditForm/field/News/item/$ID/edit\" title=\"%s\">$value</a>',
-					_t($this->class . '.EDIT', 'Edit item')
+					_t('CommentReport.EDIT', 'Edit item')
 				)
 			),
 			"Commentcount" => array(
-				"title" => _t($this->class . '.COMMENTCOUNT', 'Total comments'),
+				"title" => _t('CommentReport.COMMENTCOUNT', 'Total amount of comments'),
 				'casting' => 'Int'
 			),
 			"Spamcount" => array(
-				"title" => _t($this->class . '.COMMENTSPAMCOUNT', 'Spam comments'),
+				"title" => _t('CommentReport.COMMENTSPAMCOUNT', 'Spam comments'),
 				'casting' => 'Int'
 			),
 			"Hiddencount" => array(
-				"title" => _t($this->class . '.HIDDENCOUNT', 'Hidden comments'),
+				"title" => _t('CommentReport.HIDDENCOUNT', 'Hidden comments'),
 				'casting' => 'Int'
 			),
 		);
@@ -95,15 +95,15 @@ class CommentReport extends SS_Report {
 		$return = FieldList::create(
 			$title = TextField::create(
 				'Title', 
-				_t($this->class . '.NEWSSEARCHTITLE', 'Search newsitem')
+				_t('CommentReport.NEWSSEARCHTITLE', 'Search newsitem')
 			),
 			$count = DropdownField::create(
 				'Comment', 
-				_t($this->class . '.COUNTFILTER', 'Comment count'), 
+				_t('CommentReport.COUNTFILTER', 'Comment count filter'),
 				array(
-					'' => _t($this->class . '.ANY', 'Any'),
-					'SPAMCOUNT' => _t($this->class . '.SPAMCOUNT', 'One or more spam comments'),
-					'HIDDENCOUNT' => _t($this->class . '.HIDDENCOUNT', 'One or more hidden comments'),
+					'' => _t('CommentReport.ANY', 'All'),
+					'SPAMCOUNT' => _t('CommentReport.SPAMCOUNT', 'One or more spam comments'),
+					'HIDDENCOUNT' => _t('CommentReport.HIDDENCOUNT', 'One or more hidden comments'),
 				)
 			)
 		);

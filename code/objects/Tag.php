@@ -51,8 +51,8 @@ class Tag extends DataObject {
 	 * @return string Singular name
 	 */
 	public function singular_name() {
-		if (_t($this->class . '.SINGULARNAME')) {
-			return _t($this->class . '.SINGULARNAME');
+		if (_t('Tag.SINGULARNAME')) {
+			return _t('Tag.SINGULARNAME');
 		} else {
 			return parent::singular_name();
 		} 
@@ -63,8 +63,8 @@ class Tag extends DataObject {
 	 * @return string Plural name
 	 */
 	public function plural_name() {
-		if (_t($this->class . '.PLURALNAME')) {
-			return _t($this->class . '.PLURALNAME');
+		if (_t('Tag.PLURALNAME')) {
+			return _t('Tag.PLURALNAME');
 		} else {
 			return parent::plural_name();
 		}   
@@ -82,11 +82,11 @@ class Tag extends DataObject {
 			'Root', // To what tab
 			Tab::create(
 				'Main', // Name
-				_t($this->class . '.MAIN', 'Main'), // Title
+				_t('Tag.MAIN', 'Main'), // Title
 				/** Fields */
-				$text = TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
-				$html = HTMLEditorField::create('Description', _t($this->class . '.DESCRIPTION', 'Content')),
-				$uplo = UploadField::create('Impression', _t($this->class . '.IMPRESSION', 'Impression'))
+				$text = TextField::create('Title', _t('Tag.TITLE', 'Title')),
+				$html = HTMLEditorField::create('Description', _t('Tag.DESCRIPTION', 'Description')),
+				$uplo = UploadField::create('Impression', _t('Tag.IMPRESSION', 'Impression image'))
 			)
 		);
 		return($fields);

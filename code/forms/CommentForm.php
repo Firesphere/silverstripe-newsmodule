@@ -23,14 +23,14 @@ class CommentForm extends Form {
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
 			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
 		}
-		$field[] = TextField::create('Name', _t($this->class . '.COMMENT.NAME', 'Name'));
-		$field[] = TextField::create('Title', _t($this->class . '.COMMENT.TITLE', 'Comment title'));
-		$field[] = TextField::create('Email', _t($this->class . '.COMMENT.EMAIL', 'E-mail'));
-		$field[] = TextField::create('URL', _t($this->class . '.COMMENT.WEBSITE', 'Website'));
-		$field[] = TextareaField::create('Comment', _t($this->class . '.COMMENT.COMMENT', 'Comment'));
+		$field[] = TextField::create('Name', _t('CommentForm.NAME', 'Name'));
+		$field[] = TextField::create('Title', _t('CommentForm.TITLE', 'Title'));
+		$field[] = TextField::create('Email', _t('CommentForm.EMAIL', 'Email address'));
+		$field[] = TextField::create('URL', _t('CommentForm.WEBSITE', 'Website'));
+		$field[] = TextareaField::create('Comment', _t('CommentForm.COMMENT', 'Comment'));
 		/** Check the Readme.MD for details about extra spam-protection */
 		if($siteconfig->ExtraSecurity){
-			$field[] = TextField::create('Extra', _t($this->class . '.COMMENT.EXTRA', 'Extra'));
+			$field[] = TextField::create('Extra', _t('CommentForm.EXTRA', 'Extra'));
 		}
 		if($siteconfig->NoscriptSecurity){
 			$field[] = LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>');

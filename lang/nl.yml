@@ -1,4 +1,4 @@
-nl_NL:
+nl:
   NewsAdmin:
     MENUTITLE: "Nieuws"
     ActionAdd: "Nieuwsbericht toevoegen"
@@ -84,11 +84,11 @@ nl_NL:
     EMAIL: "E-mailadres"
     WEBSITE: "Website"
     COMMENT: "Reactie"
-  NewsHolderPage_show.ss:
+  NewsHolderPage_show:
     COMMENTS: "Reacties"
     BYWHO: "door"
     ONDATE: "op" 
-  NewsHolderPage_tag.ss:
+  NewsHolderPage_tag:
     TAG: "Tag"
     ALLTAGS: "All tags"
   CommentReport:
@@ -107,7 +107,7 @@ nl_NL:
     NEWSTITLE: "Titel nieuwsbericht"
     NEWSCOUNT: "Totaal items gelinked"
     TAGTITLE: "Zoek een tag"
-  NewsHolderPage.ss:
+  NewsHolderPage:
     DATEPUBLISH: "{date} door {author}"
     DOWNLOADABLE: "Download"
     READMORE: "Lees verder &raquo;"

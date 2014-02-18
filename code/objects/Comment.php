@@ -43,8 +43,8 @@ class Comment extends DataObject {
 	 * @return type Singular name
 	 */
 	public function singular_name() {
-		if (_t($this->class . '.SINGULARNAME')) {
-			return _t($this->class . '.SINGULARNAME');
+		if (_t('Comment.SINGULARNAME')) {
+			return _t('Comment.SINGULARNAME');
 		} else {
 			return parent::singular_name();
 		} 
@@ -55,8 +55,8 @@ class Comment extends DataObject {
 	 * @return type Plural name
 	 */
 	public function plural_name() {
-		if (_t($this->class . '.PLURALNAME')) {
-			return _t($this->class . '.PLURALNAME');
+		if (_t('Comment.PLURALNAME')) {
+			return _t('Comment.PLURALNAME');
 		} else {
 			return parent::plural_name();
 		}   
@@ -73,16 +73,16 @@ class Comment extends DataObject {
 		$fields->addFieldsToTab(
 			'Root.Main',
 			array(
-				TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
-				TextField::create('Name', _t($this->class . '.NAME', 'Name')),
-				TextField::create('Email', _t($this->class . '.EMAIL', 'Email')),
-				TextField::create('URL', _t($this->class . '.URL', 'URL')),
-				HtmlEditorField::create('Comment', _t($this->class . '.COMMENT', 'Comment')),
-				CheckboxField::create('AkismetMarked', _t($this->class . '.AKISMETMARKED', 'Akismet Marked')),
-				CheckboxField::create('Visible', _t($this->class . '.VISIBLE', 'Visible')),
-				CheckboxField::create('ShowGravatar', _t($this->class . '.GRAVATAR', 'Show Gravatar')),
+				TextField::create('Title', _t('Comment.TITLE', 'Title')),
+				TextField::create('Name', _t('Comment.NAME', 'Name')),
+				TextField::create('Email', _t('Comment.EMAIL', 'Email')),
+				TextField::create('URL', _t('Comment.URL', 'URL')),
+				HtmlEditorField::create('Comment', _t('Comment.COMMENT', 'Comment')),
+				CheckboxField::create('AkismetMarked', _t('Comment.AKISMETMARKED', 'Akismet marked')),
+				CheckboxField::create('Visible', _t('Comment.VISIBLE', 'Visible')),
+				CheckboxField::create('ShowGravatar', _t('Comment.GRAVATAR', 'Show Gravatar')),
 				// I very much doubt this is actually a good idea, to let authors change the item a comment is posted to :D
-				DropdownField::create('NewsID', _t($this->class . '.NEWS', 'News'), News::get()->map('ID','Title'))
+				DropdownField::create('NewsID', _t('Comment.NEWS', 'News'), News::get()->map('ID','Title'))
 			)
 		);
 		return $fields;
@@ -168,7 +168,7 @@ class Comment extends DataObject {
 		/** No, really, I mean it. Change this. When spambots find your site, 30 e-mails an hour is NORMAL! */
 		$mail = Email::create();
 		$mail->setTo($SiteConfig->NewsEmail);
-		$mail->setSubject(_t($this->class . '.COMMENTMAILSUBJECT', 'New post titled: ') .$this->Title);
+		$mail->setSubject(_t('Comment.COMMENTMAILSUBJECT2', 'New post titled: {title} ', array('title' => $this->Title)));
 		$mail->setFrom($this->Email);
 		$mail->setTemplate('CommentPost');
 		$mail->populateTemplate($this);

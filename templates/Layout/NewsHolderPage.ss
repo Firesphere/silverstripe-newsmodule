@@ -15,18 +15,18 @@
 		<% if Type == external && Top.SiteConfig.ReturnExternal %>
 			<h2><a href='$External' target="_blank">$Title</a></h2>
 		<% else_if Type == download && Top.SiteConfig.ReturnExternal %>
-			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.ss.DOWNLOADABLE "Download" %>)</a></h2>
+			<h2><a href='$Download.Link' title='Downloadable file'>$Title (<%t NewsHolderPage.DOWNLOADABLE "Download" %>)</a></h2>
 		<% else %>
 			<h2><a href="$Link">$Title</a></h2>
 		<% end_if %>
-	  <h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
+	  <h3><%t NewsHolderPage.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	  <% if Synopsis %>
 		<p>$Synopsis</p>
 	  <% else %>
 		<p>$Content.Summary</p>
 	  <% end_if %>
 	  <% if not Top.SiteConfig.ReturnExternal %>
-		<footer class="more"><a href="$Link"><%t NewsHolderPage.ss.READMORE "Read More &raquo;" %></a></footer>
+		<footer class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></footer>
 	  <% end_if %>
 	</div>
 	  <% if Tags.Count > 0 %>
@@ -50,7 +50,7 @@
 	      <div class='pagination'>
 <% if allNews.MoreThanOnePage %>
     <% if allNews.NotFirstPage %>
-        <a class="prev" href="$allNews.PrevLink"><%t NewsHolderPage.ss.PREV "Prev" %></a>
+        <a class="prev" href="$allNews.PrevLink"><%t NewsHolderPage.PREV "Prev" %></a>
     <% end_if %>
     <% loop allNews.PaginationSummary %>
         <% if CurrentBool %>
@@ -64,7 +64,7 @@
         <% end_if %>
         <% end_loop %>
     <% if allNews.NotLastPage %>
-        <a class="next" href="$allNews.NextLink"><%t NewsHolderPage.ss.NEXT "Next" %></a>
+        <a class="next" href="$allNews.NextLink"><%t NewsHolderPage.NEXT "Next" %></a>
     <% end_if %>
 <% end_if %>
 	      </div>

@@ -59,9 +59,9 @@ zh_CN:
       EMAIL: "电子邮件地址"
       WEBSITE: "网站地址"
       COMMENT: "评论"
-    NewsHolderPage_show.ss:
+    NewsHolderPage_show:
       COMMENTS: "评论"
-    NewsHolderPage_tag.ss:
+    NewsHolderPage_tag:
       TAG: "标签"
       ALLTAGS: "所有标签"
   CommentReport:
