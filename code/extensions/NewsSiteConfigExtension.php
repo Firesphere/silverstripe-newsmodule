@@ -56,54 +56,54 @@ class NewsSiteConfigExtension extends DataExtension {
 				'Root', // What tab
 				TabSet::create(
 					'Newssettings',
-					_t($this->class . '.NEWSCOMMENTS', 'News settings'),
+					_t('NewsSiteConfigExtension.NEWSCOMMENTS', 'News settings'),
 					/** General news settings */
 					Tab::create(
 						'News',
-						_t($this->class . '.NEWS','News'),
-						CheckboxField::create('UseAbstract', _t($this->class . '.ABSTRACT', 'Use abstract/summary')),
-						CheckboxField::create('TweetOnPost', _t($this->class . '.TWEETPOST', 'Tweet after posting?')), // Requires Firesphere/silverstripe-social
-						NumericField::create('PostsPerPage', _t($this->class . '.PPP', 'Amount of posts per page')),
-						UploadField::create('DefaultImage', _t($this->class . '.DEFAULTIMPRESSION', 'Default Impressionimage'))
+						_t('NewsSiteConfigExtension.NEWS','News'),
+						CheckboxField::create('UseAbstract', _t('NewsSiteConfigExtension.ABSTRACT', 'Use abstract/summary')),
+						CheckboxField::create('TweetOnPost', _t('NewsSiteConfigExtension.TWEETPOST', 'Tweet after posting a new item')), // Requires Firesphere/silverstripe-social
+						NumericField::create('PostsPerPage', _t('NewsSiteConfigExtension.PPP', 'Amount of posts per page')),
+						UploadField::create('DefaultImage', _t('NewsSiteConfigExtension.DEFAULTIMPRESSION', 'Default impression image for newsitems'))
 					),
 					/** External linking options */
 					Tab::create(
 						'External',
-						_t($this->class . '.EXTERNAL', 'External linking'),
-						CheckboxField::create('AllowExternals', _t($this->class . '.ALLOWEXT', 'Allow linking to external articles')),
-						CheckboxField::create('AllowDownloads', _t($this->class . '.ALLOWDOWN', 'Allow linking to downloads')),
-						CheckboxField::create('ReturnExternal', _t($this->class . '.RETURNEXT', 'Make externals open in a new tab/window'))
+						_t('NewsSiteConfigExtension.EXTERNAL', 'External linking'),
+						CheckboxField::create('AllowExternals', _t('NewsSiteConfigExtension.ALLOWEXT', 'Allow external links')),
+						CheckboxField::create('AllowDownloads', _t('NewsSiteConfigExtension.ALLOWDOWN', 'Allow downloads')),
+						CheckboxField::create('ReturnExternal', _t('NewsSiteConfigExtension.RETURNEXT', 'Make externals open in a new tab/window'))
 					),
 					/** Comment settings */
 					Tab::create(
 						'Comments',
-						_t($this->class . '.COMMENTSSETTINGS', 'Comments'),
-						CheckboxField::create('Comments', _t($this->class . '.COMMENTS', 'Allow comments on newsitems')),
-						CheckboxField::create('MustApprove', _t($this->class . '.APPROVE', 'Comments must be approved')),
-						EmailField::create('NewsEmail', _t($this->class . '.NEWSMAIL', 'Send e-mailnotification of a comment to me')),
-						CheckboxField::create('Gravatar', _t($this->class . '.GRAVATAR', 'Use Gravatar-Image')),
-						TextField::create('DefaultGravatar', _t($this->class . '.GRAVURL', 'Default Gravatar-image url')),
-						UploadField::create('DefaultGravatarImage', _t($this->class . '.UPLOADGRAVATAR', 'Or upload a default Gravatar image')),
-						NumericField::create('GravatarSize', _t($this->class . '.GRAVSIZE', 'Gravatar image size (32 for 32x32px)')),
-						TextField::create('AkismetKey', _t($this->class . '.AKISMET', 'Akismet API key')),
-						CheckboxField::create('ExtraSecurity', _t($this->class . '.SPAMPROTECTION', 'Use an extra field for spamprotection')),
-						CheckboxField::create('NoscriptSecurity', _t($this->class . '.NOSCRIPTSPAM', 'Use a noscript field for spamprotection'))
+						_t('NewsSiteConfigExtension.COMMENTSSETTINGS', 'Comments'),
+						CheckboxField::create('Comments', _t('NewsSiteConfigExtension.COMMENTS', 'Allow comments on items')),
+						CheckboxField::create('MustApprove', _t('NewsSiteConfigExtension.APPROVE', 'Comments must be approved')),
+						EmailField::create('NewsEmail', _t('NewsSiteConfigExtension.NEWSMAIL', 'Send email notification of a comment to me')),
+						CheckboxField::create('Gravatar', _t('NewsSiteConfigExtension.GRAVATAR', 'Display Gravatar image of commenter')),
+						TextField::create('DefaultGravatar', _t('NewsSiteConfigExtension.GRAVURL', 'Default Gravatar image if commenter doesn\'t have one')),
+						UploadField::create('DefaultGravatarImage', _t('NewsSiteConfigExtension.UPLOADGRAVATAR', 'Or upload a default Gravatar image')),
+						NumericField::create('GravatarSize', _t('NewsSiteConfigExtension.GRAVSIZE', 'Size of the Gravatar image (e.g. 32 for a 32x32 image)')),
+						TextField::create('AkismetKey', _t('NewsSiteConfigExtension.AKISMET', 'Akismet API key')),
+						CheckboxField::create('ExtraSecurity', _t('NewsSiteConfigExtension.SPAMPROTECTION', 'Use an extra field for spam protection')),
+						CheckboxField::create('NoscriptSecurity', _t('NewsSiteConfigExtension.NOSCRIPTSPAM', 'Use a noscript field for spam protection'))
 					),
 					/** Slideshow settings */
 					Tab::create(
 						'Slideshowsettings',
-						_t($this->class . '.SLIDESHOWSETTINGS', 'Slideshow'),
-						CheckboxField::create('EnableSlideshow', _t($this->class . '.SLIDESHOW', 'Allow the use of slideshow feature')),
-						CheckboxField::create('SlideshowInitial', _t($this->class . '.SLIDEINITIAL', 'Show only the first image, the rest will have css-class hidden.')),
-						TextField::create('SlideshowSize', _t($this->class . '.SLIDESIZE', 'Size of the images. Leave blank or 0 to control from CSS'))
+						_t('NewsSiteConfigExtension.SLIDESHOWSETTINGS', 'Slideshow'),
+						CheckboxField::create('EnableSlideshow', _t('NewsSiteConfigExtension.SLIDESHOW', 'Allow the use of slideshow feature')),
+						CheckboxField::create('SlideshowInitial', _t('NewsSiteConfigExtension.SLIDEINITIAL', 'Show only the first image')),
+						TextField::create('SlideshowSize', _t('NewsSiteConfigExtension.SLIDESIZE', 'Maximum size of the full-size images. E.g. 1024x768'))
 					),
 					Tab::create(
 						'Help',
-						_t($this->class . '.HELP', 'Help'),
-						ReadonlyField::create('generalhelp', _t($this->class . '.NEWSHELP', 'News help'), _t($this->class . '.NEWSHELPTEXT', 'In the news-settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.')),
-						ReadonlyField::create('externalhelp', _t($this->class . '.EXTERNALHELP', 'External help'), _t($this->class . '.EXTERNALHELPTEXT', 'Allow or disallow content-authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.')),
-						ReadonlyField::create('commenthelp', _t($this->class . '.COMMENTHELP', 'Comment help'), _t($this->class . '.COMMENTHELPTEXT', 'Comment help is tbd.')),
-						ReadonlyField::create('slideshowhelp', _t($this->class . '.SLIDESHOWHELP', 'Slideshow help'), _t($this->class . '.SLIDESHOWHELPTEXT', 'Slideshow settings, like what to do. TBD'))
+						_t('NewsSiteConfigExtension.HELP', 'Help'),
+						ReadonlyField::create('generalhelp', _t('NewsSiteConfigExtension.NEWSHELP', 'News help'), _t('NewsSiteConfigExtension.NEWSHELPTEXT', 'In the news settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.')),
+						ReadonlyField::create('externalhelp', _t('NewsSiteConfigExtension.EXTERNALHELP', 'External help'), _t('NewsSiteConfigExtension.EXTERNALHELPTEXT', 'Allow or disallow content authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.')),
+						ReadonlyField::create('commenthelp', _t('NewsSiteConfigExtension.COMMENTHELP', 'Comment help'), _t('NewsSiteConfigExtension.COMMENTHELPTEXT', 'Comment help is tbd.')),
+						ReadonlyField::create('slideshowhelp', _t('NewsSiteConfigExtension.SLIDESHOWHELP', 'Slideshow help'), _t('NewsSiteConfigExtension.SLIDESHOWHELPTEXT', 'Slideshow settings, like what to do. TBD'))
 					)
 				),
 				'Access'
@@ -113,11 +113,11 @@ class NewsSiteConfigExtension extends DataExtension {
 					'Root.Newssettings',
 					Tab::create(
 						'Security',
-						_t($this->class . '.SEC', 'Security'),
-						CheckboxField::create('AllowAuthors', _t($this->class . '.ALLOWAUTHOR', 'Allow Content Authors to edit the newsconfiguration')),
-//						CheckboxField::create('AllowTags', _t($this->class . '.ALLOWTAGS', 'Allow usage of tags')), @todo fix this to make it work.
-						CheckboxField::create('AllowExport', _t($this->class . '.ALLOWEXPORT', 'Allow exporting of items')),
-						CheckboxField::create('AllowSlideshow', _t($this->class . '.ALLOWSLIDESHOW', 'Allow the usage of the slideshow-feature'))
+						_t('NewsSiteConfigExtension.SEC', 'Security'),
+						CheckboxField::create('AllowAuthors', _t('NewsSiteConfigExtension.ALLOWAUTHOR', 'Allow content authors to edit news settings')),
+//						CheckboxField::create('AllowTags', _t('NewsSiteConfigExtension.ALLOWTAGS', 'Allow usage of tags')), @todo fix this to make it work.
+						CheckboxField::create('AllowExport', _t('NewsSiteConfigExtension.ALLOWEXPORT', 'Allow content authors to export all data')),
+						CheckboxField::create('AllowSlideshow', _t('NewsSiteConfigExtension.ALLOWSLIDESHOW', 'Allow the usage of the slideshow (in beta)'))
 					),
 					'Help'
 				);

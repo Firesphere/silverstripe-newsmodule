@@ -32,10 +32,10 @@ class SlideshowImage extends DataObject {
 		$fields->addFieldsToTab(
 			'Root.Main',
 			array(
-				TextField::create('Title', _t($this->class . '.TITLE', 'Title')),
-				HtmlEditorField::create('Description', _t($this->class . '.DESCRIPTION', 'Description')),
-				UploadField::create('Image', _t($this->class . '.IMAGE', 'Image')),
-				TextField::create('Title', _t($this->class . '.TITLE', 'Title'))
+				TextField::create('Title', _t('SlideshowImage.TITLE', 'Title')),
+				HtmlEditorField::create('Description', _t('SlideshowImage.DESCRIPTION', 'Description')),
+				UploadField::create('Image', _t('SlideshowImage.IMAGE', 'Image')),
+				TextField::create('Title', _t('SlideshowImage.TITLE', 'Title'))
 			)
 		);
 		return $fields;

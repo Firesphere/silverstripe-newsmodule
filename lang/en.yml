@@ -1,0 +1,161 @@
+en:
+  NewsAdmin:
+    MENUTITLE: News
+    ActionAdd: 'Add newsitem'
+  NewsSiteConfigExtension:
+    NEWSSETTINGS: 'News settings'
+    NEWS: News
+    ABSTRACT: 'Use abstract/summary'
+    TWEETPOST: 'Tweet after posting a new item'
+    PPP: 'Amount of posts per page'
+    DEFAULTIMPRESSION: 'Default impression image for newsitems'
+    EXTERNAL: 'External linking'
+    ALLOWEXT: 'Allow external links'
+    ALLOWDOWN: 'Allow downloads'
+    EXTERNALEXT: 'Link external links in a new page'
+    COMMENTSSETTINGS: Comments
+    COMMENTS: 'Allow comments on items'
+    APPROVE: 'Comments must be approved'
+    NEWSMAIL: 'Send email notification of a comment to me'
+    GRAVATAR: 'Display Gravatar image of commenter'
+    GRAVURL: 'Default Gravatar image if commenter doesn''t have one'
+    UPLOADGRAVATAR: 'Or upload a default Gravatar image'
+    GRAVSIZE: 'Size of the Gravatar image (e.g. 32 for a 32x32 image)'
+    AKISMET: 'Akismet API key'
+    SPAMPROTECTION: 'Use an extra field for spam protection'
+    NOSCRIPTSPAM: 'Use a noscript field for spam protection'
+    SLIDESHOWSETTINGS: Slideshow
+    SLIDEINITIAL: 'Show only the first image'
+    SLIDESIZE: 'Maximum size of the full-size images. E.g. 1024x768'
+    SEC: Security
+    ALLOWAUTHOR: 'Allow content authors to edit news settings'
+    ALLOWEXPORT: 'Allow content authors to export all data'
+    ALLOWSLIDESHOW: 'Allow the usage of the slideshow (in beta)'
+    COMMENTHELP: 'Comment help'
+    COMMENTHELPTEXT: 'Comment help is tbd.'
+    EXTERNALHELP: 'External help'
+    EXTERNALHELPTEXT: 'Allow or disallow content authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.'
+    HELP: Help
+    NEWSCOMMENTS: 'News settings'
+    NEWSHELP: 'News help'
+    NEWSHELPTEXT: 'In the news settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.'
+    RETURNEXT: 'Make externals open in a new tab/window'
+    SLIDESHOW: 'Allow the use of slideshow feature'
+    SLIDESHOWHELP: 'Slideshow help'
+    SLIDESHOWHELPTEXT: 'Slideshow settings, like what to do. TBD'
+  Commment:
+    SINGULARNAME: Comment
+    PLURALNAME: Comments
+    COMMENTMAILSUBJECT: 'New post titled: '
+  News:
+    SINGULARNAME: Newsitem
+    PLURALNAME: Newsitems
+    MAIN: Main
+    HELPTAB: Help
+    BASEHELPLABEL: Help
+    BASEHELPTEXT: 'Publish from is auto-filled with a date if it isn''t set.<br />Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won''t go live if it isn''t set to true.'
+    CREATED: Created
+    LOCALE: Language
+    HELPTITLE: Help
+    TITLE: Title
+    CONTENT: Content
+    AUTHOR: Author
+    PUBDATE: 'Publish from'
+    PUSHLIVE: Published
+    PUBLISH: 'Publish from'
+    PARENTPAGE: 'Parent holderpage'
+    HOLDERPAGE: 'Parent holderpage'
+    COMMENTING: 'Allow comments on this item'
+    IMPRESSION: 'Impression image'
+    ANY: 'Any language'
+    TAGS: Tags
+    COMMENTS: Comments
+    TAGAFTERID: 'Tags can be added after the item has been saved'
+    SLIDE: Slideshow
+    IMAGES: 'Slideshow images'
+    NEWSITEMTYPE: Newsitem
+    EXTERNALTYPE: 'External link'
+    DOWNLOADTYPE: 'Downloadable file'
+    NEWSTYPE: 'Type of item'
+    SUMMARY: Summary/Abstract
+    DOWNLOAD: 'Downloadable file'
+    EXTERNAL: 'External link'
+    LINKEDPAGES: 'Linked pages'
+  SlideshowImage:
+    SINGULARNAME: 'Slideshow Image'
+    PLURALNAME: 'Slideshow Imags'
+    TITLE: Title
+    DESCRIPTION: Description
+    IMAGE: Image
+  Tag:
+    SINGULARNAME: Tag
+    PLURALNAME: Tags
+    MAIN: Main
+    TITLE: Title
+    DESCRIPTION: Description
+    IMPRESSION: 'Impression image'
+  NewsHolderPage:
+    DATEPUBLISH: '{date} by {author}'
+    DOWNLOADABLE: Download
+    READMORE: 'Read More &raquo;'
+    PREV: Prev
+    NEXT: Next
+    DEFAULTPAGETITLE: Newspage
+    DESCRIPTION: 'HolderPage for newsitems'
+    PLURALNAME: 'News Holder Pags'
+    SINGULARNAME: 'News Holder Page'
+  CommentForm:
+    NAME: Name
+    TITLE: Title
+    EMAIL: 'Email address'
+    WEBSITE: Website
+    COMMENT: Comment
+    EXTRA: Extra
+  NewsHolderPage_show:
+    COMMENTS: Comments
+    BYWHO: by
+    ONDATE: on
+  NewsHolderPage_tag:
+    TAG: Tag
+    ALLTAGS: 'All tags'
+  CommentReport:
+    TITLE: 'Comment report'
+    NEWSTITLE: 'News title'
+    COMMENTCOUNT: 'Total amount of comments'
+    COMMENTSPAM: 'Total spam comments'
+    COMMENTHIDDEN: 'Total hidden comments'
+    NEWSSEARCHTITLE: 'Search newsitem'
+    COUNTFILTER: 'Comment count filter'
+    ANY: All
+    SPAMCOUNT: 'One or more spam comments'
+    HIDDENCOUNT: 'One or more hidden comments'
+    COMMENTSPAMCOUNT: 'Spam comments'
+    EDIT: 'Edit item'
+  TagReport:
+    TITLE: 'Tag usage report'
+    NEWSTITLE: 'News title'
+    NEWSCOUNT: 'Total items linked'
+    TAGTITLE: 'Search for tag'
+    EDIT: 'Edit tag'
+  AuthorHelper:
+    PLURALNAME: 'Author Helpers'
+    SINGULARNAME: 'Author Helper'
+  Comment:
+    AKISMETMARKED: 'Akismet marked'
+    COMMENT: Comment
+    COMMENTMAILSUBJECT2: 'New post titled: {title} '
+    EMAIL: Email
+    GRAVATAR: 'Show Gravatar'
+    NAME: Name
+    NEWS: News
+    PLURALNAME: Comments
+    SINGULARNAME: Comment
+    TITLE: Title
+    URL: URL
+    VISIBLE: Visible
+  Renamed:
+    PLURALNAME: Renameds
+    SINGULARNAME: Renamed
+  SiteTree:
+    PLURALNAME: Pages
+    SINGULARNAME: Page

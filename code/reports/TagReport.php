@@ -14,7 +14,7 @@ class TagReport extends SS_Report {
 	 * @return String Report Title
 	 */
 	public function title() {
-		return _t($this->class . '.TITLE', 'Tag usage report');
+		return _t('TagReport.TITLE', 'Tag usage report');
 	}
 	
 	/**
@@ -51,14 +51,14 @@ class TagReport extends SS_Report {
 	public function columns() {
 		$fields = array(
 			"Title" => array(
-				"title" => _t($this->class . '.NEWSTITLE', 'Item title'),
+				"title" => _t('TagReport.NEWSTITLE', 'News title'),
 				'formatting' => sprintf(
 					'<a href=\"admin/news/Tag/EditForm/field/Tag/item/$ID/edit\" title=\"%s\">$value</a>',
-					_t($this->class . '.EDIT', 'Edit tag')
+					_t('TagReport.EDIT', 'Edit tag')
 				)
 			),
 			"Itemcount" => array(
-				"title" => _t($this->class . '.NEWSCOUNT', 'Total items linked'),
+				"title" => _t('TagReport.NEWSCOUNT', 'Total items linked'),
 				'casting' => 'Int'
 			),
 
@@ -75,7 +75,7 @@ class TagReport extends SS_Report {
 		$return = FieldList::create(
 			$title = TextField::create(
 				'Title', 
-				_t($this->class . '.TAGTITLE', 'Search tag')
+				_t('TagReport.TAGTITLE', 'Search for tag')
 			)
 		);
 		return $return;

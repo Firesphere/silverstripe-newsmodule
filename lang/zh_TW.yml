@@ -59,9 +59,9 @@ zh_CN:
       EMAIL: "電子郵件地址"
       WEBSITE: "網頁地址"
       COMMENT: "評論"
-    NewsHolderPage_show.ss:
+    NewsHolderPage_show:
       COMMENTS: "評論"
-    NewsHolderPage_tag.ss:
+    NewsHolderPage_tag:
       TAG: "標簽"
       ALLTAGS: "所有標簽"
   CommentReport:

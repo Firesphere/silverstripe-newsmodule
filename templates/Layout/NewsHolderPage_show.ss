@@ -8,7 +8,7 @@
 	      <div class="noImage">
 	      <% end_if %>
         <h1>$Title</h1>
-	<h3><%t NewsHolderPage.ss.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
+	<h3><%t NewsHolderPage.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 	<br />
 	<div class="Content" contenteditable="true">
 	<% if $Content %>
@@ -41,7 +41,7 @@
 	<% if AllowComments %>
 	<hr />
 	<% if Comments %>
-	<h3><%t NewsHolderPage_show.ss.COMMENTS "Comments" %></h3>
+	<h3><%t NewsHolderPage_show.COMMENTS "Comments" %></h3>
 	<section id="comments">
 	<ul>
 	<% loop $Comments %>
@@ -53,7 +53,7 @@
 				<img src="$Gravatar" width="$Top.SiteConfig.GravatarSize" height="$Top.SiteConfig.GravatarSize" alt="$Name" />
 				<% end_if %>
 			</figure>
-		<address><strong>$Title</strong><%t NewsHolderPage_show.ss.BYWHO "by" %> <strong><% if URL %><a href="$URL">$Name</a><% else %>$Name<% end_if %></strong></address> <time datetime="$Created"><%t NewsHolderPage_show.ss.ONDATE "on" %> $Created.Format(d-m-Y)</time>
+		<address><strong>$Title</strong><%t NewsHolderPage_show.BYWHO "by" %> <strong><% if URL %><a href="$URL">$Name</a><% else %>$Name<% end_if %></strong></address> <time datetime="$Created"><%t NewsHolderPage_show.ONDATE "on" %> $Created.Format(d-m-Y)</time>
 		</header>
 		<section>
 		$Comment
