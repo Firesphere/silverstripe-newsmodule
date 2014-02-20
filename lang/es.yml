@@ -1,124 +1,111 @@
 es:
   NewsAdmin:
-    MENUTITLE: "Noticias"
-    ActionAdd: "Agregar Noticia"
+    MENUTITLE: Noticias
+    ActionAdd: 'Agregar Noticia'
   NewsSiteConfigExtension:
-    NEWSSETTINGS: "News settings"
-    NEWS: "Noticias"
-    ABSTRACT: "Usar texto de resumen"
-    TWEETPOST: "Twittear despues de publicar una noticia"
-    PPP: "Numero de noticias por página"
-    EXTERNAL: "Enlace externo"
-    RETURNEXT: "Hacer que enlaces externos abran en una pagina/pestaña nueva"
-    ALLOWEXT: "Permitir enlaces externos"
-    ALLOWDOWN: "Permitir descargas"
-    EXTERNALEXT: "Abrir links externos en una página nueva"
-    COMMENTSSETTINGS: "Comentarios"
-    COMMENTS: "Permitir comentarios en las noticias"
-    APPROVE: "Los comentarios deben de ser aprobados"
-    NEWSMAIL: "Enviar notificacion por correo de un nuevo comentario a"
-    GRAVATAR: "Mostrar imagen de Gravatar del autor del comentario"
-    GRAVURL: "Imagen predeterminada de Gravatar si el autor del comentario no tiene una"
-    GRAVSIZE: "Tamaño de la imagen de Gravatar (ej. 32 para una imagen de 32x32)"
-    AKISMET: "Akismet API Key"
-    SPAMPROTECTION: "Usar un campo extra para protección de spam"
-    NOSCRIPTSPAM: "Usar un campo noscript para protección de spam"
-    SLIDESHOWSETTINGS: "Galería"
-    SLIDESHOW: "Permitir el uso de las galerias"
-    SLIDEINITIAL: "Mostrar solo la primera imagen"
-    SLIDESIZE: "Tamaño máximo para imagenes de galería. Ej. 1024x768"
-    SEC: "Seguridad"
-    ALLOWAUTHOR: "Permitir a los autores de contenido editar la configuración de las noticias"
+    NEWSSETTINGS: 'News settings'
+    NEWS: Noticias
+    ABSTRACT: 'Usar texto de resumen'
+    TWEETPOST: 'Twittear despues de publicar una noticia'
+    PPP: 'Numero de noticias por página'
+    EXTERNAL: 'Enlace externo'
+    ALLOWEXT: 'Permitir enlaces externos'
+    ALLOWDOWN: 'Permitir descargas'
+    EXTERNALEXT: 'Abrir links externos en una página nueva'
+    COMMENTSSETTINGS: Comentarios
+    COMMENTS: 'Permitir comentarios en las noticias'
+    APPROVE: 'Los comentarios deben de ser aprobados'
+    NEWSMAIL: 'Enviar notificacion por correo de un nuevo comentario a'
+    GRAVATAR: 'Mostrar imagen de Gravatar del autor del comentario'
+    GRAVURL: 'Imagen predeterminada de Gravatar si el autor del comentario no tiene una'
+    GRAVSIZE: 'Tamaño de la imagen de Gravatar (ej. 32 para una imagen de 32x32)'
+    AKISMET: 'Akismet API Key'
+    SPAMPROTECTION: 'Usar un campo extra para protección de spam'
+    NOSCRIPTSPAM: 'Usar un campo noscript para protección de spam'
+    SLIDESHOWSETTINGS: Galería
+    SLIDEINITIAL: 'Mostrar solo la primera imagen'
+    SLIDESIZE: 'Tamaño máximo para imagenes de galería. Ej. 1024x768'
+    SEC: Seguridad
+    ALLOWAUTHOR: 'Permitir a los autores de contenido editar la configuración de las noticias'
+    RETURNEXT: 'Hacer que enlaces externos abran en una pagina/pestaña nueva'
+    SLIDESHOW: 'Permitir el uso de las galerias'
   Commment:
-    SINGULARNAME: "Comentario"
-    PLURALNAME: "Comentarios"
-    COMMENTMAILSUBJECT: "Notica con título: "
+    SINGULARNAME: Comentario
+    PLURALNAME: Comentarios
+    COMMENTMAILSUBJECT: 'Notica con título: '
   News:
-    SINGULARNAME: "Noticia"
-    PLURALNAME: "Noticias"
-    MAIN: "Principal"
-    CREATED: "Creado"
-    LOCALE: "Idioma"
-    HELPTAB: "Ayuda"
-    BASEHELPLABEL: "Ayuda"
-    BASEHELPTEXT: "La fecha en que se publicará sera autogenerada con la fecha actual si no se ha especificado una. Si usa una fecha mayor a la actual NO se publicara la noticia automáticamente en Twitter. También ten en cuenta que si publicas a una fecha que no es la actual debes de dejar seleccionada la caja de PUBLICADO para que se publique correctamente al llegar a esa fecha."
-    TITLE: "Titulo"
-    CONTENT: "Contenido"
-    AUTHOR: "Autor"
-    PUBDATE: "Fecha en que se publicará"
-    PUSHLIVE: "Publicado"
-    PUBLISH: "Fecha de publicación"
-    PARENTPAGE: "Contenedor de noticia"
-    HOLDERPAGE: "Contenedor de noticia"
-    COMMENTING: "Permitir comentarios en esta notica"
-    IMPRESSION: "Imagen miniatura"
-    ANY: "Cualquier idioma"
-    TAGS: "Etiquetas"
-    TAGAFTERID: "Las etiquetas pueden ser agregadas después que la noticia sea creada"
-    COMMENT: "Comentario"
-    COMMENTS: "Comentarios"
-    SLIDE: "Galería"
-    IMAGES: "Imagenes de galería"
-    NEWSITEMTYPE: "Noticia"
-    EXTERNALTYPE: "Enlace externo"
-    EXTERNAL: "Enlace externo"
-    DOWNLOADTYPE: "Documento para descargar"
-    DOWNLOAD: "Documento para descargar"
-    NEWSTYPE: "Tipo de noticia"
-    SUMMARY: "Resumen"
-  Comment:
-    SINGULARNAME: "Comentario"
-    PLURALNAME: "Comentarios"
-    TITLE: "Título"
-    NAME: "Nombre"
-    EMAIL: "Correo electrónico"
-    URL: "URL"
-    COMMENT: "Comentario"
-    AKISMETMARKED: "Marcado por Akismet"
-    VISIBLE: "Visible"
-    GRAVATAR: "Mostrar Gravatar"
-    NEWS: "Noticia"
+    SINGULARNAME: Noticia
+    PLURALNAME: Noticias
+    MAIN: Principal
+    HELPTAB: Ayuda
+    BASEHELPLABEL: Ayuda
+    BASEHELPTEXT: 'La fecha en que se publicará sera autogenerada con la fecha actual si no se ha especificado una. Si usa una fecha mayor a la actual NO se publicara la noticia automáticamente en Twitter. También ten en cuenta que si publicas a una fecha que no es la actual debes de dejar seleccionada la caja de PUBLICADO para que se publique correctamente al llegar a esa fecha.'
+    CREATED: Creado
+    LOCALE: Idioma
+    TITLE: Titulo
+    CONTENT: Contenido
+    AUTHOR: Autor
+    PUBDATE: 'Fecha en que se publicará'
+    PUSHLIVE: Publicado
+    PUBLISH: 'Fecha de publicación'
+    PARENTPAGE: 'Contenedor de noticia'
+    HOLDERPAGE: 'Contenedor de noticia'
+    COMMENTING: 'Permitir comentarios en esta notica'
+    IMPRESSION: 'Imagen miniatura'
+    ANY: 'Cualquier idioma'
+    TAGS: Etiquetas
+    COMMENTS: Comentarios
+    TAGAFTERID: 'Las etiquetas pueden ser agregadas después que la noticia sea creada'
+    SLIDE: Galería
+    IMAGES: 'Imagenes de galería'
+    NEWSITEMTYPE: Noticia
+    EXTERNALTYPE: 'Enlace externo'
+    DOWNLOADTYPE: 'Documento para descargar'
+    NEWSTYPE: 'Tipo de noticia'
+    SUMMARY: Resumen
+    DOWNLOAD: 'Documento para descargar'
+    EXTERNAL: 'Enlace externo'
   SlideshowImage:
-    SINGULARNAME: "Imagen"
-    PLURALNAME: "Galerías"
-    TITLE: "Titulo"
-    DESCRIPTION: "Descripción"
-    IMAGE: "Imagen"
+    SINGULARNAME: 'Imagen'
+    PLURALNAME: 'Galerías'
+    TITLE: Titulo
+    DESCRIPTION: Descripción
+    IMAGE: Imagen
   Tag:
-    SINGULARNAME: "Etiqueta"
-    PLURALNAME: "Etiquetas"
-    MAIN: "Principal"
-    TITLE: "Titulo"
-    DESCRIPTION: "Descripcion"
-    IMPRESSION: "Imagen miniatura"
+    SINGULARNAME: Etiqueta
+    PLURALNAME: Etiquetas
+    MAIN: Principal
+    TITLE: Titulo
+    DESCRIPTION: Descripcion
+    IMPRESSION: 'Imagen miniatura'
   NewsHolderPage:
-    DESCRIPTION: "Contenedor para noticias  "
-    DEFAULTPAGETITLE: "Página de noticias"
-  NewsHolderPage_Controller:
-    COMMENT:
-      NAME: "Nombre"
-      TITLE: "Titulo"
-      EMAIL: "Correo electrónico"
-      WEBSITE: "Sitio web"
-      COMMENT: "Comentario"
-    NewsHolderPage_show:
-      COMMENTS: "Comentarios"
-    NewsHolderPage_tag:
-      TAG: "Etiqueta"
-      ALLTAGS: "Todas las etiquetas"
+    DEFAULTPAGETITLE: Página de noticias
+    DESCRIPTION: 'Contenedor para noticias  '
   CommentReport:
-    TITLE: "Reporte de comentarios"
-    NEWSTITLE: "Titulo de noticias"
-    COMMENTCOUNT: "Cantidad de comentarios"
-    COMMENTSPAM: "Cantidad de comentarios spam"
-    COMMENTHIDDEN: "Cantidad de comentarios ocultos"
-    NEWSSEARCHTITLE: "Buscar noticia"
-    COUNTFILTER: "Filtro de numero de comentarios"
-    ANY: "Cualquiera"
-    SPAMCOUNT: "Uno o mas comentarios spam"
-    HIDDENCOUNT: "Uno o mas comentarios ocultos"
+    TITLE: 'Reporte de comentarios'
+    NEWSTITLE: 'Titulo de noticias'
+    COMMENTCOUNT: 'Cantidad de comentarios'
+    COMMENTSPAM: 'Cantidad de comentarios spam'
+    COMMENTHIDDEN: 'Cantidad de comentarios ocultos'
+    NEWSSEARCHTITLE: 'Buscar noticia'
+    COUNTFILTER: 'Filtro de numero de comentarios'
+    ANY: Cualquiera
+    SPAMCOUNT: 'Uno o mas comentarios spam'
+    HIDDENCOUNT: 'Uno o mas comentarios ocultos'
   TagReport:
-    TITLE: "Reporte de uso de etiquetas"
-    NEWSTITLE: "Titulo de noticias"
-    NEWSCOUNT: "Cantidad de noticias enlazadas"
-    TAGTITLE: "Buscar con etiqueta"
+    TITLE: 'Reporte de uso de etiquetas'
+    NEWSTITLE: 'Titulo de noticias'
+    NEWSCOUNT: 'Cantidad de noticias enlazadas'
+    TAGTITLE: 'Buscar con etiqueta'
+  Comment:
+    AKISMETMARKED: 'Marcado por Akismet'
+    COMMENT: Comentario
+    EMAIL: Correo electrónico
+    GRAVATAR: 'Mostrar Gravatar'
+    NAME: Nombre
+    NEWS: Noticia
+    PLURALNAME: Comentarios
+    SINGULARNAME: Comentario
+    TITLE: Título
+    URL: URL
+    VISIBLE: Visible
