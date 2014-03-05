@@ -464,6 +464,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			)
 			->count() != 0);
 	}
+	
+	public function getComments() {
+		return $this->Comments()->filter(array('AkismetMarked' => 0));
+	}
 
 	/**
 	 * Get the year this object is created.
