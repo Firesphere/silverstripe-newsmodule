@@ -16,16 +16,15 @@
 		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
 	},
 	"require": {
-		"silverstripe/framework": "3.1.*",
-		"silverstripe/cms": "3.1.*",
+		"silverstripe/framework": "3.*",
+		"silverstripe/cms": "3.*",
 		"composer/installers": "*",
-		"colymba/GridField-Bulk-Editing-Tools" : "*",
+		"colymba/gridField-bulk-editing-tools" : "*",
 		"UndefinedOffset/SortableGridField" : "*"
 	},
 	"suggest": {
 		"silverstripe/translatable": "*",
-		"unclecheese/display-logic": "*",
-		"firesphere/social": "*"
+		"unclecheese/display-logic": "*"
 	},
 	"extra": {
 		"installer-name": "silverstripe-newsmodule"
