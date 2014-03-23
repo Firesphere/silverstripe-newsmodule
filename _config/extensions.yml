@@ -1,6 +1,9 @@
 ---
 Name: Newsmodule-extensions
 ---
+News:
+  extensions:
+    ['NewsCMSExtension']
 ContentController:
   extensions:
     ['NewsExtension']
