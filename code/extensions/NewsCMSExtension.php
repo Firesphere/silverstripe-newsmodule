@@ -28,14 +28,14 @@ class NewsCMSExtension extends DataExtension {
 		);
 		/** Setup all fields according. Their visibility is based on the origin, which can be read from the functionname and comments. */
 		$this->defaultFields();
+		$fields = $this->siteConfigFields($owner, $fields, $siteConfig);
 		$this->multipleNewsHolderPages();
+		$fields = $this->existingItem($owner, $fields, $siteConfig);
 		$this->displayLogic();
 		$this->createHelptab($fields);
 		if(count($this->type_array) > 1){
 			$this->field_list[2] = OptionsetField::create('Type', _t('News.NEWSTYPE', 'Type of item'), $this->type_array, $owner->Type);
 		}
-		$fields = $this->existingItem($owner, $fields, $siteConfig);
-		$fields = $this->siteConfigFields($owner, $fields, $siteConfig);
 		
 		$this->setupFields($fields, $owner);
 	}
@@ -134,8 +134,8 @@ class NewsCMSExtension extends DataExtension {
 			$owner->Type = 'news';
 		}
 		else {
-			$link = $owner->AbsoluteLink();
 			$this->field_list[14] = CheckboxSetField::create('Tags', _t('News.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$link = $owner->AbsoluteLink();
 			$fields->addFieldToTab(
 				'Root.Main',
 				LiteralField::create('Dummy',

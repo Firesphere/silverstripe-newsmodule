@@ -199,7 +199,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!class_exists('Translatable') && !$this->NewsHolderPages()->count()){
+		if(!class_exists('Translatable') || !$this->NewsHolderPages()->count()){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPages()->add($page);
 		}
