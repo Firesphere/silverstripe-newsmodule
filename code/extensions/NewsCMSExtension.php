@@ -3,7 +3,6 @@
  * To clean up and make the News object cleaner.
  * Also, easier reading for functions etc.
  * 
- * @todo Clean this up on usage. I don't like passing $fields around.
  * @todo take a close look at what's going on. There might be some overkill here.
  *
  * @package News/blog module
@@ -22,75 +21,74 @@ class NewsCMSExtension extends DataExtension {
 	public function updateCMSFields(FieldList $fields) {
 		/** @var News $owner */
 		$owner = $this->owner;
+		/** @var SiteConfig $siteConfig */
 		$siteConfig = SiteConfig::current_site_config();
 		$this->type_array = array(
 			'news' => _t('News.NEWSITEMTYPE', 'Newsitem'),
 		);
 		/** Setup all fields according. Their visibility is based on the origin, which can be read from the functionname and comments. */
 		$this->defaultFields();
-		$fields = $this->siteConfigFields($owner, $fields, $siteConfig);
 		$this->multipleNewsHolderPages();
-		$fields = $this->existingItem($owner, $fields, $siteConfig);
+		$this->siteConfigFields($owner, $siteConfig);
+		$this->existingItem($owner, $siteConfig);
 		$this->displayLogic();
-		$this->createHelptab($fields);
+		$this->createHelptab();
 		if(count($this->type_array) > 1){
-			$this->field_list[2] = OptionsetField::create('Type', _t('News.NEWSTYPE', 'Type of item'), $this->type_array, $owner->Type);
+			$this->field_list['Root.Main'][3] = OptionsetField::create('Type', _t('News.NEWSTYPE', 'Type of item'), $this->type_array, $owner->Type);
 		}
-		
-		$this->setupFields($fields, $owner);
+		$this->setupFields($owner, $fields);
 	}
 	
 	/**
-	 * Setup the fields that are always available.
+	 * Setup the default fields that are always available.
 	 */
 	private function defaultFields() {
 		$this->field_list = array(
-			0  => TextField::create('Title', _t('News.TITLE', 'Title')),
-			5  => HTMLEditorField::create('Content', _t('News.CONTENT', 'Content')),
-			7  => TextField::create('Author', _t('News.AUTHOR', 'Author')),
-			8  => DateField::create('PublishFrom', _t('News.PUBDATE', 'Publish from'))->setConfig('showcalendar', true),
-			9  => CheckboxField::create('Live', _t('News.PUSHLIVE', 'Published')),
-			10 => CheckboxField::create('Commenting', _t('News.COMMENTING', 'Allow comments on this item')),
-			11 => UploadField::create('Impression', _t('News.IMPRESSION', 'Impression image')),
+			'Root.Main' => array(
+				0  => TextField::create('Title', _t('News.TITLE', 'Title')),
+				6  => HTMLEditorField::create('Content', _t('News.CONTENT', 'Content')),
+				8  => TextField::create('Author', _t('News.AUTHOR', 'Author')),
+				9  => DateField::create('PublishFrom', _t('News.PUBDATE', 'Publish from'))->setConfig('showcalendar', true),
+				10 => CheckboxField::create('Live', _t('News.PUSHLIVE', 'Published')),
+				11 => CheckboxField::create('Commenting', _t('News.COMMENTING', 'Allow comments on this item')),
+				12 => UploadField::create('Impression', _t('News.IMPRESSION', 'Impression image')),
+			)
 		);
-		$this->field_list[8]->setConfig('dateformat', 'yyyy-MM-dd');
+		$this->field_list['Root.Main'][9]->setConfig('dateformat', 'yyyy-MM-dd');
 	}
 	
 	/**
 	 * Create the fields based on the SiteConfig settings.
-	 * @param SiteConfig $siteConfig
 	 * @param News $owner
+	 * @param SiteConfig $siteConfig
 	 */
-	private function siteConfigFields(News $owner, FieldList $fields, SiteConfig $siteConfig) {
+	private function siteConfigFields(News $owner, SiteConfig $siteConfig) {
+		/** First the defaults */
+		if($siteConfig->UseAbstract){
+			$this->field_list['Root.Main'][4] = TextareaField::create('Synopsis', _t('News.SUMMARY', 'Summary/Abstract'));
+		}
 		if($siteConfig->AllowExternals){
 			$this->type_array['external'] = _t('News.EXTERNALTYPE', 'External link');
-			$this->field_list[4] = TextField::create('External', _t('News.EXTERNAL', 'External link'));
+			$this->field_list['Root.Main'][5] = TextField::create('External', _t('News.EXTERNAL', 'External link'));
 		}
 		if($siteConfig->AllowDownloads){
 			$this->type_array['download'] = _t('News.DOWNLOADTYPE', 'Downloadable file');
-			$this->field_list[6] = UploadField::create('Download', _t('News.DOWNLOAD', 'Downloadable file'));
+			$this->field_list['Root.Main'][7] = UploadField::create('Download', _t('News.DOWNLOAD', 'Downloadable file'));
 		}
-		if($siteConfig->UseAbstract){
-			$this->field_list[3] = TextareaField::create('Synopsis', _t('News.SUMMARY', 'Summary/Abstract'));
-		}
+		/** Setup the tab for comments, if allowed */
 		if($siteConfig->Comments){
-			$fields->addFieldToTab(
-				'Root',
-				Tab::create(
-					'Comments',
+			$this->field_list['Root'][] =
+			Tab::create(
+				'Comments',
+				_t('News.COMMENTS', 'Comments'),
+				GridField::create(
+					'Comment', 
 					_t('News.COMMENTS', 'Comments'),
-					GridField::create(
-						'Comment', 
-						_t('News.COMMENTS', 'Comments'),
-						$owner->Comments(), 
-						GridFieldConfig_RelationEditor::create()
-					)
+					$owner->Comments(), 
+					GridFieldConfig_RelationEditor::create()
 				)
 			);
-		} else {
-		    $fields->removeByName('Commenting');
 		}
-		return $fields;
 	}
 	
 	/**
@@ -109,14 +107,14 @@ class NewsCMSExtension extends DataExtension {
 			$pagelist = array();
 			if(class_exists('Translatable')){
 				foreach($pages as $page) {
-					$pagelist[$page->ID] = $page->Title . ' ' . $page->Locale;
+					$pagelist['Root.Main'][$page->ID] = $page->Title . ' ' . $page->Locale;
 				}
 			}
 			else {
 				$pagelist = $pages->map('ID', 'Title');
 			}
-			$this->field_list[1] = ListboxField::create('NewsHolderPages', _t('News.LINKEDPAGES', 'Linked pages'), $pagelist);
-			$this->field_list[1]->setMultiple(true);
+			$this->field_list['Root.Main'][1] = ListboxField::create('NewsHolderPages', _t('News.LINKEDPAGES', 'Linked pages'), $pagelist);
+			$this->field_list['Root.Main'][1]->setMultiple(true);
 		}
 		if($enabled) {
 			Translatable::enable_locale_filter();
@@ -126,18 +124,16 @@ class NewsCMSExtension extends DataExtension {
 	/**
 	 * Setup the fields that are visible ONLY when the item exists already.
 	 * @param News $owner
-	 * @param FieldList $fields This needs fixing, I don't w ant it here, but it works for now.
+	 * @param SiteConfig $siteConfig
 	 */
-	private function existingItem(News $owner, FieldList $fields, SiteConfig $siteConfig) {
+	private function existingItem(News $owner, SiteConfig $siteConfig) {
 		if(!$owner->ID) {
-			$this->field_list[12] = ReadonlyField::create('Tags', _t('News.TAGS', 'Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
+			$this->field_list['Root.Main'][13] = ReadonlyField::create('Tags', _t('News.TAGS', 'Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
 			$owner->Type = 'news';
 		}
 		else {
-			$this->field_list[14] = CheckboxSetField::create('Tags', _t('News.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
-			$link = $owner->AbsoluteLink();
-			$fields->addFieldToTab(
-				'Root.Main',
+			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', _t('News.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$this->field_list['Root.Main'][2] =
 				LiteralField::create('Dummy',
 					'<div id="Dummy" class="field readonly">
 	<label class="left" for="Form_ItemEditForm_Dummy">Link</label>
@@ -147,29 +143,24 @@ class NewsCMSExtension extends DataExtension {
 	</span>
 	</div>
 	</div>'
-				),
-				'Title'
 			);
 			if($siteConfig->EnableSlideshow){
+				/** @var GridFieldConfig_RecordEditor $gridFieldConfig */
 				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 				$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
 				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
-				$fields->addFieldToTab(
-					'Root',
-					Tab::create(
-						'SlideshowImages',
-						_t('News.SLIDE', 'Slideshow'),
-						$gridfield = GridField::create(
-							'SlideshowImage',
-							_t('News.IMAGES', 'Slideshow images'),
-							$owner->SlideshowImages()
-								->sort('SortOrder'), 
-							$gridFieldConfig)
-					)
+				$this->field_list['Root'][] = Tab::create(
+					'SlideshowImages',
+					_t('News.SLIDE', 'Slideshow'),
+					GridField::create(
+						'SlideshowImage',
+						_t('News.IMAGES', 'Slideshow images'),
+						$owner->SlideshowImages()
+							->sort('SortOrder'), 
+						$gridFieldConfig)
 				);
 			}
 		}
-		return $fields;
 	}
 	
 	/**
@@ -177,36 +168,33 @@ class NewsCMSExtension extends DataExtension {
 	 */
 	private function displayLogic() {
 		if(class_exists('DisplayLogicFormField') && count($this->type_array) > 1){
-			$this->field_list[4]->hideUnless('Type')->isEqualTo('external');
-			$this->field_list[5]->hideUnless('Type')->isEqualTo('news');
-			$this->field_list[6]->hideUnless('Type')->isEqualTo('download');
+			$this->field_list['Root.Main'][5]->hideUnless('Type')->isEqualTo('external');
+			$this->field_list['Root.Main'][6]->hideUnless('Type')->isEqualTo('news');
+			$this->field_list['Root.Main'][7]->hideUnless('Type')->isEqualTo('download');
 		}
 	}
 	
 	/**
 	 * Create the HELP tab. This should be different, same as applies to other private functions that use $fields
-	 * @param FieldList $fields
 	 */
-	private function createHelptab(FieldList $fields) {
+	private function createHelptab() {
 		$helpText = "Publish from is auto-filled with a date if it isn't set. Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won't go live if it isn't set to true.";
-		$fields->addFieldToTab(
-			'Root',
-			Tab::create(
-				'Help',
-				_t('News.HELPTAB', 'Help'),
-				ReadonlyField::create('', _t('News.BASEHELPLABEL', 'Help'), _t('News.BASEHELPTEXT', $helpText))
-			
-			)
+		$this->field_list['Root'][] =
+		Tab::create(
+			'Help',
+			_t('News.HELPTAB', 'Help'),
+			ReadonlyField::create('', _t('News.BASEHELPLABEL', 'Help'), _t('News.BASEHELPTEXT', $helpText))
 		);
 	}
 
 	/**
-	 * 
-	 * @param FieldList $fields
+	 * Setup the actual fieldlists and tabs.
 	 * @param News $owner
+	 * @param FieldList $fields
 	 * @return FieldList
 	 */
-	private function setupFields(FieldList $fields, News $owner) {
+	private function setupFields(News $owner, FieldList $fields) {
+		// Remove all basic fields from parent, so we can setup as we wish.
 		$fields->removeByName(array_keys($owner->db()));
 		$fields->removeByName(array_keys($owner->has_one()));
 		$fields->removeByName(array_keys($owner->has_many()));
@@ -215,10 +203,13 @@ class NewsCMSExtension extends DataExtension {
 		foreach($owner->has_one() as $hasOne) {
 			$fields->removeByName($hasOne.'ID');
 		}
+		$fields->removeByName('Commenting');
 		/** @var array $fieldset The array of fields that should be visible */
 		$fieldset = $this->field_list;
-		ksort($fieldset);
-		$fields->addFieldsToTab('Root.Main', $fieldset);
+		foreach($fieldset as $key => $fieldlist) {
+			ksort($fieldlist);
+			$fields->addFieldsToTab($key, $fieldlist);
+		}
 		return $fields;
 	}
 

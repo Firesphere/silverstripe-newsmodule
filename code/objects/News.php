@@ -78,9 +78,17 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		'URLSegment' => true,
 	);
 	
+	/**
+	 * 
+	 * @param array|null $record This will be null for a new database record.  Alternatively, you can pass an array of
+	 * field values.  Normally this contructor is only used by the internal systems that get objects from the database.
+	 * @param boolean $isSingleton This this to true if this is a singleton() object, a stub for calling methods.
+	 *                             Singletons don't have their defaults set.
+	 * @param News $model The model we're instantiating.
+	 */
 	public function __construct($record = null, $isSingleton = false, $model = null) {
 		parent::__construct($record, $isSingleton, $model);
-		if(!$this->ID) {
+		if(!$this->ID && Member::currentUser()) {
 			$name =  Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
 			$this->Author = $name;
 		}
