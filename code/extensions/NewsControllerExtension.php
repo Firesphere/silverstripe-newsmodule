@@ -8,7 +8,7 @@
  * @todo Better comments
  * @todo Semantics
  */
-class NewsExtension extends DataExtension {
+class NewsControllerExtension extends DataExtension {
 
 	/**
 	 * Get all, or a limited, set of items.

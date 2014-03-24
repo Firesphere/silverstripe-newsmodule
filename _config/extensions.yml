@@ -6,7 +6,7 @@ News:
     ['NewsCMSExtension']
 ContentController:
   extensions:
-    ['NewsExtension']
+    ['NewsControllerExtension']
 SiteConfig:
   extensions:
     ['NewsSiteConfigExtension']
