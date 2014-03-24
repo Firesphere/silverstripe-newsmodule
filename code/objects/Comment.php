@@ -6,7 +6,7 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @method News Object of NewsItem
+ * @method News News() The origin of the comment
  */
 class Comment extends DataObject {
 

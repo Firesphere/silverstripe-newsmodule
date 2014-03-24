@@ -6,8 +6,6 @@
  * 
  * @package News/blog module
  * @author Simon 'Sphere'
- * @todo Semantics
- * @todo Cleanup and integration with newsholderpage.
  * @method NewsHolderPage NewsHolderPages() this NewsItem belongs to
  * @method Image Impression() the Impression for this NewsItem
  * @method Comment Comment() Comments on this NewsItem
@@ -176,33 +174,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			return(Director::absoluteURL($Page));
 		}		
 	}
-		
-	/**
-	 * All the upcoming OG-functions are related to the OG module.
-	 * This bugs in live, works in development. Shoot me?
-	 * @return Image null or, if not available, it's holder-page's image.
-	 */
-	public function getOGImage(){
-		if($this->Impression()->ID > 0){
-			return Director::getAbsFile($this->Impression()->Filename);
-		}
-		else{
-			return Director::getAbsFile($this->NewsHolderPage()->Impression()->Filename);
-		}
-	}
-	
-	/**
-	 * Guess again.
-	 * @return String
-	 */
-	public function getOGTitle(){
-		return $this->Title;
-	}
-	
+
 	/**
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
 	 * The NewsHolderPage should NEVER be doubled.
-	 * @todo Make sure the NHP-setting works as it should. I think there might be bugs in this method of checking.
 	 * @todo slim down. Not everything here needs to be in onBeforeWrite.
 	 */
 	public function onBeforeWrite(){
@@ -268,7 +243,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 				$this->write();
 			}
 		}
-		/** Facebook is still broken :( */
 	}
 
 	/**
@@ -276,14 +250,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return boolean URLSegment already exists yes or no.
 	 */
 	public function LookForExistingURLSegment($URLSegment) {
-		return(News::get()
-			->filter(
+		return(News::get()->filter(
 				array("URLSegment" => $URLSegment)
-			)
-			->exclude(
+			)->exclude(
 				array("ID" => $this->ID)
-			)
-			->count() != 0);
+			)->count() != 0);
 	}
 	
 	public function getComments() {
