@@ -8,7 +8,7 @@
  * @todo Better comments
  * @todo Semantics
  */
-class NewsExtension extends DataExtension {
+class NewsControllerExtension extends DataExtension {
 
 	/**
 	 * Get all, or a limited, set of items.
@@ -31,9 +31,6 @@ class NewsExtension extends DataExtension {
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s')
 		);
-		if(class_exists('Translatable')){
-			$filter['Locale'] = Translatable::get_current_locale();
-		}
 		/**
 		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
 		 * @todo rewrite to the filter/exclude coming from a separate function. Should be more readable.
