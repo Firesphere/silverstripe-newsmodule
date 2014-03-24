@@ -112,23 +112,7 @@ class Comment extends DataObject {
 		 */
 		$this->MD5Email = md5($this->Email);
 		if($SiteConfig->AkismetKey) {
-			try {
-				$akismet = new Akismet(Director::absoluteBaseURL(), $SiteConfig->AkismetKey);
-				$akismet->setCommentAuthor($this->Name);
-				$akismet->setCommentContent($this->Comment);
-				$akismet->setCommentAuthorEmail($this->Email);
-				$akismet->setCommentAuthorURL($this->URL);
-				$result = (int)$akismet->isCommentSpam();
-				if($result){
-					$this->AkismetMarked = true;
-				}
-
-			} catch (Exception $e) {
-				// Akismet didn't work, most likely the service is down.
-				// Suggested options:
-				// Do absolutely nothing
-				// $this->Visible = false;
-			}
+			$this->checkAkismet();
 		}
 		/**
 		 * PHP and HTML do not like each other I guess.
@@ -175,6 +159,26 @@ class Comment extends DataObject {
 		$mail->send();
 	}
 	
+	private function checkAkismet() {
+		try {
+			$akismet = new Akismet(Director::absoluteBaseURL(), $SiteConfig->AkismetKey);
+			$akismet->setCommentAuthor($this->Name);
+			$akismet->setCommentContent($this->Comment);
+			$akismet->setCommentAuthorEmail($this->Email);
+			$akismet->setCommentAuthorURL($this->URL);
+			$result = (int)$akismet->isCommentSpam();
+			if($result){
+				$this->AkismetMarked = true;
+			}
+
+		} catch (Exception $e) {
+			// Akismet didn't work, most likely the service is down.
+			// Suggested options:
+			// Do absolutely nothing
+			// $this->Visible = false;
+		}
+	}
+	
 	/**
 	 * Permissions.
 	 * Because ehm... Well. You know.
@@ -192,7 +196,7 @@ class Comment extends DataObject {
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return true;
 	}
 
 }
