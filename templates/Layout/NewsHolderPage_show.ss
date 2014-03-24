@@ -40,11 +40,11 @@
 	<br />
 	<% if AllowComments %>
 	<hr />
-	<% if Comments %>
+	<% if getComments %>
 	<h3><%t NewsHolderPage_show.COMMENTS "Comments" %></h3>
 	<section id="comments">
 	<ul>
-	<% loop $Comments %>
+	<% loop $getComments %>
 	<% if $AkismetMarked == 0 %>
 	<li class="comment_$EvenOdd">
 		<header>

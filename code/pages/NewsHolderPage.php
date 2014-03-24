@@ -6,7 +6,7 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @method Newsitems News Newsitems linked to this page (for Translatable)
+ * @method News Newsitems() linked to this page (for Translatable)
  * @todo WHOAH! This thing is fat. Slim it down boy!
  * @todo besides the general getters, the news-functions should be in the model
  */
@@ -161,14 +161,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return DataList $return with Newsitems
 	 */
 	public function getRSSFeed() {
-		$return = $this->NewsItems()
-			->filter(
+		$return = $this->NewsItems()->filter(
 				array('Live' => 1)
-			)
-			->exclude(
+			)->exclude(
 				array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s'))
-			)
-			->limit(10);
+			)->limit(10);
 		return $return;
 	}
 	
@@ -222,7 +219,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Check the user-permissions.
-	 * @param String $type returntype setting.
+	 * @param String $Params returntype setting.
 	 * @return Array $filter filter for general getter.
 	 */
 	private function setupFilter($Params){

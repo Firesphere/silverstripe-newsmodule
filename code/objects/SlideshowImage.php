@@ -4,8 +4,8 @@
  *
  * @package News/Blog module
  * @author Simon `Sphere`
- * @method Image Image Image for this group
- * @method News News this image belongs to
+ * @method Image Image() Image for this group
+ * @method News News() this image belongs to
  */
 class SlideshowImage extends DataObject {
 

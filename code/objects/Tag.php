@@ -6,9 +6,8 @@
  * @author Simon 'Sphere' Erkelens
  * @package News/Blog module
  * @todo implement translations?
- * @todo Semantics
- * @method Impression Image Impressionimage for this tag
- * @method News News NewsItems this tag belongs to.
+ * @method Impression Image() Impressionimage for this tag
+ * @method News News() NewsItems this tag belongs to.
  */
 class Tag extends DataObject {
 	
