@@ -70,31 +70,7 @@ class Tag extends DataObject {
 	}
 	
 	/**
-	 * @todo fix sortorder
-	 * @return FieldList $fields Fields that are editable.
-	 */
-	public function getCMSFields() {
-		/** Setup new Root Fieldlist */
-		$fields = FieldList::create(TabSet::create('Root'));
-		/** Add the fields */
-		$fields->addFieldsToTab(
-			'Root', // To what tab
-			Tab::create(
-				'Main', // Name
-				_t('Tag.MAIN', 'Main'), // Title
-				/** Fields */
-				$text = TextField::create('Title', _t('Tag.TITLE', 'Title')),
-				$html = HTMLEditorField::create('Description', _t('Tag.DESCRIPTION', 'Description')),
-				$uplo = UploadField::create('Impression', _t('Tag.IMPRESSION', 'Impression image'))
-			)
-		);
-		return($fields);
-	}
-	
-	/**
-	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one. 
 	 * @todo I still have to fix that translatable, remember? ;)
-	 * @todo support multiple HolderPages?
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
@@ -111,14 +87,16 @@ class Tag extends DataObject {
 	
 	/**
 	 * test whether the URLSegment exists already on another tag
+	 * @param string $URLSegment
 	 * @return boolean if urlsegment already exists yes or no.
 	 */
-	public function LookForExistingURLSegment($URLSegment) {
+	public function LookForExistingURLSegment(string $URLSegment) {
 		return(Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
 	/**
 	 * Free guess on what this button does.
+	 * @param string $action The required action
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'tag/') {

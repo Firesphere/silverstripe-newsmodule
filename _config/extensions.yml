@@ -4,6 +4,9 @@ Name: Newsmodule-extensions
 News:
   extensions:
     ['NewsCMSExtension']
+Tag:
+  extensions:
+    ['TagCMSExtension']
 ContentController:
   extensions:
     ['NewsControllerExtension']
