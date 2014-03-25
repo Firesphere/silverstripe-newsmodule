@@ -122,6 +122,7 @@ class Comment extends DataObject {
 	
 	/**
 	 * Setup the Gravatar, because handling from the template is messy.
+	 * @return string $link The link to the Gravatar-file.
 	 */
 	public function getGravatar(){
 		$SiteConfig = SiteConfig::current_site_config();

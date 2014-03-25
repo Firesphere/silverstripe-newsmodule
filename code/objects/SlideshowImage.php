@@ -41,31 +41,36 @@ class SlideshowImage extends DataObject {
 		return $fields;
 	}
 	
+	public function onAfterWrite(){
+		parent::onAfterWrite();
+		/** @var SiteConfig $siteConfig Limit uploaded images to the setting in the siteconfig. */
+		$siteConfig = SiteConfig::current_site_config();
+		if($siteConfig->SlideshowSize){
+			$this->resizeImages($siteConfig);
+		}
+	}
+	
 	/**
 	 * If there's a max-size set in the SiteConfig ({width}x{height}) for the image, resize the image.
 	 * This saves space on the hosting and prevents huge high-res images to stay online for no reason.
+	 * @param SiteConfig $siteConfig
 	 */
-	public function onAfterWrite(){
-		parent::onAfterWrite();
-		/** Limit uploaded images to the setting in the siteconfig. */
-		$SiteConfig = SiteConfig::current_site_config();
-		if($SiteConfig->SlideshowSize){
-			$splitter = trim(str_replace(range(0,9),'',$SiteConfig->SlideshowSize));
-			$size = explode($splitter, $SiteConfig->SlideshowSize);
-			if ($this->Image()->getWidth() > $size[0]){
-				$maxSized = $this->Image()->SetWidth($size[0]);
+	public function resizeImages(SiteConfig $siteConfig) {
+		$splitter = trim(str_replace(range(0,9),'',$SiteConfig->SlideshowSize));
+		$size = explode($splitter, $SiteConfig->SlideshowSize);
+		if ($this->Image()->getWidth() > $size[0]){
+			$maxSized = $this->Image()->SetWidth($size[0]);
 
-				unlink(Director::baseFolder() . '/' . $this->Image()->getFilename());
-				copy(Director::baseFolder() . '/' . $maxSized->getFilename(), Director::baseFolder() . '/' . $this->Image()->getFilename());
-				unlink(Director::baseFolder() . '/' . $maxSized->getFilename());
-			}
-			if ($this->Image()->getHeight() > $size[1]){
-				$maxSized = $this->Image()->SetHeight($size[1]);
+			unlink(Director::baseFolder() . '/' . $this->Image()->getFilename());
+			copy(Director::baseFolder() . '/' . $maxSized->getFilename(), Director::baseFolder() . '/' . $this->Image()->getFilename());
+			unlink(Director::baseFolder() . '/' . $maxSized->getFilename());
+		}
+		if ($this->Image()->getHeight() > $size[1]){
+			$maxSized = $this->Image()->SetHeight($size[1]);
 
-				unlink(Director::baseFolder() . '/' . $this->Image()->getFilename());
-				copy(Director::baseFolder() . '/' . $maxSized->getFilename(), Director::baseFolder() . '/' . $this->Image()->getFilename());
-				unlink(Director::baseFolder() . '/' . $maxSized->getFilename());
-			}
+			unlink(Director::baseFolder() . '/' . $this->Image()->getFilename());
+			copy(Director::baseFolder() . '/' . $maxSized->getFilename(), Director::baseFolder() . '/' . $this->Image()->getFilename());
+			unlink(Director::baseFolder() . '/' . $maxSized->getFilename());
 		}
 	}
 
