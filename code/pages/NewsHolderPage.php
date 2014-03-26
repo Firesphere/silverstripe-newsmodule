@@ -80,6 +80,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @var array $allowed_actions, again.
 	 */
 	private static $allowed_actions = array(
+		'index',
 		'show',
 		'tag',
 		'tags',
@@ -90,9 +91,13 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'migrate',
 	);
 	
+	private static $url_handlers = array();
+	
 	protected $current_item;
 	
 	protected $current_tag;
+	
+	protected $current_siteconfig;
 
 	/**
 	 * Include the tagcloud scripts. Configure in newsmodule.js!
@@ -104,6 +109,110 @@ class NewsHolderPage_Controller extends Page_Controller {
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
+	}
+	
+	/**
+	 * Generic getters/setters for the protected values.
+	 */
+
+	/**
+	 * We escape the tags here, otherwise things bug out with the meta-tags.
+	 * @return News $news Current newsitem selected.
+	 */
+	public function setNews(){
+		$Params = $this->getURLParams();
+		$exclude = array(
+			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
+		);
+		/** @var array $segmentFilter Array containing the filter for current or any item */
+		$segmentFilter = $this->setupFilter($Params);
+		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
+		$this->current_item = $news;
+	}
+	
+	/**
+	 * 
+	 * @return News The current newsitem
+	 */
+	public function getNews() {
+		return $this->current_item;
+	}
+	/**
+	 * Set the current SiteConfig
+	 */
+	private function setCurrentSiteConfig() {
+		$this->current_siteconfig = SiteConfig::current_site_config();
+	}
+	
+	/**
+	 * Get the current SiteConfig
+	 * @return SiteConfig
+	 */
+	private function getCurrentSiteConfig() {
+		if(!$this->current_siteconfig) {
+			$this->setCurrentSiteConfig();
+		}
+		return $this->current_siteconfig;
+	}
+	
+	public function allowedActions($limitToClass = null){
+		$actions = parent::allowedActions($limitToClass);
+		$defaultMapping = array(
+			/** URL Mapping */
+			'tag',
+			'tags',
+			'show',
+			'author',
+			'archive',
+		);
+		$siteConfig = $this->getCurrentSiteConfig();
+		foreach($defaultMapping as $map) {
+			$key = ucfirst($map.'Action');
+			if($siteConfig->$key) {
+				self::$allowed_actions[] = $siteConfig->$key;
+			}
+		}
+		return array_merge($actions, self::$allowed_actions);
+	}
+	
+	public function handleAction($request, $action) {
+		parent::handleAction($request, $action);
+		$defaultMapping = array(
+			/** URL Mapping */
+			'tag'		=> 'tag',
+			'tags'		=> 'tags',
+			'show'		=> 'show',
+			'author'	=> 'author',
+			'archive'	=> 'archive',
+		);
+		$siteConfig = $this->getCurrentSiteConfig();
+		foreach($defaultMapping as $key => $map) {
+			$map = ucfirst($map.'Action');
+			if($siteConfig->$map && array_key_exists($action, $defaultMapping)) {
+				return $this->$key();
+			}
+		}
+		return parent::handleAction($request, $action);
+	}
+
+	/**
+	 * For URLMapping, we have to have this function here.
+	 * @return NewsHolderPage_Controller
+	 */
+	public function show() {
+		return $this->renderWith(array($this->ClassName.'_show', 'Page'));
+	}
+	public function tag() {
+		return $this->renderWith(array($this->ClassName.'_tag', 'Page'));
+	}
+	public function tags() {
+		return $this->renderWith(array($this->ClassName.'_tags', 'Page'));
+	}
+	public function author() {
+		return $this->renderWith(array($this->ClassName.'_author', 'Page'));
+	}
+	public function archive() {
+		return $this->renderWith(array($this->ClassName.'_archive', 'Page'));
 	}
 
 	/**
@@ -196,30 +305,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * General setter.
-	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @return News $news Current newsitem selected.
-	 */
-	public function setNews(){
-		$Params = $this->getURLParams();
-		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
-		);
-		/** @var array $segmentFilter Array containing the filter for current or any item */
-		$segmentFilter = $this->setupFilter($Params);
-		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
-		$this->current_item = $news;
-	}
-	
-	/**
-	 * 
-	 * @return News The current newsitem
-	 */
-	public function getNews() {
-		return $this->current_item;
-	}
-	
-	/**
 	 * Check the user-permissions.
 	 * @param String $Params returntype setting.
 	 * @return Array $filter filter for general getter.
@@ -279,7 +364,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return object of the item.
 	 */
 	public function currentNewsItem(){
-		$siteConfig = SiteConfig::current_site_config();
+		$siteConfig = $this->getCurrentSiteConfig();
 		$newsItem = $this->current_item;
 		if ($newsItem) {
 			/** If either one of these is false, no comments are allowed */
@@ -294,7 +379,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return ArrayList $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
-		$SiteConfig = SiteConfig::current_site_config();
+		$SiteConfig = $this->getCurrentSiteConfig();
 		$Params = $this->getURLParams();
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
@@ -353,7 +438,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return form for Comments
 	 */
 	public function CommentForm(){
-		$siteconfig = SiteConfig::current_site_config();
+		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
 		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
 	}

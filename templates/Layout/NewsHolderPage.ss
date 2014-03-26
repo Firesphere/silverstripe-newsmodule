@@ -4,8 +4,8 @@
       <section id="latest_work">
           
           
-<% if allNews %>
-      <% loop allNews %>
+<% if $allNews %>
+      <% loop $allNews %>
       <article class="one_third $FirstLast <% if IsThird %>First<% end_if %>">
 	      	      <div class="articleContainer">
 	      <% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a>
