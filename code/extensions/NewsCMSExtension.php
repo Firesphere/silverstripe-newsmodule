@@ -2,9 +2,8 @@
 /**
  * To clean up and make the News object cleaner.
  * Also, easier reading for functions etc.
+ * It has no super powers.
  * 
- * @todo take a close look at what's going on. There might be some overkill here.
- *
  * @package News/blog module
  * @author Simon 'Sphere'
  */
