@@ -1,11 +1,7 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- * Description of TagCMSExtension
+ * Handler for the CMS options for tags. This cleans up the Tags class.
+ * This is pure for readability, it has no super powers.
  *
  * @author Simon 'Sphere' Erkelens
  */
