@@ -126,7 +126,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * 
 	 * @return News The current newsitem
 	 */
 	public function getNews() {
@@ -170,14 +169,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	public function handleAction($request, $action) {
 		parent::handleAction($request, $action);
-		$defaultMapping = array(
-			/** URL Mapping */
-			'tag',
-			'tags',
-			'show',
-			'author',
-			'archive',
-		);
+		$defaultMapping = self::$allowed_actions;
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach($defaultMapping as $key) {
 			$map = ucfirst($key.'Action');
