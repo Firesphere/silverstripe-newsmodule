@@ -84,13 +84,9 @@ class NewsSiteConfigExtension extends DataExtension {
 	 * @param FieldList $fields of current FieldList of SiteConfig
 	 */
 	public function updateCMSFields(FieldList $fields){
-		/** Only allow authors! */
+		/** Only allow authors or higher! */
 		if(($this->owner->AllowAuthors && Member::currentUser()->inGroup('content-authors')) || Member::currentUser()->inGroup('administrators')){
 			$userTabs = array();
-			$adminTabs = array();
-			foreach(self::$config_tabs as $tab) {
-				$userTabs[] = $this->$tab();
-			}
 			$fields->addFieldToTab(
 				'Root', // What tab
 				TabSet::create(
@@ -98,8 +94,12 @@ class NewsSiteConfigExtension extends DataExtension {
 					_t('NewsSiteConfigExtension.NEWSCOMMENTS', 'News settings')
 				)
 			);
+			foreach(self::$config_tabs as $tab) {
+				$userTabs[] = $this->$tab();
+			}
 			$fields->addFieldsToTab('Root.Newssettings', $userTabs);
 			if(Member::currentUser()->inGroup('administrators')){
+				$adminTabs = array();
 				foreach(self::$admin_tabs as $tab) {
 					$adminTabs[] = $this->$tab();
 				}
@@ -204,6 +204,9 @@ class NewsSiteConfigExtension extends DataExtension {
 		);
 	}
 	
+	/**
+	 * Make sure the chosen action by the user is safe for usage.
+	 */
 	public function onBeforeWrite() {
 		$maps = array(
 			/** URL Mapping */
