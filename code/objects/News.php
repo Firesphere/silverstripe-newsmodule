@@ -77,15 +77,23 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	);
 	
 	/**
+	 * Store the siteconfig in a local variable, saves queries.
+	 * @var type SiteConfig
+	 */
+	protected $current_siteconfig;
+	
+	/**
 	 * 
 	 * @param array|null $record This will be null for a new database record.  Alternatively, you can pass an array of
 	 * field values.  Normally this contructor is only used by the internal systems that get objects from the database.
 	 * @param boolean $isSingleton This this to true if this is a singleton() object, a stub for calling methods.
 	 *                             Singletons don't have their defaults set.
 	 * @param News $model The model we're instantiating.
+	 * @todo Fix this a cleaner way, it's overkill.
 	 */
 	public function __construct($record = null, $isSingleton = false, $model = null) {
 		parent::__construct($record, $isSingleton, $model);
+		$this->current_siteconfig = SiteConfig::current_site_config();
 		if(!$this->ID && Member::currentUser()) {
 			$name =  Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
 			$this->Author = $name;
@@ -158,8 +166,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
+		if($this->current_siteconfig->ShowAction) {
+			$action = $this->current_siteconfig->ShowAction;
+		}
 		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action).$this->URLSegment);
+			return($Page->Link($action.'/'.$this->URLSegment));
 		}
 		return false;
 	}
@@ -169,8 +180,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @param string $action The added URLSegment, the actual function that'll return the news.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink($action = 'show/'){
-		if($Page = $this->Link($action)){
+	public function AbsoluteLink(){
+		if($Page = $this->Link()){
 			return(Director::absoluteURL($Page));
 		}		
 	}
@@ -178,7 +189,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * The holder-page ID should be set if translatable, otherwise, we just select the first available one.
 	 * The NewsHolderPage should NEVER be doubled.
-	 * @todo slim down. Not everything here needs to be in onBeforeWrite.
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
@@ -199,32 +209,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(substr($this->External,0,4) != 'http' && $this->External != ''){
 			$this->External = 'http://'.$this->External;
 		}
-		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
-			if($this->ID > 0){
-				$Renamed = new Renamed();
-				$Renamed->OldLink = $this->URLSegment;
-				$Renamed->NewsID = $this->ID;
-				$Renamed->write();
-			}
-			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
-			if(strpos($this->URLSegment, 'page-') === false){
-				$nr = 1;
-				while($this->LookForExistingURLSegment($this->URLSegment)){
-					$this->URLSegment .= '-'.$nr++;
-				}
-			}
-		}
-		$this->Author = trim($this->Author);
-		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
-		if($author->count() == 0){
-			$author = AuthorHelper::create();
-			$author->OriginalName = trim($this->Author);
-			$author->write();
-		}
-		else{
-			$author = $author->first();
-		}
-		$this->AuthorID = $author->ID;
+		$this->setURLSegment();
+		$this->setAuthorData();
 	}
 	
 	public function onAfterWrite(){
@@ -246,15 +232,53 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
 	/**
+	 * Setup the URLSegment for this item and create a Renamed Object if it's a rename-action.
+	 */
+	private function setURLSegment() {
+		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
+			if($this->ID > 0){
+				$Renamed = new Renamed();
+				$Renamed->OldLink = $this->URLSegment;
+				$Renamed->NewsID = $this->ID;
+				$Renamed->write();
+			}
+			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
+			if(strpos($this->URLSegment, 'page-') === false){
+				$nr = 1;
+				while($this->LookForExistingURLSegment($this->URLSegment)){
+					$this->URLSegment .= '-'.$nr++;
+				}
+			}
+		}
+	}
+	
+	/**
 	 * test whether the URLSegment exists already on another Newsitem
 	 * @return boolean URLSegment already exists yes or no.
 	 */
-	public function LookForExistingURLSegment($URLSegment) {
+	private function LookForExistingURLSegment($URLSegment) {
 		return(News::get()->filter(
 				array("URLSegment" => $URLSegment)
 			)->exclude(
 				array("ID" => $this->ID)
 			)->count() != 0);
+	}
+	
+	/**
+	 * Create the author if non-existing yet, and set his/her ID to this item.
+	 */
+	private function setAuthorData() {
+		$this->Author = trim($this->Author);
+		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
+		if($author->count() == 0){
+			$author = AuthorHelper::create();
+			$author->OriginalName = trim($this->Author);
+			$author->write();
+		}
+		else{
+			$author = $author->first();
+		}
+		$this->AuthorID = $author->ID;
 	}
 	
 	public function getComments() {

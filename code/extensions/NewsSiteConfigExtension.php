@@ -10,40 +10,55 @@ class NewsSiteConfigExtension extends DataExtension {
 	/** @var array $db Contains all the extra's we need for setting everything up. */
 	private static $db = array(
 		/** Default options */
-		'UseAbstract' => 'Boolean(true)',
-		'PostsPerPage' => 'Int',
-		'TweetOnPost' => 'Boolean(false)',
+		'UseAbstract'		=> 'Boolean(true)',
+		'PostsPerPage'		=> 'Int',
+		'TweetOnPost'		=> 'Boolean(false)',
 		/** Slideshow options */
-		'EnableSlideshow' => 'Boolean(true)',
-		'SlideshowInitial' => 'Boolean(true)',
-		'SlideshowSize' => 'Varchar(15)',
+		'EnableSlideshow'	=> 'Boolean(true)',
+		'SlideshowInitial'	=> 'Boolean(true)',
+		'SlideshowSize'		=> 'Varchar(15)',
 		/** Comment options */
-		'Comments' => 'boolean(true)',
-		'NewsEmail' => 'Varchar(255)',
-		'MustApprove' => 'boolean(true)',
-		'Gravatar' => 'boolean(true)',
-		'DefaultGravatar' => 'Varchar(255)',
-		'GravatarSize' => 'Int',
-		'AkismetKey' => 'Varchar(255)',
-		'NoscriptSecurity' => 'Boolean(true)',
-		'ExtraSecurity' => 'Boolean(true)',
+		'Comments'		=> 'boolean(true)',
+		'NewsEmail'		=> 'Varchar(255)',
+		'MustApprove'		=> 'boolean(true)',
+		'Gravatar'		=> 'boolean(true)',
+		'DefaultGravatar'	=> 'Varchar(255)',
+		'GravatarSize'		=> 'Int',
+		'AkismetKey'		=> 'Varchar(255)',
+		'NoscriptSecurity'	=> 'Boolean(true)',
+		'ExtraSecurity'		=> 'Boolean(true)',
 		/** External options */
 		'AllowExternals' => 'Boolean(true)',
 		'AllowDownloads' => 'Boolean(true)',
 		'ReturnExternal' => 'Boolean(true)',
 		/** Security settings */
-		'AllowAuthors' => 'Boolean(false)',
-		'AllowTags' => 'Boolean(true)',
-		'AllowExport' => 'Boolean(false)',
-		'AllowSlideshow' => 'Boolean(true)',
+		'AllowAuthors'		=> 'Boolean(false)',
+		'AllowTags'		=> 'Boolean(true)',
+		'AllowExport'		=> 'Boolean(false)',
+		'AllowSlideshow'	=> 'Boolean(true)',
 		/** Social data */
-		'TwitterAccount' => 'Varchar(255)',
+		'TwitterAccount'	=> 'Varchar(255)',
+		/** URL Mapping */
+		'TagAction'		=> 'Varchar(255)',
+		'TagsAction'		=> 'Varchar(255)',
+		'ShowAction'		=> 'Varchar(255)',
+		'AuthorAction'		=> 'Varchar(255)',
+		'ArchiveAction'		=> 'Varchar(255)',
 	);
 	
 	/** @var array $has_one Contains all the one-to-many relations */
 	private static $has_one = array(
 		'DefaultImage' => 'Image',
 		'DefaultGravatarImage' => 'Image',
+	);
+	
+	private static $defaults = array(
+		/** URL Mapping */
+		'TagAction'		=> 'tag',
+		'TagsAction'		=> 'tags',
+		'ShowAction'		=> 'show',
+		'AuthorAction'		=> 'author',
+		'ArchiveAction'		=> 'archive',
 	);
 	
 	/**
@@ -109,18 +124,46 @@ class NewsSiteConfigExtension extends DataExtension {
 				'Access'
 			);
 			if(Member::currentUser()->inGroup('administrators')){
-				$fields->addFieldToTab(
+				$fields->addFieldsToTab(
 					'Root.Newssettings',
-					Tab::create(
-						'Security',
-						_t('NewsSiteConfigExtension.SEC', 'Security'),
-						CheckboxField::create('AllowAuthors', _t('NewsSiteConfigExtension.ALLOWAUTHOR', 'Allow content authors to edit news settings')),
-//						CheckboxField::create('AllowTags', _t('NewsSiteConfigExtension.ALLOWTAGS', 'Allow usage of tags')), @todo fix this to make it work.
-						CheckboxField::create('AllowExport', _t('NewsSiteConfigExtension.ALLOWEXPORT', 'Allow content authors to export all data')),
-						CheckboxField::create('AllowSlideshow', _t('NewsSiteConfigExtension.ALLOWSLIDESHOW', 'Allow the usage of the slideshow (in beta)'))
+					array(
+						Tab::create(
+							'URL Mapping',
+							_t('NewsSiteConfigExtension.MAPPING', 'URL Mapping'),
+							LiteralField::create('mappinghelp', _t('NewsSiteConfigExtension.MAPPINGHELP', 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show')),
+							TextField::create('ShowAction', _t('NewsSiteConfigExtension.SHOWMAPPING', 'URL Parameter to show an item')),
+							TextField::create('TagAction', _t('NewsSiteConfigExtension.TAGMAPPING', 'URL Parameter to show a tag')),
+							TextField::create('TagsAction', _t('NewsSiteConfigExtension.TAGSMAPPING', 'URL Parameter to show all tags')),
+							TextField::create('AuthorAction', _t('NewsSiteConfigExtension.AUTHORMAPPING', 'URL Parameter to show an authorpage')),
+							TextField::create('ArchiveAction', _t('NewsSiteConfigExtension.ARCHIVEMAPPING', 'URL Parameter to show the archive'))
+						),
+						Tab::create(
+							'Security',
+							_t('NewsSiteConfigExtension.SEC', 'Security'),
+							CheckboxField::create('AllowAuthors', _t('NewsSiteConfigExtension.ALLOWAUTHOR', 'Allow content authors to edit news settings')),
+	//						CheckboxField::create('AllowTags', _t('NewsSiteConfigExtension.ALLOWTAGS', 'Allow usage of tags')), @todo fix this to make it work.
+							CheckboxField::create('AllowExport', _t('NewsSiteConfigExtension.ALLOWEXPORT', 'Allow content authors to export all data')),
+							CheckboxField::create('AllowSlideshow', _t('NewsSiteConfigExtension.ALLOWSLIDESHOW', 'Allow the usage of the slideshow (in beta)'))
+						)
 					),
 					'Help'
 				);
+			}
+		}
+	}
+	
+	public function onBeforeWrite() {
+		$maps = array(
+			/** URL Mapping */
+			'TagAction',
+			'TagsAction',
+			'ShowAction',
+			'AuthorAction',
+			'ArchiveAction',
+		);
+		foreach($maps as $map) {
+			if($this->owner->$map){
+				$this->owner->$map = singleton('SiteTree')->generateURLSegment($this->owner->$map);
 			}
 		}
 	}
