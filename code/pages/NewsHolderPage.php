@@ -80,7 +80,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @var array $allowed_actions, again.
 	 */
 	private static $allowed_actions = array(
-		'index',
 		'show',
 		'tag',
 		'tags',
@@ -110,10 +109,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
 	}
-	
-	/**
-	 * Generic getters/setters for the protected values.
-	 */
 
 	/**
 	 * We escape the tags here, otherwise things bug out with the meta-tags.
@@ -155,16 +150,14 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return $this->current_siteconfig;
 	}
 	
+	/**
+	 * Setup the allowed actions to work with the SiteConfig settings.
+	 * @param type $limitToClass
+	 * @return array
+	 */
 	public function allowedActions($limitToClass = null){
 		$actions = parent::allowedActions($limitToClass);
-		$defaultMapping = array(
-			/** URL Mapping */
-			'tag',
-			'tags',
-			'show',
-			'author',
-			'archive',
-		);
+		$defaultMapping = self::$allowed_actions;
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach($defaultMapping as $map) {
 			$key = ucfirst($map.'Action');
@@ -179,40 +172,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 		parent::handleAction($request, $action);
 		$defaultMapping = array(
 			/** URL Mapping */
-			'tag'		=> 'tag',
-			'tags'		=> 'tags',
-			'show'		=> 'show',
-			'author'	=> 'author',
-			'archive'	=> 'archive',
+			'tag',
+			'tags',
+			'show',
+			'author',
+			'archive',
 		);
 		$siteConfig = $this->getCurrentSiteConfig();
-		foreach($defaultMapping as $key => $map) {
-			$map = ucfirst($map.'Action');
-			if($siteConfig->$map && array_key_exists($action, $defaultMapping)) {
-				return $this->$key();
+		foreach($defaultMapping as $key) {
+			$map = ucfirst($key.'Action');
+			if($siteConfig->$map && $siteConfig->$map == $action) {
+				return parent::handleAction($request, $key);
 			}
 		}
 		return parent::handleAction($request, $action);
-	}
-
-	/**
-	 * For URLMapping, we have to have this function here.
-	 * @return NewsHolderPage_Controller
-	 */
-	public function show() {
-		return $this->renderWith(array($this->ClassName.'_show', 'Page'));
-	}
-	public function tag() {
-		return $this->renderWith(array($this->ClassName.'_tag', 'Page'));
-	}
-	public function tags() {
-		return $this->renderWith(array($this->ClassName.'_tags', 'Page'));
-	}
-	public function author() {
-		return $this->renderWith(array($this->ClassName.'_author', 'Page'));
-	}
-	public function archive() {
-		return $this->renderWith(array($this->ClassName.'_archive', 'Page'));
 	}
 
 	/**
@@ -446,6 +419,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * This is to migrate existing newsitems to the new release with the new relational method.
 	 * It is forward-non-destructive.
+	 * @todo this Migration is broken because the @method NewsHolderPage NewsHolderPage() doesn't exist on News anymore.
 	 */
 	public function migrate() {
 		$newsitems = News::get();

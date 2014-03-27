@@ -97,12 +97,16 @@ class Tag extends DataObject {
 	/**
 	 * Free guess on what this button does.
 	 * @param string $action The required action
-	 * @return string Link to this object.
+	 * @return string|boolean Link to this object or false if no holderpage is found..
 	 */
 	public function Link($action = 'tag/') {
-		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action).$this->URLSegment);
+		if($this->current_siteconfig->TagAction) {
+			$action = $this->current_siteconfig->TagAction;
 		}
+		if ($Page = NewsHolderPage::get()->first()) {
+			return($Page->Link($action.'/'.$this->URLSegment));
+		}
+		return false;
 	}
 
 	/**
@@ -110,10 +114,10 @@ class Tag extends DataObject {
 	 * @param string $action The added URLSegment, the actual function that'll return the tag.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink($action = 'tag/'){
-		if ($Page = NewsHolderPage::get()->first()) {
-			return(Director::absoluteURL($Page->Link($action)). $this->URLSegment);
-		}		
+	public function AbsoluteLink(){
+		if($Page = $this->Link()){
+			return(Director::absoluteURL($Page));
+		}
 	}
 	
 	/**
