@@ -59,13 +59,12 @@ class NewsAdmin extends ModelAdmin {
 	 */
 	public function getList() {
 		$list = parent::getList();
-		$siteConfig = SiteConfig::current_site_config(); // Unused? @Marcio Barrientos
 		if($this->modelClass == 'News' && class_exists('Subsite')) {
 			$filter = array();
 			foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage){
 				array_push($filter,$holderpage->ID);
 			}
-			$list = $list->filter('NewsHolderPageID', $filter);
+			$list = $list->filter('NewsHolderPages.ID', $filter);
 		}
 
 		return $list;
