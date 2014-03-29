@@ -21,24 +21,20 @@ class SlideshowImage extends DataObject {
 		'Image' => 'Image',
 		'News' => 'News',
 	);
-
+	
 	/**
-	 * Setup the CMSFields
-	 * @return FieldList $fields Fields to be shown in the admin.
+	 * Setup the Fields labels with the correct translation (if needed)
+	 * @param boolean $includerelations
+	 * @return array The final translations.
 	 */
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->removeFieldsFromTab('Root.Main', array('NewsID','SortOrder'));
-		$fields->addFieldsToTab(
-			'Root.Main',
-			array(
-				TextField::create('Title', _t('SlideshowImage.TITLE', 'Title')),
-				HtmlEditorField::create('Description', _t('SlideshowImage.DESCRIPTION', 'Description')),
-				UploadField::create('Image', _t('SlideshowImage.IMAGE', 'Image')),
-				TextField::create('Title', _t('SlideshowImage.TITLE', 'Title'))
-			)
+	public function fieldLabels($includerelations = true) {
+		$labels = parent::fieldLabels($includerelations);
+		$slideshowImageLabels = array(
+			'Title' => _t('SlideshowImage.TITLE', 'Title'),
+			'Description' => _t('SlideshowImage.DESCRIPTION', 'Description'),
+			'Image' => _t('SlideshowImage.IMAGE', 'Image'),
 		);
-		return $fields;
+		return array_merge($slideshowImageLabels, $labels);
 	}
 	
 	public function onAfterWrite(){
@@ -56,8 +52,8 @@ class SlideshowImage extends DataObject {
 	 * @param SiteConfig $siteConfig
 	 */
 	public function resizeImages(SiteConfig $siteConfig) {
-		$splitter = trim(str_replace(range(0,9),'',$SiteConfig->SlideshowSize));
-		$size = explode($splitter, $SiteConfig->SlideshowSize);
+		$splitter = trim(str_replace(range(0,9),'',$siteConfig->SlideshowSize));
+		$size = explode($splitter, $siteConfig->SlideshowSize);
 		if ($this->Image()->getWidth() > $size[0]){
 			$maxSized = $this->Image()->SetWidth($size[0]);
 

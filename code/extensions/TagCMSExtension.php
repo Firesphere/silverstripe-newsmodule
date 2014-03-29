@@ -14,6 +14,7 @@ class TagCMSExtension extends DataExtension {
 	public function updateCMSFields(FieldList $fields) {
 		/** Setup new Root Fieldlist */
 		$fields->removeByName('Main');
+		$owner = $this->owner;
 		/** Add the fields */
 		$fields->addFieldsToTab(
 			'Root', // To what tab
@@ -21,9 +22,9 @@ class TagCMSExtension extends DataExtension {
 				'Main', // Name
 				_t('Tag.MAIN', 'Main'), // Title
 				/** Fields */
-				$text = TextField::create('Title', _t('Tag.TITLE', 'Title')),
-				$html = HTMLEditorField::create('Description', _t('Tag.DESCRIPTION', 'Description')),
-				$uplo = UploadField::create('Impression', _t('Tag.IMPRESSION', 'Impression image'))
+				$text = TextField::create('Title', $owner->fieldLabel('Title')),
+				$html = HTMLEditorField::create('Description', $owner->fieldLabel('Description')),
+				$uplo = UploadField::create('Impression', $owner->fieldLabel('Impression'))
 			)
 		);
 	}

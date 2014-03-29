@@ -16,29 +16,20 @@ class CommentForm extends Form {
 	 * @param array $params Current URL Parameters
 	 */
 	public function __construct($controller, $name, $siteconfig, $params) {
-		$field = array();
+		$fields = singleton('Comment')->getFrontendFields();
 		/** Include the ID of the current item. Otherwise we can't link correctly. */
 		$NewsID = Controller::curr()->request->postVar('NewsID');
 		if($NewsID == null){
 			$newsItem = News::get()->filter(array('URLSegment' => $params['ID']))->first();
-			$field[] = HiddenField::create('NewsID', '', $newsItem->ID);
+			$fields->push(HiddenField::create('NewsID', '', $newsItem->ID));
 		}
-		$field[] = TextField::create('Name', _t('CommentForm.NAME', 'Name'));
-		$field[] = TextField::create('Title', _t('CommentForm.TITLE', 'Title'));
-		$field[] = TextField::create('Email', _t('CommentForm.EMAIL', 'Email address'));
-		$field[] = TextField::create('URL', _t('CommentForm.WEBSITE', 'Website'));
-		$field[] = TextareaField::create('Comment', _t('CommentForm.COMMENT', 'Comment'));
 		/** Check the Readme.MD for details about extra spam-protection */
 		if($siteconfig->ExtraSecurity){
-			$field[] = TextField::create('Extra', _t('CommentForm.EXTRA', 'Extra'));
+			$fields->push(TextField::create('Extra', _t('CommentForm.EXTRA', 'Extra')));
 		}
 		if($siteconfig->NoscriptSecurity){
-			$field[] = LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>');
+			$fields->push(LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>'));
 		}
-		$fields = FieldList::create(
-			$field
-		);
-
 		$actions = FieldList::create(
 			FormAction::create('CommentStore', 'Send')
 		);
