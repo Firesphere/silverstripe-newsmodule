@@ -7,6 +7,9 @@ News:
 Tag:
   extensions:
     ['TagCMSExtension']
+SlideshowImage:
+  extensions:
+    ['SlideshowCMSExtension']
 ContentController:
   extensions:
     ['NewsControllerExtension']
