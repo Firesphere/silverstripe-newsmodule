@@ -66,9 +66,10 @@ class NewsHolderPage extends Page {
 	 * @return DataObjectSet NewsItems Items belonging to this page
 	 */
 	public function Children(){
+		$now = date('Y-m-d');
 		return $this->Newsitems()
 			->filter(array('Live' => true))
-			->exclude(array('PublishFrom:GreaterThan' => 'NOW()'));
+			->exclude(array('PublishFrom:GreaterThan' => $now));
 	}
 
 }
