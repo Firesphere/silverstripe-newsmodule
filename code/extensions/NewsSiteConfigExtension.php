@@ -7,6 +7,7 @@
  * @method Image DefaultImage() The default impression image.
  * @method Image DefaultGravatarImage() The default gravatar image.
  * @todo Work this out a bit better.
+ * @todo fix the fieldlabels
  */
 class NewsSiteConfigExtension extends DataExtension {
 
@@ -81,6 +82,7 @@ class NewsSiteConfigExtension extends DataExtension {
 
 	/**
 	 * Update the SiteConfig with the news-settings.
+	 * The tabs are pushed into arrays, because it works better than adding them one by one.
 	 * @param FieldList $fields of current FieldList of SiteConfig
 	 */
 	public function updateCMSFields(FieldList $fields){

@@ -33,7 +33,7 @@ class NewsCMSExtension extends DataExtension {
 		$this->displayLogic();
 		$this->createHelptab();
 		if(count($this->type_array) > 1){
-			$this->field_list['Root.Main'][3] = OptionsetField::create('Type', _t('News.NEWSTYPE', 'Type of item'), $this->type_array, $owner->Type);
+			$this->field_list['Root.Main'][3] = OptionsetField::create('Type', $owner->fieldLabel('Type'), $this->type_array, $owner->Type);
 		}
 		$this->setupFields($owner, $fields);
 	}
@@ -42,15 +42,16 @@ class NewsCMSExtension extends DataExtension {
 	 * Setup the default fields that are always available.
 	 */
 	private function defaultFields() {
+		$owner = $this->owner;
 		$this->field_list = array(
 			'Root.Main' => array(
-				0  => TextField::create('Title', _t('News.TITLE', 'Title')),
-				6  => HTMLEditorField::create('Content', _t('News.CONTENT', 'Content')),
-				8  => TextField::create('Author', _t('News.AUTHOR', 'Author')),
-				9  => DateField::create('PublishFrom', _t('News.PUBDATE', 'Publish from'))->setConfig('showcalendar', true),
-				10 => CheckboxField::create('Live', _t('News.PUSHLIVE', 'Published')),
-				11 => CheckboxField::create('Commenting', _t('News.COMMENTING', 'Allow comments on this item')),
-				12 => UploadField::create('Impression', _t('News.IMPRESSION', 'Impression image')),
+				0  => TextField::create('Title', $owner->fieldLabel('Title')),
+				6  => HTMLEditorField::create('Content', $owner->fieldLabel('Content')),
+				8  => TextField::create('Author', $owner->fieldLabel('Author')),
+				9  => DateField::create('PublishFrom', $owner->fieldLabel('PublishFrom'))->setConfig('showcalendar', true),
+				10 => CheckboxField::create('Live', $owner->fieldLabel('Published')),
+				11 => CheckboxField::create('Commenting', $owner->fieldLabel('Commenting')),
+				12 => UploadField::create('Impression', $owner->fieldLabel('Impression')),
 			)
 		);
 		$this->field_list['Root.Main'][9]->setConfig('dateformat', 'yyyy-MM-dd');
@@ -64,22 +65,22 @@ class NewsCMSExtension extends DataExtension {
 	private function siteConfigFields(News $owner, SiteConfig $siteConfig) {
 		/** First the defaults */
 		if($siteConfig->UseAbstract){
-			$this->field_list['Root.Main'][4] = TextareaField::create('Synopsis', _t('News.SUMMARY', 'Summary/Abstract'));
+			$this->field_list['Root.Main'][4] = TextareaField::create('Synopsis', $owner->fieldLabel('Synopsis'));
 		}
 		if($siteConfig->AllowExternals){
 			$this->type_array['external'] = _t('News.EXTERNALTYPE', 'External link');
-			$this->field_list['Root.Main'][5] = TextField::create('External', _t('News.EXTERNAL', 'External link'));
+			$this->field_list['Root.Main'][5] = TextField::create('External', $owner->fieldLabel('External'));
 		}
 		if($siteConfig->AllowDownloads){
 			$this->type_array['download'] = _t('News.DOWNLOADTYPE', 'Downloadable file');
-			$this->field_list['Root.Main'][7] = UploadField::create('Download', _t('News.DOWNLOAD', 'Downloadable file'));
+			$this->field_list['Root.Main'][7] = UploadField::create('Download', $owner->fieldLabel('Download'));
 		}
 		/** Setup the tab for comments, if allowed */
 		if($siteConfig->Comments){
 			$this->field_list['Root'][] =
 			Tab::create(
 				'Comments',
-				_t('News.COMMENTS', 'Comments'),
+				$owner->fieldLabel('Comments'),
 				GridField::create(
 					'Comment', 
 					_t('News.COMMENTS', 'Comments'),
@@ -112,7 +113,7 @@ class NewsCMSExtension extends DataExtension {
 			else {
 				$pagelist = $pages->map('ID', 'Title');
 			}
-			$this->field_list['Root.Main'][1] = ListboxField::create('NewsHolderPages', _t('News.LINKEDPAGES', 'Linked pages'), $pagelist);
+			$this->field_list['Root.Main'][1] = ListboxField::create('NewsHolderPages', $this->owner->fieldLabel('NewsHolderPages'), $pagelist);
 			$this->field_list['Root.Main'][1]->setMultiple(true);
 		}
 		if($enabled) {
@@ -127,11 +128,11 @@ class NewsCMSExtension extends DataExtension {
 	 */
 	private function existingItem(News $owner, SiteConfig $siteConfig) {
 		if(!$owner->ID) {
-			$this->field_list['Root.Main'][13] = ReadonlyField::create('Tags', _t('News.TAGS', 'Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
+			$this->field_list['Root.Main'][13] = ReadonlyField::create('Tags', $owner->fieldLabel('Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
 			$owner->Type = 'news';
 		}
 		else {
-			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', _t('News.TAGS', 'Tags'), Tag::get()->map('ID', 'Title'));
+			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
 			$this->field_list['Root.Main'][2] =
 				LiteralField::create('Dummy',
 					'<div id="Dummy" class="field readonly">
@@ -150,7 +151,7 @@ class NewsCMSExtension extends DataExtension {
 				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
 				$this->field_list['Root'][] = Tab::create(
 					'SlideshowImages',
-					_t('News.SLIDE', 'Slideshow'),
+					$owner->fieldLabel('SlideshowImages'),
 					GridField::create(
 						'SlideshowImage',
 						_t('News.IMAGES', 'Slideshow images'),
@@ -182,7 +183,7 @@ class NewsCMSExtension extends DataExtension {
 		Tab::create(
 			'Help',
 			_t('News.HELPTAB', 'Help'),
-			ReadonlyField::create('', _t('News.BASEHELPLABEL', 'Help'), _t('News.BASEHELPTEXT', $helpText))
+			ReadonlyField::create('', $this->owner->fieldLabel('Help'), _t('News.BASEHELPTEXT', $helpText))
 		);
 	}
 
@@ -211,5 +212,5 @@ class NewsCMSExtension extends DataExtension {
 		}
 		return $fields;
 	}
-
+	
 }

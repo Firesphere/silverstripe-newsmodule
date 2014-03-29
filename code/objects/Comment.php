@@ -61,10 +61,55 @@ class Comment extends DataObject {
 			return parent::plural_name();
 		}   
 	}
-	/** If you hadn't guessed what the above does. Try the functions below! */
 	
 	/**
-	 * For translations, we need a few updates here, but at least we hide the md5 of the e-mail.
+	 * Setup the fieldlabels and possibly the translations.
+	 * @param boolean $includerelations
+	 * @return array The array with (translated) fieldlabels.
+	 */
+	public function fieldLabels($includerelations = true) {
+		$labels = parent::fieldLabels($includerelations);
+		$commentLabels = array(
+			'Title'		=> _t('Comment.TITLE', 'Title'),
+			'Name'		=> _t('Comment.NAME', 'Name'),
+			'Email'		=> _t('Comment.EMAIL', 'Email'),
+			'URL'		=> _t('Comment.URL', 'URL'),
+			'Comment'	=> _t('Comment.COMMENT', 'Comment'),
+			'AkismetMarked'	=> _t('Comment.AKISMETMARKED', 'Akismet marked'),
+			'Visible'	=> _t('Comment.VISIBLE', 'Visible'),
+			'ShowGravatar'	=> _t('Comment.GRAVATAR', 'Show Gravatar'),
+			'News'		=> _t('Comment.NEWS', 'News'),
+		);
+		return array_merge($commentLabels, $labels);
+	}
+	
+	/**
+	 * Setup the fields for the frontend
+	 * @param type $params
+	 * @return FieldList $fields the default FieldList
+	 */
+	public function getFrontEndFields($params = null) {
+		$fields = parent::getFrontEndFields($params);
+		$fields->removeByName(array(
+			'MD5Email',
+			'AkismetMarked',
+			'Visible',
+			'ShowGravatar',
+			'News',
+		));
+		$fields->replaceField('Email', EmailField::create('Email', $this->fieldLabel('Email')));
+		$fields->replaceField('Comment', TextAreaField::create('Comment', $this->fieldLabel('Comment')));
+		$fields->fieldByName('Comment')
+			->setColumns(20)
+			->setRows(10);
+		return $fields;
+	}
+	
+	/** 
+	 * If you hadn't guessed what the above does. Try the functions below!
+	 */
+	
+	/**
 	 * @return type FieldList
 	 */
 	public function getCMSFields() {
@@ -73,16 +118,16 @@ class Comment extends DataObject {
 		$fields->addFieldsToTab(
 			'Root.Main',
 			array(
-				TextField::create('Title', _t('Comment.TITLE', 'Title')),
-				TextField::create('Name', _t('Comment.NAME', 'Name')),
-				TextField::create('Email', _t('Comment.EMAIL', 'Email')),
-				TextField::create('URL', _t('Comment.URL', 'URL')),
-				HtmlEditorField::create('Comment', _t('Comment.COMMENT', 'Comment')),
-				CheckboxField::create('AkismetMarked', _t('Comment.AKISMETMARKED', 'Akismet marked')),
-				CheckboxField::create('Visible', _t('Comment.VISIBLE', 'Visible')),
-				CheckboxField::create('ShowGravatar', _t('Comment.GRAVATAR', 'Show Gravatar')),
+				TextField::create('Title', $this->fieldLabel('Title')),
+				TextField::create('Name', $this->fieldLabel('Name')),
+				TextField::create('Email', $this->fieldLabel('Email')),
+				TextField::create('URL', $this->fieldLabel('URL')),
+				HtmlEditorField::create('Comment', $this->fieldLabel('Comment')),
+				CheckboxField::create('AkismetMarked', $this->fieldLabel('AkismetMarked')),
+				CheckboxField::create('Visible', $this->fieldLabel('Visible')),
+				CheckboxField::create('ShowGravatar', $this->fieldLabel('ShowGravatar')),
 				// I very much doubt this is actually a good idea, to let authors change the item a comment is posted to :D
-				DropdownField::create('NewsID', _t('Comment.NEWS', 'News'), News::get()->map('ID','Title'))
+				DropdownField::create('NewsID', $this->fieldLabel('News'), News::get()->map('ID','Title'))
 			)
 		);
 		return $fields;
@@ -94,12 +139,9 @@ class Comment extends DataObject {
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		$SiteConfig = SiteConfig::current_site_config();
-		if($SiteConfig->MustApprove){
+		$siteConfig = SiteConfig::current_site_config();
+		if($siteConfig->MustApprove){
 			$this->Visible = false;
-		}
-		else{
-			$this->Visible = true;
 		}
 		/**
 		 * No, I'm serious. Commenters forget that http is somewhat required to make the link actually work :'(
@@ -111,8 +153,8 @@ class Comment extends DataObject {
 		 * For crying out loud, can't you just write the MD5 yours... Nevermind.
 		 */
 		$this->MD5Email = md5($this->Email);
-		if($SiteConfig->AkismetKey) {
-			$this->checkAkismet();
+		if($siteConfig->AkismetKey) {
+			$this->checkAkismet($siteConfig);
 		}
 		/**
 		 * PHP and HTML do not like each other I guess.
@@ -125,24 +167,19 @@ class Comment extends DataObject {
 	 * @return string $link The link to the Gravatar-file.
 	 */
 	public function getGravatar(){
-		$SiteConfig = SiteConfig::current_site_config();
-		if($SiteConfig->DefaultGravatarImageID != 0){
-			$default = urlencode(Director::absoluteBaseURL().$SiteConfig->DefaultGravatarImage()->Link());
+		$siteConfig = SiteConfig::current_site_config();
+		$default = '';
+		$gravatarSize = '32';
+		if($siteConfig->DefaultGravatarImageID != 0){
+			$default = urlencode(Director::absoluteBaseURL().$siteConfig->DefaultGravatarImage()->Link());
 		}
-		elseif($SiteConfig->DefaultGravatar != ''){
-			$default = urlencode($SiteConfig->DefaultGravatar);
+		elseif($siteConfig->DefaultGravatar != ''){
+			$default = urlencode($siteConfig->DefaultGravatar);
 		}
-		else{
-			$default = '';
+		if($siteConfig->GravatarSize){
+			$gravatarSize = $siteConfig->GravatarSize;
 		}
-		if($SiteConfig->GravatarSize){
-			$GravatarSize = $SiteConfig->GravatarSize;
-		}
-		else{
-			$GravatarSize = '32';
-		}
-		$link = 'http://www.gravatar.com/avatar/$MD5Email?default='.$default.'&amp;s='.$GravatarSize;
-		return $link;
+		return 'http://www.gravatar.com/avatar/$MD5Email?default='.$default.'&amp;s='.$gravatarSize;
 	}
 	
 	/**
@@ -160,9 +197,14 @@ class Comment extends DataObject {
 		$mail->send();
 	}
 	
-	private function checkAkismet() {
+	/**
+	 * If we have Akismet configured, check if this comment should be marked as spam.
+	 * Or ham. Or bacon. Or steak! Steak would be good!
+	 * @param SiteConfig $siteConfig
+	 */
+	private function checkAkismet(SiteConfig $siteConfig) {
 		try {
-			$akismet = new Akismet(Director::absoluteBaseURL(), $SiteConfig->AkismetKey);
+			$akismet = new Akismet(Director::absoluteBaseURL(), $siteConfig->AkismetKey);
 			$akismet->setCommentAuthor($this->Name);
 			$akismet->setCommentContent($this->Comment);
 			$akismet->setCommentAuthorEmail($this->Email);
@@ -170,13 +212,15 @@ class Comment extends DataObject {
 			$result = (int)$akismet->isCommentSpam();
 			if($result){
 				$this->AkismetMarked = true;
+				$this->Visible = false;
 			}
 
 		} catch (Exception $e) {
-			// Akismet didn't work, most likely the service is down.
-			// Suggested options:
-			// Do absolutely nothing
-			// $this->Visible = false;
+			/**
+			 * Akismet didn't work, most likely the service is down.
+			 * Just to be on the safe side, we hide this comment.
+			 */
+			$this->Visible = false;
 		}
 	}
 	

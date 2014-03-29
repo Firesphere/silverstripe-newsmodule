@@ -98,7 +98,44 @@ class NewsHolderPage_Controller extends Page_Controller {
 	protected $current_tag;
 	
 	protected $current_siteconfig;
+	
+	/**
+	 * Setup the allowed actions to work with the SiteConfig settings.
+	 * @param type $limitToClass
+	 * @return array
+	 */
+	public function allowedActions($limitToClass = null){
+		$actions = parent::allowedActions($limitToClass);
+		$defaultMapping = self::$allowed_actions;
+		$siteConfig = $this->getCurrentSiteConfig();
+		foreach($defaultMapping as $map) {
+			$key = ucfirst($map.'Action');
+			if($siteConfig->$key) {
+				self::$allowed_actions[] = $siteConfig->$key;
+			}
+		}
+		return array_merge($actions, self::$allowed_actions);
+	}
 
+	/**
+	 * Setup the handling of the actions. This is needed for the custom URL Actions set in the SiteConfig
+	 * @param SS_Request $request The given request
+	 * @param string $action The requested action
+	 * @return parent::handleAction
+	 */
+	public function handleAction($request, $action) {
+		parent::handleAction($request, $action);
+		$defaultMapping = self::$allowed_actions;
+		$siteConfig = $this->getCurrentSiteConfig();
+		foreach($defaultMapping as $key) {
+			$map = ucfirst($key.'Action');
+			if($siteConfig->$map && $siteConfig->$map == $action) {
+				return parent::handleAction($request, $key);
+			}
+		}
+		return parent::handleAction($request, $action);
+	}
+	
 	/**
 	 * Include the tagcloud scripts. Configure in newsmodule.js!
 	 */
@@ -148,37 +185,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 			$this->setCurrentSiteConfig();
 		}
 		return $this->current_siteconfig;
-	}
-	
-	/**
-	 * Setup the allowed actions to work with the SiteConfig settings.
-	 * @param type $limitToClass
-	 * @return array
-	 */
-	public function allowedActions($limitToClass = null){
-		$actions = parent::allowedActions($limitToClass);
-		$defaultMapping = self::$allowed_actions;
-		$siteConfig = $this->getCurrentSiteConfig();
-		foreach($defaultMapping as $map) {
-			$key = ucfirst($map.'Action');
-			if($siteConfig->$key) {
-				self::$allowed_actions[] = $siteConfig->$key;
-			}
-		}
-		return array_merge($actions, self::$allowed_actions);
-	}
-	
-	public function handleAction($request, $action) {
-		parent::handleAction($request, $action);
-		$defaultMapping = self::$allowed_actions;
-		$siteConfig = $this->getCurrentSiteConfig();
-		foreach($defaultMapping as $key) {
-			$map = ucfirst($key.'Action');
-			if($siteConfig->$map && $siteConfig->$map == $action) {
-				return parent::handleAction($request, $key);
-			}
-		}
-		return parent::handleAction($request, $action);
 	}
 
 	/**

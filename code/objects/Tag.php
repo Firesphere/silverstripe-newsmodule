@@ -6,6 +6,7 @@
  * @author Simon 'Sphere' Erkelens
  * @package News/Blog module
  * @todo implement translations?
+ * @todo fix getCMSFields() function.
  * @method Impression Image() Impressionimage for this tag
  * @method News News() NewsItems this tag belongs to.
  */
@@ -67,6 +68,21 @@ class Tag extends DataObject {
 		} else {
 			return parent::plural_name();
 		}   
+	}
+	
+	/**
+	 * Setup the fieldlabels correctly.
+	 * @param boolean $includerelations
+	 * @return array The fieldlabels
+	 */
+	public function fieldLabels($includerelations = true) {
+		$labels = parent::fieldLabels($includerelations);
+		$tagLabels = array(
+			'Title'		=> _t('Tag.TITLE', 'Title'),
+			'Description'	=> _t('Tag.DESCRIPTION', 'Description'),
+			'Impression'	=> _t('Tag.IMPRESSION', 'Impression image'),
+		);
+		return array_merge($tagLabels, $labels);
 	}
 	
 	/**

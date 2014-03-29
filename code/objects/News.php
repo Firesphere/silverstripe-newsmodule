@@ -162,13 +162,43 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 	
 	/**
+	 * Setup the fieldlabels and their translation.
+	 * @param type $includerelations
+	 * @return array $labels an array of the FieldLabels
+	 */
+	public function fieldLabels($includerelations = true) {
+		$labels = parent::fieldLabels($includerelations);
+		$newsLabels = array(
+			'Title'		  => _t('News.TITLE', 'Title'),
+			'Author'	  => _t('News.AUTHOR', 'Author'),
+			'Synopsis'	  => _t('News.SUMMARY', 'Summary/Abstract'),
+			'Content'	  => _t('News.CONTENT', 'Content'),
+			'PublishFrom'	  => _t('News.PUBDATE', 'Publish from'),
+			'Live'		  => _t('News.PUSHLIVE', 'Published'),
+			'Commenting'	  => _t('News.COMMENTING', 'Allow comments on this item'),
+			'Type'		  => _t('News.NEWSTYPE', 'Type of item'),
+			'External'	  => _t('News.EXTERNAL', 'External link'),
+			'Download'	  => _t('News.DOWNLOAD', 'Downloadable file'),
+			'Impression'	  => _t('News.IMPRESSION', 'Impression image'),
+			'Comments'	  => _t('News.COMMENTS', 'Comments'),
+			'SlideshowImages' => _t('News.SLIDE', 'Slideshow'),
+			'Tags'		  => _t('News.TAGS', 'Tags'),
+			'NewsHolderPages' => _t('News.LINKEDPAGES', 'Linked pages'),
+			'Help'		  => _t('News.BASEHELPLABEL', 'Help')
+		);
+		return array_merge($newsLabels, $labels);
+	}
+	
+	/**
 	 * Free guess on what this button does.
+	 * @todo make this work on multilanguage sites.
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
 		if($this->current_siteconfig->ShowAction) {
 			$action = $this->current_siteconfig->ShowAction;
 		}
+		$Page = $this->NewsHolderPages()->count();
 		if ($Page = $this->NewsHolderPages()->first()) {
 			return($Page->Link($action.'/'.$this->URLSegment));
 		}
