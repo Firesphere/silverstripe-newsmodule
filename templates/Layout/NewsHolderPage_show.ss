@@ -30,6 +30,7 @@
 			<a href="$Download.Link">$Title</a>
 		<% else %>
 			$Content
+		<% end_if %>
 		</div>
 		<% if $Tags.Count > 0 %>
 			<br />

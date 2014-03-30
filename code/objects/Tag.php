@@ -117,8 +117,8 @@ class Tag extends DataObject {
 	 * @return string|boolean Link to this object or false if no holderpage is found..
 	 */
 	public function Link($action = 'tag/') {
-		if($this->current_siteconfig->TagAction) {
-			$action = $this->current_siteconfig->TagAction;
+		if($config = Controller::curr()->getCurrentSiteConfig()) {
+			$action = $config->TagAction;
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
 			return($Page->Link($action.'/'.$this->URLSegment));

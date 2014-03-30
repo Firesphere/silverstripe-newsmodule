@@ -206,7 +206,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Get the current SiteConfig
 	 * @return SiteConfig
 	 */
-	private function getCurrentSiteConfig() {
+	public function getCurrentSiteConfig() {
 		if(!$this->current_siteconfig) {
 			$this->setCurrentSiteConfig();
 		}
