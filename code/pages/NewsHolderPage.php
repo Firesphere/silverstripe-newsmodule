@@ -315,7 +315,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function currentNewsItem(){
 		$siteConfig = $this->getCurrentSiteConfig();
-		$newsItem = $this->current_item;
+		$newsItem = $this->getNews();
 		if ($newsItem) {
 			/** If either one of these is false, no comments are allowed */
 			$newsItem->AllowComments = ($siteConfig->Comments && $newsItem->Commenting);
@@ -329,7 +329,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return ArrayList $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
-		$SiteConfig = $this->getCurrentSiteConfig();
+		$siteConfig = $this->getCurrentSiteConfig();
 		$Params = $this->getURLParams();
 		$exclude = array(
 			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
@@ -339,14 +339,18 @@ class NewsHolderPage_Controller extends Page_Controller {
 			->filter($filter)
 			->exclude($exclude);
 		/** Pagination pagination pagination. */
-		if($allEntries->count() > $SiteConfig->PostsPerPage && $SiteConfig->PostsPerPage > 0){
-			$records = PaginatedList::create($allEntries,$this->request);
-			$records->setPageLength($SiteConfig->PostsPerPage);
+		if($allEntries->count() > $siteConfig->PostsPerPage && $siteConfig->PostsPerPage > 0){
+			$records = PaginatedList::create($allEntries,$this->getRequest());
+			$records->setPageLength($siteConfig->PostsPerPage);
 			return $records;
 		}
 		return $allEntries;
 	}
 	
+	/**
+	 * @todo Make this language-specific
+	 * @return Tag All tags in a list.
+	 */
 	public function allTags() {
 		return Tag::get();
 	}
@@ -355,34 +359,34 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Get the items, per month/year/author
 	 * If no month or year is set, current month/year is assumed
 	 * @todo cleanup the month-method maybe?
-	 * @param Array $Params URL parameters
+	 * @param Array $params URL parameters
 	 * @return Array $filter Filtering for the allNews getter
 	 */
-	public function generateAddedFilter($Params){
+	public function generateAddedFilter($params){
 		/** @var array $filter Generic/default filter */
 		$filter = array(
 			'Live' => 1, 
 		);
 		/** Archive */
-		if($Params['Action'] == 'archive'){
-			if(!isset($Params['ID'])){
+		if($params['Action'] == 'archive'){
+			if(!isset($params['ID'])){
 				$month = date('m');
 				$year = date('Y');
 			}
-			elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
-				$year = $Params['ID'];
+			elseif(!isset($params['OtherID']) && isset($params['ID'])){
+				$year = $params['ID'];
 				$month = '';
 			}
 			else{
-				$year = $Params['ID'];
-				$month = date_parse('01-'.$Params['OtherID'].'-1970');
+				$year = $params['ID'];
+				$month = date_parse('01-'.$params['OtherID'].'-1970');
 				$month = $month['month'];
 			}
 			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
 		}
 		/** Author */
-		if($Params['Action'] == 'author'){
-			$filter['AuthorHelper.URLSegment:ExactMatch'] = $Params['ID'];
+		if($params['Action'] == 'author'){
+			$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
 		}
 		return $filter;
 	}
