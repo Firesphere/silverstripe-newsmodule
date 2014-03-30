@@ -28,8 +28,6 @@
 			<a href="$External" target="_blank">$Title</a>
 		<% else_if $Type == Download %>
 			<a href="$Download.Link">$Title</a>
-		<% else %>
-			$Content
 		<% end_if %>
 		</div>
 		<% if $Tags.Count > 0 %>
