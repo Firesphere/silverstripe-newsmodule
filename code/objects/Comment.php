@@ -8,21 +8,21 @@
  * @author Simon 'Sphere'
  * @method News News() The origin of the comment
  */
-class Comment extends DataObject {
+class Comment extends DataObject implements PermissionProvider {
 
 	/**
 	 * Here are a bunch of statics. If you don't know what it does, you should read the Silverstripe documentation.
 	 */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
-		'Name' => 'Varchar(255)',
-		'Email' => 'Varchar(255)',
-		'MD5Email' => 'Varchar(255)',
-		'URL' => 'Varchar(255)',
-		'Comment' => 'HTMLText',
-		'AkismetMarked' => 'boolean(false)',
-		'Visible' => 'boolean(true)',
-		'ShowGravatar' => 'Boolean(true)',
+		'Title'		=> 'Varchar(255)',
+		'Name'		=> 'Varchar(255)',
+		'Email'		=> 'Varchar(255)',
+		'MD5Email'	=> 'Varchar(255)',
+		'URL'		=> 'Varchar(255)',
+		'Comment'	=> 'HTMLText',
+		'AkismetMarked'	=> 'boolean(false)',
+		'Visible'	=> 'boolean(true)',
+		'ShowGravatar'	=> 'Boolean(true)',
 	);
 
 	private static $has_one = array(
@@ -228,20 +228,45 @@ class Comment extends DataObject {
 	 * Permissions.
 	 * Because ehm... Well. You know.
 	 */
+	public function providePermissions() {
+		return array(
+			'CREATE_COMMENT' => array(
+				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create comments'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new comments in the CMS.')
+			),
+			'EDIT_COMMENT' => array(
+				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit comments'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing comments.')
+			),
+			'DELETE_COMMENT' => array(
+				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete comments'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing comments.')
+			),
+			'VIEW_COMMENT' => array(
+				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View comments'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing comments in the CMS.')
+			),
+		);
+	}
+	
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('CREATE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('EDIT_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('DELETE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null) {
-		return true;
+		return(Permission::checkMember($member, array('VIEW_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 }
