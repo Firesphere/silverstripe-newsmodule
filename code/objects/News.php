@@ -239,7 +239,7 @@ class News extends DataObject implements PermissionProvider {
 		if(substr($this->External,0,4) != 'http' && $this->External != ''){
 			$this->External = 'http://'.$this->External;
 		}
-		$this->setURLSegment();
+		$this->setURLValue();
 		$this->setAuthorData();
 	}
 	
@@ -264,7 +264,7 @@ class News extends DataObject implements PermissionProvider {
 	/**
 	 * Setup the URLSegment for this item and create a Renamed Object if it's a rename-action.
 	 */
-	private function setURLSegment() {
+	private function setURLValue() {
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
 				$Renamed = new Renamed();
