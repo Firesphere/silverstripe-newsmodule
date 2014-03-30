@@ -3,16 +3,24 @@ de:
     MENUTITLE: Neuigkeiten
     ActionAdd: 'Meldung hinzufügen'
   NewsSiteConfigExtension:
-    NEWS: Nachrichten
+    NEWSSETTINGS: 'Neuigkeiten Einstellungen'
+    NEWS: Neuigkeiten
     ABSTRACT: 'Zusammenfassung verwenden'
     TWEETPOST: 'Neue Nachricten auf Twitter posten'
-    PPP: 'Nachrichten pro Seite'
+    PPP: 'Neuigkeiten pro Seite'
+    DEFAULTIMPRESSION: 'Standardbild für Neuigkeiten'
     EXTERNAL: 'Externe Verlinkungen'
     ALLOWEXT: 'Externe Verlinkungen erlauben'
     ALLOWDOWN: 'Downloads erlauben'
+    EXTERNALEXT: 'Externe Verlinkungen auf neuer Seite anzeigen'
     COMMENTSSETTINGS: Kommentare
-    COMMENTS: 'Kommentare bei Nachrichten erlauben'
+    COMMENTS: 'Kommentare bei Neuigkeiten erlauben'
     APPROVE: 'Kommentare müssen genehmigt werden'
+    NEWSMAIL: 'Kommentare per E-Mail schicken'
+    GRAVATAR: 'Gravatarbild des Kommentators anzeigen'
+    GRAVURL: 'Standard Gravatar, falls der Kommentator keines hat'
+    UPLOADGRAVATAR: 'oder Standard Gravatar hochladen'
+    GRAVSIZE: 'Größe des Gravatars (z.B. 32 für ein 32x32px großes Bild)'
     AKISMET: 'Akismet API Schlüssel'
     SPAMPROTECTION: 'Zusätzliches Feld für Spamschutz verwenden'
     NOSCRIPTSPAM: 'Noscript-Feld für Spamschutz verwenden'
@@ -20,19 +28,25 @@ de:
     SLIDEINITIAL: 'Nur das erste Bild anzeigen'
     SLIDESIZE: 'Maximalgröße für große Bilder, z.B. 1024x768'
     SEC: Sicherheit
-    ALLOWAUTHOR: 'Inhaltsautoren dürfen Nachrichteneinstellungen bearbeiten'
+    ALLOWAUTHOR: 'Inhaltsautoren dürfen Neuigkeiteneinstellungen bearbeiten'
     ALLOWEXPORT: 'Inhaltsautoren dürfen alle Daten exportieren'
     ALLOWSLIDESHOW: 'Verwendung der Slideshow erlauben (beta)'
     COMMENTHELP: 'Kommentar Hilfe'
+    COMMENTHELPTEXT: 'Kommentar Hilfe muss noch erstellt werden.'
     EXTERNALHELP: 'Externe Verlinkung Hilfe'
+    EXTERNALHELPTEXT: 'Sie können Inhaltsautoren erlauben oder verbieten auf externe Seiten verlinken. Sollen externe Verlinkungen in der selben Registerkarte oder in einem neuen Fenster geöffnet werden?'
     HELP: Hilfe
-    NEWSCOMMENTS: 'Nachrichteneinstellungen'
-    NEWSHELP: 'Nachrichten Hilfe'
+    NEWSCOMMENTS: 'Neuigkeiteneinstellungen'
+    NEWSHELP: 'Neuigkeiten Hilfe'
+    NEWSHELPTEXT: 'Im Reiter Neuigkeiten Einstellungen können sie allgemeine Einstellungen tätigen, z.B. ob Sie eine Zusammenfassung verwenden wollen oder jeden Beitrag auf Twitter veröffentlichen wollen. Die Felder sollten selbsterklärend sein.'
     RETURNEXT: 'Externe Verlinkungen in einer neuen Registerkarte bzw. neuem Fenster öffnen'
+    SLIDESHOW: 'Diashow erlauben'
     SLIDESHOWHELP: 'Diashow Hilfe'
+    SLIDESHOWHELPTEXT: 'Diashow Einstellungen. Muss noch erstellt werden'
   Commment:
     SINGULARNAME: Kommentar
     PLURALNAME: Kommentare
+    COMMENTMAILSUBJECT: 'Neuer Beitrag:'
   News:
     SINGULARNAME: Meldung
     PLURALNAME: Meldungen
@@ -47,13 +61,16 @@ de:
     AUTHOR: Autor
     PUBDATE: 'Ab diesem Tag veröffentlichen'
     PUSHLIVE: Veröffentlicht
+    PUBLISH: 'Datum der Veröffentlichung'
     COMMENTING: 'Kommentare zu dieser Meldung erlauben'
     IMPRESSION: 'Bild'
     ANY: 'Jede Sprache'
     TAGS: Tags
     COMMENTS: Kommentare
+    TAGAFTERID: 'Tags können nach dem Speichern hinzugefügt werden'
     SLIDE: Diaserie
     IMAGES: 'Bilder zur Diaserie'
+    NEWSITEMTYPE: Neuigkeit
     EXTERNALTYPE: 'Externe Verlinkung'
     DOWNLOADTYPE: 'Datei-Download'
     SUMMARY: Zusammenfassung
@@ -79,6 +96,10 @@ de:
     READMORE: 'Mehr lesen &raquo;'
     PREV: vorherige
     NEXT: nächste
+    DEFAULTPAGETITLE: Aktuelles
+    DESCRIPTION: 'Neuigkeitenseite'
+    PLURALNAME: 'Neuigkeitenseiten'
+    SINGULARNAME: 'Neuigkeitenseite'
   CommentForm:
     NAME: Name
     TITLE: Titel
@@ -112,15 +133,21 @@ de:
     TAGTITLE: 'Nach Tag suchen'
     EDIT: 'Tag bearbeiten'
   Comment:
+    AKISMETMARKED: 'Von Akismet gekennzeichnet'
     COMMENT: Kommentar
+    COMMENTMAILSUBJECT2: 'Neuer Beitrag:  {title} '
     EMAIL: E-Mail
+    GRAVATAR: 'Gravatar anzeigen'
     NAME: Name
-    NEWS: Nachrichten
+    NEWS: 'Neuigkeiten '
     PLURALNAME: Kommentare
     SINGULARNAME: Kommentar
     TITLE: Titel
     URL: URL
     VISIBLE: Sichtbar
+  Renamed:
+    PLURALNAME: Umbenannte
+    SINGULARNAME: Umbenannt
   SiteTree:
     PLURALNAME: Seiten
     SINGULARNAME: Seite
