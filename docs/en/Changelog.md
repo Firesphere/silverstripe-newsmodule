@@ -10,7 +10,7 @@
 * Cleaned up the handle and allowed functions.
 * Set permissions via permission provider.
 * Removed NOW() as an SQL-statement. (appearantly, due to escaping, it doesn't work)
-* Added the docs
+* Added the docs.
 
 ## Version 3.3
 
