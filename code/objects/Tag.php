@@ -14,11 +14,11 @@ class Tag extends DataObject {
 	
 	/** @var array $db database-fields */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
-		'Description' => 'HTMLText',
-		'URLSegment' => 'Varchar(255)',
-		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED (I think)
-		'SortOrder' => 'Int',
+		'Title'		=> 'Varchar(255)',
+		'Description'	=> 'HTMLText',
+		'URLSegment'	=> 'Varchar(255)',
+		'Locale'	=> 'Varchar(10)', // NOT YET SUPPORTED (I think)
+		'SortOrder'	=> 'Int',
 	);
 	
 	/** @var array $has_one relationships. */
@@ -140,19 +140,44 @@ class Tag extends DataObject {
 	/**
 	 * Permissions
 	 */
+	public function providePermissions() {
+		return array(
+			'CREATE_TAG' => array(
+				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new tags.')
+			),
+			'EDIT_TAG' => array(
+				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit tags'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing tags.')
+			),
+			'DELETE_TAG' => array(
+				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete tags'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing tags.')
+			),
+			'VIEW_TAG' => array(
+				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View tags'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing tags.')
+			),
+		);
+	}
+	
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null) {
-		return true;
+		return(Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 }
