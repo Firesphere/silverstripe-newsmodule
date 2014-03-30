@@ -1,19 +1,10 @@
 News:
-  Title:
-    'Test Newsitem'
-  Summary:
-    'Testing'
-  Content:
-    'This is a testitem'
-  Author:
-    'PHPUnit'
-Comment:
-  Title:
-    'Testcomment'
-  Name:
-    'PHPUnit'
-  Email:
-    'phpunit@test.com'
-  URL:
-    'casa-laguna.net'
-  
+  Item:
+    Title:
+      'Test Newsitem'
+    Summary:
+      'Testing'
+    Content:
+      'This is a testitem'
+    Author:
+      'PHPUnit '
