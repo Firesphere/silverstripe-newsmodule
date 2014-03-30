@@ -20,8 +20,8 @@ en:
     PERMISSION_EDIT_HELP: 'Permission required to edit existing comments.'
     PERMISSION_VIEW_DESCRIPTION: 'View comments'
     PERMISSION_VIEW_HELP: 'Permission required to view existing comments in the CMS.'
-    PLURALNAME: Comments
-    SINGULARNAME: Comment
+    PLURALNAME: Reacties
+    SINGULARNAME: Reactie
     TITLE: Title
     URL: URL
     VISIBLE: Visible
@@ -81,13 +81,14 @@ en:
     DEFAULTPAGETITLE: Newspage
     DESCRIPTION: 'HolderPage for newsitems'
     DOWNLOADABLE: Download
-    NEXT: Next
+    JUMPTO_PAGE: 'Jump to page'
+    NEXT_PAGE: Next
     PLURALNAME: 'News Holder Pags'
-    PREV: Prev
+    PREVIOUS_PAGE: Previous
     READMORE: 'Read More &raquo;'
     SINGULARNAME: 'News Holder Page'
   NewsHolderPage_show:
-    BYWHO: by
+    BYWHO: 'by '
     COMMENTS: Comments
     ONDATE: on
   NewsHolderPage_tag:
