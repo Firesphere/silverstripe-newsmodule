@@ -114,8 +114,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 				self::$allowed_actions[] = $siteConfig->$key;
 			}
 		}
-		$actions = array_merge($actions, self::$allowed_actions);
-		return $actions;
+		return array_merge($actions, self::$allowed_actions);
 	}
 
 	/**
@@ -127,21 +126,19 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function handleAction($request, $action) {
 		$handles = parent::allowedActions(false);
 		$defaultMapping = self::$allowed_actions;
-		$mapping = array(
-			'index' => 'handleIndex'
-		);
+		$handles['index'] = 'handleIndex';
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach($defaultMapping as $key) {
 			$map = ucfirst($key.'Action');
 			if($siteConfig->$map) {
-				$mapping[$siteConfig->$map] = $key;
+				$handles[$siteConfig->$map] = $key;
 			}
-			elseif(!isset($mapping[$key])) {
-				$mapping[$key] = $key;
+			elseif(!isset($handles[$key])) {
+				$handles[$key] = $key;
 			}
 		}
-		self::$url_handlers = $mapping;
-		return parent::handleAction($request, $mapping[$action]);
+		self::$url_handlers = $handles;
+		return parent::handleAction($request, $handles[$action]);
 	}
 	
 	/**
@@ -156,8 +153,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
-	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @return News $news Current newsitem selected.
+	 * Set the current newsitem, if available.
 	 */
 	public function setNews(){
 		$Params = $this->getURLParams();
@@ -168,6 +164,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
+	 * Get the current newsitem
 	 * @return News The current newsitem
 	 */
 	public function getNews() {
@@ -196,7 +193,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 		if(!$this->current_tag){
 			$this->setTag();
 		}
-		$count = $this->current_tag->News()->count();
 		return $this->current_tag;
 	}
 	/**
@@ -217,6 +213,30 @@ class NewsHolderPage_Controller extends Page_Controller {
 		return $this->current_siteconfig;
 	}
 
+	/**
+	 * This feature is cleaner for redirection.
+	 * Saves requests to the database if I'm not mistaken.
+	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
+	 */
+	private function needsRedirect(){
+		$id = $this->getRequest()->param('ID');
+		if($id && is_numeric($id)){
+			if($id > 0){
+				$redirect = $this->Newsitems()->byId($id);
+				$this->redirect($redirect->Link(), 301);
+			}
+			else{
+				$this->redirect($this->Link(), 404);
+			}
+		}
+		else{
+			$renamed = Renamed::get()->filter('OldLink', $id);
+			if($renamed->count() > 0){
+				$this->redirect($renamed->First()->News()->Link(), 301);
+			}
+		}
+	}
+	
 	/**
 	 * Meta! This is so Meta! I mean, MetaTitle!
 	 */
@@ -274,31 +294,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * This feature is cleaner for redirection.
-	 * Saves requests to the database if I'm not mistaken.
-	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
-	 */
-	private function needsRedirect(){
-		$id = $this->getRequest()->param('ID');
-		if($id && is_numeric($id)){
-			if($id > 0){
-				$redirect = $this->Newsitems()->byId($id);
-				$this->redirect($redirect->Link(), 301);
-			}
-			else{
-				$this->redirect($this->Link(), 404);
-			}
-		}
-		else{
-			$renamed = Renamed::get()->filter('OldLink', $id);
-			if($renamed->count() > 0){
-				$this->redirect($renamed->First()->News()->Link(), 301);
-			}
-		}
-	}
-	
-	/**
-	 * Check the user-permissions.
+	 * Setup the filter for the getters. This keeps in mind if the user is allowed to view this item.
 	 * @param String $Params returntype setting.
 	 * @return Array $filter filter for general getter.
 	 */
@@ -307,7 +303,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$filter = array(
 			'URLSegment' => Convert::raw2sql($Params['ID']),
 		);
-		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
+		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))){
 			$filter['Live'] = 1;
 		}
 		return $filter;
