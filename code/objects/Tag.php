@@ -45,7 +45,7 @@ class Tag extends DataObject {
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-	
+
 	/**
 	 * Define singular name translatable
 	 * @return string Singular name
@@ -84,6 +84,7 @@ class Tag extends DataObject {
 		);
 		return array_merge($tagLabels, $labels);
 	}
+
 	
 	/**
 	 * @todo I still have to fix that translatable, remember? ;)

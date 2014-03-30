@@ -2,7 +2,7 @@
   <section id="shout" class="clear">
 <div class="cloud">
 <div class="tagCloud">
-<% loop Tags %>
+<% loop allTags %>
 <a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()" >$Title</a>
 <% end_loop %>
 </div>

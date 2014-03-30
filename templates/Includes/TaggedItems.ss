@@ -1,5 +1,3 @@
-	<section id="latest_work" class="clear">
-      <% loop Tags(true) %>
       <article class="one_third $FirstLast"><% if Impression %><a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a><% end_if %>
 	      	      <div class="articleContainer">
 		<% if Type == external %>
@@ -29,6 +27,3 @@
           <footer class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></footer>
 		      </div>	  
         </article>
-	      <% end_loop %>
-
-      </section>

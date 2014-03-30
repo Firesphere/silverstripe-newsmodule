@@ -1,6 +1,6 @@
 <div class="wrapper row1">
   <section id="shout" class="clear">
-<% with $currentNewsItem %>
+<% with $News %>
 	    <% if $Impression %>
     <figure>
       <figcaption>

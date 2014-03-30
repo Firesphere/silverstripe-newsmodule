@@ -114,7 +114,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 				self::$allowed_actions[] = $siteConfig->$key;
 			}
 		}
-		return array_merge($actions, self::$allowed_actions);
+		$actions = array_merge($actions, self::$allowed_actions);
+		return $actions;
 	}
 
 	/**
@@ -124,16 +125,23 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return parent::handleAction
 	 */
 	public function handleAction($request, $action) {
-		parent::handleAction($request, $action);
+		$handles = parent::allowedActions(false);
 		$defaultMapping = self::$allowed_actions;
+		$mapping = array(
+			'index' => 'handleIndex'
+		);
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach($defaultMapping as $key) {
 			$map = ucfirst($key.'Action');
-			if($siteConfig->$map && $siteConfig->$map == $action) {
-				return parent::handleAction($request, $key);
+			if($siteConfig->$map) {
+				$mapping[$siteConfig->$map] = $key;
+			}
+			elseif(!isset($mapping[$key])) {
+				$mapping[$key] = $key;
 			}
 		}
-		return parent::handleAction($request, $action);
+		self::$url_handlers = $mapping;
+		return parent::handleAction($request, $mapping[$action]);
 	}
 	
 	/**
@@ -142,7 +150,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function init() {
 		parent::init();
 		$this->needsRedirect();
-		$this->setNews();
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
@@ -154,12 +161,9 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function setNews(){
 		$Params = $this->getURLParams();
-		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
-		);
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
-		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
+		$news = $this->Newsitems()->filter($segmentFilter)->first();
 		$this->current_item = $news;
 	}
 	
@@ -167,7 +171,33 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return News The current newsitem
 	 */
 	public function getNews() {
+		if(!$this->current_item) {
+			$this->setNews();
+		}
 		return $this->current_item;
+	}
+	
+	/**
+	 * Set the current tag
+	 */
+	public function setTag() {
+		$Params = $this->getURLParams();
+		$tag = Tag::get()
+			->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))->first();
+		$this->current_tag = $tag;
+	}
+	
+	/**
+	 * Get the current tag.
+	 * @todo Implement translations?
+	 * @return Tag with tags or news.
+	 */
+	public function getTag(){
+		if(!$this->current_tag){
+			$this->setTag();
+		}
+		$count = $this->current_tag->News()->count();
+		return $this->current_tag;
 	}
 	/**
 	 * Set the current SiteConfig
@@ -191,36 +221,27 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Meta! This is so Meta! I mean, MetaTitle!
 	 */
 	public function MetaTitle(){
-		$Params = $this->getURLParams();
-		$news = $this->current_item;
-		if($Params['Action'] == 'show' && $news->ID > 0){
-			$this->Title = $news->Title . ' - ' . $this->Title;
-		}
-		elseif($Params['Action'] == 'tags'){
-			$this->Title = 'All tags - ' . $this->Title;
-		}
-		elseif($Params['Action'] == 'tag'){
-			$tags = $this->getTags();
-			$this->Title = $tags->Title . ' - ' . $this->Title;
-		}
-	}
-	
-	/**
-	 * Does this still work? I think it bugs.
-	 * Or ignored, that could be it too.
-	 */
-	public function MetaDescription(){
-		$Params = $this->getURLParams();
-		/** @var News DataObject|DataObjectSet of Newsitems */
-		$news = $this->current_item;
-		if($Params['Action'] == 'show' && $news->ID > 0){
-			$this->MetaDescription .= ' '.$news->Title;
-		}
-		elseif($Params['Action'] == 'tags'){
-			$this->MetaDescription .= ' All tags';
-		}
-		elseif($tags = $this->getTags()){
-			$this->MetaDescription .= ' ' . $tags->Title;
+		$mapping = self::$url_handlers;
+		if($action = $this->getRequest()->param('Action')) {
+			switch($mapping[$action]) {
+				case 'show' :
+					$news = $this->getNews();
+					$this->Title = $news->Title . ' - ' . $this->Title;
+					break;
+				case 'tag' :
+					$tags = $this->current_tag;
+					$this->Title = $tags->Title . ' - ' . $this->Title;
+					break;
+				case 'tags' :
+					$this->Title = _t('News.ALLTAGS_PAGE', 'All tags - ') . $this->Title;
+					break;
+				case 'author' :
+					$this->Title = _t('News.AUTHOR_PAGE', 'Items by author - ') . $this->Title;
+					break;
+				case 'archive' :
+					$this->Title = _t('News.ARCHIVE_PAGE', 'Items per period ') . $this->Title;
+					break;
+			}
 		}
 	}
 	
@@ -233,8 +254,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function rss(){ 
 		$rss = RSSFeed::create(
 			$list = $this->getRSSFeed(),
-			$link = $this->Link("rss"),
-			$title = "News feed"
+			$link = $this->Link('rss'),
+			$title = _t('News.RSSFEED', 'News feed')
 		);
 		return $rss->outputToBrowser();
 	}
@@ -258,10 +279,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
-		$Params = $this->getURLParams();
-		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID']) && is_numeric($Params['ID'])){
-			if($Params['ID'] > 0){
-				$redirect = $this->Newsitems()->filter('ID', $Params['ID'])->first();
+		$id = $this->getRequest()->param('ID');
+		if($id && is_numeric($id)){
+			if($id > 0){
+				$redirect = $this->Newsitems()->byId($id);
 				$this->redirect($redirect->Link(), 301);
 			}
 			else{
@@ -269,7 +290,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 		}
 		else{
-			$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
+			$renamed = Renamed::get()->filter('OldLink', $id);
 			if($renamed->count() > 0){
 				$this->redirect($renamed->First()->News()->Link(), 301);
 			}
@@ -291,46 +312,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return $filter;
 	}
-	
-	/**
-	 * Get the correct tags.
-	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
-	 * @todo Implement translations?
-	 * @todo this is somewhat unclean. One uses actual tags, the other a newsitem to get the tags.
-	 * @param Boolean $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
-	 * @return DataObject|DataList with tags or news.
-	 */
-	public function getTags($news = false){
-		$Params = $this->getURLParams();
-		$return = null;
-		if(isset($Params['ID']) && $Params['ID'] != null){
-			$tag = Tag::get()
-				->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))
-				->first();
-			if(!$news){
-				$return = $tag;
-			}
-			elseif($news && $tag->ID){
-				/** Somehow, it really has to be an ArrayList of NewsItems. <% loop Tag.News %> doesn't work :( */
-				$return = $tag->News()
-					->filter(array('Live' => 1))
-					->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')));
-			}				
-			else{
-				$this->redirect($this->Link('tags'), 404);
-			}
-		}
-		else{
-			$return = Tag::get();
-		}
-		return $return;
-	}
-		
-	/** Redundant */
-	public function currentTag(){
-		return $this->getTags();
-	}
-	
+
 	/**
 	 * If we're on a newspage, we need to get the newsitem
 	 * @return object of the item.
@@ -367,6 +349,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 			return $records;
 		}
 		return $allEntries;
+	}
+	
+	public function allTags() {
+		return Tag::get();
 	}
 
 	/**

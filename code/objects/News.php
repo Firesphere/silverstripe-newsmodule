@@ -13,7 +13,7 @@
  * @method SlideshowImage SlideshowImages() for the slideshow-feature
  * @method Tag Tags() Added Tags for this Item.
  */
-class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
+class News extends DataObject implements PermissionProvider {
 
 	private static $db = array(
 		'Title' => 'Varchar(255)',
@@ -349,20 +349,45 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Permissions
 	 */
+	public function providePermissions() {
+		return array(
+			'CREATE_NEWS' => array(
+				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new newsitems.')
+			),
+			'EDIT_NEWS' => array(
+				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing newsitems.')
+			),
+			'DELETE_NEWS' => array(
+				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing newsitems.')
+			),
+			'VIEW_NEWS' => array(
+				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing newsitems.')
+			),
+		);
+	}
+	
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
+		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
 	
 }
