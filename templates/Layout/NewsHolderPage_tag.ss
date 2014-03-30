@@ -72,4 +72,4 @@
 	<% end_loop %>
 	</section>
 </div>
-<div class="clear"></div>
+<div class="clearfix"></div>

@@ -48,7 +48,7 @@
 		<% include ArchiveOverview %>
 	</div>
 </div>
-<div class="clear"></div>
+<div class="clearfix"></div>
 <!--Setup the pagination-->
 <div class='row pagination pagination-sm'>
 	<% if allNews.NotFirstPage %>

@@ -15,4 +15,4 @@
 		</div>
 	</section>
 </div>
-<div class="clear"></div>
+<div class="clearfix"></div>
