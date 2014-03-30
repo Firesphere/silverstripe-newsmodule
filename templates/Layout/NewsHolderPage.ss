@@ -29,17 +29,13 @@
 			<% else %>
 			      <p>$Content.Summary</p>
 			<% end_if %>
-			<% if not $Top.SiteConfig.ReturnExternal %>
-			      <div class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></div>
-			<% else %>
-			      <div class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></div>
-			<% end_if %>
+			<div class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></div>
 			<% if $Tags.Count > 0 %>
 			<br />
 			<div class="col-xs-12">
-			      <% loop Tags %>
-			      <a href="$Link">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
-			      <% end_loop %>
+				<% loop Tags %>
+					<a href="$Link">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
+				<% end_loop %>
 			</div>
 			<br />
 			<% end_if %>

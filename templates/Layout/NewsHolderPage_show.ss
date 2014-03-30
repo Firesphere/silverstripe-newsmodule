@@ -1,5 +1,5 @@
 <div class="row">
-	<section id="newsitem" class="row-xs-12">
+	<section id="newsitem" class="row col-xs-12">
 	<% with $News %>
 		<% if $Impression %>
 			<div class="col-xs-2">
@@ -18,7 +18,7 @@
 		<!--Author should be upgraded to a link in the future-->
 		<h3><%t NewsHolderPage.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></h3>
 		<br />
-		<div class="content">
+		<div class="content col-xs-12">
 		<% if $Content %>
 			$Content
 		<% else %>
