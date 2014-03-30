@@ -231,24 +231,24 @@ class Comment extends DataObject implements PermissionProvider {
 	public function providePermissions() {
 		return array(
 			'CREATE_COMMENT' => array(
-				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create comments'),
+				'name' => _t('Comment.PERMISSION_CREATE_DESCRIPTION', 'Create comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new comments in the CMS.')
+				'help' => _t('Comment.PERMISSION_CREATE_HELP', 'Permission required to create new comments in the CMS.')
 			),
 			'EDIT_COMMENT' => array(
-				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit comments'),
+				'name' => _t('Comment.PERMISSION_EDIT_DESCRIPTION', 'Edit comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing comments.')
+				'help' => _t('Comment.PERMISSION_EDIT_HELP', 'Permission required to edit existing comments.')
 			),
 			'DELETE_COMMENT' => array(
-				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete comments'),
+				'name' => _t('Comment.PERMISSION_DELETE_DESCRIPTION', 'Delete comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing comments.')
+				'help' => _t('Comment.PERMISSION_DELETE_HELP', 'Permission required to delete existing comments.')
 			),
 			'VIEW_COMMENT' => array(
-				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View comments'),
+				'name' => _t('Comment.PERMISSION_VIEW_DESCRIPTION', 'View comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing comments in the CMS.')
+				'help' => _t('Comment.PERMISSION_VIEW_HELP', 'Permission required to view existing comments in the CMS.')
 			),
 		);
 	}

@@ -143,24 +143,24 @@ class Tag extends DataObject {
 	public function providePermissions() {
 		return array(
 			'CREATE_TAG' => array(
-				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
+				'name' => _t('Tag.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new tags.')
+				'help' => _t('Tag.PERMISSION_CREATE_HELP', 'Permission required to create new tags.')
 			),
 			'EDIT_TAG' => array(
-				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit tags'),
+				'name' => _t('Tag.PERMISSION_EDIT_DESCRIPTION', 'Edit tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing tags.')
+				'help' => _t('Tag.PERMISSION_EDIT_HELP', 'Permission required to edit existing tags.')
 			),
 			'DELETE_TAG' => array(
-				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete tags'),
+				'name' => _t('Tag.PERMISSION_DELETE_DESCRIPTION', 'Delete tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing tags.')
+				'help' => _t('Tag.PERMISSION_DELETE_HELP', 'Permission required to delete existing tags.')
 			),
 			'VIEW_TAG' => array(
-				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View tags'),
+				'name' => _t('Tag.PERMISSION_VIEW_DESCRIPTION', 'View tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing tags.')
+				'help' => _t('Tag.PERMISSION_VIEW_HELP', 'Permission required to view existing tags.')
 			),
 		);
 	}
