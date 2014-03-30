@@ -39,7 +39,7 @@
 			</div>
 			<br />
 			<% end_if %>
-		  </article>
+		</article>
 		<% end_loop %>
 	<% end_if %>
 	</section>
@@ -51,7 +51,7 @@
 <div class="clearfix"></div>
 <!--Setup the pagination-->
 <div class='row pagination pagination-sm'>
-	<% if allNews.NotFirstPage %>
+	<% if $allNews.NotFirstPage %>
 		<li>
 			<a class='<%t NewsHolderPage.PREVIOUS_PAGE "Previous" %>' href="$allNews.PrevLink"><%t NewsHolderPage.PREVIOUS_PAGE "Previous" %></a>
 		</li>
@@ -64,7 +64,7 @@
 		<% else %>
 			<% if $Link %>
 				<li>
-					<a href="$Link" title='<%t NewsHolderPage.JUMPTO_PAGE, "Jump to page" %> $PageNum'>$PageNum</a>
+					<a href="$Link" title='<%t NewsHolderPage.JUMPTO_PAGE "Jump to page" %> $PageNum'>$PageNum</a>
 				</li>
 			<% else %>
 				<li class="disabled">
@@ -73,7 +73,7 @@
 			<% end_if %>
 		<% end_if %>
 	<% end_loop %>
-	<% if $allNews.CurrentPage < $allNews.TotalPages %>
+	<% if $allNews.NotLastPage %>
 	    <li>
 		<a class='<%t NewsHolderPage.NEXT_PAGE "Next" %>' href="$allNews.NextLink"><%t NewsHolderPage.NEXT_PAGE "Next" %></a>
 	    </li>
