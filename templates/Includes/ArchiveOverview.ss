@@ -2,10 +2,10 @@
 <div class="ArchiveList">
 	<ul>
 	<% loop getArchiveList.GroupedBy(YearCreated) %>
-		<li class="Archive $FirstLast">
+		<li class="archive $FirstLast">
 			<a href="$Top.Link(archive)/$YearCreated">$YearCreated</a>
 			<% if Children %>
-			<ul class="Children">
+			<ul class="children">
 				<% loop Children.GroupedBy(MonthCreated) %>
 				<li class="$FirstLast <% if Middle %>Middle<% end_if %>">
 						<a href="$Top.Link(archive)/{$Up.Up.YearCreated}/$MonthCreated">$Children.First.PublishFrom.FormatI18N("%B")</a>
