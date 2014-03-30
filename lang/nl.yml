@@ -1,111 +1,158 @@
 nl:
   NewsAdmin:
     MENUTITLE: Nieuws
-    ActionAdd: 'Nieuwsbericht toevoegen'
+    ActionAdd: 'Nieuwsitem toevoegen'
   NewsSiteConfigExtension:
     NEWSSETTINGS: 'Nieuwsinstellingen'
     NEWS: Nieuws
-    ABSTRACT: 'Samenvatting/Abstract'
-    TWEETPOST: 'Tweet na posten'
-    PPP: 'Aantal posts per pagina'
-    DEFAULTIMPRESSION: 'Standaard impressie afbeelding'
+    ABSTRACT: 'Gebruik abstract/samenvatting'
+    TWEETPOST: 'Tweet na posten van een nieuw item'
+    PPP: 'Aantal berichten per pagina'
+    DEFAULTIMPRESSION: 'Standaard impressieafbeelding'
     EXTERNAL: 'Extern linken'
-    ALLOWEXT: 'Extern linken toegestaan'
-    ALLOWDOWN: 'Downloads toegestaan'
-    EXTERNALEXT: 'Open externe links in een nieuwe tab/pagina'
+    ALLOWEXT: 'Sta externe links toe'
+    ALLOWDOWN: 'Sta downloads toe'
+    EXTERNALEXT: 'Link externe links in de nieuwspagina'
     COMMENTSSETTINGS: Reacties
-    COMMENTS: 'Sta reacties op items toe'
+    COMMENTS: 'Sta reacties op berichten toe'
     APPROVE: 'Reacties moeten worden goedgekeurd'
-    NEWSMAIL: 'Stuur e-mail notificatie naar'
-    GRAVATAR: 'Toon de Gravatar afbeelding van de reageerder'
-    GRAVURL: 'Standaard Gravatar als de reageerder geen heeft'
-    UPLOADGRAVATAR: 'Of upload een standaard Gravatar-afbeelding'
-    GRAVSIZE: 'Formaat van de Gravatar afbeelding (b.v. 32 voor een 32x32 afbeelding)'
+    NEWSMAIL: 'Stuur mij een notificatie als er een nieuwe reactie is'
+    GRAVATAR: 'Toon Gravatar afbeelding van de reageerder'
+    GRAVURL: 'Standaard Gravatar afbeelding als de reageerder er geen heeft'
+    UPLOADGRAVATAR: 'Of upload een standaard Gravatar afbeelding'
+    GRAVSIZE: 'Formaat van de Gravatar afbeelding (bijvoorbeeld 32 voor een 32x32 px afbeelding)'
     AKISMET: 'Akismet API sleutel'
-    SPAMPROTECTION: 'Gebruik een extra veld als spam-bescherming'
-    NOSCRIPTSPAM: 'Gebruik een noscript veld als spam-bescherming'
-    SLIDESHOWSETTINGS: Fotoshow
-    SLIDEINITIAL: 'Toon alleen de eerste afbeelding in het nieuwsitem'
-    SLIDESIZE: 'Maximum formaat full-size afbeeldingen. Bijvoorbeeld 1024x768'
+    SPAMPROTECTION: 'Gebruik een extra veld voor spambescherming'
+    NOSCRIPTSPAM: 'Gebruik een noscriptveld voor spam bescherming'
+    SLIDESHOWSETTINGS: Diashow
+    SLIDEINITIAL: 'Toon alleen de eerste afbeelding'
+    SLIDESIZE: 'Maximaal formaat voor de volledige afbeeldingen. Bijvoorbeeld 1024x768'
     SEC: Beveiliging
-    ALLOWAUTHOR: 'Laat Content-bewerkers instellingen wijzigen'
+    ALLOWAUTHOR: 'Sta Content Authors toe om de instellingen aan te passen'
+    ALLOWEXPORT: 'Laat Content Authors de gegevens exporteren'
+    ALLOWSLIDESHOW: 'Schakel de diashow in (in beta)'
+    COMMENTHELP: 'Comment hulp'
+    COMMENTHELPTEXT: 'Comment hulp moet nog gemaakt worden'
+    EXTERNALHELP: 'Externe link hulp'
+    EXTERNALHELPTEXT: 'Permissies en instellingen voor Content Authors betreffende externe items, zoals openen in een nieuwe tab of scherm.'
+    HELP: Help
+    NEWSCOMMENTS: 'Nieuwsinstellingen'
+    NEWSHELP: 'Nieuws hulp'
+    NEWSHELPTEXT: 'In de nieuwsinstellingen tab, kun je algemene instellingen wijzigen, zoals het gebruik van abstracts, tweet-na-posten (dit is een issue!). De velden wijzen voor zichzelf.'
+    RETURNEXT: 'Open externe links in een nieuwe tab of een nieuw scherm'
+    SLIDESHOW: 'Gebruik van de diashowfunctie toestaan'
+    SLIDESHOWHELP: 'Diashow hulp'
+    SLIDESHOWHELPTEXT: 'Diashow instellingen. Wat kan hier allemaal? Moet nog gemaakt worden.'
   Commment:
     SINGULARNAME: Reactie
     PLURALNAME: Reacties
-    COMMENTMAILSUBJECT: 'Nieuw bericht getitelt: '
+    COMMENTMAILSUBJECT: 'Nieuwe reactie getiteld:'
   News:
     SINGULARNAME: Nieuwsbericht
     PLURALNAME: Nieuwsberichten
-    MAIN: Hoofdgedeelte
-    HELPTAB: Help
-    BASEHELPLABEL: Help
-    BASEHELPTEXT: 'De publiceer vanaf datum is optioneel. Als niets wordt ingevuld, wordt deze automatisch naar de aanmaakdatum ingesteld. Als de publiceer-datum in de toekomst ligt moet nog wel steeds het vinkje voor gepubliceerd aangevinkt worden.'
+    HELPTAB: Hulp
+    BASEHELPLABEL: Hulp
     CREATED: Aangemaakt
     LOCALE: Taal
-    HELPTITLE: Help
+    HELPTITLE: Hulp
     TITLE: Titel
     CONTENT: Inhoud
     AUTHOR: Auteur
     PUBDATE: 'Publiceer vanaf'
-    PUSHLIVE: Gepubliceerd
-    PUBLISH: 'Publiceerdatum'
+    PUSHLIVE: Is gepubliceerd
+    PUBLISH: 'Publiceer vanaf'
     PARENTPAGE: 'Bovenliggende pagina'
     HOLDERPAGE: 'Bovenliggende pagina'
-    COMMENTING: 'Sta reacties toe op dit item'
+    COMMENTING: 'Sta reacties op dit bericht toe'
     IMPRESSION: 'Impressieafbeelding'
-    ANY: 'Alle talen'
+    ANY: 'Elke taal'
     TAGS: Tags
     COMMENTS: Reacties
-    SLIDE: Slideshow
-    IMAGES: 'Slideshow afbeeldingen'
-    NEWSITEMTYPE: Newsbericht
+    TAGAFTERID: 'Tags kunnen worden toegevoegd na opslaan'
+    SLIDE: Diashow
+    IMAGES: 'Diashow afbeeldingen'
+    NEWSITEMTYPE: Nieuwsbericht
     EXTERNALTYPE: 'Externe link'
-    DOWNLOADTYPE: 'Download'
-    NEWSTYPE: 'Type bericht'
-    SUMMARY: Samenvatting/abstract
+    DOWNLOADTYPE: 'Downloadbaar bestand'
+    NEWSTYPE: 'Soort bericht'
+    SUMMARY: Samenvatting/Abstract
+    DOWNLOAD: 'Downloadbaar bestand'
+    EXTERNAL: 'Externe link'
+    LINKEDPAGES: 'Gelinkte pagina''s'
   SlideshowImage:
-    SINGULARNAME: 'Slideshow'
-    PLURALNAME: 'Slideshows'
+    SINGULARNAME: 'Diashow afbeelding'
+    PLURALNAME: 'Diashow afbeeldingen'
     TITLE: Titel
     DESCRIPTION: Beschrijving
+    IMAGE: Afbeelding
   Tag:
     SINGULARNAME: Tag
     PLURALNAME: Tags
-    MAIN: Hoofdgedeelte
+    MAIN: Hoofd
     TITLE: Titel
     DESCRIPTION: Beschrijving
     IMPRESSION: 'Impressieafbeelding'
   NewsHolderPage:
     DATEPUBLISH: '{date} door {author}'
     DOWNLOADABLE: Download
-    READMORE: 'Lees verder &raquo;'
-    PREV: vorige
-    NEXT: volgende
+    READMORE: 'Lees meer &raquo;'
+    PREV: Vorige
+    NEXT: Volgende
+    DEFAULTPAGETITLE: Nieuwspagina
+    DESCRIPTION: 'Houderpagina voor nieuwsberichten'
+    PLURALNAME: 'Nieuwshouder pagina''s'
+    SINGULARNAME: 'Nieuwshouder pagina'
   CommentForm:
     NAME: Naam
-    TITLE: Titel
+    TITLE: Subject
     EMAIL: 'E-mailadres'
     WEBSITE: Website
     COMMENT: Reactie
+    EXTRA: Extra
   NewsHolderPage_show:
     COMMENTS: Reacties
     BYWHO: door
   NewsHolderPage_tag:
     TAG: Tag
-    ALLTAGS: 'All tags'
+    ALLTAGS: 'Alle tags'
   CommentReport:
-    TITLE: 'Reacties rapportage'
-    NEWSTITLE: 'Titel nieuwsbericht'
+    TITLE: 'Reactie rapportage'
+    NEWSTITLE: 'Nieuwstitel'
     COMMENTCOUNT: 'Totaal aantal reacties'
-    COMMENTSPAM: 'Totaal aantal spam'
-    COMMENTHIDDEN: 'Totaal aantal verborgen'
-    NEWSSEARCHTITLE: 'Zoek een nieuwsbericht'
-    COUNTFILTER: 'Reactie filter'
+    COMMENTSPAM: 'Totaal aantal spamreacties'
+    COMMENTHIDDEN: 'Totaal aantal verborgen reacties'
+    NEWSSEARCHTITLE: 'Zoek nieuwsbericht'
+    COUNTFILTER: 'Reactieaantal filter'
     ANY: Alles
     SPAMCOUNT: 'Een of meer spamreacties'
     HIDDENCOUNT: 'Een of meer verborgen reacties'
+    COMMENTSPAMCOUNT: 'Spamreacties'
+    EDIT: 'Bewerk bericht'
   TagReport:
-    TITLE: 'Tag gebruik rapportage'
-    NEWSTITLE: 'Titel nieuwsbericht'
-    NEWSCOUNT: 'Totaal items gelinked'
+    TITLE: 'Taggebruik rapportage'
+    NEWSTITLE: 'Nieuwstitel'
+    NEWSCOUNT: 'Totaal aantal berichten gelinked'
     TAGTITLE: 'Zoek een tag'
+    EDIT: 'Bewerk tag'
+  AuthorHelper:
+    PLURALNAME: 'Auteur-hulp systeem'
+    SINGULARNAME: 'Auteur-hulp systeem'
+  Comment:
+    AKISMETMARKED: 'Gemarkeerd als spam door Akismet'
+    COMMENT: Reactie
+    COMMENTMAILSUBJECT2: 'Nieuwe post getiteld: {title}'
+    EMAIL: E-mail
+    GRAVATAR: 'Toon Gravatar'
+    NAME: Naam
+    NEWS: Nieuws
+    PLURALNAME: Reacties
+    SINGULARNAME: Reactie
+    TITLE: itel
+    URL: URL
+    VISIBLE: Zichtbaar
+  Renamed:
+    PLURALNAME: Hernoemde berichten
+    SINGULARNAME: Hernoemd bericht
+  SiteTree:
+    PLURALNAME: Pagina's
+    SINGULARNAME: Pagina
