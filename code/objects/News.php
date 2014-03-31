@@ -318,16 +318,14 @@ class News extends DataObject implements PermissionProvider {
 	}
 
         /**
-         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
-	 * // If I recall correctly, this is a known issue with i18n class.
-	 * @todo Fix this. It bugs out, for example, English notation(?) is MMM d Y, the three M make it go JunJunJun 1, 2013. BAD!
-	 * Temporary fix: Forced to use d-m-Y
+         * Create a date-string based on the locale. Looks better.
          * @return string
          */
         public function getPublished() {
-		return date('d-m-Y', strtotime($this->PublishFrom));
-		$format = i18n::get_date_format();
-		return $this->dbObject('PublishFrom')->Format($format);
+		$locale = i18n::get_locale();
+		$date = new Zend_Date();
+		$date->set($this->PublishFrom, null, $locale);
+		return substr($date->getDate($locale),0,-9);
         }      
 
 	/**
