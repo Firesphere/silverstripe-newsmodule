@@ -18,3 +18,5 @@
 ## Far future
 
 * Keep on improving.
+* Finally add that "Fetch me a beer" feature.
+* Integrate a well-working oAuth module for Facebook and Twitter

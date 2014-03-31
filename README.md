@@ -97,30 +97,7 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 
 ## Features
 
-* Handle news and impressions besides the news.
-* History of URL-segments.
-* Support for custom comments.
-* Preferred anti-spam method is NOT using a Captcha.
-* Akismet support. Akismet class included in thirdparty dir. Remove it if you have it included already.
-* Option to add an "Extra" titled field. If this field is not empty, the post is considered spam. In your CSS, position it absolute and very, very, very much outside the screen.
-* Option to add a noscript-field. For the same reason as the Extra, but vice versa, it shouldn't be in the post, if it is, it's spam.
-* Globally available NewsArchive function, read the comments in the NewsExtension class for more.
-* Geshi code-rendering support. use `[code type=php]your code here[/code]`
-* Tweet rendering by Twitter. Include the twitter widget JS and in your content, just do [tweet id=tweetID]
-* Configurable from the SiteConfig.
-* GridField overview, less clutter in the SiteTree.
-* RSS Feed, can be found under `http://yoursite.com/yournewspage/rss` (Note, it seems links in content are not parsed correctly by some versions of the HTTP class in the RSS-entry builder!)
-* Tagging of items, shown grouped under `http://yoursite.com/yournewspage/tags` or a specific tag: `http://yoursite.com/tag/tag-urlsegment` where tag-urlsegment is the urlsegment of the tag, ofcourse.
-* Selectively disable comments on items, useful for when a commenting-war commences. Just disable for that specific item and you're set.
-* Show random items below a post. Or not. Or related items. Or both. Or none. Have it your way!
-* Set the publish-date. If, for example, you want to post after a three-date event, but update your item during the event. Note, you still have to check the Publish-checkbox and it won't auto-tweet (yet).
-* The publish-date is the date on the frontpage.
-* Slideshow option. Just add pictures and use [slideshow] in your $Content
-* Posts per Page and Pagination. If set to 0, it won't paginate.
-* Reports on comments, how much of them are marked by Akismet and how many are hidden.
-* Report on the tag usage.
-* Address the items that belong to a page with <% loop Children %> (don't ask, too little too late)
-* Archive. Globally addressable from the template via <% loop getArchiveList %>. See included template examples.
+[See the changelog](Changelog)
 
 ## Demo of frontend
 
@@ -140,7 +117,7 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 
 (Indeed, that second bullet means it only lacks history, nothing else :P )
 
-## Installation
+## [Help and installation](Help)
 
 If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).
@@ -190,9 +167,8 @@ If you set optional extra anti-spam method, the commentform will contain a field
 
 As of version 2.0, multiple developers have contributed. Many thanks to them! Also, translators, thank you a lot!
 
-Thinking of helping? Read this: https://github.com/Firesphere/silverstripe-newsmodule/wiki/Contributing
 
-To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 358. Change that one line to these three:
+To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 399. Change that one line to these three:
 ```
 		$form = (CommentForm::create($this, 'CommentForm', $siteconfig, $params));
 		$protector = SpamProtectorManager::update_form($form, 'Message');
