@@ -1,5 +1,8 @@
 <div class="container">
 	<div class="row col-xs-10">
+		<div class="col-xs-12">
+			<h1><%t NewsHolderPage.ITEMS_BY_AUTHOR "All items by " %>$CurrentAuthor.OriginalName.XML</h1>
+		</div>
 	<% if $allNews %>
 		<% loop $allNews %>
 		<div class="col-xs-4 $FirstLast">
