@@ -75,30 +75,6 @@ class News extends DataObject implements PermissionProvider {
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-	
-	/**
-	 * Store the siteconfig in a local variable, saves queries.
-	 * @var type SiteConfig
-	 */
-	protected $current_siteconfig;
-	
-	/**
-	 * 
-	 * @param array|null $record This will be null for a new database record.  Alternatively, you can pass an array of
-	 * field values.  Normally this contructor is only used by the internal systems that get objects from the database.
-	 * @param boolean $isSingleton This this to true if this is a singleton() object, a stub for calling methods.
-	 *                             Singletons don't have their defaults set.
-	 * @param News $model The model we're instantiating.
-	 * @todo Fix this a cleaner way, it's overkill.
-	 */
-	public function __construct($record = null, $isSingleton = false, $model = null) {
-		parent::__construct($record, $isSingleton, $model);
-		$this->current_siteconfig = SiteConfig::current_site_config();
-		if(!$this->ID && Member::currentUser()) {
-			$name =  Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$this->Author = $name;
-		}
-	}
 
 	/**
 	 * Define singular name translatable
@@ -195,12 +171,11 @@ class News extends DataObject implements PermissionProvider {
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
-		if($this->current_siteconfig->ShowAction) {
-			$action = $this->current_siteconfig->ShowAction;
+		if($config = Controller::curr()->getCurrentSiteConfig()->ShowAction) {
+			$action = $config.'/';
 		}
-		$Page = $this->NewsHolderPages()->count();
 		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action.'/'.$this->URLSegment));
+			return($Page->Link($action.$this->URLSegment));
 		}
 		return false;
 	}
@@ -214,6 +189,10 @@ class News extends DataObject implements PermissionProvider {
 		if($Page = $this->Link()){
 			return(Director::absoluteURL($Page));
 		}		
+	}
+	
+	public function AllowComments() {
+		return (Controller::curr()->getCurrentSiteConfig()->Comments && $this->Commenting);
 	}
 
 	/**
@@ -311,8 +290,13 @@ class News extends DataObject implements PermissionProvider {
 		$this->AuthorID = $author->ID;
 	}
 	
-	public function getComments() {
-		return $this->Comments()->filter(array('AkismetMarked' => 0));
+	/**
+	 * Get the allowed comments
+	 * @return DataList with comments
+	 */
+	public function getAllowedComments() {
+		return $this->Comments()
+			->filter(array('AkismetMarked' => false, 'Visible' => true));
 	}
 
 	/**
