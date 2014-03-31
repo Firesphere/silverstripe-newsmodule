@@ -11,11 +11,12 @@
 * Set permissions via permission provider.
 * Removed NOW() as an SQL-statement. (appearantly, due to escaping, it doesn't work)
 * Added the docs.
-* Show the date based on the locale
-* Templates based on Bootstrap 3
+* Show the date based on the locale.
+* Templates based on Bootstrap 3.
 * Cleaned up the templates mess.
-* Fixed the Author-pages
-
+* Fixed the Author-pages.
+* Added useful migrations to dev/build.
+* Removed the bugged-out orphan updater. I guess I need to rewrite it to a better one.
 
 ## Version 3.3
 
