@@ -138,6 +138,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 		}
 		self::$url_handlers = $handles;
+		$this->needsRedirect();
 		return parent::handleAction($request, $handles[$action]);
 	}
 	
@@ -146,7 +147,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
-		$this->needsRedirect();
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
@@ -155,7 +155,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Set the current newsitem, if available.
 	 */
-	public function setNews(){
+	private function setNews(){
 		$Params = $this->getURLParams();
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
@@ -177,7 +177,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * Set the current tag
 	 */
-	public function setTag() {
+	private function setTag() {
 		$Params = $this->getURLParams();
 		$tag = Tag::get()
 			->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))->first();
@@ -195,6 +195,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return $this->current_tag;
 	}
+	
 	/**
 	 * Set the current SiteConfig
 	 */
@@ -212,6 +213,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 		}
 		return $this->current_siteconfig;
 	}
+	
+	public function getCurrentAuthor() {
+		$id = $this->getRequest()->param('ID');
+		return AuthorHelper::get()->filter(array('URLSegment' => $id))->first();
+	}
 
 	/**
 	 * This feature is cleaner for redirection.
@@ -220,19 +226,21 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	private function needsRedirect(){
 		$id = $this->getRequest()->param('ID');
-		if($id && is_numeric($id)){
-			if($id > 0){
+		$action = $this->getRequest()->param('Action');
+		$handlers = self::$url_handlers;
+		if(isset($handlers[$action]) && $handlers[$action] == 'show' && !$news = $this->getNews()) {
+			if($id && is_numeric($id)){
 				$redirect = $this->Newsitems()->byId($id);
 				$this->redirect($redirect->Link(), 301);
 			}
 			else{
-				$this->redirect($this->Link(), 404);
-			}
-		}
-		else{
-			$renamed = Renamed::get()->filter('OldLink', $id);
-			if($renamed->count() > 0){
-				$this->redirect($renamed->First()->News()->Link(), 301);
+				$renamed = Renamed::get()->filter('OldLink', $id);
+				if($renamed->count() > 0){
+					$this->redirect($renamed->First()->News()->Link(), 301);
+				}
+				else {
+					$this->redirect($this->Link(), 404);
+				}
 			}
 		}
 	}
@@ -310,31 +318,15 @@ class NewsHolderPage_Controller extends Page_Controller {
 	}
 
 	/**
-	 * If we're on a newspage, we need to get the newsitem
-	 * @return object of the item.
-	 */
-	public function currentNewsItem(){
-		$siteConfig = $this->getCurrentSiteConfig();
-		$newsItem = $this->getNews();
-		if ($newsItem) {
-			/** If either one of these is false, no comments are allowed */
-			$newsItem->AllowComments = ($siteConfig->Comments && $newsItem->Commenting);
-			return($newsItem);
-		}
-		return array(); /** Return an empty page. Somehow the visitor ended up here, so at least give him something */
-	}
-
-	/**
 	 * @todo can this be made smaller? Would be nice!
 	 * @return ArrayList $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
 		$siteConfig = $this->getCurrentSiteConfig();
-		$Params = $this->getURLParams();
 		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
+			'PublishFrom:GreaterThan' => date('Y-m-d'),
 		);
-		$filter = $this->generateAddedFilter($Params);
+		$filter = $this->generateAddedFilter();
 		$allEntries = $this->Newsitems()
 			->filter($filter)
 			->exclude($exclude);
@@ -362,31 +354,35 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @param Array $params URL parameters
 	 * @return Array $filter Filtering for the allNews getter
 	 */
-	public function generateAddedFilter($params){
+	public function generateAddedFilter(){
+		$mapping = self::$url_handlers;
+		$params = $this->getURLParams();
 		/** @var array $filter Generic/default filter */
 		$filter = array(
 			'Live' => 1, 
 		);
-		/** Archive */
-		if($params['Action'] == 'archive'){
-			if(!isset($params['ID'])){
-				$month = date('m');
-				$year = date('Y');
-			}
-			elseif(!isset($params['OtherID']) && isset($params['ID'])){
-				$year = $params['ID'];
-				$month = '';
-			}
-			else{
-				$year = $params['ID'];
-				$month = date_parse('01-'.$params['OtherID'].'-1970');
-				$month = $month['month'];
-			}
-			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
-		}
-		/** Author */
-		if($params['Action'] == 'author'){
-			$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
+		switch($mapping[$params['Action']]) {
+			/** Archive */
+			case 'archive':
+				if(!isset($params['ID'])){
+					$month = date('m');
+					$year = date('Y');
+				}
+				elseif(!isset($params['OtherID']) && isset($params['ID'])){
+					$year = $params['ID'];
+					$month = '';
+				}
+				else{
+					$year = $params['ID'];
+					$month = date_parse('01-'.$params['OtherID'].'-1970');
+					$month = str_pad((int) $month['month'],2,"0",STR_PAD_LEFT);
+				}
+				$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
+				break;
+			/** Author */
+			case 'author' :
+				$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
+				break;
 		}
 		return $filter;
 	}
