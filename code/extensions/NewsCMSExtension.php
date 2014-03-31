@@ -103,7 +103,7 @@ class NewsCMSExtension extends DataExtension {
 		}
 		$pages = Versioned::get_by_stage('NewsHolderPage', 'Live');
 		// Only add the page-selection if there are multiple. Otherwise handled by onBeforeWrite();
-		if(count($pages) > 1){
+		if($pages->count() > 1){
 			$pagelist = array();
 			if(class_exists('Translatable')){
 				foreach($pages as $page) {
