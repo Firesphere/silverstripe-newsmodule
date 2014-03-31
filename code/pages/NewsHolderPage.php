@@ -361,28 +361,30 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$filter = array(
 			'Live' => 1, 
 		);
-		switch($mapping[$params['Action']]) {
-			/** Archive */
-			case 'archive':
-				if(!isset($params['ID'])){
-					$month = date('m');
-					$year = date('Y');
-				}
-				elseif(!isset($params['OtherID']) && isset($params['ID'])){
-					$year = $params['ID'];
-					$month = '';
-				}
-				else{
-					$year = $params['ID'];
-					$month = date_parse('01-'.$params['OtherID'].'-1970');
-					$month = str_pad((int) $month['month'],2,"0",STR_PAD_LEFT);
-				}
-				$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
-				break;
-			/** Author */
-			case 'author' :
-				$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
-				break;
+		if(isset($params['Action'])) {
+			switch($mapping[$params['Action']]) {
+				/** Archive */
+				case 'archive':
+					if(!isset($params['ID'])){
+						$month = date('m');
+						$year = date('Y');
+					}
+					elseif(!isset($params['OtherID']) && isset($params['ID'])){
+						$year = $params['ID'];
+						$month = '';
+					}
+					else{
+						$year = $params['ID'];
+						$month = date_parse('01-'.$params['OtherID'].'-1970');
+						$month = str_pad((int) $month['month'],2,"0",STR_PAD_LEFT);
+					}
+					$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
+					break;
+				/** Author */
+				case 'author' :
+					$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
+					break;
+			}
 		}
 		return $filter;
 	}
