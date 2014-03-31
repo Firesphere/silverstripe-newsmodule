@@ -15,7 +15,7 @@
 * Templates based on Bootstrap 3.
 * Cleaned up the templates mess.
 * Fixed the Author-pages.
-* Added useful migrations to dev/build.
+* Added automatic migrations to dev/build.
 * Removed the bugged-out orphan updater. I guess I need to rewrite it to a better one.
 
 ## Version 3.3

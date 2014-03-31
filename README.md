@@ -1,35 +1,19 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
-# IMPORTANT NOTICE
-=======================
-If you are using any version previous to the newly released version 3.0, please be aware that compatibility issues might occur.
-Most important is to migrate your current version to the new one.
-For this, a Forward-breaking method has been added to the page, which you need to run.
-
-Ofcourse, you need to run a dev/build. After that, you need to migrate.
-
-This url would be ```http://www.yourdomain.com/yournewspage/migrate```
-
-If you don't migrate up, you'll probably have problems with this new release.
-
-This release is deemed as stable by me, but it does have some untested, non-breaking, features. If you encounter any problems, contact me.
-
 ### REQUEST
 
-If you can translate the yaml files into your native language, would be great.
-If you can't/wont push/fork, you can e-mail me the translations.
-(Issue #25 )
+Help translate via [`Transifex`](https://www.transifex.com/projects/p/newsmodule/)
 
 ## Introduction
 
-This is the Silverstripe 3 Newsmodule. It's separate from the SiteTree.
+This is the Silverstripe 3 Newsmodule. It's separate from the SiteTree.    
 Mainly to keep the SiteTree uncluttered.
 
 If you expect to have a few hundred articles (like I do), your SiteTree becomes very unreadable. That's why I chose to make an alternative, using ModelAdmin.
 
 It works. Pretty much. Has some missing features. Please read my comments on the functions and such. It should make everything clear.
-If you encounter any problems with the Master, please let me know! I can't bugfix without a ticket!
+If you encounter any problems with the Master, please let me know! I can't bugfix without a ticket!    
 If you use the development-branch, be aware that this is my untested area and therefor might contain bugs or just plain ruin your site with errors.
 
 Ow, and the default template is based on HTML5 features and my own website. Functional frontend demo can also be found on my website. [`Casa Laguna`](http://casa-laguna.net/all-the-news)

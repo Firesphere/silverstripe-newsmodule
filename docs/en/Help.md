@@ -43,9 +43,19 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 If you set optional extra anti-spam method, the commentform will contain a field with the ID "Extra", position it "on the other side of the street", e.g. a position absolute with in your css #Extra.field{ left: -9000; }
 
 
-## Questions
-
-### Regarding templates
+## Templates
 
 * The ```archive``` method uses the base NewsHolderPage template
 * Templates are examples, based on Twitter Bootstrap 3. They may not suit your own styling by default!
+
+## HELP! Things broke!
+
+Q: After switching to version 4, my templates are all broken!
+A: Yes, I'm sorry about that, but I updated my templates to be styled as Bootstrap3 based websites. To fix this, you can download an older version and use those templates (don't worry, they are compatible).
+I would advice though, to move your templates to your theme-folder. That way, your custom styling can be done and you can also upgrade, as the module-specific templates are overridden bij the themes templates.
+
+Q: I found a bug, what should I do?
+A: Preferably, open a ticket on Github. Try to explain as detailed as possible what you did to encounter this bug.
+
+Q: I think your module is stupid.
+A: That's not a question now, is it?
