@@ -117,11 +117,11 @@ class Tag extends DataObject {
 	 * @return string|boolean Link to this object or false if no holderpage is found..
 	 */
 	public function Link($action = 'tag/') {
-		if($config = Controller::curr()->getCurrentSiteConfig()) {
-			$action = $config->TagAction;
+		if($config = Controller::curr()->getCurrentSiteConfig()->TagAction) {
+			$action = $config.'/';
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action.'/'.$this->URLSegment));
+			return($Page->Link($action.$this->URLSegment));
 		}
 		return false;
 	}
@@ -135,6 +135,13 @@ class Tag extends DataObject {
 		if($Page = $this->Link()){
 			return(Director::absoluteURL($Page));
 		}
+	}
+	
+	public function activeNews() {
+		$now = date('Y-m-d');
+		return $this->News()
+			->filter(array('Live' => true))
+			->exclude(array('PublishFrom:GreaterThan' => $now));
 	}
 	
 	/**
