@@ -16,33 +16,33 @@
 class News extends DataObject implements PermissionProvider {
 
 	private static $db = array(
-		'Title' => 'Varchar(255)',
+		'Title'		=> 'Varchar(255)',
 		/** Author might be handled via Member, but that's not useful if you want a non-member to post in his/her name */
-		'Author' => 'Varchar(255)',
-		'URLSegment' => 'Varchar(255)',
-		'Synopsis' => 'Text',
-		'Content' => 'HTMLText',
-		'PublishFrom' => 'Date',
-		'Tweeted' => 'Boolean(false)',
-		'FBPosted' => 'Boolean(false)',
-		'Live' => 'Boolean(true)',
-		'Commenting' => 'Boolean(true)',
+		'Author'	=> 'Varchar(255)',
+		'URLSegment'	=> 'Varchar(255)',
+		'Synopsis'	=> 'Text',
+		'Content'	=> 'HTMLText',
+		'PublishFrom'	=> 'Date',
+		'Tweeted'	=> 'Boolean(false)',
+		'FBPosted'	=> 'Boolean(false)',
+		'Live'		=> 'Boolean(true)',
+		'Commenting'	=> 'Boolean(true)',
 		/** This is for the external location of a link */
-		'Type' => 'Enum("news,external,download","news")',
-		'External' => 'Varchar(255)',
+		'Type'		=> 'Enum("news,external,download","news")',
+		'External'	=> 'Varchar(255)',
 	);
 	
 	private static $has_one = array(
-		'Impression' => 'Image',
+		'Impression'	=> 'Image',
 		/** If you want to have a download-file */
-		'Download' => 'File',
+		'Download'	=> 'File',
 		/** Generic helper to have Author-specific pages */
-		'AuthorHelper' => 'AuthorHelper',
+		'AuthorHelper'	=> 'AuthorHelper',
 	);
 	
 	private static $has_many = array(
-		'Comments' => 'Comment',
-		'Renamed' => 'Renamed',
+		'Comments'	  => 'Comment',
+		'Renamed'	  => 'Renamed',
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	

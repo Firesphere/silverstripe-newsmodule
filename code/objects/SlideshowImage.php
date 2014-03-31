@@ -11,15 +11,15 @@ class SlideshowImage extends DataObject {
 
 	/** @var array $db */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
-		'Description' => 'HTMLText',
-		'SortOrder' => 'Int',
+		'Title'		=> 'Varchar(255)',
+		'Description'	=> 'HTMLText',
+		'SortOrder'	=> 'Int',
 	);
 	
 	/** @var array $has_one */
 	private static $has_one = array(
-		'Image' => 'Image',
-		'News' => 'News',
+		'Image'	=> 'Image',
+		'News'	=> 'News',
 	);
 	
 	/**
