@@ -128,8 +128,10 @@ class NewsCMSExtension extends DataExtension {
 	 */
 	private function existingItem(News $owner, SiteConfig $siteConfig) {
 		if(!$owner->ID) {
+			$member = Member::currentUser();
 			$this->field_list['Root.Main'][13] = ReadonlyField::create('Tags', $owner->fieldLabel('Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
 			$owner->Type = 'news';
+			$owner->Author = $member->FirstName . ' ' . $member->Surname;
 		}
 		else {
 			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
