@@ -77,10 +77,11 @@ en:
     TAGS: Tags
     TITLE: Title
   NewsHolderPage:
-    DATEPUBLISH: '{date} by {author}'
+    DATEPUBLISH: '{date} by '
     DEFAULTPAGETITLE: Newspage
     DESCRIPTION: 'HolderPage for newsitems'
     DOWNLOADABLE: Download
+    ITEMS_BY_AUTHOR: 'All items by '
     JUMPTO_PAGE: 'Jump to page'
     NEXT_PAGE: Next
     PLURALNAME: 'News Holder Pags'
