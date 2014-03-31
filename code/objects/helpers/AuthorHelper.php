@@ -42,10 +42,10 @@ class AuthorHelper extends DataObject {
 	 */
 	public function Link($action = 'author/') {
 		if($siteConfigAction = SiteConfig::current_site_config()->AuthorAction) {
-			$action = $siteConfigAction;
+			$action = $siteConfigAction.'/';
 		}
-		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action.'/'.$this->URLSegment));
+		if ($Page = NewsHolderPage::get()->first()) {
+			return($Page->Link($action.$this->URLSegment));
 		}
 		return false;
 	}
