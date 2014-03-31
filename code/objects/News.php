@@ -171,7 +171,7 @@ class News extends DataObject implements PermissionProvider {
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
-		if($config = Controller::curr()->getCurrentSiteConfig()->ShowAction) {
+		if($config = SiteConfig::current_site_config()->ShowAction) {
 			$action = $config.'/';
 		}
 		if ($Page = $this->NewsHolderPages()->first()) {
@@ -192,7 +192,7 @@ class News extends DataObject implements PermissionProvider {
 	}
 	
 	public function AllowComments() {
-		return (Controller::curr()->getCurrentSiteConfig()->Comments && $this->Commenting);
+		return (SiteConfig::current_site_config()->Comments && $this->Commenting);
 	}
 
 	/**
@@ -322,6 +322,7 @@ class News extends DataObject implements PermissionProvider {
          * @return string
          */
         public function getPublished() {
+		i18n::get_date_format();
 		$locale = i18n::get_locale();
 		$date = new Zend_Date();
 		$date->set($this->PublishFrom, null, $locale);
