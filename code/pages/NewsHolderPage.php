@@ -27,7 +27,6 @@ class NewsHolderPage extends Page {
 
 	/**
 	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
-	 * @todo optional creation? I'm afraid here's a big potential bug at extending stuff!
 	 */
 	public function requireDefaultRecords()	{
 		parent::requireDefaultRecords();
@@ -41,29 +40,89 @@ class NewsHolderPage extends Page {
 			$page->write();
 			$page->publish('Stage','Live');
 			$page->flushCache();
-			/** 
-			 * This is to make sure we don't create any orphans by upgrading.
-			 * It shouldn't be necessary, but we prefer to be safe over being sorry.
-			 */
-			$newsItems = News::get()->filter(array('NewsHolderPageID' => 0));
-			if($newsItems->count()){
-				foreach($newsItems as $newsItem){
-					$newsItem->NewsHolderPageID = $this->ID;
-					$newsItem->write();
-				}
-			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
-		/** @todo fix backward compatibility for Author-method */
+		$this->migrateUp();
+	}
+	
+	private function migrateUp() {
+		$this->migratePublish();
+		$this->migrateAuthors();
+		$this->migratePages();
+		$this->migrateOrphans();
+	}
+	
+	/**
+	 * Migrate the Publish feature form one of the first versions.
+	 * This old version didn't work with PublishFrom but with Created.
+	 * So, we update here, to set the PublishFrom to the Created value.
+	 */
+	private function migratePublish() {
 		/** Backwards compatibility for upgraders. Update the PublishFrom field */
 		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
 		DB::query($sql);
 	}
 	
 	/**
+	 * For each author, add an AuthorHelper
+	 */
+	private function migrateAuthors() {
+		/** @var SQLQuery $query */
+		$query = new SQLQuery();
+		$query->setSelect('Author')
+			->setFrom('News')
+			->setDistinct(true);
+		$authors = $query->execute();
+		foreach($authors as $author) {
+			/** Create a new author if it doesn't exist */
+			if(!$authorHelper = AuthorHelper::get()->filter(array('OriginalName' => trim($author['Author'])))->first()) {
+				/** @var AuthorHelper $authorHelper */
+				$authorHelper = AuthorHelper::create();
+				$authorHelper->OriginalName = $author['Author'];
+				$authorHelper->write();
+			}
+			$sql = "UPDATE `News` SET `AuthorHelperID` = '".$authorHelper->ID."' WHERE Author = '".$author['Author']."'";
+			DB::query($sql);
+		}
+	}
+	
+	/**
+	 * This is to migrate existing newsitems to the new release with the new relational method.
+	 * It is forward-non-destructive.
+	 * Only run if there is a column NewsHolderPageID
+	 */
+	private function migratePages() {
+		$existquery = "SHOW COLUMNS FROM `News` LIKE 'NewsHolderPageID';";
+		/** @var DB $exists */
+		$exists = DB::query($existquery);
+		if($count = $exists->numRecords()) {
+			/** @var SQLQuery $query */
+			$query = new SQLQuery();
+			$query->setSelect(array('ID', 'NewsHolderPageID'))
+				->setFrom('News');
+			$newsitems = $query->execute();
+			foreach($newsitems as $newsitem) {
+				if($newsitem['NewsHolderPageID'] && NewsHolderPage::get()->byID($newsitem['NewsHolderPageID'])) {
+					News::get()
+						->byID($newsitem['ID'])
+						->NewsHolderPages()->add($newsitem['NewsHolderPageID']);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Migrate orphanaged newsitems.
+	 * @todo make this work as wished. As it's doing.... not so very much
+	 */
+	private function migrateOrphans() {
+
+	}
+	
+	/**
 	 * Support for children.
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
-	 * @return DataObjectSet NewsItems Items belonging to this page
+	 * @return DataObjectSet NewsItems belonging to this page
 	 */
 	public function Children(){
 		$now = date('Y-m-d');
@@ -76,10 +135,6 @@ class NewsHolderPage extends Page {
 
 class NewsHolderPage_Controller extends Page_Controller {
 
-	/**
-	 * We allow a lot, right?
-	 * @var array $allowed_actions, again.
-	 */
 	private static $allowed_actions = array(
 		'show',
 		'tag',
@@ -101,7 +156,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Setup the allowed actions to work with the SiteConfig settings.
-	 * @param type $limitToClass
+	 * @param string $limitToClass
 	 * @return array
 	 */
 	public function allowedActions($limitToClass = null){
@@ -222,7 +277,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	/**
 	 * This feature is cleaner for redirection.
 	 * Saves requests to the database if I'm not mistaken.
-	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
+	 * @return $this|null redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
 		$id = $this->getRequest()->param('ID');
@@ -257,7 +312,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 					$this->Title = $news->Title . ' - ' . $this->Title;
 					break;
 				case 'tag' :
-					$tags = $this->current_tag;
+					$tags = $this->getTag();
 					$this->Title = $tags->Title . ' - ' . $this->Title;
 					break;
 				case 'tags' :
@@ -293,23 +348,22 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return DataList $return with Newsitems
 	 */
 	public function getRSSFeed() {
-		$return = $this->NewsItems()->filter(
-				array('Live' => 1)
-			)->exclude(
-				array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s'))
-			)->limit(10);
+		$return = $this->NewsItems()
+			->filter(array('Live' => 1))
+			->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')))
+			->limit(10);
 		return $return;
 	}
 	
 	/**
 	 * Setup the filter for the getters. This keeps in mind if the user is allowed to view this item.
-	 * @param String $Params returntype setting.
+	 * @param String $params returntype setting.
 	 * @return Array $filter filter for general getter.
 	 */
-	private function setupFilter($Params){
+	private function setupFilter($params){
 		// Default filter.
 		$filter = array(
-			'URLSegment' => Convert::raw2sql($Params['ID']),
+			'URLSegment' => Convert::raw2sql($params['ID']),
 		);
 		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))){
 			$filter['Live'] = 1;
@@ -351,7 +405,6 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Get the items, per month/year/author
 	 * If no month or year is set, current month/year is assumed
 	 * @todo cleanup the month-method maybe?
-	 * @param Array $params URL parameters
 	 * @return Array $filter Filtering for the allNews getter
 	 */
 	public function generateAddedFilter(){
@@ -397,17 +450,5 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
 		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
-	}
-	
-	/**
-	 * This is to migrate existing newsitems to the new release with the new relational method.
-	 * It is forward-non-destructive.
-	 * @todo this Migration is broken because the @method NewsHolderPage NewsHolderPage() doesn't exist on News anymore.
-	 */
-	public function migrate() {
-		$newsitems = News::get();
-		foreach($newsitems as $newsitem) {
-			$newsitem->NewsHolderPages()->add($newsitem->NewsHolderPage());
-		}
 	}
 }
