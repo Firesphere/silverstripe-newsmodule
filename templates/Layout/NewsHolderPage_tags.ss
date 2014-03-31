@@ -6,8 +6,9 @@
 					<a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()" >$Title</a>
 				<% end_loop %>
 			</div>
+			<div class="clearfix"></div>
 			<div class="news-socialbuttons"
-				<a href="https://twitter.com/share" class="twitter-share-button" data-via="" data-dnt="true">Tweet</a>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-via="$SiteConfig.TwitterAccount" data-dnt="true">Tweet</a>
 				<br />
 				<div class="fb-like" data-href="$BaseHref{$URLSegment}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
 				<br />

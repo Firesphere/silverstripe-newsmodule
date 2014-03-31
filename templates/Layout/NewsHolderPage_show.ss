@@ -36,9 +36,9 @@
 		<!--Example sharing buttons!-->
 		<div class="col-xs-12 newsitem-socialbuttons">
 			<br />
-			<a href="https://twitter.com/share" class="twitter-share-button" data-via="{Your Twitter Account}" data-dnt="true">Tweet</a>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="$SiteConfig.TwitterAccount" data-dnt="true">Tweet</a>
 			<br />
-			<div class="fb-like" data-href="$BaseHref{$Up.URLSegment}/show/$URLSegment" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
+			<div class="fb-like" data-href="$BaseHref{$Link}" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
 			<br />
 		</div>
 		
