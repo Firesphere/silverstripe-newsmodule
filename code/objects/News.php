@@ -109,9 +109,9 @@ class News extends DataObject implements PermissionProvider {
 		$summaryFields = array_merge(
 			$summaryFields, 
 			array(
-				'Title' => _t('News.TITLE', 'Title'),
-				'Author' => _t('News.AUTHOR', 'Author'),
-				'PublishFrom' => _t('News.PUBLISH', 'Publish from'),
+				'Title'		=> _t('News.TITLE', 'Title'),
+				'Author'	=> _t('News.AUTHOR', 'Author'),
+				'PublishFrom'	=> _t('News.PUBLISH', 'Publish from'),
 			)
 		);
 		return $summaryFields;
@@ -186,9 +186,7 @@ class News extends DataObject implements PermissionProvider {
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink(){
-		if($Page = $this->Link()){
-			return(Director::absoluteURL($Page));
-		}		
+		return(Director::absoluteURL($this->Link()));
 	}
 	
 	public function AllowComments() {
@@ -201,7 +199,8 @@ class News extends DataObject implements PermissionProvider {
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!class_exists('Translatable') || !$this->NewsHolderPages()->count()){
+		/** Check if we have translatable and a NewsHolderPage. If no HolderPage available, skip (Create an orphan) */
+		if((!class_exists('Translatable') || !$this->NewsHolderPages()->count()) && NewsHolderPage::get()->first()){
 			$page = NewsHolderPage::get()->first();
 			$this->NewsHolderPages()->add($page);
 		}
@@ -266,11 +265,10 @@ class News extends DataObject implements PermissionProvider {
 	 * @return boolean URLSegment already exists yes or no.
 	 */
 	private function LookForExistingURLSegment($URLSegment) {
-		return(News::get()->filter(
-				array("URLSegment" => $URLSegment)
-			)->exclude(
-				array("ID" => $this->ID)
-			)->count() != 0);
+		return(News::get()
+			->filter(array("URLSegment" => $URLSegment))
+			->exclude(array("ID" => $this->ID))
+			->count() != 0);
 	}
 	
 	/**
@@ -278,14 +276,11 @@ class News extends DataObject implements PermissionProvider {
 	 */
 	private function setAuthorData() {
 		$this->Author = trim($this->Author);
-		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
-		if($author->count() == 0){
+		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author))->first();
+		if(!$author){
 			$author = AuthorHelper::create();
 			$author->OriginalName = trim($this->Author);
 			$author->write();
-		}
-		else{
-			$author = $author->first();
 		}
 		$this->AuthorID = $author->ID;
 	}
