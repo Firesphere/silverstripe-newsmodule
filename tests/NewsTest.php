@@ -1,7 +1,10 @@
 <?php
 /**
- * Tests for the Newsitems
+ * Tests for the Newsitems.
+ * 
+ * If I missed any test, feel free to add!
  *
+ * @package News/blog module
  * @author Simon 'Sphere' Erkelens
  */
 class NewsTest extends SapphireTest {

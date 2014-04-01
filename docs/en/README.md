@@ -33,7 +33,6 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 E-mail me your twitter contact if you added something and like to be mentioned!
 
-
 ## Requirements
 
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
@@ -55,29 +54,6 @@ E-mail me your twitter contact if you added something and like to be mentioned!
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
-
-## Version numbering explained
-
-After releasing 1.4.2, I noticed I needed to redesign my version-numbering. So here's the deal:
-
- * The first number is a master release. It's the master, it's at this number I decide when to up the number.
- * The second number is a major feature release. This means a whole bunch of minor features are bundled into one big upgrade. Major releases are always safe to use and are only hotfixed, never feature-upgraded without a subnumber.
- * The third number is a minor feature release. This means a feature is added, but it's not a big deal. They might include minor features like help, but never a big upgrade.
- * The fourth number is a hotfix. It's just something that might bug. Or a small fix. Or a quick fix for a bug.
-
-Major feature and Master releases are also defined in the milestones. So you know what issues will be resolved for that version.
-
-I think this tagging method should be the best way to go. As you can see, this README update is 1.4.8.1. Meaning:
-1. It's master version 1
-4. This is my current major release but no breaking changes to version 1
-8. I just fixed publishfrom, although it was a major bug, the update is minor.
-1. Well, to make a full feature release of this tiny readme update?
-
-Note, this means features and hotfixes in the 4th digit doesn't mean it's a hotfix, nor does it mean it's a release, or a feature. It can be both! (I understand this might cause some problems, but I don't want to go to 5 numbers)
-
-## Work in progress
-
-Yeah. It kinda is. I'm trying not to break old features with new features!
 
 ## Features
 

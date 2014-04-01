@@ -28,7 +28,7 @@ News:
     Title: 'Third Newsitem'
     PublishFrom: '2013-12-01'
     Live: 1
-    Author: 'Unit Test'
+    Author: 'Unit  Test'
     NewsHolderPages: =>NewsHolderPage.page1
   futureitem:
     Title: 'Item published future'
