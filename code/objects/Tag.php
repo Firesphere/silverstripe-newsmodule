@@ -93,7 +93,7 @@ class Tag extends DataObject {
 		parent::onBeforeWrite();
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
-			if(strpos($this->URLSegment, 'page-') === false){
+			if(strpos($this->URLSegment, 'page-') === false){ // It might occur, and we don't want page-0, page-1 etc. in the list!
 				$nr = 1;
 				$URLSegment = $this->URLSegment;
 				while($this->LookForExistingURLSegment($URLSegment)){
@@ -109,7 +109,7 @@ class Tag extends DataObject {
 	 * @param string $URLSegment
 	 * @return boolean if urlsegment already exists yes or no.
 	 */
-	public function LookForExistingURLSegment(string $URLSegment) {
+	public function LookForExistingURLSegment($URLSegment) {
 		return(Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
