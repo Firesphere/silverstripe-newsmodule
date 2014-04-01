@@ -253,9 +253,11 @@ class News extends DataObject implements PermissionProvider {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if(strpos($this->URLSegment, 'page-') === false){
 				$nr = 1;
-				while($this->LookForExistingURLSegment($this->URLSegment)){
-					$this->URLSegment .= '-'.$nr++;
+				$URLSegment = $this->URLSegment;
+				while($this->LookForExistingURLSegment($URLSegment)){
+					$URLSegment = $this->URLSegment.'-'.$nr++;
 				}
+				$this->URLSegment = $URLSegment;
 			}
 		}
 	}
@@ -276,6 +278,13 @@ class News extends DataObject implements PermissionProvider {
 	 */
 	private function setAuthorData() {
 		$this->Author = trim($this->Author);
+		$nameParts = explode(' ', $this->Author);
+		foreach($nameParts as $key => $namePart) {
+			if($namePart == '') {
+				unset($nameParts[$key]);
+			}
+		}
+		$this->Author = implode(' ', $nameParts);
 		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author))->first();
 		if(!$author){
 			$author = AuthorHelper::create();

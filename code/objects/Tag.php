@@ -95,9 +95,11 @@ class Tag extends DataObject {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if(strpos($this->URLSegment, 'page-') === false){
 				$nr = 1;
-				while($this->LookForExistingURLSegment($this->URLSegment)){
-					$this->URLSegment .= '-'.$nr++;
+				$URLSegment = $this->URLSegment;
+				while($this->LookForExistingURLSegment($URLSegment)){
+					$URLSegment = $this->URLSegment.'-'.$nr++;
 				}
+				$this->URLSegment = $URLSegment;
 			}
 		}
 	}
