@@ -282,7 +282,7 @@ class News extends DataObject implements PermissionProvider {
 			$author->OriginalName = trim($this->Author);
 			$author->write();
 		}
-		$this->AuthorID = $author->ID;
+		$this->AuthorHelperID = $author->ID;
 	}
 	
 	/**
