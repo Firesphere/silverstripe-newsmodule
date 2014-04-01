@@ -1,13 +1,13 @@
 NewsHolderPage:
-  firstpage:
+  page1:
     Title: 'Newspage 1'
-  secondpage:
+  page2:
     Title: 'Newspage 2'
 Tag:
-  firsttag:
+  tag1:
     Title: 'Testtag 1'
     URLSegment: 'testtag-1'
-  secondtag:
+  tag2:
     Title: 'Testtag 2'
     URLSegment: 'testtag-2'
 News:
@@ -16,30 +16,36 @@ News:
     PublishFrom: '2013-10-01'
     Live: 1
     Author: 'Unit Test '
-    NewsHolderPages: =>NewsHolderPage.firstpage
-    Tags: =>Tag.firsttag
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1
   item2:
     Title: 'Second Newsitem'
     PublishFrom: '2013-11-01'
     Live: 1
     Author: 'Test Unit'
-    NewsHolderPages: =>NewsHolderPage.firstpage,=>NewsHolderPage.secondpage
+    NewsHolderPages: =>NewsHolderPage.page1,=>NewsHolderPage.page2
   item3:
     Title: 'Third Newsitem'
     PublishFrom: '2013-12-01'
     Live: 1
     Author: 'Unit Test'
-    NewsHolderPages: =>NewsHolderPage.firstpage
+    NewsHolderPages: =>NewsHolderPage.page1
   futureitem:
     Title: 'Item published future'
     Live: 1
     Author: 'Test  Unit'
     PublishFrom: '2015-01-01'
-    Tags: =>Tag.firsttag
+    Tags: =>Tag.tag1
   urlcollisionitem:
     Title: 'First Newsitem'
     PublishFrom: '2013-10-02'
     Live: 1
     Author: 'Unit Test'
-    NewsHolderPages: =>NewsHolderPage.firstpage
-    Tags: =>Tag.firsttag
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1,=>Tag.tag2
+  pagelessitem:
+    Title: 'First Newsitem'
+    PublishFrom: '2013-10-02'
+    Live: 1
+    Author: 'Unit Test'
+    Tags: =>Tag.tag1,=>Tag.tag2
