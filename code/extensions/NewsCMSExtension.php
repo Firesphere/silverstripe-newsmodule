@@ -103,7 +103,7 @@ class NewsCMSExtension extends DataExtension {
 		}
 		$pages = Versioned::get_by_stage('NewsHolderPage', 'Live');
 		// Only add the page-selection if there are multiple. Otherwise handled by onBeforeWrite();
-		if(count($pages) > 1){
+		if($pages->count() > 1){
 			$pagelist = array();
 			if(class_exists('Translatable')){
 				foreach($pages as $page) {
@@ -128,8 +128,10 @@ class NewsCMSExtension extends DataExtension {
 	 */
 	private function existingItem(News $owner, SiteConfig $siteConfig) {
 		if(!$owner->ID) {
+			$member = Member::currentUser();
 			$this->field_list['Root.Main'][13] = ReadonlyField::create('Tags', $owner->fieldLabel('Tags'), _t('News.TAGAFTERID', 'Tags can be added after the item has been saved'));
 			$owner->Type = 'news';
+			$owner->Author = $member->FirstName . ' ' . $member->Surname;
 		}
 		else {
 			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));

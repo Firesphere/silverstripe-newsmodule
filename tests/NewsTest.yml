@@ -1,19 +1,82 @@
+NewsHolderPage:
+  page1:
+    Title: 'Newspage 1'
+  page2:
+    Title: 'Newspage 2'
+Tag:
+  tag1:
+    Title: 'Testtag 1'
+  tag2:
+    Title: 'Testtag 2'
 News:
-  Title:
-    'Test Newsitem'
-  Summary:
-    'Testing'
-  Content:
-    'This is a testitem'
-  Author:
-    'PHPUnit'
+  item1:
+    Title: 'First Newsitem'
+    PublishFrom: '2013-10-01'
+    Live: 1
+    Author: 'Unit Test '
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1
+  item2:
+    Title: 'Second Newsitem'
+    PublishFrom: '2013-11-01'
+    Live: 1
+    Author: 'Test Unit'
+    NewsHolderPages: =>NewsHolderPage.page1,=>NewsHolderPage.page2
+    Tags: =>Tag.tag1,=>Tag.tag2
+  item3:
+    Title: 'Third Newsitem'
+    PublishFrom: '2013-12-01'
+    Live: 1
+    Author: 'Unit  Test'
+    NewsHolderPages: =>NewsHolderPage.page1
+  futureitem:
+    Title: 'Item published future'
+    Live: 1
+    Author: 'Test  Unit'
+    PublishFrom: '2015-01-01'
+    Tags: =>Tag.tag1
+  urlcollisionitem:
+    Title: 'First Newsitem'
+    PublishFrom: '2013-10-02'
+    Live: 1
+    Author: 'Unit Test'
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1,=>Tag.tag2
+  pagelessitem:
+    Title: 'Pageless Newsitem'
+    PublishFrom: '2013-10-02'
+    Live: 1
+    Author: 'Unit Test'
+    Tags: =>Tag.tag1,=>Tag.tag2
+  unpublisheditem:
+    Title: 'Unpublished Newsitem'
+    Live: 0
+    Author: 'Unit Test'
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1,=>Tag.tag2
 Comment:
-  Title:
-    'Testcomment'
-  Name:
-    'PHPUnit'
-  Email:
-    'phpunit@test.com'
-  URL:
-    'casa-laguna.net'
-  
+  comment1:
+    Title: 'Testcomment number 1 which has a long title'
+    Name: 'Visitor number one'
+    Email: 'test@emailaddress.com'
+    Comment: 'I''m not entirely sure but this should be nice to read. There might also be some other interesting things on this topic somewhere else'
+    News: =>News.item1
+  comment2:
+    Title: 'Testcomment with nr. 2'
+    Name: 'Visitor number three'
+    Email: 'test@example.com'
+    Comment: 'This helped me setup my configuration just as wished. Thank you very much!'
+    News: =>News.item1
+  comment2:
+    Title: 'Testcomment with nr. 3'
+    Name: 'Visitor number three'
+    Email: 'test@example.com'
+    Comment: 'I don''t know how to thank you. This saved me a lot of time!'
+    News: =>News.item2
+  spamcomment:
+    Title: 'Get viagra now'
+    Name: 'viagra-test-123'
+    Email: 'akismet@test.com'
+    URL: 'http://www.akismet.com'
+    Comment: 'Get your viagra here!'
+    News: =>News.item1

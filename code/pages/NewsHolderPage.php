@@ -27,7 +27,6 @@ class NewsHolderPage extends Page {
 
 	/**
 	 * Create a default NewsHolderPage. This prevents error500 because of a missing page.
-	 * @todo optional creation? I'm afraid here's a big potential bug at extending stuff!
 	 */
 	public function requireDefaultRecords()	{
 		parent::requireDefaultRecords();
@@ -41,29 +40,89 @@ class NewsHolderPage extends Page {
 			$page->write();
 			$page->publish('Stage','Live');
 			$page->flushCache();
-			/** 
-			 * This is to make sure we don't create any orphans by upgrading.
-			 * It shouldn't be necessary, but we prefer to be safe over being sorry.
-			 */
-			$newsItems = News::get()->filter(array('NewsHolderPageID' => 0));
-			if($newsItems->count()){
-				foreach($newsItems as $newsItem){
-					$newsItem->NewsHolderPageID = $this->ID;
-					$newsItem->write();
-				}
-			}
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
-		/** @todo fix backward compatibility for Author-method */
+		$this->migrateUp();
+	}
+	
+	private function migrateUp() {
+		$this->migratePublish();
+		$this->migrateAuthors();
+		$this->migratePages();
+		$this->migrateOrphans();
+	}
+	
+	/**
+	 * Migrate the Publish feature form one of the first versions.
+	 * This old version didn't work with PublishFrom but with Created.
+	 * So, we update here, to set the PublishFrom to the Created value.
+	 */
+	private function migratePublish() {
 		/** Backwards compatibility for upgraders. Update the PublishFrom field */
 		$sql = "UPDATE `News` SET `PublishFrom` = `Created` WHERE `PublishFrom` IS NULL";
 		DB::query($sql);
 	}
 	
 	/**
+	 * For each author, add an AuthorHelper
+	 */
+	private function migrateAuthors() {
+		/** @var SQLQuery $query */
+		$query = new SQLQuery();
+		$query->setSelect('Author')
+			->setFrom('News')
+			->setDistinct(true);
+		$authors = $query->execute();
+		foreach($authors as $author) {
+			/** Create a new author if it doesn't exist */
+			if(!$authorHelper = AuthorHelper::get()->filter(array('OriginalName' => trim($author['Author'])))->first()) {
+				/** @var AuthorHelper $authorHelper */
+				$authorHelper = AuthorHelper::create();
+				$authorHelper->OriginalName = $author['Author'];
+				$authorHelper->write();
+			}
+			$sql = "UPDATE `News` SET `AuthorHelperID` = '".$authorHelper->ID."' WHERE Author = '".$author['Author']."'";
+			DB::query($sql);
+		}
+	}
+	
+	/**
+	 * This is to migrate existing newsitems to the new release with the new relational method.
+	 * It is forward-non-destructive.
+	 * Only run if there is a column NewsHolderPageID
+	 */
+	private function migratePages() {
+		$existquery = "SHOW COLUMNS FROM `News` LIKE 'NewsHolderPageID';";
+		/** @var DB $exists */
+		$exists = DB::query($existquery);
+		if($count = $exists->numRecords()) {
+			/** @var SQLQuery $query */
+			$query = new SQLQuery();
+			$query->setSelect(array('ID', 'NewsHolderPageID'))
+				->setFrom('News');
+			$newsitems = $query->execute();
+			foreach($newsitems as $newsitem) {
+				if($newsitem['NewsHolderPageID'] && NewsHolderPage::get()->byID($newsitem['NewsHolderPageID'])) {
+					News::get()
+						->byID($newsitem['ID'])
+						->NewsHolderPages()->add($newsitem['NewsHolderPageID']);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Migrate orphanaged newsitems.
+	 * @todo make this work as wished. As it's doing.... not so very much
+	 */
+	private function migrateOrphans() {
+
+	}
+	
+	/**
 	 * Support for children.
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
-	 * @return DataObjectSet NewsItems Items belonging to this page
+	 * @return DataObjectSet NewsItems belonging to this page
 	 */
 	public function Children(){
 		$now = date('Y-m-d');
@@ -76,10 +135,6 @@ class NewsHolderPage extends Page {
 
 class NewsHolderPage_Controller extends Page_Controller {
 
-	/**
-	 * We allow a lot, right?
-	 * @var array $allowed_actions, again.
-	 */
 	private static $allowed_actions = array(
 		'show',
 		'tag',
@@ -101,7 +156,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	
 	/**
 	 * Setup the allowed actions to work with the SiteConfig settings.
-	 * @param type $limitToClass
+	 * @param string $limitToClass
 	 * @return array
 	 */
 	public function allowedActions($limitToClass = null){
@@ -124,16 +179,22 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return parent::handleAction
 	 */
 	public function handleAction($request, $action) {
-		parent::handleAction($request, $action);
+		$handles = parent::allowedActions(false);
 		$defaultMapping = self::$allowed_actions;
+		$handles['index'] = 'handleIndex';
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach($defaultMapping as $key) {
 			$map = ucfirst($key.'Action');
-			if($siteConfig->$map && $siteConfig->$map == $action) {
-				return parent::handleAction($request, $key);
+			if($siteConfig->$map) {
+				$handles[$siteConfig->$map] = $key;
+			}
+			elseif(!isset($handles[$key])) {
+				$handles[$key] = $key;
 			}
 		}
-		return parent::handleAction($request, $action);
+		self::$url_handlers = $handles;
+		$this->needsRedirect();
+		return parent::handleAction($request, $handles[$action]);
 	}
 	
 	/**
@@ -141,34 +202,55 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 */
 	public function init() {
 		parent::init();
-		$this->needsRedirect();
-		$this->setNews();
 		// I would advice to put these in a combined file, but it works this way too.
 		Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
 		Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
 	}
 
 	/**
-	 * We escape the tags here, otherwise things bug out with the meta-tags.
-	 * @return News $news Current newsitem selected.
+	 * Set the current newsitem, if available.
 	 */
-	public function setNews(){
+	private function setNews(){
 		$Params = $this->getURLParams();
-		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'), 
-		);
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
-		$news = $this->Newsitems()->filter($segmentFilter)->exclude($exclude)->first();
+		$news = $this->Newsitems()->filter($segmentFilter)->first();
 		$this->current_item = $news;
 	}
 	
 	/**
+	 * Get the current newsitem
 	 * @return News The current newsitem
 	 */
 	public function getNews() {
+		if(!$this->current_item) {
+			$this->setNews();
+		}
 		return $this->current_item;
 	}
+	
+	/**
+	 * Set the current tag
+	 */
+	private function setTag() {
+		$Params = $this->getURLParams();
+		$tag = Tag::get()
+			->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))->first();
+		$this->current_tag = $tag;
+	}
+	
+	/**
+	 * Get the current tag.
+	 * @todo Implement translations?
+	 * @return Tag with tags or news.
+	 */
+	public function getTag(){
+		if(!$this->current_tag){
+			$this->setTag();
+		}
+		return $this->current_tag;
+	}
+	
 	/**
 	 * Set the current SiteConfig
 	 */
@@ -180,47 +262,69 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * Get the current SiteConfig
 	 * @return SiteConfig
 	 */
-	private function getCurrentSiteConfig() {
+	public function getCurrentSiteConfig() {
 		if(!$this->current_siteconfig) {
 			$this->setCurrentSiteConfig();
 		}
 		return $this->current_siteconfig;
 	}
+	
+	public function getCurrentAuthor() {
+		$id = $this->getRequest()->param('ID');
+		return AuthorHelper::get()->filter(array('URLSegment' => $id))->first();
+	}
 
 	/**
-	 * Meta! This is so Meta! I mean, MetaTitle!
+	 * This feature is cleaner for redirection.
+	 * Saves requests to the database if I'm not mistaken.
+	 * @return $this|null redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
-	public function MetaTitle(){
-		$Params = $this->getURLParams();
-		$news = $this->current_item;
-		if($Params['Action'] == 'show' && $news->ID > 0){
-			$this->Title = $news->Title . ' - ' . $this->Title;
-		}
-		elseif($Params['Action'] == 'tags'){
-			$this->Title = 'All tags - ' . $this->Title;
-		}
-		elseif($Params['Action'] == 'tag'){
-			$tags = $this->getTags();
-			$this->Title = $tags->Title . ' - ' . $this->Title;
+	private function needsRedirect(){
+		$id = $this->getRequest()->param('ID');
+		$action = $this->getRequest()->param('Action');
+		$handlers = self::$url_handlers;
+		if(isset($handlers[$action]) && $handlers[$action] == 'show' && !$news = $this->getNews()) {
+			if($id && is_numeric($id)){
+				$redirect = $this->Newsitems()->byId($id);
+				$this->redirect($redirect->Link(), 301);
+			}
+			else{
+				$renamed = Renamed::get()->filter('OldLink', $id);
+				if($renamed->count() > 0){
+					$this->redirect($renamed->First()->News()->Link(), 301);
+				}
+				else {
+					$this->redirect($this->Link(), 404);
+				}
+			}
 		}
 	}
 	
 	/**
-	 * Does this still work? I think it bugs.
-	 * Or ignored, that could be it too.
+	 * Meta! This is so Meta! I mean, MetaTitle!
 	 */
-	public function MetaDescription(){
-		$Params = $this->getURLParams();
-		/** @var News DataObject|DataObjectSet of Newsitems */
-		$news = $this->current_item;
-		if($Params['Action'] == 'show' && $news->ID > 0){
-			$this->MetaDescription .= ' '.$news->Title;
-		}
-		elseif($Params['Action'] == 'tags'){
-			$this->MetaDescription .= ' All tags';
-		}
-		elseif($tags = $this->getTags()){
-			$this->MetaDescription .= ' ' . $tags->Title;
+	public function MetaTitle(){
+		$mapping = self::$url_handlers;
+		if($action = $this->getRequest()->param('Action')) {
+			switch($mapping[$action]) {
+				case 'show' :
+					$news = $this->getNews();
+					$this->Title = $news->Title . ' - ' . $this->Title;
+					break;
+				case 'tag' :
+					$tags = $this->getTag();
+					$this->Title = $tags->Title . ' - ' . $this->Title;
+					break;
+				case 'tags' :
+					$this->Title = _t('News.ALLTAGS_PAGE', 'All tags - ') . $this->Title;
+					break;
+				case 'author' :
+					$this->Title = _t('News.AUTHOR_PAGE', 'Items by author - ') . $this->Title;
+					break;
+				case 'archive' :
+					$this->Title = _t('News.ARCHIVE_PAGE', 'Items per period ') . $this->Title;
+					break;
+			}
 		}
 	}
 	
@@ -233,8 +337,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function rss(){ 
 		$rss = RSSFeed::create(
 			$list = $this->getRSSFeed(),
-			$link = $this->Link("rss"),
-			$title = "News feed"
+			$link = $this->Link('rss'),
+			$title = _t('News.RSSFEED', 'News feed')
 		);
 		return $rss->outputToBrowser();
 	}
@@ -244,106 +348,27 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return DataList $return with Newsitems
 	 */
 	public function getRSSFeed() {
-		$return = $this->NewsItems()->filter(
-				array('Live' => 1)
-			)->exclude(
-				array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s'))
-			)->limit(10);
+		$return = $this->NewsItems()
+			->filter(array('Live' => 1))
+			->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')))
+			->limit(10);
 		return $return;
 	}
 	
 	/**
-	 * This feature is cleaner for redirection.
-	 * Saves requests to the database if I'm not mistaken.
-	 * @return redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
-	 */
-	private function needsRedirect(){
-		$Params = $this->getURLParams();
-		if(isset($Params['Action']) && $Params['Action'] == 'show' && isset($Params['ID']) && is_numeric($Params['ID'])){
-			if($Params['ID'] > 0){
-				$redirect = $this->Newsitems()->filter('ID', $Params['ID'])->first();
-				$this->redirect($redirect->Link(), 301);
-			}
-			else{
-				$this->redirect($this->Link(), 404);
-			}
-		}
-		else{
-			$renamed = Renamed::get()->filter('OldLink', $Params['ID']);
-			if($renamed->count() > 0){
-				$this->redirect($renamed->First()->News()->Link(), 301);
-			}
-		}
-	}
-	
-	/**
-	 * Check the user-permissions.
-	 * @param String $Params returntype setting.
+	 * Setup the filter for the getters. This keeps in mind if the user is allowed to view this item.
+	 * @param String $params returntype setting.
 	 * @return Array $filter filter for general getter.
 	 */
-	private function setupFilter($Params){
+	private function setupFilter($params){
 		// Default filter.
 		$filter = array(
-			'URLSegment' => Convert::raw2sql($Params['ID']),
+			'URLSegment' => Convert::raw2sql($params['ID']),
 		);
-		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), 'CMS_ACCESS_NewsAdmin')){
+		if(Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))){
 			$filter['Live'] = 1;
 		}
 		return $filter;
-	}
-	
-	/**
-	 * Get the correct tags.
-	 * It would be kinda weird to get the incorrect tags, would it? Nevermind. Appearantly, it doesn't. Huh?
-	 * @todo Implement translations?
-	 * @todo this is somewhat unclean. One uses actual tags, the other a newsitem to get the tags.
-	 * @param Boolean $news This is for the TaggedItems template. To only show the tags. Seemed logic to me.
-	 * @return DataObject|DataList with tags or news.
-	 */
-	public function getTags($news = false){
-		$Params = $this->getURLParams();
-		$return = null;
-		if(isset($Params['ID']) && $Params['ID'] != null){
-			$tag = Tag::get()
-				->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))
-				->first();
-			if(!$news){
-				$return = $tag;
-			}
-			elseif($news && $tag->ID){
-				/** Somehow, it really has to be an ArrayList of NewsItems. <% loop Tag.News %> doesn't work :( */
-				$return = $tag->News()
-					->filter(array('Live' => 1))
-					->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')));
-			}				
-			else{
-				$this->redirect($this->Link('tags'), 404);
-			}
-		}
-		else{
-			$return = Tag::get();
-		}
-		return $return;
-	}
-		
-	/** Redundant */
-	public function currentTag(){
-		return $this->getTags();
-	}
-	
-	/**
-	 * If we're on a newspage, we need to get the newsitem
-	 * @return object of the item.
-	 */
-	public function currentNewsItem(){
-		$siteConfig = $this->getCurrentSiteConfig();
-		$newsItem = $this->current_item;
-		if ($newsItem) {
-			/** If either one of these is false, no comments are allowed */
-			$newsItem->AllowComments = ($siteConfig->Comments && $newsItem->Commenting);
-			return($newsItem);
-		}
-		return array(); /** Return an empty page. Somehow the visitor ended up here, so at least give him something */
 	}
 
 	/**
@@ -351,56 +376,68 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return ArrayList $allEntries|$records The newsitems, sliced by the amount of length. Set to wished value
 	 */
 	public function allNews(){
-		$SiteConfig = $this->getCurrentSiteConfig();
-		$Params = $this->getURLParams();
+		$siteConfig = $this->getCurrentSiteConfig();
 		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s'),
+			'PublishFrom:GreaterThan' => date('Y-m-d'),
 		);
-		$filter = $this->generateAddedFilter($Params);
+		$filter = $this->generateAddedFilter();
 		$allEntries = $this->Newsitems()
 			->filter($filter)
 			->exclude($exclude);
 		/** Pagination pagination pagination. */
-		if($allEntries->count() > $SiteConfig->PostsPerPage && $SiteConfig->PostsPerPage > 0){
-			$records = PaginatedList::create($allEntries,$this->request);
-			$records->setPageLength($SiteConfig->PostsPerPage);
+		if($allEntries->count() > $siteConfig->PostsPerPage && $siteConfig->PostsPerPage > 0){
+			$records = PaginatedList::create($allEntries,$this->getRequest());
+			$records->setPageLength($siteConfig->PostsPerPage);
 			return $records;
 		}
 		return $allEntries;
+	}
+	
+	/**
+	 * @todo Make this language-specific
+	 * @return Tag All tags in a list.
+	 */
+	public function allTags() {
+		return Tag::get();
 	}
 
 	/**
 	 * Get the items, per month/year/author
 	 * If no month or year is set, current month/year is assumed
 	 * @todo cleanup the month-method maybe?
-	 * @param Array $Params URL parameters
 	 * @return Array $filter Filtering for the allNews getter
 	 */
-	public function generateAddedFilter($Params){
+	public function generateAddedFilter(){
+		$mapping = self::$url_handlers;
+		$params = $this->getURLParams();
 		/** @var array $filter Generic/default filter */
 		$filter = array(
 			'Live' => 1, 
 		);
-		/** Archive */
-		if($Params['Action'] == 'archive'){
-			if(!isset($Params['ID'])){
-				$month = date('m');
-				$year = date('Y');
+		if(isset($params['Action'])) {
+			switch($mapping[$params['Action']]) {
+				/** Archive */
+				case 'archive':
+					if(!isset($params['ID'])){
+						$month = date('m');
+						$year = date('Y');
+					}
+					elseif(!isset($params['OtherID']) && isset($params['ID'])){
+						$year = $params['ID'];
+						$month = '';
+					}
+					else{
+						$year = $params['ID'];
+						$month = date_parse('01-'.$params['OtherID'].'-1970');
+						$month = str_pad((int) $month['month'],2,"0",STR_PAD_LEFT);
+					}
+					$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
+					break;
+				/** Author */
+				case 'author' :
+					$filter['AuthorHelper.URLSegment:ExactMatch'] = $params['ID'];
+					break;
 			}
-			elseif(!isset($Params['OtherID']) && isset($Params['ID'])){
-				$year = $Params['ID'];
-				$month = '';
-			}
-			else{
-				$year = $Params['ID'];
-				$month = date_parse('01-'.$Params['OtherID'].'-1970');
-				$month = $month['month'];
-			}
-			$filter['PublishFrom:PartialMatch'] = $year.'-'.$month;
-		}
-		/** Author */
-		if($Params['Action'] == 'author'){
-			$filter['AuthorHelper.URLSegment:ExactMatch'] = $Params['ID'];
 		}
 		return $filter;
 	}
@@ -413,17 +450,5 @@ class NewsHolderPage_Controller extends Page_Controller {
 		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
 		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
-	}
-	
-	/**
-	 * This is to migrate existing newsitems to the new release with the new relational method.
-	 * It is forward-non-destructive.
-	 * @todo this Migration is broken because the @method NewsHolderPage NewsHolderPage() doesn't exist on News anymore.
-	 */
-	public function migrate() {
-		$newsitems = News::get();
-		foreach($newsitems as $newsitem) {
-			$newsitem->NewsHolderPages()->add($newsitem->NewsHolderPage());
-		}
 	}
 }

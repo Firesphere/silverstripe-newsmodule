@@ -13,36 +13,36 @@
  * @method SlideshowImage SlideshowImages() for the slideshow-feature
  * @method Tag Tags() Added Tags for this Item.
  */
-class News extends DataObject { // implements IOGObject{ // optional for OpenGraph support
+class News extends DataObject implements PermissionProvider {
 
 	private static $db = array(
-		'Title' => 'Varchar(255)',
+		'Title'		=> 'Varchar(255)',
 		/** Author might be handled via Member, but that's not useful if you want a non-member to post in his/her name */
-		'Author' => 'Varchar(255)',
-		'URLSegment' => 'Varchar(255)',
-		'Synopsis' => 'Text',
-		'Content' => 'HTMLText',
-		'PublishFrom' => 'Date',
-		'Tweeted' => 'Boolean(false)',
-		'FBPosted' => 'Boolean(false)',
-		'Live' => 'Boolean(true)',
-		'Commenting' => 'Boolean(true)',
+		'Author'	=> 'Varchar(255)',
+		'URLSegment'	=> 'Varchar(255)',
+		'Synopsis'	=> 'Text',
+		'Content'	=> 'HTMLText',
+		'PublishFrom'	=> 'Date',
+		'Tweeted'	=> 'Boolean(false)',
+		'FBPosted'	=> 'Boolean(false)',
+		'Live'		=> 'Boolean(true)',
+		'Commenting'	=> 'Boolean(true)',
 		/** This is for the external location of a link */
-		'Type' => 'Enum("news,external,download","news")',
-		'External' => 'Varchar(255)',
+		'Type'		=> 'Enum("news,external,download","news")',
+		'External'	=> 'Varchar(255)',
 	);
 	
 	private static $has_one = array(
-		'Impression' => 'Image',
+		'Impression'	=> 'Image',
 		/** If you want to have a download-file */
-		'Download' => 'File',
+		'Download'	=> 'File',
 		/** Generic helper to have Author-specific pages */
-		'AuthorHelper' => 'AuthorHelper',
+		'AuthorHelper'	=> 'AuthorHelper',
 	);
 	
 	private static $has_many = array(
-		'Comments' => 'Comment',
-		'Renamed' => 'Renamed',
+		'Comments'	  => 'Comment',
+		'Renamed'	  => 'Renamed',
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	
@@ -75,30 +75,6 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-	
-	/**
-	 * Store the siteconfig in a local variable, saves queries.
-	 * @var type SiteConfig
-	 */
-	protected $current_siteconfig;
-	
-	/**
-	 * 
-	 * @param array|null $record This will be null for a new database record.  Alternatively, you can pass an array of
-	 * field values.  Normally this contructor is only used by the internal systems that get objects from the database.
-	 * @param boolean $isSingleton This this to true if this is a singleton() object, a stub for calling methods.
-	 *                             Singletons don't have their defaults set.
-	 * @param News $model The model we're instantiating.
-	 * @todo Fix this a cleaner way, it's overkill.
-	 */
-	public function __construct($record = null, $isSingleton = false, $model = null) {
-		parent::__construct($record, $isSingleton, $model);
-		$this->current_siteconfig = SiteConfig::current_site_config();
-		if(!$this->ID && Member::currentUser()) {
-			$name =  Member::currentUser()->FirstName . ' ' . Member::currentUser()->Surname;
-			$this->Author = $name;
-		}
-	}
 
 	/**
 	 * Define singular name translatable
@@ -133,9 +109,9 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		$summaryFields = array_merge(
 			$summaryFields, 
 			array(
-				'Title' => _t('News.TITLE', 'Title'),
-				'Author' => _t('News.AUTHOR', 'Author'),
-				'PublishFrom' => _t('News.PUBLISH', 'Publish from'),
+				'Title'		=> _t('News.TITLE', 'Title'),
+				'Author'	=> _t('News.AUTHOR', 'Author'),
+				'PublishFrom'	=> _t('News.PUBLISH', 'Publish from'),
 			)
 		);
 		return $summaryFields;
@@ -195,12 +171,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/') {
-		if($this->current_siteconfig->ShowAction) {
-			$action = $this->current_siteconfig->ShowAction;
+		if($config = SiteConfig::current_site_config()->ShowAction) {
+			$action = $config.'/';
 		}
-		$Page = $this->NewsHolderPages()->count();
 		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action.'/'.$this->URLSegment));
+			return($Page->Link($action.$this->URLSegment));
 		}
 		return false;
 	}
@@ -211,9 +186,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink(){
-		if($Page = $this->Link()){
-			return(Director::absoluteURL($Page));
-		}		
+		return(Director::absoluteURL($this->Link()));
+	}
+	
+	public function AllowComments() {
+		return (SiteConfig::current_site_config()->Comments && $this->Commenting);
 	}
 
 	/**
@@ -222,8 +199,8 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
-		if(!class_exists('Translatable') || !$this->NewsHolderPages()->count()){
-			$page = NewsHolderPage::get()->first();
+		/** Check if we have translatable and a NewsHolderPage. If no HolderPage available, skip (Create an orphan) */
+		if((!class_exists('Translatable') || !$this->NewsHolderPages()->count()) && $page = NewsHolderPage::get()->first()){
 			$this->NewsHolderPages()->add($page);
 		}
 		if(!$this->Type || $this->Type == ''){
@@ -239,7 +216,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 		if(substr($this->External,0,4) != 'http' && $this->External != ''){
 			$this->External = 'http://'.$this->External;
 		}
-		$this->setURLSegment();
+		$this->setURLValue();
 		$this->setAuthorData();
 	}
 	
@@ -264,7 +241,7 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	/**
 	 * Setup the URLSegment for this item and create a Renamed Object if it's a rename-action.
 	 */
-	private function setURLSegment() {
+	private function setURLValue() {
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
 			if($this->ID > 0){
 				$Renamed = new Renamed();
@@ -275,9 +252,11 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if(strpos($this->URLSegment, 'page-') === false){
 				$nr = 1;
-				while($this->LookForExistingURLSegment($this->URLSegment)){
-					$this->URLSegment .= '-'.$nr++;
+				$URLSegment = $this->URLSegment;
+				while($this->LookForExistingURLSegment($URLSegment)){
+					$URLSegment = $this->URLSegment.'-'.$nr++;
 				}
+				$this->URLSegment = $URLSegment;
 			}
 		}
 	}
@@ -287,11 +266,10 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 * @return boolean URLSegment already exists yes or no.
 	 */
 	private function LookForExistingURLSegment($URLSegment) {
-		return(News::get()->filter(
-				array("URLSegment" => $URLSegment)
-			)->exclude(
-				array("ID" => $this->ID)
-			)->count() != 0);
+		return(News::get()
+			->filter(array("URLSegment" => $URLSegment))
+			->exclude(array("ID" => $this->ID))
+			->count() != 0);
 	}
 	
 	/**
@@ -299,20 +277,29 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	 */
 	private function setAuthorData() {
 		$this->Author = trim($this->Author);
-		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
-		if($author->count() == 0){
+		$nameParts = explode(' ', $this->Author);
+		foreach($nameParts as $key => $namePart) {
+			if($namePart == '') {
+				unset($nameParts[$key]);
+			}
+		}
+		$this->Author = implode(' ', $nameParts);
+		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author))->first();
+		if(!$author){
 			$author = AuthorHelper::create();
 			$author->OriginalName = trim($this->Author);
 			$author->write();
 		}
-		else{
-			$author = $author->first();
-		}
-		$this->AuthorID = $author->ID;
+		$this->AuthorHelperID = $author->ID;
 	}
 	
-	public function getComments() {
-		return $this->Comments()->filter(array('AkismetMarked' => 0));
+	/**
+	 * Get the allowed comments
+	 * @return DataList with comments
+	 */
+	public function getAllowedComments() {
+		return $this->Comments()
+			->filter(array('AkismetMarked' => false, 'Visible' => true));
 	}
 
 	/**
@@ -334,35 +321,59 @@ class News extends DataObject { // implements IOGObject{ // optional for OpenGra
 	}
 
         /**
-         * Why oh why does $Date.Nice still not use i18n::get_date_format()??
-	 * // If I recall correctly, this is a known issue with i18n class.
-	 * @todo Fix this. It bugs out, for example, English notation(?) is MMM d Y, the three M make it go JunJunJun 1, 2013. BAD!
-	 * Temporary fix: Forced to use d-m-Y
+         * Create a date-string based on the locale. Looks better.
          * @return string
          */
         public function getPublished() {
-		return date('d-m-Y', strtotime($this->PublishFrom));
-		$format = i18n::get_date_format();
-		return $this->dbObject('PublishFrom')->Format($format);
+		i18n::get_date_format();
+		$locale = i18n::get_locale();
+		$date = new Zend_Date();
+		$date->set($this->PublishFrom, null, $locale);
+		return substr($date->getDate($locale),0,-9);
         }      
 
 	/**
 	 * Permissions
 	 */
+	public function providePermissions() {
+		return array(
+			'CREATE_NEWS' => array(
+				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new newsitems.')
+			),
+			'EDIT_NEWS' => array(
+				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing newsitems.')
+			),
+			'DELETE_NEWS' => array(
+				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing newsitems.')
+			),
+			'VIEW_NEWS' => array(
+				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View newsitems'),
+				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
+				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing newsitems.')
+			),
+		);
+	}
+	
 	public function canCreate($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin'));
+		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null) {
-		return(Permission::checkMember($member, 'CMS_ACCESS_NewsAdmin') || $this->Live == 1);
+		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
 	
 }
