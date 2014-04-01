@@ -49,3 +49,9 @@ News:
     Live: 1
     Author: 'Unit Test'
     Tags: =>Tag.tag1,=>Tag.tag2
+  unpublisheditem:
+    Title: 'First Newsitem'
+    Live: 0
+    Author: 'Unit Test'
+    NewsHolderPages: =>NewsHolderPage.page1
+    Tags: =>Tag.tag1,=>Tag.tag2
