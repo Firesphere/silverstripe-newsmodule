@@ -12,7 +12,8 @@
 * Removed NOW() as an SQL-statement. (appearantly, due to escaping, it doesn't work)
 * Added the docs.
 * Show the date based on the locale.
-* Templates based on Bootstrap 3.
+* Default templates based on Bootstrap 3.
+* Added template examples, including original template and the Bootstrap3 template. Foundation is next.
 * Cleaned up the templates mess.
 * Fixed the Author-pages.
 * Added automatic migrations to dev/build.
