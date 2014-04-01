@@ -44,13 +44,13 @@ News:
     NewsHolderPages: =>NewsHolderPage.page1
     Tags: =>Tag.tag1,=>Tag.tag2
   pagelessitem:
-    Title: 'First Newsitem'
+    Title: 'Pageless Newsitem'
     PublishFrom: '2013-10-02'
     Live: 1
     Author: 'Unit Test'
     Tags: =>Tag.tag1,=>Tag.tag2
   unpublisheditem:
-    Title: 'First Newsitem'
+    Title: 'Unpublished Newsitem'
     Live: 0
     Author: 'Unit Test'
     NewsHolderPages: =>NewsHolderPage.page1

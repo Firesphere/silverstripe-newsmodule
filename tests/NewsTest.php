@@ -9,8 +9,33 @@ class NewsTest extends SapphireTest {
 	protected static $fixture_file = 'NewsTest.yml';
 	
 	public function setUp() {
-		SS_Datetime::set_mock_now("2013-10-10 20:00:00");
+		SS_Datetime::set_mock_now("2014-01-01");
 		parent::setUp();
+	}
+	
+	/**
+	 * Check if only the items with a date in the past AND Live items are there.
+	 * Since all items are linked to page1, we only check if page1 has them all indeed.
+	 * And the children should only be the published or in the past, thus there should be 2 excluded at first run.
+	 * 
+	 * The future-published-test fails because mock_now doesn't work as expected?!
+	 */
+	public function testItemPublished() {
+		$member = Member::currentUser();
+		if($member) {
+			$member->logout();
+		}
+		$page1 = $this->objFromFixture('NewsHolderPage', 'page1');
+		$allItems = News::get();
+
+		$this->assertEquals($allItems->count(), 7, 'Total items');
+		$this->assertEquals($page1->Newsitems()->count(), 7, 'Total items available');
+		$this->assertEquals($page1->Children()->count(), 5, 'Amount of visible items');
+		
+		/*
+		SS_Datetime::set_mock_now("2020-01-01");
+		$this->assertEquals($page1->Children()->count(), 6);
+		*/
 	}
 	
 	/**
