@@ -25,10 +25,6 @@ class NewsAuthorTest extends SapphireTest {
 		$entry2 = $this->objFromFixture('News', 'item2');
 		$entry3 = $this->objFromFixture('News', 'item3');
 		$entry4 = $this->objFromFixture('News', 'futureitem');
-		$entry1->write();
-		$entry2->write();
-		$entry3->write();
-		$entry4->write();
 		
 		$this->assertEquals('Unit Test', $entry1->Author);
 		$this->assertEquals('Test Unit', $entry2->Author);
