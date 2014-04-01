@@ -10,8 +10,8 @@
 class AuthorHelper extends DataObject {
 	
 	private static $db = array(
-		'OriginalName' => 'Varchar(255)',
-		'URLSegment' => 'Varchar(255)',
+		'OriginalName'	=> 'Varchar(255)',
+		'URLSegment'	=> 'Varchar(255)',
 	);
 	
 	private static $has_many = array(
@@ -24,8 +24,14 @@ class AuthorHelper extends DataObject {
 	
 	public function onBeforeWrite()	{
 		parent::onBeforeWrite();
-		$this->OriginalName = trim($this->OriginalName);
-		if(!$this->URLSegment){
+		$nameParts = explode(' ', $this->OriginalName);
+		foreach($nameParts as $key => $namePart) {
+			if($namePart == '') {
+				unset($nameParts[$key]);
+			}
+		}
+		$this->OriginalName = implode(' ', $nameParts);
+		if(!$this->URLSegment && !AuthorHelper::get()->filter(array('OriginalName' => $this->OriginalName))){
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->OriginalName);
 		}
 	}
@@ -36,10 +42,10 @@ class AuthorHelper extends DataObject {
 	 */
 	public function Link($action = 'author/') {
 		if($siteConfigAction = SiteConfig::current_site_config()->AuthorAction) {
-			$action = $siteConfigAction;
+			$action = $siteConfigAction.'/';
 		}
-		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action.'/'.$this->URLSegment));
+		if ($Page = NewsHolderPage::get()->first()) {
+			return($Page->Link($action.$this->URLSegment));
 		}
 		return false;
 	}

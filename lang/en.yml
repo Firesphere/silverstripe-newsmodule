@@ -1,142 +1,6 @@
 en:
   NewsAdmin:
     MENUTITLE: News
-    ActionAdd: 'Add newsitem'
-  NewsSiteConfigExtension:
-    NEWSSETTINGS: 'News settings'
-    NEWS: News
-    ABSTRACT: 'Use abstract/summary'
-    TWEETPOST: 'Tweet after posting a new item'
-    PPP: 'Amount of posts per page'
-    DEFAULTIMPRESSION: 'Default impression image for newsitems'
-    EXTERNAL: 'External linking'
-    ALLOWEXT: 'Allow external links'
-    ALLOWDOWN: 'Allow downloads'
-    EXTERNALEXT: 'Link external links in a new page'
-    COMMENTSSETTINGS: Comments
-    COMMENTS: 'Allow comments on items'
-    APPROVE: 'Comments must be approved'
-    NEWSMAIL: 'Send email notification of a comment to me'
-    GRAVATAR: 'Display Gravatar image of commenter'
-    GRAVURL: 'Default Gravatar image if commenter doesn''t have one'
-    UPLOADGRAVATAR: 'Or upload a default Gravatar image'
-    GRAVSIZE: 'Size of the Gravatar image (e.g. 32 for a 32x32 image)'
-    AKISMET: 'Akismet API key'
-    SPAMPROTECTION: 'Use an extra field for spam protection'
-    NOSCRIPTSPAM: 'Use a noscript field for spam protection'
-    SLIDESHOWSETTINGS: Slideshow
-    SLIDEINITIAL: 'Show only the first image'
-    SLIDESIZE: 'Maximum size of the full-size images. E.g. 1024x768'
-    SEC: Security
-    ALLOWAUTHOR: 'Allow content authors to edit news settings'
-    ALLOWEXPORT: 'Allow content authors to export all data'
-    ALLOWSLIDESHOW: 'Allow the usage of the slideshow (in beta)'
-    COMMENTHELP: 'Comment help'
-    COMMENTHELPTEXT: 'Comment help is tbd.'
-    EXTERNALHELP: 'External help'
-    EXTERNALHELPTEXT: 'Allow or disallow content authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.'
-    HELP: Help
-    NEWSCOMMENTS: 'News settings'
-    NEWSHELP: 'News help'
-    NEWSHELPTEXT: 'In the news settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.'
-    RETURNEXT: 'Make externals open in a new tab/window'
-    SLIDESHOW: 'Allow the use of slideshow feature'
-    SLIDESHOWHELP: 'Slideshow help'
-    SLIDESHOWHELPTEXT: 'Slideshow settings, like what to do. TBD'
-  Commment:
-    SINGULARNAME: Comment
-    PLURALNAME: Comments
-    COMMENTMAILSUBJECT: 'New post titled: '
-  News:
-    SINGULARNAME: Newsitem
-    PLURALNAME: Newsitems
-    MAIN: Main
-    HELPTAB: Help
-    BASEHELPLABEL: Help
-    BASEHELPTEXT: 'Publish from is auto-filled with a date if it isn''t set.<br />Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won''t go live if it isn''t set to true.'
-    CREATED: Created
-    LOCALE: Language
-    HELPTITLE: Help
-    TITLE: Title
-    CONTENT: Content
-    AUTHOR: Author
-    PUBDATE: 'Publish from'
-    PUSHLIVE: Published
-    PUBLISH: 'Publish from'
-    PARENTPAGE: 'Parent holderpage'
-    HOLDERPAGE: 'Parent holderpage'
-    COMMENTING: 'Allow comments on this item'
-    IMPRESSION: 'Impression image'
-    ANY: 'Any language'
-    TAGS: Tags
-    COMMENTS: Comments
-    TAGAFTERID: 'Tags can be added after the item has been saved'
-    SLIDE: Slideshow
-    IMAGES: 'Slideshow images'
-    NEWSITEMTYPE: Newsitem
-    EXTERNALTYPE: 'External link'
-    DOWNLOADTYPE: 'Downloadable file'
-    NEWSTYPE: 'Type of item'
-    SUMMARY: Summary/Abstract
-    DOWNLOAD: 'Downloadable file'
-    EXTERNAL: 'External link'
-    LINKEDPAGES: 'Linked pages'
-  SlideshowImage:
-    SINGULARNAME: 'Slideshow Image'
-    PLURALNAME: 'Slideshow Imags'
-    TITLE: Title
-    DESCRIPTION: Description
-    IMAGE: Image
-  Tag:
-    SINGULARNAME: Tag
-    PLURALNAME: Tags
-    MAIN: Main
-    TITLE: Title
-    DESCRIPTION: Description
-    IMPRESSION: 'Impression image'
-  NewsHolderPage:
-    DATEPUBLISH: '{date} by {author}'
-    DOWNLOADABLE: Download
-    READMORE: 'Read More &raquo;'
-    PREV: Prev
-    NEXT: Next
-    DEFAULTPAGETITLE: Newspage
-    DESCRIPTION: 'HolderPage for newsitems'
-    PLURALNAME: 'News Holder Pags'
-    SINGULARNAME: 'News Holder Page'
-  CommentForm:
-    NAME: Name
-    TITLE: Title
-    EMAIL: 'Email address'
-    WEBSITE: Website
-    COMMENT: Comment
-    EXTRA: Extra
-  NewsHolderPage_show:
-    COMMENTS: Comments
-    BYWHO: by
-    ONDATE: on
-  NewsHolderPage_tag:
-    TAG: Tag
-    ALLTAGS: 'All tags'
-  CommentReport:
-    TITLE: 'Comment report'
-    NEWSTITLE: 'News title'
-    COMMENTCOUNT: 'Total amount of comments'
-    COMMENTSPAM: 'Total spam comments'
-    COMMENTHIDDEN: 'Total hidden comments'
-    NEWSSEARCHTITLE: 'Search newsitem'
-    COUNTFILTER: 'Comment count filter'
-    ANY: All
-    SPAMCOUNT: 'One or more spam comments'
-    HIDDENCOUNT: 'One or more hidden comments'
-    COMMENTSPAMCOUNT: 'Spam comments'
-    EDIT: 'Edit item'
-  TagReport:
-    TITLE: 'Tag usage report'
-    NEWSTITLE: 'News title'
-    NEWSCOUNT: 'Total items linked'
-    TAGTITLE: 'Search for tag'
-    EDIT: 'Edit tag'
   AuthorHelper:
     PLURALNAME: 'Author Helpers'
     SINGULARNAME: 'Author Helper'
@@ -148,14 +12,167 @@ en:
     GRAVATAR: 'Show Gravatar'
     NAME: Name
     NEWS: News
-    PLURALNAME: Comments
-    SINGULARNAME: Comment
+    PERMISSION_CREATE_DESCRIPTION: 'Create comments'
+    PERMISSION_CREATE_HELP: 'Permission required to create new comments in the CMS.'
+    PERMISSION_DELETE_DESCRIPTION: 'Delete comments'
+    PERMISSION_DELETE_HELP: 'Permission required to delete existing comments.'
+    PERMISSION_EDIT_DESCRIPTION: 'Edit comments'
+    PERMISSION_EDIT_HELP: 'Permission required to edit existing comments.'
+    PERMISSION_VIEW_DESCRIPTION: 'View comments'
+    PERMISSION_VIEW_HELP: 'Permission required to view existing comments in the CMS.'
+    PLURALNAME: Reacties
+    SINGULARNAME: Reactie
     TITLE: Title
     URL: URL
     VISIBLE: Visible
+  CommentForm:
+    EXTRA: Extra
+  CommentReport:
+    ANY: All
+    COMMENTCOUNT: 'Total amount of comments'
+    COMMENTSPAMCOUNT: 'Spam comments'
+    COUNTFILTER: 'Comment count filter'
+    EDIT: 'Edit item'
+    HIDDENCOUNT: 'One or more hidden comments'
+    NEWSSEARCHTITLE: 'Search newsitem'
+    NEWSTITLE: 'News title'
+    SPAMCOUNT: 'One or more spam comments'
+    TITLE: 'Comment report'
+  News:
+    ALLTAGS_PAGE: 'All tags - '
+    ARCHIVE_PAGE: 'Items per period '
+    AUTHOR: Author
+    AUTHOR_PAGE: 'Items by author - '
+    BASEHELPLABEL: Help
+    COMMENTING: 'Allow comments on this item'
+    COMMENTS: Comments
+    CONTENT: Content
+    DOWNLOAD: 'Downloadable file'
+    DOWNLOADTYPE: 'Downloadable file'
+    EXTERNAL: 'External link'
+    EXTERNALTYPE: 'External link'
+    HELPTAB: Help
+    IMAGES: 'Slideshow images'
+    IMPRESSION: 'Impression image'
+    LINKEDPAGES: 'Linked pages'
+    NEWSITEMTYPE: Newsitem
+    NEWSTYPE: 'Type of item'
+    PERMISSION_CREATE_DESCRIPTION: 'Create newsitems'
+    PERMISSION_CREATE_HELP: 'Permission required to create new newsitems.'
+    PERMISSION_DELETE_DESCRIPTION: 'Delete newsitems'
+    PERMISSION_DELETE_HELP: 'Permission required to delete existing newsitems.'
+    PERMISSION_EDIT_DESCRIPTION: 'Edit newsitems'
+    PERMISSION_EDIT_HELP: 'Permission required to edit existing newsitems.'
+    PERMISSION_VIEW_DESCRIPTION: 'View newsitems'
+    PERMISSION_VIEW_HELP: 'Permission required to view existing newsitems.'
+    PLURALNAME: Nieuwsberichten
+    PUBDATE: 'Publish from'
+    PUBLISH: 'Publish from'
+    PUSHLIVE: Published
+    RSSFEED: 'News feed'
+    SINGULARNAME: Nieuwsbericht
+    SLIDE: Slideshow
+    SUMMARY: Summary/Abstract
+    TAGAFTERID: 'Tags can be added after the item has been saved'
+    TAGS: Tags
+    TITLE: Title
+  NewsHolderPage:
+    DATEPUBLISH: '{date} by '
+    DEFAULTPAGETITLE: Newspage
+    DESCRIPTION: 'HolderPage for newsitems'
+    DOWNLOADABLE: Download
+    ITEMS_BY_AUTHOR: 'All items by '
+    JUMPTO_PAGE: 'Jump to page'
+    NEXT_PAGE: Next
+    PLURALNAME: 'News Holder Pags'
+    PREVIOUS_PAGE: Previous
+    READMORE: 'Read More &raquo;'
+    SINGULARNAME: 'News Holder Page'
+  NewsHolderPage_show:
+    BYWHO: 'by '
+    COMMENTS: Comments
+    ONDATE: on
+  NewsHolderPage_tag:
+    ALLTAGS: 'All tags'
+    TAG: Tag
+  NewsSiteConfigExtension:
+    ABSTRACT: 'Use abstract/summary'
+    AKISMET: 'Akismet API key'
+    ALLOWAUTHOR: 'Allow content authors to edit news settings'
+    ALLOWDOWN: 'Allow downloads'
+    ALLOWEXPORT: 'Allow content authors to export all data'
+    ALLOWEXT: 'Allow external links'
+    ALLOWSLIDESHOW: 'Allow the usage of the slideshow (in beta)'
+    APPROVE: 'Comments must be approved'
+    ARCHIVEMAPPING: 'URL Parameter to show the archive'
+    AUTHORMAPPING: 'URL Parameter to show an authorpage'
+    COMMENTHELP: 'Comment help'
+    COMMENTHELPTEXT: 'Comment help is tbd.'
+    COMMENTS: 'Allow comments on items'
+    COMMENTSSETTINGS: Comments
+    DEFAULTIMPRESSION: 'Default impression image for newsitems'
+    EXTERNAL: 'External linking'
+    EXTERNALHELP: 'External help'
+    EXTERNALHELPTEXT: 'Allow or disallow content authors to link to external items and set how to handle external items. Open a new tab/window or open in the same tab/window.'
+    GRAVATAR: 'Display Gravatar image of commenter'
+    GRAVSIZE: 'Size of the Gravatar image (e.g. 32 for a 32x32 image)'
+    GRAVURL: 'Default Gravatar image if commenter doesn''t have one'
+    HELP: Help
+    MAPPING: 'URL Mapping'
+    MAPPINGHELP: 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show'
+    NEWS: News
+    NEWSCOMMENTS: 'News settings'
+    NEWSHELP: 'News help'
+    NEWSHELPTEXT: 'In the news settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.'
+    NEWSMAIL: 'Send email notification of a comment to me'
+    NOSCRIPTSPAM: 'Use a noscript field for spam protection'
+    PPP: 'Amount of posts per page'
+    RETURNEXT: 'Make externals open in a new tab/window'
+    SEC: Security
+    SHOWMAPPING: 'URL Parameter to show an item'
+    SLIDEINITIAL: 'Show only the first image'
+    SLIDESHOW: 'Allow the use of slideshow feature'
+    SLIDESHOWHELP: 'Slideshow help'
+    SLIDESHOWHELPTEXT: 'Slideshow settings, like what to do. TBD'
+    SLIDESHOWSETTINGS: Slideshow
+    SLIDESIZE: 'Maximum size of the full-size images. E.g. 1024x768'
+    SPAMPROTECTION: 'Use an extra field for spam protection'
+    TAGMAPPING: 'URL Parameter to show a tag'
+    TAGSMAPPING: 'URL Parameter to show all tags'
+    TWEETPOST: 'Tweet after posting a new item'
+    UPLOADGRAVATAR: 'Or upload a default Gravatar image'
+  Permissions:
+    CONTENT_CATEGORY: 'Content permissions'
   Renamed:
     PLURALNAME: Renameds
     SINGULARNAME: Renamed
   SiteTree:
     PLURALNAME: Pages
     SINGULARNAME: Page
+  SlideshowImage:
+    DESCRIPTION: Description
+    IMAGE: Image
+    PLURALNAME: 'Slideshow Imags'
+    SINGULARNAME: 'Slideshow Image'
+    TITLE: Title
+  Tag:
+    DESCRIPTION: Description
+    IMPRESSION: 'Impression image'
+    MAIN: Main
+    PERMISSION_CREATE_DESCRIPTION: 'Create tags'
+    PERMISSION_CREATE_HELP: 'Permission required to create new tags.'
+    PERMISSION_DELETE_DESCRIPTION: 'Delete tags'
+    PERMISSION_DELETE_HELP: 'Permission required to delete existing tags.'
+    PERMISSION_EDIT_DESCRIPTION: 'Edit tags'
+    PERMISSION_EDIT_HELP: 'Permission required to edit existing tags.'
+    PERMISSION_VIEW_DESCRIPTION: 'View tags'
+    PERMISSION_VIEW_HELP: 'Permission required to view existing tags.'
+    PLURALNAME: Tags
+    SINGULARNAME: Tag
+    TITLE: Title
+  TagReport:
+    EDIT: 'Edit tag'
+    NEWSCOUNT: 'Total items linked'
+    NEWSTITLE: 'News title'
+    TAGTITLE: 'Search for tag'
+    TITLE: 'Tag usage report'
