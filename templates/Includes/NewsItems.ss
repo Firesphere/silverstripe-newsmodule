@@ -14,7 +14,7 @@
 			<h2><a href="$Link">$Title</a></h2>
 		<% end_if %>
 		<h3>$Author</h3>
-		<i><%t NewsHolderPage.DATEPUBLISH "{date} by {author}"  date=$Published author=$Author %></i>
+		<i>$Published</i>
 		<div class="row">
 			<div class="col-xs-12">
 				<% if Synopsis %>
