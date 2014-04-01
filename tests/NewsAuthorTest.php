@@ -21,10 +21,10 @@ class NewsAuthorTest extends SapphireTest {
 	 * The authorhelper names match the author names.
 	 */
 	public function testAuthor() {
-		$entry1 = $this->objFromFixture('News', 'newspost1');
-		$entry2 = $this->objFromFixture('News', 'newspost2');
-		$entry3 = $this->objFromFixture('News', 'newspost3');
-		$entry4 = $this->objFromFixture('News', 'newspostfuture');
+		$entry1 = $this->objFromFixture('News', 'item1');
+		$entry2 = $this->objFromFixture('News', 'item2');
+		$entry3 = $this->objFromFixture('News', 'item3');
+		$entry4 = $this->objFromFixture('News', 'futureitem');
 		$entry1->write();
 		$entry2->write();
 		$entry3->write();

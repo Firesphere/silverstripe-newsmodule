@@ -1,6 +1,8 @@
 NewsHolderPage:
   firstpage:
-    Title: 'TestTitle'
+    Title: 'Newspage 1'
+  secondpage:
+    Title: 'Newspage 2'
 Tag:
   firsttag:
     Title: 'Testtag 1'
@@ -8,28 +10,27 @@ Tag:
   secondtag:
     Title: 'Testtag 2'
     URLSegment: 'testtag-2'
-
 News:
-  newspost1:
+  item1:
     Title: 'First Newsitem'
     PublishFrom: '2013-10-01'
     Live: 1
     Author: 'Unit Test '
-    Parent: =>NewsHolderPage.firstpage
+    NewsHolderPages: =>NewsHolderPage.firstpage
     Tags: =>Tag.firsttag
-  newspost2:
+  item2:
     Title: 'Second Newsitem'
     PublishFrom: '2013-11-01'
     Live: 1
     Author: 'Test Unit'
-    Parent: =>NewsHolderPage.firstpage
-  newspost3:
+    NewsHolderPages: =>NewsHolderPage.firstpage,=>NewsHolderPage.secondpage
+  item3:
     Title: 'Third Newsitem'
     PublishFrom: '2013-12-01'
     Live: 1
     Author: 'Unit Test'
-    Parent: =>NewsHolderPage.firstpage
-  newspostfuture:
+    NewsHolderPages: =>NewsHolderPage.firstpage
+  futureitem:
     Title: 'Item published future'
     Live: 1
     Author: 'Test  Unit'
@@ -40,5 +41,5 @@ News:
     PublishFrom: '2013-10-02'
     Live: 1
     Author: 'Unit Test'
-    Parent: =>NewsHolderPage.firstpage
+    NewsHolderPages: =>NewsHolderPage.firstpage
     Tags: =>Tag.firsttag
