@@ -23,9 +23,13 @@ class NewsCommentTest extends SapphireTest {
 
 	/**
 	 * Test if a comment is marked as spam.
-	 * This might fail if Akismet doesn't respond!
+	 * This only works on the spamcomment. I forced it to have an AkismetMarked.
+	 * I want this to be based on Akismet response, but it can't, sadly.
 	 */
 	public function testItemSpamComment() {
+		$spam = $this->objFromFixture('Comment', 'spamcomment');
+		$spam->AkismetMarked;
+		$this->assertEquals($spam->AkismetMarked, 1);
 		// I want a marked comment here. But Akismet isn't giving me the bad flag :/
 	}
 }

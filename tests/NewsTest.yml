@@ -79,4 +79,5 @@ Comment:
     Email: 'akismet@test.com'
     URL: 'http://www.akismet.com'
     Comment: 'Get your viagra here!'
+    AkismetMarked: 1
     News: =>News.item1
