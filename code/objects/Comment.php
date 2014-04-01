@@ -110,6 +110,7 @@ class Comment extends DataObject implements PermissionProvider {
 	 */
 	
 	/**
+	 * I want this in a separate class with extension.
 	 * @return type FieldList
 	 */
 	public function getCMSFields() {

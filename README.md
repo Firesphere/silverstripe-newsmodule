@@ -57,7 +57,7 @@ Note on which version of translatable, CMS and Framework you use! They might not
 
 ## Features
 
-[See the changelog](Changelog)
+[See the changelog](docs/en/Changelog)
 
 ## Demo of frontend
 
@@ -77,7 +77,7 @@ Note on which version of translatable, CMS and Framework you use! They might not
 
 (Indeed, that second bullet means it only lacks history, nothing else :P )
 
-## [Help and installation](Help)
+## [Help and installation](docs/en/Help)
 
 If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).
