@@ -33,7 +33,6 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 E-mail me your twitter contact if you added something and like to be mentioned!
 
-
 ## Requirements
 
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
@@ -55,29 +54,6 @@ E-mail me your twitter contact if you added something and like to be mentioned!
 * [`GridfieldPaginatorWithShowAll`](https://github.com/normann/gridfieldpaginatorwithshowall)
 
 Note on which version of translatable, CMS and Framework you use! They might not be compatible.
-
-## Version numbering explained
-
-After releasing 1.4.2, I noticed I needed to redesign my version-numbering. So here's the deal:
-
- * The first number is a master release. It's the master, it's at this number I decide when to up the number.
- * The second number is a major feature release. This means a whole bunch of minor features are bundled into one big upgrade. Major releases are always safe to use and are only hotfixed, never feature-upgraded without a subnumber.
- * The third number is a minor feature release. This means a feature is added, but it's not a big deal. They might include minor features like help, but never a big upgrade.
- * The fourth number is a hotfix. It's just something that might bug. Or a small fix. Or a quick fix for a bug.
-
-Major feature and Master releases are also defined in the milestones. So you know what issues will be resolved for that version.
-
-I think this tagging method should be the best way to go. As you can see, this README update is 1.4.8.1. Meaning:
-1. It's master version 1
-4. This is my current major release but no breaking changes to version 1
-8. I just fixed publishfrom, although it was a major bug, the update is minor.
-1. Well, to make a full feature release of this tiny readme update?
-
-Note, this means features and hotfixes in the 4th digit doesn't mean it's a hotfix, nor does it mean it's a release, or a feature. It can be both! (I understand this might cause some problems, but I don't want to go to 5 numbers)
-
-## Work in progress
-
-Yeah. It kinda is. I'm trying not to break old features with new features!
 
 ## Features
 
@@ -106,19 +82,24 @@ Yeah. It kinda is. I'm trying not to break old features with new features!
 If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).
  2. Extract the zip to your site-root
- 3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3. Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 
 The advised option is to clone the repo into your site-root:
  1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git`. 
- 2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 2.  Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 This method will make sure you can always pull the latest updates from the upstream, thus, keeping you up-to-date with the latest features!
 
-Preferred, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
+Or use Composer:
+ 1. ```composer require firesphere/silverstripe-newsmodule:dev-master```
+ 2. Pray it works.
+ 3. Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
+
+I would like it if you forked and cloned if you want to help out improving this module!
  1.  Make a fork of this module.
  2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
- 3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3.  Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 This method is only if you know how git works and know how to add upstreams etc. to contribute.
 
@@ -161,12 +142,6 @@ To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 399. 
 ### Also, if you can't answer the following question, you are not allowed to help :P
 
 "The cow, what do you think of it?"
-
-## Known Issues
-
-* See the Issues-list on Github.
-* Version 3.0 is outdated as hell.
-* No, I'm serious, Master_3.0 is really far behind.
 
 ## Requests
 

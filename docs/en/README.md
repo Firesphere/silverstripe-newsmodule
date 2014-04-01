@@ -82,19 +82,24 @@ Note on which version of translatable, CMS and Framework you use! They might not
 If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).
  2. Extract the zip to your site-root
- 3. Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3. Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 
 The advised option is to clone the repo into your site-root:
  1.  In your site-root, do `git clone https://github.com/Firesphere/silverstripe-newsmodule.git`. 
- 2.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 2.  Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 This method will make sure you can always pull the latest updates from the upstream, thus, keeping you up-to-date with the latest features!
 
-Preferred, I would like it if you forked and cloned, because if you do, you can help me by adding features and make pull-requests to improve this module!
+Or use Composer:
+ 1. ```composer require firesphere/silverstripe-newsmodule:dev-master```
+ 2. Pray it works.
+ 3. Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
+
+I would like it if you forked and cloned if you want to help out improving this module!
  1.  Make a fork of this module.
  2.  In your site-root, do `git clone https://{your username}@github.com/{your username}/silverstripe-newsmodule.git`. 
- 3.  Run in your browser - `www.example.com/dev/build` to rebuild the database. 
+ 3.  Run in your browser - `www.example.com/dev/build?flush=all` to rebuild the manifest and database.
 A default page will be created if possible.
 This method is only if you know how git works and know how to add upstreams etc. to contribute.
 
