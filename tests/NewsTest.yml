@@ -8,35 +8,6 @@ Tag:
     Title: 'Testtag 1'
   tag2:
     Title: 'Testtag 2'
-Comment:
-  comment1:
-    Title: 'Testcomment number 1 which has a long title'
-    Name: 'Visitor number one'
-    Email: 'test@emailaddress.com'
-    URL: 'http://www.google.com'
-    Comment: 'I''m not entirely sure but this should be nice to read. There might also be some other interesting things on this topic somewhere else'
-    News: =>item1
-  comment2:
-    Title: 'Testcomment with nr. 2'
-    Name: 'Visitor number three'
-    Email: 'test@example.com'
-    URL: 'http://www.google.com'
-    Comment: 'This helped me setup my configuration just as wished. Thank you very much!'
-    News: =>item1
-  comment2:
-    Title: 'Testcomment with nr. 3'
-    Name: 'Visitor number three'
-    Email: 'test@example.com'
-    URL: 'http://www.google.com'
-    Comment: 'I don''t know how to thank you. This saved me a lot of time!'
-    News: =>item2
-  spamcomment:
-    Title: 'Get viagra now'
-    Name: 'viagra-test-123'
-    Email: 'akismet@test.com'
-    URL: 'http://www.akismet.com'
-    Comment: 'Get your viagra here!'
-    News: =>item1
 News:
   item1:
     Title: 'First Newsitem'
@@ -83,3 +54,29 @@ News:
     Author: 'Unit Test'
     NewsHolderPages: =>NewsHolderPage.page1
     Tags: =>Tag.tag1,=>Tag.tag2
+Comment:
+  comment1:
+    Title: 'Testcomment number 1 which has a long title'
+    Name: 'Visitor number one'
+    Email: 'test@emailaddress.com'
+    Comment: 'I''m not entirely sure but this should be nice to read. There might also be some other interesting things on this topic somewhere else'
+    News: =>News.item1
+  comment2:
+    Title: 'Testcomment with nr. 2'
+    Name: 'Visitor number three'
+    Email: 'test@example.com'
+    Comment: 'This helped me setup my configuration just as wished. Thank you very much!'
+    News: =>News.item1
+  comment2:
+    Title: 'Testcomment with nr. 3'
+    Name: 'Visitor number three'
+    Email: 'test@example.com'
+    Comment: 'I don''t know how to thank you. This saved me a lot of time!'
+    News: =>News.item2
+  spamcomment:
+    Title: 'Get viagra now'
+    Name: 'viagra-test-123'
+    Email: 'akismet@test.com'
+    URL: 'http://www.akismet.com'
+    Comment: 'Get your viagra here!'
+    News: =>News.item1
