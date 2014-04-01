@@ -200,8 +200,7 @@ class News extends DataObject implements PermissionProvider {
 	public function onBeforeWrite(){
 		parent::onBeforeWrite();
 		/** Check if we have translatable and a NewsHolderPage. If no HolderPage available, skip (Create an orphan) */
-		if((!class_exists('Translatable') || !$this->NewsHolderPages()->count()) && NewsHolderPage::get()->first()){
-			$page = NewsHolderPage::get()->first();
+		if((!class_exists('Translatable') || !$this->NewsHolderPages()->count()) && $page = NewsHolderPage::get()->first()){
 			$this->NewsHolderPages()->add($page);
 		}
 		if(!$this->Type || $this->Type == ''){
