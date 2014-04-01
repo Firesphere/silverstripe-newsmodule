@@ -6,10 +6,8 @@ NewsHolderPage:
 Tag:
   tag1:
     Title: 'Testtag 1'
-    URLSegment: 'testtag-1'
   tag2:
     Title: 'Testtag 2'
-    URLSegment: 'testtag-2'
 News:
   item1:
     Title: 'First Newsitem'
@@ -24,6 +22,7 @@ News:
     Live: 1
     Author: 'Test Unit'
     NewsHolderPages: =>NewsHolderPage.page1,=>NewsHolderPage.page2
+    Tags: =>Tag.tag1,=>Tag.tag2
   item3:
     Title: 'Third Newsitem'
     PublishFrom: '2013-12-01'
