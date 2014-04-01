@@ -162,12 +162,6 @@ To include reCaptcha as anti-spam method, alter the NewsHolderPage on line 399. 
 
 "The cow, what do you think of it?"
 
-## Known Issues
-
-* See the Issues-list on Github.
-* Version 3.0 is outdated as hell.
-* No, I'm serious, Master_3.0 is really far behind.
-
 ## Requests
 
 * Beer.

@@ -28,6 +28,7 @@ Note, forking is NOT REQUIRED, only handy if you want to help out.
 
 * Write grammatically correct. (If you don't, I'll prevent you from getting any updates. Be warned!)
 * If you have Akismet, add your Akismet API-key to the SiteConfig in News settings (It's in the Comments-section). It saves you from comment-spam
+* Copy the templates to your themes-directory for editing and styling, so any update wont trash your templates.
 * Make sure your cat doesn't walk over yoa23'oqexkji6ygfp89cbhv2
 
 ## Configuration
