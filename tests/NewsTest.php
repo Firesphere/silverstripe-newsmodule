@@ -54,10 +54,10 @@ class NewsTest extends SapphireTest {
 		$entry = $this->objFromFixture('News', 'pagelessitem');
 		$entry2 = $this->objFromFixture('News', 'item2');
 		
-		$this->assertEquals($page1->Children()->count(), 5);
-		$this->assertEquals($page2->Children()->count(), 1);
-		$this->assertEquals($entry2->NewsHolderPages()->count(), 2);
-		$this->assertEquals($entry->NewsHolderPages()->first()->Title, $page1->Title);
+		$this->assertEquals($page1->Children()->count(), 5, 'Newsitems on Page 1');
+		$this->assertEquals($page2->Children()->count(), 1, 'Newsitems on Page 2');
+		$this->assertEquals($entry2->NewsHolderPages()->count(), 2, 'Pages item2 is linked to');
+		$this->assertEquals($entry->NewsHolderPages()->first()->Title, $page1->Title, 'Item1 is auto-linked to Page1');
 		
 		
 	}
@@ -72,8 +72,8 @@ class NewsTest extends SapphireTest {
 		$entry1 = $this->objFromFixture('News', 'item1');
 		$entry2 = $this->objFromFixture('News', 'urlcollisionitem');
 		
-		$this->assertEquals('first-newsitem', $entry1->URLSegment);
-		$this->assertEquals('first-newsitem-1', $entry2->URLSegment);
-		$this->assertNotEquals($entry2->URLSegment, $entry1->URLSegment);
+		$this->assertEquals('first-newsitem', $entry1->URLSegment, 'Item1 has a URLSegment');
+		$this->assertEquals('first-newsitem-1', $entry2->URLSegment, 'Item2 has a unique URLSegment generated, despite having the same title.');
+		$this->assertNotEquals($entry2->URLSegment, $entry1->URLSegment, 'Item1 and Item2 do not share the URLSegment');
 	}
 }
