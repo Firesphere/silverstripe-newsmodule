@@ -1,10 +1,44 @@
+NewsHolderPage:
+  firstpage:
+    Title: 'TestTitle'
+Tag:
+  firsttag:
+    Title: 'Testtag 1'
+    URLSegment: 'testtag-1'
+  secondtag:
+    Title: 'Testtag 2'
+    URLSegment: 'testtag-2'
+
 News:
-  Item:
-    Title:
-      'Test Newsitem'
-    Summary:
-      'Testing'
-    Content:
-      'This is a testitem'
-    Author:
-      'PHPUnit '
+  newspost1:
+    Title: 'First Newsitem'
+    PublishFrom: '2013-10-01'
+    Live: 1
+    Author: 'Unit Test '
+    Parent: =>NewsHolderPage.firstpage
+    Tags: =>Tag.firsttag
+  newspost2:
+    Title: 'Second Newsitem'
+    PublishFrom: '2013-11-01'
+    Live: 1
+    Author: 'Test Unit'
+    Parent: =>NewsHolderPage.firstpage
+  newspost3:
+    Title: 'Third Newsitem'
+    PublishFrom: '2013-12-01'
+    Live: 1
+    Author: 'Unit Test'
+    Parent: =>NewsHolderPage.firstpage
+  newspostfuture:
+    Title: 'Item published future'
+    Live: 1
+    Author: 'Test  Unit'
+    PublishFrom: '2015-01-01'
+    Tags: =>Tag.firsttag
+  urlcollisionitem:
+    Title: 'First Newsitem'
+    PublishFrom: '2013-10-02'
+    Live: 1
+    Author: 'Unit Test'
+    Parent: =>NewsHolderPage.firstpage
+    Tags: =>Tag.firsttag
