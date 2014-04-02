@@ -10,7 +10,7 @@ class CommentReport extends SS_Report {
 
 	/**
 	 * Set the title. Because titles are useful.
-	 * @return String Report Title
+	 * @return string Report Title
 	 */
 	public function title() {
 		return _t('CommentReport.TITLE', 'Comment report');
@@ -18,10 +18,10 @@ class CommentReport extends SS_Report {
 	
 	/**
 	 * Setup the list of records to show.
-	 * @param type $params array of filter-rules.
-	 * @param type $sort 
-	 * @param type $limit
-	 * @return \ArrayList with the records.
+	 * @param array $params array of filter-rules.
+	 * @param array $sort 
+	 * @param integer $limit
+	 * @return ArrayList with the records.
 	 */
 	public function sourceRecords($params, $sort, $limit) {
 		if($sort) {
@@ -32,25 +32,26 @@ class CommentReport extends SS_Report {
 		$filter = array(
 			'Comments.ID:GreaterThan' => 0,
 		);
-		$where = null;
 		if(count($params) > 0 && isset($params['Title'])){
-			$where = 'News.Title LIKE \'%'.$params['Title'].'%\'';
+			$filter['News.Title:PartialMatch'] = $params['Title'];
 		}
-		$ret = News::get()->filter($filter)->sort('IF(PublishFrom, PublishFrom, News.Created) DESC')->where($where);
+		$ret = News::get()->filter($filter);
 		$returnSet = new ArrayList();
-		if ($ret) foreach($ret as $record) {
-			$record->Commentcount = $record->Comments()->count();
-			$record->Spamcount = $record->Comments()->filter(array('AkismetMarked' => 1))->count();
-			$record->Hiddencount = $record->Comments()->filter(array('AkismetMarked' => 0, 'Visible' => 0))->count();
-			
-			if(isset($params['Comment']) && $params['Comment'] == 'SPAMCOUNT' && $record->Spamcount > 0){
-				$returnSet->push($record);
-			}
-			elseif(isset($params['Comment']) && $params['Comment'] == 'HIDDENCOUNT' && $record->Hiddencount > 0){
-				$returnSet->push($record);
-			}
-			elseif((isset($params['Comment']) && $params['Comment'] == '') || !isset($params['Comment'])){
-				$returnSet->push($record);
+		if ($ret) {
+			foreach($ret as $record) {
+				$record->Commentcount = $record->Comments()->count();
+				$record->Spamcount = $record->Comments()->filter(array('AkismetMarked' => 1))->count();
+				$record->Hiddencount = $record->Comments()->filter(array('AkismetMarked' => 0, 'Visible' => 0))->count();
+
+				if(isset($params['Comment']) && $params['Comment'] == 'SPAMCOUNT' && $record->Spamcount > 0){
+					$returnSet->push($record);
+				}
+				elseif(isset($params['Comment']) && $params['Comment'] == 'HIDDENCOUNT' && $record->Hiddencount > 0){
+					$returnSet->push($record);
+				}
+				elseif((isset($params['Comment']) && $params['Comment'] == '') || !isset($params['Comment'])){
+					$returnSet->push($record);
+				}
 			}
 		}		
 		return $returnSet;
