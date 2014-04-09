@@ -104,35 +104,7 @@ class Comment extends DataObject implements PermissionProvider {
 			->setRows(10);
 		return $fields;
 	}
-	
-	/** 
-	 * If you hadn't guessed what the above does. Try the functions below!
-	 */
-	
-	/**
-	 * @return type FieldList
-	 */
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->removeByName('MD5Email');
-		$fields->addFieldsToTab(
-			'Root.Main',
-			array(
-				TextField::create('Title', $this->fieldLabel('Title')),
-				TextField::create('Name', $this->fieldLabel('Name')),
-				TextField::create('Email', $this->fieldLabel('Email')),
-				TextField::create('URL', $this->fieldLabel('URL')),
-				HtmlEditorField::create('Comment', $this->fieldLabel('Comment')),
-				CheckboxField::create('AkismetMarked', $this->fieldLabel('AkismetMarked')),
-				CheckboxField::create('Visible', $this->fieldLabel('Visible')),
-				CheckboxField::create('ShowGravatar', $this->fieldLabel('ShowGravatar')),
-				// I very much doubt this is actually a good idea, to let authors change the item a comment is posted to :D
-				DropdownField::create('NewsID', $this->fieldLabel('News'), News::get()->map('ID','Title'))
-			)
-		);
-		return $fields;
-	}
-	
+
 	/**
 	 * Setup the visibility and check the URI, because ppl forget about it.
 	 * Also, check Akismet.
@@ -143,22 +115,15 @@ class Comment extends DataObject implements PermissionProvider {
 		if($siteConfig->MustApprove){
 			$this->Visible = false;
 		}
-		/**
-		 * No, I'm serious. Commenters forget that http is somewhat required to make the link actually work :'(
-		 */
 		if(substr($this->URL,0,4) != 'http' && $this->URL != ''){
 			$this->URL = 'http://'.$this->URL;
 		}
-		/**
-		 * For crying out loud, can't you just write the MD5 yours... Nevermind.
-		 */
+		/** setup the MD5 for Gravatar usage */
 		$this->MD5Email = md5($this->Email);
 		if($siteConfig->AkismetKey) {
 			$this->checkAkismet($siteConfig);
 		}
-		/**
-		 * PHP and HTML do not like each other I guess.
-		 */
+		/** PHP and HTML do not like each other I guess. */
 		$this->Comment = nl2br($this->Comment);
 	}
 	

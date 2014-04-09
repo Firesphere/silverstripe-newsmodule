@@ -7,7 +7,7 @@
 * Write the help-features in the CMS.
 * Get the translations fixed further.
 * Upgrade the templates to a more generic Bootstrap3 template.
-* [Add functional tests](Tests).
+* [Add functional tests](docs/en/Tests).
 
 ## Near future
 
