@@ -144,6 +144,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 		'author',
 		'CommentForm',
 		'migrate',
+		'latest',
 	);
 	
 	private static $url_handlers = array();
@@ -280,15 +281,20 @@ class NewsHolderPage_Controller extends Page_Controller {
 	 * @return $this|null redirect to either the correct page/object or do nothing (In that case, the item exists and we're gonna show it lateron).
 	 */
 	private function needsRedirect(){
+		/** @var int|string $id */
 		$id = $this->getRequest()->param('ID');
+		/** @var string $action */
 		$action = $this->getRequest()->param('Action');
+		/** @var array $handlers */
 		$handlers = self::$url_handlers;
 		if(isset($handlers[$action]) && $handlers[$action] == 'show' && !$news = $this->getNews()) {
 			if($id && is_numeric($id)){
+				/** @var News $redirect */
 				$redirect = $this->Newsitems()->byId($id);
 				$this->redirect($redirect->Link(), 301);
 			}
 			else{
+				/** @var Renamed $renamed */
 				$renamed = Renamed::get()->filter('OldLink', $id);
 				if($renamed->count() > 0){
 					$this->redirect($renamed->First()->News()->Link(), 301);
@@ -297,6 +303,11 @@ class NewsHolderPage_Controller extends Page_Controller {
 					$this->redirect($this->Link(), 404);
 				}
 			}
+		}
+		elseif($action === 'latest') {
+			/** @var News $item */
+			$item = News::get()->filter(array('Live' => true))->first();
+			$this->redirect($item->Link(), 302);
 		}
 	}
 	
