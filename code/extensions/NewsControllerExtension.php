@@ -29,7 +29,7 @@ class NewsControllerExtension extends DataExtension {
 			'Live' => 1,
 		);
 		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d H:i:s')
+			'PublishFrom:GreaterThan' => SS_Datetime::now()->Rfc2822()
 		);
 		/**
 		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
@@ -126,7 +126,7 @@ class NewsControllerExtension extends DataExtension {
 	    $filter['Locale'] = Translatable::get_current_locale();
         }
 	$exclude = array(
-		'PublishFrom:GreaterThan' => date('Y-m-d H:i:s')
+		'PublishFrom:GreaterThan' => SS_Datetime::now()->Rfc2822()
 	);
         $news = News::get()
             ->filter($filter)

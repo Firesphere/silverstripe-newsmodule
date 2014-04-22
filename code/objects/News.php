@@ -208,7 +208,7 @@ class News extends DataObject implements PermissionProvider {
 		}
 		/** Set PublishFrom to today to prevent errors with sorting. New since 2.0, backward compatible. */
 		if(!$this->PublishFrom){
-			$this->PublishFrom = date('Y-m-d');
+			$this->PublishFrom = SS_Datetime::now()->Rfc2822();
 		}
 		/**
 		 * Make sure the link is valid.
@@ -231,7 +231,8 @@ class News extends DataObject implements PermissionProvider {
 		 * @todo refactor this to a facebook/twitter oAuth method that a dev spent more time on developing than I did on my Social-module.
 		 */
 		if(class_exists('TwitterController')){
-			if($this->Live && $this->PublishDate <= date('Y-m-d') && !$this->Tweeted && $siteConfig->TweetOnPost){
+			$date =  SS_DateTime::now()->Format('Y-m-d');
+			if($this->Live && $this->PublishDate <= $date && !$this->Tweeted && $siteConfig->TweetOnPost){
 				$this->Tweeted = true;
 				$this->write();
 			}
@@ -307,8 +308,7 @@ class News extends DataObject implements PermissionProvider {
 	 * @return string $yearItems String of 4 numbers representing the year
 	 */
 	public function getYearCreated(){
-		$yearItems = date('Y', strtotime($this->PublishFrom));
-		return $yearItems;
+		return $this->dbObject('PublishFrom')->Format('Y');
 	}
 
 	/**
@@ -316,8 +316,7 @@ class News extends DataObject implements PermissionProvider {
 	 * @return string $monthItems double-digit representation of the month this object was published.
 	 */
 	public function getMonthCreated(){
-		$monthItems = date('F', strtotime($this->PublishFrom));
-		return $monthItems;
+		return $this->dbObject('PublishFrom')->Format('F');
 	}
 
         /**

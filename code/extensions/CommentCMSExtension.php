@@ -13,7 +13,7 @@ class CommentCMSExtension extends DataExtension {
 	 * Setup the fields for the CMS.
 	 * @return type FieldList
 	 */
-	public function updateCMSFields() {
+	public function updateCMSFields(FieldList $fields) {
 		$fields = parent::getCMSFields();
 		$owner = $this->owner;
 		$fields->removeByName(array('MD5Email', 'NewsID'));

@@ -140,7 +140,7 @@ class Tag extends DataObject {
 	}
 	
 	public function activeNews() {
-		$now = date('Y-m-d');
+		$now = SS_DateTime::now()->Format('Y-m-d');
 		return $this->News()
 			->filter(array('Live' => true))
 			->exclude(array('PublishFrom:GreaterThan' => $now));
