@@ -58,11 +58,12 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	private static $defaults = array(
 		/** URL Mapping */
-		'TagAction'		=> 'tag',
-		'TagsAction'		=> 'tags',
-		'ShowAction'		=> 'show',
-		'AuthorAction'		=> 'author',
-		'ArchiveAction'		=> 'archive',
+		'TagAction'	=> 'tag',
+		'TagsAction'	=> 'tags',
+		'ShowAction'	=> 'show',
+		'AuthorAction'	=> 'author',
+		'ArchiveAction'	=> 'archive',
+		'PostPerPage'	=> 10
 	);
 	
 	/** @var array $config_tabs the tabs available for the user to config. */
@@ -87,26 +88,29 @@ class NewsSiteConfigExtension extends DataExtension {
 	 */
 	public function updateCMSFields(FieldList $fields){
 		/** Only allow authors or higher! */
-		if(($this->owner->AllowAuthors && Member::currentUser()->inGroup('content-authors')) || Member::currentUser()->inGroup('administrators')){
+		$fields->addFieldToTab(
+			'Root', // What tab
+			TabSet::create(
+				'Newssettings',
+				_t('NewsSiteConfigExtension.NEWSCOMMENTS', 'News settings')
+			)
+		);
+		if(($this->owner->AllowAuthors && $this->owner->canEdit(Member::currentUser())) || Member::currentUser()->inGroup('administrators')){
 			$userTabs = array();
-			$fields->addFieldToTab(
-				'Root', // What tab
-				TabSet::create(
-					'Newssettings',
-					_t('NewsSiteConfigExtension.NEWSCOMMENTS', 'News settings')
-				)
-			);
 			foreach(self::$config_tabs as $tab) {
 				$userTabs[] = $this->$tab();
 			}
 			$fields->addFieldsToTab('Root.Newssettings', $userTabs);
-			if(Member::currentUser()->inGroup('administrators')){
-				$adminTabs = array();
-				foreach(self::$admin_tabs as $tab) {
-					$adminTabs[] = $this->$tab();
-				}
-				$fields->addFieldsToTab('Root.Newssettings', $adminTabs, 'Help');
+		}
+		else {
+			$fields->addFieldToTab('Root.Newssettings', HeaderField::create('NoPermissions', _t('NewsSiteConfigExtension.PERMISSIONERROR', 'You do not have the permission to edit these settings')));
+		}
+		if(Member::currentUser()->inGroup('administrators')){
+			$adminTabs = array();
+			foreach(self::$admin_tabs as $tab) {
+				$adminTabs[] = $this->$tab();
 			}
+			$fields->addFieldsToTab('Root.Newssettings', $adminTabs, 'Help');
 		}
 	}
 	
@@ -186,7 +190,7 @@ class NewsSiteConfigExtension extends DataExtension {
 		return Tab::create(
 			'URL Mapping',
 			_t('NewsSiteConfigExtension.MAPPING', 'URL Mapping'),
-			LiteralField::create('mappinghelp', _t('NewsSiteConfigExtension.MAPPINGHELP', 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show')),
+			LiteralField::create('mappinghelp', _t('NewsSiteConfigExtension.MAPPINGHELP', 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show. Don\'t use "latest" or doubles!')),
 			TextField::create('ShowAction', _t('NewsSiteConfigExtension.SHOWMAPPING', 'URL Parameter to show an item')),
 			TextField::create('TagAction', _t('NewsSiteConfigExtension.TAGMAPPING', 'URL Parameter to show a tag')),
 			TextField::create('TagsAction', _t('NewsSiteConfigExtension.TAGSMAPPING', 'URL Parameter to show all tags')),

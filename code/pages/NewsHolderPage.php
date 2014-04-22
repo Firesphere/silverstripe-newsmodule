@@ -125,7 +125,7 @@ class NewsHolderPage extends Page {
 	 * @return DataObjectSet NewsItems belonging to this page
 	 */
 	public function Children(){
-		$now = date('Y-m-d');
+		$now = SS_DateTime::now()->Format('Y-m-d');
 		return $this->Newsitems()
 			->filter(array('Live' => true))
 			->exclude(array('PublishFrom:GreaterThan' => $now));
@@ -361,7 +361,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function getRSSFeed() {
 		$return = $this->NewsItems()
 			->filter(array('Live' => 1))
-			->exclude(array('PublishFrom:GreaterThan' => date('Y-m-d H:i:s')))
+			->exclude(array('PublishFrom:GreaterThan' => SS_Datetime::now()->Rfc2822()))
 			->limit(10);
 		return $return;
 	}
@@ -389,7 +389,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 	public function allNews(){
 		$siteConfig = $this->getCurrentSiteConfig();
 		$exclude = array(
-			'PublishFrom:GreaterThan' => date('Y-m-d'),
+			'PublishFrom:GreaterThan' => SS_Datetime::now()->Format('Y-m-d'),
 		);
 		$filter = $this->generateAddedFilter();
 		$allEntries = $this->Newsitems()
@@ -430,8 +430,8 @@ class NewsHolderPage_Controller extends Page_Controller {
 				/** Archive */
 				case 'archive':
 					if(!isset($params['ID'])){
-						$month = date('m');
-						$year = date('Y');
+						$month = SS_DateTime::now()->Format('m');
+						$year = SS_DateTime::now()->Format('Y');
 					}
 					elseif(!isset($params['OtherID']) && isset($params['ID'])){
 						$year = $params['ID'];
