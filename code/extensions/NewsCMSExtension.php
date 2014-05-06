@@ -150,7 +150,7 @@ class NewsCMSExtension extends DataExtension {
 				/** @var GridFieldConfig_RecordEditor $gridFieldConfig */
 				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 				$gridFieldConfig->addComponent(new GridFieldBulkImageUpload());
-				$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+				$gridFieldConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
 				$this->field_list['Root'][] = Tab::create(
 					'SlideshowImages',
 					$owner->fieldLabel('SlideshowImages'),

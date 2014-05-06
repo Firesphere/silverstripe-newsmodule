@@ -90,6 +90,7 @@ class NewsHolderPage extends Page {
 	 * This is to migrate existing newsitems to the new release with the new relational method.
 	 * It is forward-non-destructive.
 	 * Only run if there is a column NewsHolderPageID
+	 * @todo This needs a rewrite, could be done with less queries with an add Items to Page instead of the current situation.
 	 */
 	private function migratePages() {
 		$existquery = "SHOW COLUMNS FROM `News` LIKE 'NewsHolderPageID';";
@@ -189,7 +190,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			if($siteConfig->$map) {
 				$handles[$siteConfig->$map] = $key;
 			}
-			elseif(!isset($handles[$key])) {
+			if(!isset($handles[$key])) {
 				$handles[$key] = $key;
 			}
 		}
@@ -295,7 +296,7 @@ class NewsHolderPage_Controller extends Page_Controller {
 			}
 			else{
 				/** @var Renamed $renamed */
-				$renamed = Renamed::get()->filter('OldLink', $id);
+				$renamed = Renamed::get()->filter(array('OldLink' => $id));
 				if($renamed->count() > 0){
 					$this->redirect($renamed->First()->News()->Link(), 301);
 				}
