@@ -6,12 +6,14 @@
  * 
  * @package News/blog module
  * @author Simon 'Sphere'
- * @method NewsHolderPage NewsHolderPages() this NewsItem belongs to
  * @method Image Impression() the Impression for this NewsItem
- * @method Comment Comment() Comments on this NewsItem
+ * @method File Download() Get the downloadable file
+ * @method AuthorHelper AuthorHelper() Get the author of this post
+ * @method Comment Comments() Comments on this NewsItem
  * @method Renamed Renamed() changed URLSegments
  * @method SlideshowImage SlideshowImages() for the slideshow-feature
- * @method Tag Tags() Added Tags for this Item.
+ * @method Tag Tags() Added Tags for this Item
+ * @method NewsHolderPage NewsHolderPages() The pages this item is linked to
  */
 class News extends DataObject implements PermissionProvider {
 
