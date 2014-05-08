@@ -111,7 +111,7 @@ class NewsCMSExtension extends DataExtension {
 				}
 			}
 			else {
-				$pagelist = $pages->map('ID', 'Title');
+				$pagelist = $pages->map('ID', 'Title')->toArray();
 			}
 			$this->field_list['Root.Main'][1] = ListboxField::create('NewsHolderPages', $this->owner->fieldLabel('NewsHolderPages'), $pagelist);
 			$this->field_list['Root.Main'][1]->setMultiple(true);
