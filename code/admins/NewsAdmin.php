@@ -47,7 +47,10 @@ class NewsAdmin extends ModelAdmin {
 			$form->Fields()
 				->fieldByName("News")
 				->getConfig()
-				->removeComponentsByType('GridFieldExportButton');
+				->removeComponentsByType('GridFieldExportButton')
+				->addComponent(
+					new GridfieldNewsPublishAction()
+				);
 		}
 		return $form;
 	}

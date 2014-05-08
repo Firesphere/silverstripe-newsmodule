@@ -376,5 +376,43 @@ class News extends DataObject implements PermissionProvider {
 	public function canView($member = null) {
 		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
-	
+
+	/**
+	 * @return bool
+	 */
+	public function isPublished(){
+		return $this->Live ? true : false;
+	}
+
+	/**
+	 * Publishes a news item
+	 *
+	 * @throws ValidationException
+	 * @throws null
+	 */
+	public function doPublish()
+	{
+		if (!$this->canEdit()) {
+			throw new ValidationException(_t('News.PublishPermissionFailure',
+					'No permission to publish or unpublish news item'));
+		}
+		$this->Live = true;
+		$this->write();
+	}
+
+	/**
+	 * Unpublishes an news item
+	 *
+	 * @throws ValidationException
+	 * @throws null
+	 */
+	public function doUnpublish()
+	{
+		if (!$this->canEdit()) {
+			throw new ValidationException(_t('News.PublishPermissionFailure',
+					'No permission to publish or unpublish news item'));
+		}
+		$this->Live = false;
+		$this->write();
+	}
 }
