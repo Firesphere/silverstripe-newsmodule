@@ -114,6 +114,7 @@ class News extends DataObject implements PermissionProvider {
 				'Title'		=> _t('News.TITLE', 'Title'),
 				'Author'	=> _t('News.AUTHOR', 'Author'),
 				'PublishFrom'	=> _t('News.PUBLISH', 'Publish from'),
+				'Status' 	=> _t('News.STATUS','Status'),
 			)
 		);
 		return $summaryFields;
@@ -382,6 +383,17 @@ class News extends DataObject implements PermissionProvider {
 	 */
 	public function isPublished(){
 		return $this->Live ? true : false;
+	}
+
+	/**
+	 * Returns if the news item is published or not
+	 *
+	 * @return string
+	 */
+	public function getStatus(){
+		return $this->isPublished()
+			? _t('News.IsPublished','published')
+			: _t('News.IsUnpublished', 'not published');
 	}
 
 	/**
