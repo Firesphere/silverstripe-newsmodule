@@ -38,7 +38,7 @@ class NewsAdmin extends ModelAdmin {
 				->fieldByName('Tag')
 				->getConfig()
 				->addComponent(
-					new GridFieldSortableRows(
+					new GridFieldOrderableRows(
 						'SortOrder'
 					)
 				);
