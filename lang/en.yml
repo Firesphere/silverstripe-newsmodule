@@ -119,19 +119,21 @@ en:
     GRAVURL: 'Default Gravatar image if commenter doesn''t have one'
     HELP: Help
     MAPPING: 'URL Mapping'
-    MAPPINGHELP: 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show'
+    MAPPINGHELP: 'Set the URL Parameters to handle things to your wishing, e.g. /news/newsitem instead of /news/show. Don''t use "latest" or doubles!'
     NEWS: News
     NEWSCOMMENTS: 'News settings'
     NEWSHELP: 'News help'
     NEWSHELPTEXT: 'In the news settings tab, you can set general settings like if you want to use an abstract, tweet after post (this is on the issuelist!) Fields are quite understandable by itself.'
     NEWSMAIL: 'Send email notification of a comment to me'
     NOSCRIPTSPAM: 'Use a noscript field for spam protection'
+    PERMISSIONERROR: 'You do not have the permission to edit these settings'
     PPP: 'Amount of posts per page'
     RETURNEXT: 'Make externals open in a new tab/window'
     SEC: Security
     SHOWMAPPING: 'URL Parameter to show an item'
     SLIDEINITIAL: 'Show only the first image'
     SLIDESHOW: 'Allow the use of slideshow feature'
+    SLIDESHOWFOLDER: 'Folder where images are saved to; defaults to "news"'
     SLIDESHOWHELP: 'Slideshow help'
     SLIDESHOWHELPTEXT: 'Slideshow settings, like what to do. TBD'
     SLIDESHOWSETTINGS: Slideshow
