@@ -38,7 +38,7 @@ E-mail me your twitter contact if you added something and like to be mentioned!
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
 * [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/cms)
 * [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
-* [`Gridfield Extensions`](https://github.com/ajshort/gridfieldextensions)
+* [`Gridfield Extensions`](https://github.com/ajshort/silverstripe-gridfieldextensions)
 
 ### Child grouping support
 
