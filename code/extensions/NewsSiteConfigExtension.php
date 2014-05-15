@@ -52,6 +52,7 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	/** @var array $has_one Contains all the one-to-many relations */
 	private static $has_one = array(
+		'NewsRootFolder' => 'Folder',
 		'DefaultImage'		=> 'Image',
 		'DefaultGravatarImage'	=> 'Image',
 	);
@@ -79,7 +80,17 @@ class NewsSiteConfigExtension extends DataExtension {
 	private static $admin_tabs = array(
 		'URLMappingTab',
 		'SecurityTab',
-	);	
+	);
+
+	/**
+	 * A foldername relative to /assets,
+	 * where all uploaded files are stored by default.
+	 * Can be overwritten in db using NewsRootFolder
+	 *
+	 * @config
+	 * @var string
+	 */
+	private static $uploads_folder = "news";
 
 	/**
 	 * Update the SiteConfig with the news-settings.
@@ -161,10 +172,15 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	protected function SlideshowTab() {
 		/** Slideshow settings */
+		//get a tree listing with only folder, no files
+		$folderTree = new TreeDropdownField("NewsRootFolderID", _t('NewsSiteConfigExtension.SLIDESHOWFOLDER','Folder where images are saved to; defaults to "news"'), 'Folder');
+		$folderTree->setChildrenMethod('ChildFolders');
+
 		return Tab::create(
 			'Slideshowsettings',
 			_t('NewsSiteConfigExtension.SLIDESHOWSETTINGS', 'Slideshow'),
 			CheckboxField::create('EnableSlideshow', _t('NewsSiteConfigExtension.SLIDESHOW', 'Allow the use of slideshow feature')),
+			$folderTree,
 			CheckboxField::create('SlideshowInitial', _t('NewsSiteConfigExtension.SLIDEINITIAL', 'Show only the first image')),
 			TextField::create('SlideshowSize', _t('NewsSiteConfigExtension.SLIDESIZE', 'Maximum size of the full-size images. E.g. 1024x768'))
 		);
@@ -228,4 +244,24 @@ class NewsSiteConfigExtension extends DataExtension {
 			}
 		}
 	}
+
+	/**
+	 * Returns the folder name where to store all news stuff relative to /assets/ directory.
+	 *
+	 * @return string
+	 */
+	public function getRootFolderName(){
+		if ($this->NewsRootFolderID) {
+			return str_replace(ASSETS_DIR . '/' , '', $this->NewsRootFolder()->getRelativePath());
+		}
+
+		return Config::inst()->get($this->class, 'uploads_folder');
+	}
+
+	public function populateDefaults(){
+		// create a news folder
+		$newsFolder = Folder::find_or_make(Config::inst()->get($this->class, 'uploads_folder'));
+		$this->owner->NewsRootFolderID = $newsFolder->ID;
+	}
+
 }

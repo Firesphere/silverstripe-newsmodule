@@ -151,6 +151,7 @@ class NewsCMSExtension extends DataExtension {
 				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 				$gridFieldConfig->addComponent(new GridFieldBulkUpload());
 				$gridFieldConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
+				$gridFieldConfig->getComponentByType('GridFieldBulkUpload')->setConfig('folderName',$siteConfig->getRootFolderName());
 
 				if (class_exists('GridFieldGalleryTheme')) {
 					$gridFieldConfig->addComponent(new GridFieldGalleryTheme('Image'));
