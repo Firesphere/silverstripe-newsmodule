@@ -24,7 +24,8 @@
 	},
 	"suggest": {
 		"silverstripe/translatable": "*",
-		"unclecheese/display-logic": "*"
+		"unclecheese/display-logic": "*",
+        "colymba/gridfield-gallery-theme": "*"
 	},
 	"extra": {
 		"installer-name": "silverstripe-newsmodule"
