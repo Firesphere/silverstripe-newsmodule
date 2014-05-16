@@ -414,7 +414,6 @@ class News extends DataObject implements PermissionProvider {
 	 * Publishes a news item
 	 *
 	 * @throws ValidationException
-	 * @throws null
 	 */
 	public function doPublish()
 	{
@@ -430,7 +429,6 @@ class News extends DataObject implements PermissionProvider {
 	 * Unpublishes an news item
 	 *
 	 * @throws ValidationException
-	 * @throws null
 	 */
 	public function doUnpublish()
 	{
