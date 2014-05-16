@@ -258,6 +258,9 @@ class NewsSiteConfigExtension extends DataExtension {
 		return Config::inst()->get($this->class, 'uploads_folder');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function populateDefaults(){
 		// create a news folder
 		$newsFolder = Folder::find_or_make(Config::inst()->get($this->class, 'uploads_folder'));
