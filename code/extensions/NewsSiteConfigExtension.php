@@ -251,8 +251,8 @@ class NewsSiteConfigExtension extends DataExtension {
 	 * @return string
 	 */
 	public function getRootFolderName(){
-		if ($this->NewsRootFolderID) {
-			return str_replace(ASSETS_DIR . '/' , '', $this->NewsRootFolder()->getRelativePath());
+		if ($this->owner->NewsRootFolderID) {
+			return str_replace(ASSETS_DIR . '/' , '', $this->owner->NewsRootFolder()->getRelativePath());
 		}
 
 		return Config::inst()->get($this->class, 'uploads_folder');
