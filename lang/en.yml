@@ -134,6 +134,8 @@ en:
     SLIDEINITIAL: 'Show only the first image'
     SLIDESHOW: 'Allow the use of slideshow feature'
     SLIDESHOWFOLDER: 'Folder where images are saved to; defaults to "news"'
+    SLIDESHOWFOLDERCONFIG: '<strong>Found folder per root extension</strong><br />This will automatically create an upload folder per news item.<br />Current root folder: "<strong>{rootFolderName}</strong>"<br />Set News.folder_root your config.yml to change this'
+    SLIDESHOWFOLDERNOTSET: 'not set'
     SLIDESHOWHELP: 'Slideshow help'
     SLIDESHOWHELPTEXT: 'Slideshow settings, like what to do. TBD'
     SLIDESHOWSETTINGS: Slideshow

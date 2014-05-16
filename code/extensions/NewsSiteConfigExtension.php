@@ -172,9 +172,23 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	protected function SlideshowTab() {
 		/** Slideshow settings */
-		//get a tree listing with only folder, no files
-		$folderTree = new TreeDropdownField("NewsRootFolderID", _t('NewsSiteConfigExtension.SLIDESHOWFOLDER','Folder where images are saved to; defaults to "news"'), 'Folder');
-		$folderTree->setChildrenMethod('ChildFolders');
+		//@todo use display logic to hide stuff when slideshow is disabled
+
+		if (class_exists('RootFolder') && News::has_extension('RootFolder')) {
+			// we use folder per root extension and define the root_folder in config.yml
+			$rootFolderName = Config::inst()->get('News','folder_root')
+				?: _t('NewsSiteConfigExtension.SLIDESHOWFOLDERNOTSET','not set');
+			$folderTree = LiteralField::create("NewsRootFolderDisabled",
+				_t('NewsSiteConfigExtension.SLIDESHOWFOLDERCONFIG',
+					'<strong>Found folder per root extension</strong><br />This will automatically create an upload folder per news item.<br />Current root folder: "<strong>{rootFolderName}</strong>"<br />Set News.folder_root your config.yml to change this',
+					'',
+					array('rootFolderName' => $rootFolderName)));
+		} else {
+			//get a tree listing with only folder, no files
+			$folderTree = TreeDropdownField::create("NewsRootFolderID", _t('NewsSiteConfigExtension.SLIDESHOWFOLDER','Folder where images are saved to; defaults to "news"'), 'Folder');
+			$folderTree->setChildrenMethod('ChildFolders');
+		}
+
 
 		return Tab::create(
 			'Slideshowsettings',
