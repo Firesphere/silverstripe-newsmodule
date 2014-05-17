@@ -361,24 +361,38 @@ class News extends DataObject implements PermissionProvider {
 			),
 		);
 	}
-	
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canCreate($member = null) {
 		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canEdit($member = null) {
 		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canDelete($member = null) {
 		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canView($member = null) {
 		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
 
 	/**
+	 * Helper function to determine if this News object is already published or not
+	 *
 	 * @return bool
 	 */
 	public function isPublished(){
@@ -400,7 +414,6 @@ class News extends DataObject implements PermissionProvider {
 	 * Publishes a news item
 	 *
 	 * @throws ValidationException
-	 * @throws null
 	 */
 	public function doPublish()
 	{
@@ -416,7 +429,6 @@ class News extends DataObject implements PermissionProvider {
 	 * Unpublishes an news item
 	 *
 	 * @throws ValidationException
-	 * @throws null
 	 */
 	public function doUnpublish()
 	{
