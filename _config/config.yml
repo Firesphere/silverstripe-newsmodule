@@ -1,0 +1,9 @@
+---
+Name: silverstripe-newsmodule
+After: 'framework/*','cms/*'
+---
+
+News:
+  folder_root: 'News'
+#  extensions:
+#    ['RootFolder'] #remove comment for enabling seperate upload folders per news item
