@@ -3,7 +3,7 @@ Name: Newsmodule-extensions
 ---
 News:
   extensions:
-    ['NewsCMSExtension']
+    ['NewsCMSExtension'] # add 'RootFolder' and install wernerkrauss/folderperpage to have separate uploadfolders per newsitem.
 Tag:
   extensions:
     ['TagCMSExtension']

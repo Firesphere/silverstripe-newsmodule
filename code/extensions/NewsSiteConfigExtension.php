@@ -6,6 +6,7 @@
  * @author Sphere
  * @method Image DefaultImage() The default impression image.
  * @method Image DefaultGravatarImage() The default gravatar image.
+ * @method Folder NewsRootFolder() Root folder for slideshow images. 
  * @todo Work this out a bit better.
  * @todo fix the fieldlabels
  */
@@ -52,7 +53,7 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	/** @var array $has_one Contains all the one-to-many relations */
 	private static $has_one = array(
-		'NewsRootFolder' => 'Folder',
+		'NewsRootFolder'	=> 'Folder',
 		'DefaultImage'		=> 'Image',
 		'DefaultGravatarImage'	=> 'Image',
 	);
@@ -172,7 +173,7 @@ class NewsSiteConfigExtension extends DataExtension {
 	
 	protected function SlideshowTab() {
 		/** Slideshow settings */
-		//@todo use display logic to hide stuff when slideshow is disabled
+		/** @todo use display logic to hide stuff when slideshow is disabled */
 
 		if (class_exists('RootFolder') && News::has_extension('RootFolder')) {
 			// we use folder per root extension and define the root_folder in config.yml
