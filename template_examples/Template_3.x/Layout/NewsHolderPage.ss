@@ -1,3 +1,4 @@
+<% cached 'NewsHolderPage', List(News).max(LastEdited), List(News).count() %>
 <div class="wrapper row2">
   <div id="container">
     <div id="homepage">
@@ -70,3 +71,4 @@
 	      </div>
   </div>
 </div>
+<% end_cached %>

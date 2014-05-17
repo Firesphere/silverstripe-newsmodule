@@ -1,6 +1,7 @@
+<% cached current_item.URLSegment %>
 <div class="container">
 	<div id="newsitem" class="row">
-	<% with $News %>
+	<% with $current_item %>
 		<div class="col-xs-12">
 		<% if $Impression %>
 			<div class="col-xs-2">
@@ -55,4 +56,5 @@
 	<% end_with %>
 	</div>
 </div>
+<% end_cached %>
 <%-- If you want newsitems below this, include NewsItems.ss --%>
