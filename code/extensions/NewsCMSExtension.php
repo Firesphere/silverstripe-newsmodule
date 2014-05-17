@@ -151,6 +151,23 @@ class NewsCMSExtension extends DataExtension {
 				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 				$gridFieldConfig->addComponent(new GridFieldBulkUpload());
 				$gridFieldConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
+				$gridFieldConfig->getComponentByType('GridFieldBulkUpload')->setConfig('folderName',$siteConfig->getRootFolderName());
+
+				if (class_exists('GridFieldGalleryTheme')) {
+					$gridFieldConfig->addComponent(new GridFieldGalleryTheme('Image'));
+
+					/**
+					 * as gallery theme breaks sorting with GridFieldOrderableRows
+					 * let's use SortableRows as a fallback when installed
+					 *
+					 * @todo remove later this when gridfield extension works with gallery theme
+					 */
+					if (class_exists('GridFieldSortableRows')) {
+						$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+						$gridFieldConfig->removeComponentsByType('GridFieldOrderableRows');
+					}
+				}
+
 				$this->field_list['Root'][] = Tab::create(
 					'SlideshowImages',
 					$owner->fieldLabel('SlideshowImages'),
