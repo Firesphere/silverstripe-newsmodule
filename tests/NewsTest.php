@@ -76,4 +76,20 @@ class NewsTest extends SapphireTest {
 		$this->assertEquals('first-newsitem-1', $entry2->URLSegment, 'Item2 has a unique URLSegment generated, despite having the same title.');
 		$this->assertNotEquals($entry2->URLSegment, $entry1->URLSegment, 'Item1 and Item2 do not share the URLSegment');
 	}
+
+	/**
+	 * Test if isLive(), doPublish() and doUnpbublish work as expected.
+	 * Entry should be an unpublished item
+	 */
+	public function testDoPublish(){
+		$entry = $this->objFromFixture('News','unpublisheditem');
+		$this->assertEquals(0, $entry->Live, 'We picked an unpublished item');
+		$this->assertFalse($entry->isPublished(), 'check isLive() function - should be false on an unpublished item');
+
+		$entry->doPublish();
+		$this->assertTrue($entry->isPublished(), 'Entry should be published now');
+
+		$entry->doUnpublish();
+		$this->assertFalse($entry->isPublished(), 'Entry should be unpublished now');
+	}
 }
