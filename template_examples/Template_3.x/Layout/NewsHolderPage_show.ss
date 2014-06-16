@@ -1,6 +1,7 @@
+<% cached current_item.URLSegment %>
 <div class="wrapper row1">
   <section id="shout" class="clear">
-<% with $currentNewsItem %>
+<% with $current_item %>
 	    <% if $Impression %>
     <figure>
       <figcaption>
@@ -84,4 +85,5 @@
 <% end_with %>
   </section>
 </div>
+<% end_cached %>
 <%-- If you want newsitems below this, include NewsItems.ss --%>

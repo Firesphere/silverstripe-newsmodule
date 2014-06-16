@@ -61,14 +61,13 @@ Note on which version of translatable, CMS and Framework you use! They might not
 
 ## Demo of frontend
 
-* [`General news overview`](http://casa-laguna.net/all-the-news)
-* [`Tagcloud`](http://casa-laguna.net/all-the-news/tags)
-* [`Specific tag`](http://casa-laguna.net/all-the-news/tag/sphere)
-* [`Redirect to urlsegment`](http://casa-laguna.net/all-the-news/show/1)
+* [`General news overview`](https://newsmodule.casa-laguna.net/news)
+* [`Tagcloud`](https://newsmodule.casa-laguna.net/news/tags)
+* [`Redirect to urlsegment`](https://newsmodule.casa-laguna.net/news/show/1)
 
 ## Demo of backend
 
-* [`user: news@test.com password: newsmodule`](http://newsmodule.casa-laguna.net/admin)
+* [`user: news@test.com password: newsmodule`](https://newsmodule.casa-laguna.net/admin)
 
 ## Lacks
 
@@ -77,7 +76,7 @@ Note on which version of translatable, CMS and Framework you use! They might not
 
 (Indeed, that second bullet means it only lacks history, nothing else :P )
 
-## [Help and installation](docs/en/Help)
+## [Help and installation](docs/en/Help.md)
 
 If you don't have a github account, just download:
  1. Click on the big "ZIP" button at the top (Make sure you download a Master-branch!).

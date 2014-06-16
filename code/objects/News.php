@@ -114,6 +114,7 @@ class News extends DataObject implements PermissionProvider {
 				'Title'		=> _t('News.TITLE', 'Title'),
 				'Author'	=> _t('News.AUTHOR', 'Author'),
 				'PublishFrom'	=> _t('News.PUBLISH', 'Publish from'),
+				'Status' 	=> _t('News.STATUS','Status'),
 			)
 		);
 		return $summaryFields;
@@ -360,21 +361,82 @@ class News extends DataObject implements PermissionProvider {
 			),
 		);
 	}
-	
+
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canCreate($member = null) {
 		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canEdit($member = null) {
 		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canDelete($member = null) {
 		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function canView($member = null) {
 		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
-	
+
+	/**
+	 * Helper function to determine if this News object is already published or not
+	 *
+	 * @return bool
+	 */
+	public function isPublished(){
+		return $this->Live ? true : false;
+	}
+
+	/**
+	 * Returns if the news item is published or not
+	 *
+	 * @return string
+	 */
+	public function getStatus(){
+		return $this->isPublished()
+			? _t('News.IsPublished','published')
+			: _t('News.IsUnpublished', 'not published');
+	}
+
+	/**
+	 * Publishes a news item
+	 *
+	 * @throws ValidationException
+	 */
+	public function doPublish()
+	{
+		if (!$this->canEdit()) {
+			throw new ValidationException(_t('News.PublishPermissionFailure',
+					'No permission to publish or unpublish news item'));
+		}
+		$this->Live = true;
+		$this->write();
+	}
+
+	/**
+	 * Unpublishes an news item
+	 *
+	 * @throws ValidationException
+	 */
+	public function doUnpublish()
+	{
+		if (!$this->canEdit()) {
+			throw new ValidationException(_t('News.PublishPermissionFailure',
+					'No permission to publish or unpublish news item'));
+		}
+		$this->Live = false;
+		$this->write();
+	}
 }

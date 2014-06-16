@@ -1,0 +1,7 @@
+---
+Name: silverstripe-newsmodule
+After: 'framework/*','cms/*'
+---
+
+News:
+  folder_root: 'News'

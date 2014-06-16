@@ -151,6 +151,23 @@ class NewsCMSExtension extends DataExtension {
 				$gridFieldConfig = GridFieldConfig_RecordEditor::create();
 				$gridFieldConfig->addComponent(new GridFieldBulkUpload());
 				$gridFieldConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
+				$gridFieldConfig->getComponentByType('GridFieldBulkUpload')->setConfig('folderName',$this->getRootFolderName($siteConfig));
+
+				if (class_exists('GridFieldGalleryTheme')) {
+					$gridFieldConfig->addComponent(new GridFieldGalleryTheme('Image'));
+
+					/**
+					 * as gallery theme breaks sorting with GridFieldOrderableRows
+					 * let's use SortableRows as a fallback when installed
+					 *
+					 * @todo remove later this when gridfield extension works with gallery theme
+					 */
+					if (class_exists('GridFieldSortableRows')) {
+						$gridFieldConfig->addComponent(new GridFieldSortableRows('SortOrder'));
+						$gridFieldConfig->removeComponentsByType('GridFieldOrderableRows');
+					}
+				}
+
 				$this->field_list['Root'][] = Tab::create(
 					'SlideshowImages',
 					$owner->fieldLabel('SlideshowImages'),
@@ -213,6 +230,19 @@ class NewsCMSExtension extends DataExtension {
 			$fields->addFieldsToTab($key, $fieldlist);
 		}
 		return $fields;
+	}
+
+	/**
+	 * Returns the folder name where to store all news stuff relative to /assets/ directory.
+	 * If folderperpage extension is installed it is automatically used
+	 * Falls back to global RootFolderName set in SiteConfig
+	 *
+	 * @return string
+	 */
+	private function getRootFolderName(SiteConfig $siteConfig) {
+		return ($this->owner->has_extension('RootFolder'))
+			? $this->owner->getRootFolderName()
+			: $siteConfig->getRootFolderName();
 	}
 	
 }
