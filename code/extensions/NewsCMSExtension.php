@@ -134,7 +134,12 @@ class NewsCMSExtension extends DataExtension {
 			$owner->Author = $member->FirstName . ' ' . $member->Surname;
 		}
 		else {
-			$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
+			if(class_exists('MultiSelectField')) {
+				$this->field_list['Root.Main'][13] = MultiSelectField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
+			}
+			else {
+				$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
+			}
 			$this->field_list['Root.Main'][2] =
 				LiteralField::create('Dummy',
 					'<div id="Dummy" class="field readonly">
