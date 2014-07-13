@@ -42,7 +42,10 @@ class NewsHolderPage extends Page {
 			$page->flushCache();
 			DB::alteration_message('Newsholder Page created', 'created');
 		}
-		$this->migrateUp();
+		else {
+			/** Migration is only possible, if the module is installed. We're assuming, this means there's at least one Holderpage. */
+			$this->migrateUp();
+		}
 	}
 	
 	private function migrateUp() {
