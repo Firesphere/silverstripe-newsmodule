@@ -14,7 +14,6 @@ class CommentCMSExtension extends DataExtension {
 	 * @return type FieldList
 	 */
 	public function updateCMSFields(FieldList $fields) {
-		$fields = parent::getCMSFields();
 		$owner = $this->owner;
 		$fields->removeByName(array('MD5Email', 'NewsID'));
 		$fields->addFieldsToTab(
@@ -30,7 +29,6 @@ class CommentCMSExtension extends DataExtension {
 				CheckboxField::create('ShowGravatar', $owner->fieldLabel('ShowGravatar')),
 			)
 		);
-		return $fields;
 	}
 
 }
