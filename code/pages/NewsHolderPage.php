@@ -174,7 +174,10 @@ class NewsHolderPage_Controller extends Page_Controller {
 				self::$allowed_actions[] = $siteConfig->$key;
 			}
 		}
-		return array_merge($actions, self::$allowed_actions);
+		if(is_array($actions)) {
+			return array_merge($actions, self::$allowed_actions);
+		}
+		return self::$allowed_actions;
 	}
 
 	/**
