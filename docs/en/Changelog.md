@@ -1,6 +1,37 @@
 # Changelog included since version 4.0
 =======================
 
+## Version 5.0
+
+* Added Folder per Item. (Thanks to Werner Krauss)
+* Slideshow has been given a bit of love.
+* Added conditional cacheng for pagespeed.
+* Fixed minor bugs.
+* Introduced a local fix for MultiSelectField if it's not available.
+* Stopped the migrations from being run on first installation.
+
+## Version 4.4
+
+* Publish/Unpublish action via Gridfield. (Thanks to Werner Krauss)
+* Added status-column. (Again, Werner Krauss :) )
+* Removed SortableGridfield, since GridfieldExtensions handles this.
+* Update for the Bulk-Editing-Tools.
+
+
+## Version 4.3
+
+* Minor fixes.
+* Updated the code to work with AJShort's GridfieldExtensions.
+
+## Version 4.2
+
+* Support for custom Action-parameter. (Note, breaks on param "latest")
+
+## Version 4.1
+
+* Added an initial Widget.
+* Refactored the comment-class.
+
 ## Version 4.0
 
 * Rewrote the entire codebase to be cleaner.
