@@ -5,34 +5,36 @@
  * @package News/blog module
  * @author Simon 'Sphere'
  */
-class ExtraShortcodeParser {
-	
+class ExtraShortcodeParser
+{
+
 	/**
 	 * The following three functions are global once enabled!
 	 * @param array $arguments from Content.
 	 * @return HTML block with the parsed code.
 	 */
-	public static function TweetHandler($arguments) {
-		if(!isset($arguments['id'])){
+	public static function TweetHandler($arguments)
+	{
+		if (!isset($arguments['id'])) {
 			return null;
 		}
-		if(substr($arguments['id'], 0, 4) == 'http'){
-			list($unneeded,$id) = explode('/status/', $arguments['id']);
-		}
-		else{
+		if (substr($arguments['id'], 0, 4) == 'http') {
+			list($unneeded, $id) = explode('/status/', $arguments['id']);
+		} else {
 			$id = $arguments['id'];
 		}
-		$data = json_decode(file_get_contents('https://api.twitter.com/1/statuses/oembed.json?id='.$id.'&omit_script=true&lang=en'), 1);
+		$data = json_decode(file_get_contents('https://api.twitter.com/1/statuses/oembed.json?id=' . $id . '&omit_script=true&lang=en'), 1);
 		return ($data['html']);
 	}
-	
+
 	/**
 	 * @param string $arguments array with the type
 	 * @param array $code string of the code to parse 
 	 * @return HTMLString of parsed code.
 	 */
-	public static function GeshiParser($arguments, $code){
-		if(!isset($arguments['type'])){
+	public static function GeshiParser($arguments, $code)
+	{
+		if (!isset($arguments['type'])) {
 			/** Assuming most code is PHP. Feel free to update. Should this be a configurable? */
 			$arguments['type'] = 'php';
 		}
@@ -40,18 +42,19 @@ class ExtraShortcodeParser {
 		$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
 		return $geshi->parse_code();
 	}
-	
+
 	/**
 	 * @param array $arguments array of arguments from the content
 	 * @param string $caption text between the [] [/] brackets
 	 * @return type HTMLString of parsed youtube movie.
 	 */
-	public static function YouTubeHandler($arguments,$caption = null) {
+	public static function YouTubeHandler($arguments, $caption = null)
+	{
 		// If there's no ID, just stop.
 		if (empty($arguments['id'])) {
 			return;
 		}
-		/*** SET DEFAULTS ***/
+		/*		 * * SET DEFAULTS ** */
 		$defaults = array(
 			'YouTubeID' => $arguments['id'],
 			'autoplay' => false,
@@ -61,7 +64,7 @@ class ExtraShortcodeParser {
 		);
 
 		//overide the defaults with the arguments supplied
-		$customise = array_merge($defaults,$arguments);
+		$customise = array_merge($defaults, $arguments);
 		$template = new SSViewer('YouTube');
 		return $template->process(new ArrayData($customise));
 	}
@@ -72,13 +75,13 @@ class ExtraShortcodeParser {
 	 * @param array $arguments null
 	 * @return type HTML Parsed for template.
 	 */
-	public static function createSlideshow($arguments){
-		if( Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
+	public static function createSlideshow($arguments)
+	{
+		if (Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
-			if($SiteConfig->SlideshowInitial){
+			if ($SiteConfig->SlideshowInitial) {
 				$template = 'NewsSlideShowFirst';
-			}
-			else{
+			} else {
 				$template = 'NewsSlideShowAll';
 			}
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');

@@ -1,5 +1,5 @@
 <?php
-/*************************************************************************************
+/* * ***********************************************************************************
  * bnf.php
  * --------
  * Author: Rowan Rodrik van der Molen (rowan@bigsmoke.us)
@@ -23,7 +23,7 @@
  * -------------------------
  * * Nothing I can think of
  *
- *************************************************************************************
+ * ************************************************************************************
  *
  *     This file is part of GeSHi.
  *
@@ -41,79 +41,78 @@
  *   along with GeSHi; if not, write to the Free Software
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- ************************************************************************************/
+ * ********************************************************************************** */
 
-$language_data = array (
-    'LANG_NAME' => 'bnf',
-    'COMMENT_SINGLE' => array(';'),
-    'COMMENT_MULTI' => array(),
-    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"', "'"),
-    'ESCAPE_CHAR' => '',
-    'KEYWORDS' => array(),
-    'SYMBOLS' => array(
-        0 => array('(', ')'),
-        1 => array('<', '>'),
-        2 => array('[', ']'),
-        3 => array('{', '}'),
-        4 => array('=', '*', '/', '|', ':'),
-    ),
-    'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => false
-    ),
-    'STYLES' => array(
-        'KEYWORDS' => array(),
-        'COMMENTS' => array(
-            0 => 'color: #666666; font-style: italic;', // Single Line comments
-            ),
-        'ESCAPE_CHAR' => array(
-            0 => ''
-            ),
-        'BRACKETS' => array(
-            0 => ''
-            ),
-        'STRINGS' => array(
-            0 => 'color: #a00;',
-            1 => 'color: #a00;'
-            ),
-        'NUMBERS' => array(
-            0 => ''
-            ),
-        'METHODS' => array(
-            0 => ''
-            ),
-        'SYMBOLS' => array(
-            0 => 'color: #000066; font-weight: bold;', // Round brackets
-            1 => 'color: #000066; font-weight: bold;', // Angel Brackets
-            2 => 'color: #000066; font-weight: bold;', // Square Brackets
-            3 => 'color: #000066; font-weight: bold;', // BRaces
-            4 => 'color: #006600; font-weight: bold;', // Other operator symbols
-        ),
-        'REGEXPS' => array(
-            0 => 'color: #007;',
-            ),
-        'SCRIPT' => array(
-            0 => ''
-            )
-        ),
-    'URLS' => array(),
-    'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(),
-    'REGEXPS' => array(
-        //terminal symbols
-        0 => array(
-            GESHI_SEARCH => '(&lt;)([^&]+?)(&gt;)',
-            GESHI_REPLACE => '\\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '\\1',
-            GESHI_AFTER => '\\3'
-            ),
-        ),
-    'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+$language_data = array(
+	'LANG_NAME' => 'bnf',
+	'COMMENT_SINGLE' => array(';'),
+	'COMMENT_MULTI' => array(),
+	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS' => array('"', "'"),
+	'ESCAPE_CHAR' => '',
+	'KEYWORDS' => array(),
+	'SYMBOLS' => array(
+		0 => array('(', ')'),
+		1 => array('<', '>'),
+		2 => array('[', ']'),
+		3 => array('{', '}'),
+		4 => array('=', '*', '/', '|', ':'),
+	),
+	'CASE_SENSITIVE' => array(
+		GESHI_COMMENTS => false
+	),
+	'STYLES' => array(
+		'KEYWORDS' => array(),
+		'COMMENTS' => array(
+			0 => 'color: #666666; font-style: italic;', // Single Line comments
+		),
+		'ESCAPE_CHAR' => array(
+			0 => ''
+		),
+		'BRACKETS' => array(
+			0 => ''
+		),
+		'STRINGS' => array(
+			0 => 'color: #a00;',
+			1 => 'color: #a00;'
+		),
+		'NUMBERS' => array(
+			0 => ''
+		),
+		'METHODS' => array(
+			0 => ''
+		),
+		'SYMBOLS' => array(
+			0 => 'color: #000066; font-weight: bold;', // Round brackets
+			1 => 'color: #000066; font-weight: bold;', // Angel Brackets
+			2 => 'color: #000066; font-weight: bold;', // Square Brackets
+			3 => 'color: #000066; font-weight: bold;', // BRaces
+			4 => 'color: #006600; font-weight: bold;', // Other operator symbols
+		),
+		'REGEXPS' => array(
+			0 => 'color: #007;',
+		),
+		'SCRIPT' => array(
+			0 => ''
+		)
+	),
+	'URLS' => array(),
+	'OOLANG' => false,
+	'OBJECT_SPLITTERS' => array(),
+	'REGEXPS' => array(
+		//terminal symbols
+		0 => array(
+			GESHI_SEARCH => '(&lt;)([^&]+?)(&gt;)',
+			GESHI_REPLACE => '\\2',
+			GESHI_MODIFIERS => '',
+			GESHI_BEFORE => '\\1',
+			GESHI_AFTER => '\\3'
+		),
+	),
+	'STRICT_MODE_APPLIES' => GESHI_NEVER,
+	'SCRIPT_DELIMITERS' => array(
+	),
+	'HIGHLIGHT_STRICT_BLOCK' => array(
+	)
 );
-
 ?>
