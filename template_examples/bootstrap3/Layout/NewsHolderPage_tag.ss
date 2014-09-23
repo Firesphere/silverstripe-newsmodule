@@ -2,15 +2,15 @@
 	<% with Tag %>
 	<div id="tag" class="row">
 		<div class="col-xs-12">
-		<% if $Impression %>
+			<% if $Impression %>
 			<div class="col-xs-2">
 				<a href="$Link" class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a>
 			</div>
-		<% else_if $Top.SiteConfig.DefaultImage %>
+			<% else_if $Top.SiteConfig.DefaultImage %>
 			<div class="col-xs-2">
 				<a href="$Link" class="impressionLink col-xs-2">$Top.SiteConfig.DefaultImage.SetSize(50,50)</a>
 			</div>
-		<% end_if %>
+			<% end_if %>
 			<!--This is using the default, it should take the SiteConfig function into consideration. @todo: Use siteconfig over default.-->
 			<h1><%t NewsHolderPage_tag.TAG "Tag" %>: <a href="{$Top.URLSegment}/tags">$Title</a></h1>
 			<br />
@@ -28,11 +28,11 @@
 	<div class="clearfix"></div>
 	<div class="row">
 		<div id="related_news" class="col-xs-12">
-		<% loop activeNews %>
+			<% loop activeNews %>
 			<div class="col-xs-4 $FirstLast">
 				<% include SingleSummaryItem %>
 			</div>
-		<% end_loop %>
+			<% end_loop %>
 		</div>
 	</div>
 	<% end_with %>

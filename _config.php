@@ -7,8 +7,8 @@
  * @package News/blog module
  * @author Simon 'Sphere'
  */
-ShortcodeParser::get()->register('tweet',array('ExtraShortcodeParser','TweetHandler'));
-ShortcodeParser::get()->register('code',array('ExtraShortcodeParser','GeshiParser'));
-ShortcodeParser::get()->register('YT',array('ExtraShortcodeParser','YouTubeHandler'));
-ShortcodeParser::get()->register('slideshow', array('ExtraShortcodeParser','createSlideshow'));
+ShortcodeParser::get()->register('tweet', array('ExtraShortcodeParser', 'TweetHandler'));
+ShortcodeParser::get()->register('code', array('ExtraShortcodeParser', 'GeshiParser'));
+ShortcodeParser::get()->register('YT', array('ExtraShortcodeParser', 'YouTubeHandler'));
+ShortcodeParser::get()->register('slideshow', array('ExtraShortcodeParser', 'createSlideshow'));
 /*This comment is here to save you from WTF HAPPENED!*/

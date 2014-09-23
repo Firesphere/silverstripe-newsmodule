@@ -7,12 +7,14 @@
  * @author Simon 'Sphere'
  * @thanks FrozenFire for telling me this actually works this way.
  */
-class NewsLeftAndMainExtension extends Extension {
-	
+class NewsLeftAndMainExtension extends Extension
+{
+
 	/**
 	 * OVERKILL? Yes, but at least it works most of the time.
 	 */
-	public function onAfterInit(){
+	public function onAfterInit()
+	{
 		Requirements::css('silverstripe-newsmodule/css/news_icon.css');
 	}
 

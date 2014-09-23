@@ -12,18 +12,16 @@
  * @author Simon `Sphere`
  * @method News News() Item this object belongs to
  */
-class Renamed extends DataObject{
-    
+class Renamed extends DataObject
+{
 	private static $db = array(
 		'OldLink' => 'Varchar(255)'
 	);
-
 	private static $has_one = array(
 		'News' => 'News',
 	);
-
 	private static $indexes = array(
 		'OldLink' => true
 	);
-	
+
 }

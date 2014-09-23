@@ -5,12 +5,12 @@
 	"keywords": ["silverstripe", "news", "blog", "slideshow"],
 	"license": "BSD-2-Clause",
 	"authors": [
-	{
-		"name": "Simon 'Sphere' Erkelens",
-		"email": "github@casa-laguna.net",
-		"homepage": "http://casa-laguna.net",
-		"role": "Developer"
-	}
+		{
+			"name": "Simon 'Sphere' Erkelens",
+			"email": "github@casa-laguna.net",
+			"homepage": "http://casa-laguna.net",
+			"role": "Developer"
+		}
 	],
 	"support": {
 		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
@@ -19,8 +19,8 @@
 		"silverstripe/framework": "3.*",
 		"silverstripe/cms": "3.*",
 		"composer/installers": "*",
-		"colymba/gridField-bulk-editing-tools" : "*",
-		"ajshort/silverstripe-gridfieldextensions" : "*"
+		"colymba/gridField-bulk-editing-tools": "*",
+		"ajshort/silverstripe-gridfieldextensions": "*"
 	},
 	"suggest": {
 		"silverstripe/translatable": "If you need your stuff translated.",

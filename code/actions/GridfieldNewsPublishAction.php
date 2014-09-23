@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Gridfield Action to publish / unpublish a news item
  * @author Werner Krauß <werner.krauss@netwerkstatt.at>
  */
 class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -23,7 +23,6 @@ class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_
 	{
 		return array('class' => 'col-buttons');
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -54,33 +53,24 @@ class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_
 
 		if ($record->isPublished()) {
 			$field = GridField_FormAction::create(
-				$gridField,
-				'UnPublish' . $record->ID,
-				false,
-				"unpublish",
-				array('RecordID' => $record->ID)
-			)
+					$gridField, 'UnPublish' . $record->ID, false, "unpublish", array('RecordID' => $record->ID)
+				)
 				->addExtraClass('gridfield-button-unpublish')
 				->setAttribute('title', _t('SiteTree.BUTTONUNPUBLISH', 'Unpublish'))
 				->setAttribute('data-icon', 'unpublish')
 				->setDescription(_t('News.BUTTONUNPUBLISHDESC', 'Unpublish news item'));
 		} else {
 			$field = GridField_FormAction::create(
-				$gridField,
-				'Publish' . $record->ID,
-				false,
-				"publish",
-				array('RecordID' => $record->ID)
-			)
+					$gridField, 'Publish' . $record->ID, false, "publish", array('RecordID' => $record->ID)
+				)
 				->addExtraClass('gridfield-button-publish')
 				->setAttribute('title', _t('SiteTree.BUTTONSAVEPUBLISH', 'Save & Publish'))
 				->setAttribute('data-icon', 'accept')
 				->setDescription(
-					_t(
-						'News.BUTTONUNPUBLISHDESC',
-						'Publish news item'
-					)
-				);
+				_t(
+					'News.BUTTONUNPUBLISHDESC', 'Publish news item'
+				)
+			);
 		}
 		return $field->Field();
 	}
@@ -105,10 +95,9 @@ class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_
 			}
 			if (!$item->canEdit()) {
 				throw new ValidationException(
-					_t(
-						'News.PublishPermissionFailure',
-						'No permission to publish or unpublish news item'
-					)
+				_t(
+					'News.PublishPermissionFailure', 'No permission to publish or unpublish news item'
+				)
 				);
 			}
 			if ($actionName == 'publish') {
@@ -118,6 +107,6 @@ class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_
 				$item->doUnpublish();
 			}
 		}
-
 	}
-} 
+
+}

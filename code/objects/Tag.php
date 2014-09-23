@@ -10,22 +10,22 @@
  * @method Impression Image() Impressionimage for this tag
  * @method News News() NewsItems this tag belongs to.
  */
-class Tag extends DataObject {
-	
+class Tag extends DataObject
+{
 	/** @var array $db database-fields */
 	private static $db = array(
-		'Title'		=> 'Varchar(255)',
-		'Description'	=> 'HTMLText',
-		'URLSegment'	=> 'Varchar(255)',
-		'Locale'	=> 'Varchar(10)', // NOT YET SUPPORTED (I think)
-		'SortOrder'	=> 'Int',
+		'Title' => 'Varchar(255)',
+		'Description' => 'HTMLText',
+		'URLSegment' => 'Varchar(255)',
+		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED (I think)
+		'SortOrder' => 'Int',
 	);
-	
+
 	/** @var array $has_one relationships. */
 	private static $has_one = array(
 		'Impression' => 'Image',
 	);
-	
+
 	/** @var array $belongs_many_many of belongings */
 	private static $belongs_many_many = array(
 		'News' => 'News',
@@ -37,7 +37,7 @@ class Tag extends DataObject {
 	 * @var string $default_sort sortorder of this object.
 	 */
 	private static $default_sort = 'SortOrder ASC';
-	
+
 	/**
 	 * Create indexes.
 	 * @var array $indexes Index for the database
@@ -50,66 +50,70 @@ class Tag extends DataObject {
 	 * Define singular name translatable
 	 * @return string Singular name
 	 */
-	public function singular_name() {
+	public function singular_name()
+	{
 		if (_t('Tag.SINGULARNAME')) {
 			return _t('Tag.SINGULARNAME');
 		} else {
 			return parent::singular_name();
-		} 
+		}
 	}
-	
+
 	/**
 	 * Define plural name translatable
 	 * @return string Plural name
 	 */
-	public function plural_name() {
+	public function plural_name()
+	{
 		if (_t('Tag.PLURALNAME')) {
 			return _t('Tag.PLURALNAME');
 		} else {
 			return parent::plural_name();
-		}   
+		}
 	}
-	
+
 	/**
 	 * Setup the fieldlabels correctly.
 	 * @param boolean $includerelations
 	 * @return array The fieldlabels
 	 */
-	public function fieldLabels($includerelations = true) {
+	public function fieldLabels($includerelations = true)
+	{
 		$labels = parent::fieldLabels($includerelations);
 		$tagLabels = array(
-			'Title'		=> _t('Tag.TITLE', 'Title'),
-			'Description'	=> _t('Tag.DESCRIPTION', 'Description'),
-			'Impression'	=> _t('Tag.IMPRESSION', 'Impression image'),
+			'Title' => _t('Tag.TITLE', 'Title'),
+			'Description' => _t('Tag.DESCRIPTION', 'Description'),
+			'Impression' => _t('Tag.IMPRESSION', 'Impression image'),
 		);
 		return array_merge($tagLabels, $labels);
 	}
 
-	
 	/**
 	 * @todo I still have to fix that translatable, remember? ;)
 	 */
-	public function onBeforeWrite(){
+	public function onBeforeWrite()
+	{
 		parent::onBeforeWrite();
-		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))){
+		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))) {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
-			if(strpos($this->URLSegment, 'page-') === false){ // It might occur, and we don't want page-0, page-1 etc. in the list!
+			if (strpos($this->URLSegment, 'page-') === false) { // It might occur, and we don't want page-0, page-1 etc. in the list!
 				$nr = 1;
 				$URLSegment = $this->URLSegment;
-				while($this->LookForExistingURLSegment($URLSegment)){
-					$URLSegment = $this->URLSegment.'-'.$nr++;
+				while ($this->LookForExistingURLSegment($URLSegment)) {
+					$URLSegment = $this->URLSegment . '-' . $nr++;
 				}
 				$this->URLSegment = $URLSegment;
 			}
 		}
 	}
-	
+
 	/**
 	 * test whether the URLSegment exists already on another tag
 	 * @param string $URLSegment
 	 * @return boolean if urlsegment already exists yes or no.
 	 */
-	public function LookForExistingURLSegment($URLSegment) {
+	public function LookForExistingURLSegment($URLSegment)
+	{
 		return(Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
@@ -118,12 +122,13 @@ class Tag extends DataObject {
 	 * @param string $action The required action
 	 * @return string|boolean Link to this object or false if no holderpage is found..
 	 */
-	public function Link($action = 'tag/') {
-		if($config = SiteConfig::current_site_config()->TagAction) {
-			$action = $config.'/';
+	public function Link($action = 'tag/')
+	{
+		if ($config = SiteConfig::current_site_config()->TagAction) {
+			$action = $config . '/';
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action.$this->URLSegment));
+			return($Page->Link($action . $this->URLSegment));
 		}
 		return false;
 	}
@@ -133,23 +138,26 @@ class Tag extends DataObject {
 	 * @param string $action The added URLSegment, the actual function that'll return the tag.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink(){
-		if($Page = $this->Link()){
+	public function AbsoluteLink()
+	{
+		if ($Page = $this->Link()) {
 			return(Director::absoluteURL($Page));
 		}
 	}
-	
-	public function activeNews() {
+
+	public function activeNews()
+	{
 		$now = SS_DateTime::now()->Format('Y-m-d');
 		return $this->News()
-			->filter(array('Live' => true))
-			->exclude(array('PublishFrom:GreaterThan' => $now));
+				->filter(array('Live' => true))
+				->exclude(array('PublishFrom:GreaterThan' => $now));
 	}
-	
+
 	/**
 	 * Permissions
 	 */
-	public function providePermissions() {
+	public function providePermissions()
+	{
 		return array(
 			'CREATE_TAG' => array(
 				'name' => _t('Tag.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
@@ -173,20 +181,25 @@ class Tag extends DataObject {
 			),
 		);
 	}
-	
-	public function canCreate($member = null) {
+
+	public function canCreate($member = null)
+	{
 		return(Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
-	public function canEdit($member = null) {
+	public function canEdit($member = null)
+	{
 		return(Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
-	public function canDelete($member = null) {
+	public function canDelete($member = null)
+	{
 		return(Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
-	public function canView($member = null) {
+	public function canView($member = null)
+	{
 		return(Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
+
 }

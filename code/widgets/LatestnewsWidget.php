@@ -8,39 +8,37 @@
  * @subpackage Newsmodule
  * @author Simon 'Sphere' Erkelens
  */
-
 /** Only if the Widget module is installed, add this widget. */
-if(class_exists('Widget')) {
-	
-	class LatestnewsWidget extends Widget {
-		
-		private static $db = array(
-			'WidgetTitle'	=> 'Varchar(255)',
-			'Amount'	=> 'Int'
-		);
-		
-		private static $defaults = array(
-			'WidgetTitle'	=> 'Latest news',
-		);
-		
-		private static $cmsTitle = 'News widget';
-		
-		private static $description = 'Widget showing the latest newsitems';
-		
+if (class_exists('Widget')) {
 
-		public function getCMSFields() {
+	class LatestnewsWidget extends Widget
+	{
+		private static $db = array(
+			'WidgetTitle' => 'Varchar(255)',
+			'Amount' => 'Int'
+		);
+		private static $defaults = array(
+			'WidgetTitle' => 'Latest news',
+		);
+		private static $cmsTitle = 'News widget';
+		private static $description = 'Widget showing the latest newsitems';
+
+		public function getCMSFields()
+		{
 			$fields = FieldList::create();
 			$fields->push(TextField::create('WidgetTitle', 'Title of this widget'));
 			$fields->push(TextField::create('Amount', 'Amount of items to show'));
 
 			return $fields;
 		}
-		
-		public function latestNews() {
+
+		public function latestNews()
+		{
 			return Controller::curr()->NewsArchive($this->Amount);
 		}
 
-		public function Title() {
+		public function Title()
+		{
 			return $this->WidgetTitle;
 		}
 

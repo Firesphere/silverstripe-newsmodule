@@ -7,31 +7,30 @@
  * @author Simon 'Sphere' Erkelens
  * @method News NewsItems() The linked Newsitems to this author
  */
-class AuthorHelper extends DataObject {
-	
+class AuthorHelper extends DataObject
+{
 	private static $db = array(
-		'OriginalName'	=> 'Varchar(255)',
-		'URLSegment'	=> 'Varchar(255)',
+		'OriginalName' => 'Varchar(255)',
+		'URLSegment' => 'Varchar(255)',
 	);
-	
 	private static $has_many = array(
 		'NewsItems' => 'News',
 	);
-	
 	private static $indexes = array(
 		'URLSegment' => true,
 	);
-	
-	public function onBeforeWrite()	{
+
+	public function onBeforeWrite()
+	{
 		parent::onBeforeWrite();
 		$nameParts = explode(' ', $this->OriginalName);
-		foreach($nameParts as $key => $namePart) {
-			if($namePart == '') {
+		foreach ($nameParts as $key => $namePart) {
+			if ($namePart == '') {
 				unset($nameParts[$key]);
 			}
 		}
 		$this->OriginalName = implode(' ', $nameParts);
-		if(!$this->URLSegment && !AuthorHelper::get()->filter(array('OriginalName' => $this->OriginalName))){
+		if (!$this->URLSegment && !AuthorHelper::get()->filter(array('OriginalName' => $this->OriginalName))) {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->OriginalName);
 		}
 	}
@@ -40,12 +39,13 @@ class AuthorHelper extends DataObject {
 	 * Free guess on what this button does.
 	 * @return string Link to this object.
 	 */
-	public function Link($action = 'author/') {
-		if($siteConfigAction = SiteConfig::current_site_config()->AuthorAction) {
-			$action = $siteConfigAction.'/';
+	public function Link($action = 'author/')
+	{
+		if ($siteConfigAction = SiteConfig::current_site_config()->AuthorAction) {
+			$action = $siteConfigAction . '/';
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action.$this->URLSegment));
+			return($Page->Link($action . $this->URLSegment));
 		}
 		return false;
 	}
@@ -55,9 +55,11 @@ class AuthorHelper extends DataObject {
 	 * @param string $action The added URLSegment, the actual function that'll return the news.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink(){
-		if($Page = $this->Link()){
+	public function AbsoluteLink()
+	{
+		if ($Page = $this->Link()) {
 			return(Director::absoluteURL($Page));
-		}		
+		}
 	}
+
 }
