@@ -172,7 +172,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	public function allowedActions($limitToClass = null)
 	{
 		$actions = parent::allowedActions($limitToClass);
-		$defaultMapping = self::$allowed_actions;
+		$defaultMapping = $this->stat('allowed_actions');
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach ($defaultMapping as $map) {
 			$key = ucfirst($map . 'Action');
@@ -195,7 +195,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	public function handleAction($request, $action)
 	{
 		$handles = parent::allowedActions(false);
-		$defaultMapping = self::$allowed_actions;
+		$defaultMapping = $this->stat('allowed_actions');
 		$handles['index'] = 'handleIndex';
 		$siteConfig = $this->getCurrentSiteConfig();
 		foreach ($defaultMapping as $key) {
