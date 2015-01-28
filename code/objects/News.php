@@ -182,6 +182,18 @@ class News extends DataObject implements PermissionProvider
 	}
 
 	/**
+	 * @inheritdoc
+	 */
+	public function getCMSFields(){
+		$fields = parent::getCMSFields();
+		$this->extend('generateCMSFields', $fields);
+
+		$this->extend('updateCMSFields', $fields);
+
+		return $fields;
+	}
+
+	/**
 	 * This is quite handy, for meta-tags and such.
 	 * @param string $action The added URLSegment, the actual function that'll return the news.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)

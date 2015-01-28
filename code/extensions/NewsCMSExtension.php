@@ -16,7 +16,7 @@ class NewsCMSExtension extends DataExtension
 	 * Create the fieldlist in the admin
 	 * @param FieldList $fields
 	 */
-	public function updateCMSFields(FieldList $fields)
+	public function generateCMSFields(FieldList $fields)
 	{
 		/** @var News $owner */
 		$owner = $this->owner;
