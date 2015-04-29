@@ -321,17 +321,18 @@ class News extends DataObject implements PermissionProvider {
 		return $this->dbObject('PublishFrom')->Format('F');
 	}
 
-        /**
-         * Create a date-string based on the locale. Looks better.
-         * @return string
-         */
-        public function getPublished() {
-		i18n::get_date_format();
+	/**
+	 * Create a date-string based on the locale. Looks better.
+	 * @return string
+	 */
+	public function getPublished()
+	{
+		$format = i18n::get_date_format();
 		$locale = i18n::get_locale();
 		$date = new Zend_Date();
 		$date->set($this->PublishFrom, null, $locale);
-		return substr($date->getDate($locale),0,-9);
-        }      
+		return $date->toString($format, null, $locale);
+	}
 
 	/**
 	 * Permissions
