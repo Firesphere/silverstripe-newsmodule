@@ -20,7 +20,7 @@
 		"silverstripe/cms": "3.*",
 		"composer/installers": "*",
 		"colymba/gridField-bulk-editing-tools": "*",
-		"silverstripe-australia/gridfieldextensions": "*"
+		"silverstripe-australia/silverstripe-gridfieldextensions": "*"
 	},
 	"suggest": {
 		"silverstripe/translatable": "If you need your stuff translated.",
