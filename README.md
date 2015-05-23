@@ -1,6 +1,14 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
+# WARNING
+
+This latest version has a different multiselectfield! If you have the old multiselectfield, manually delete it and then run composer update.
+
+This new field is prettier and a bit more userfriendly.
+
+Apologies for any inconvenience.
+
 ### REQUEST
 
 Help translate via [`Transifex`](https://www.transifex.com/projects/p/newsmodule/)
