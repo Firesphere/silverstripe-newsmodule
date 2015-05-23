@@ -394,12 +394,13 @@ class NewsHolderPage_Controller extends Page_Controller
 	 */
 	private function setupFilter($params)
 	{
-		// Default filter.
 		$filter = array(
 			'URLSegment' => Convert::raw2sql($params['ID']),
+			'Live'       => 1,
+			'PublishFrom:LessThan' => SS_Datetime::now()->Rfc2822()
 		);
 		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
-			$filter['Live'] = 1;
+			$filter['Live'] = 0;
 		}
 		return $filter;
 	}
