@@ -71,4 +71,8 @@ class NewsAdmin extends ModelAdmin
 		return $list;
 	}
 
+	public function subsiteCMSShowInMenu(){
+		return true;
+	}
+
 }
