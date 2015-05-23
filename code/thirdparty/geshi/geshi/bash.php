@@ -53,13 +53,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Bash',
+	'LANG_NAME'              => 'Bash',
 	// Bash DOES have single line comments with # markers. But bash also has
 	// the  $# variable, so comments need special handling (see sf.net
 	// 1564839)
-	'COMMENT_SINGLE' => array('#'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'COMMENT_SINGLE'         => array('#'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		//Variables
 		1 => "/\\$\\{[^\\n\\}]*?\\}/i",
 		//BASH-style Heredoc
@@ -70,12 +70,12 @@ $language_data = array(
 		/* 4 => "/\A(?!#!)\s*(?>[\w:@\\/\\-\\._~]*[$#]\s?)?(?=[^\n]+\n?\Z)|^(?!#!)(\w+@)?[\w\\-\\.]+(:~?)[\w\\/\\-\\._]*?[$#]\s?/ms" */
 		4 => "/\A(?!#!)(?:(?>[\w:@\\/\\-\\._~]*)[$#]\s?)(?=(?>[^\n]+)\n?\Z)|^(?!#!)(?:\w+@)?(?>[\w\\-\\.]+)(?>:~?[\w\\/\\-\\._]*?)?[$#]\s?/sm"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array("\'"),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array("\'"),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		//Simple Single Char Escapes
 		1 => "#\\\\[nfrtv\\$\\\"\n]#i",
 		// $var
@@ -87,7 +87,7 @@ $language_data = array(
 		// `...`
 		5 => "/`[^`]*`/"
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(
 			'case', 'do', 'done', 'elif', 'else', 'esac', 'fi', 'for', 'function',
 			'if', 'in', 'select', 'set', 'then', 'until', 'while', 'time'
@@ -310,22 +310,22 @@ $language_data = array(
 			'wait'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>', ';;', '`'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true
+		1              => true,
+		2              => true,
+		3              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #c20cb9; font-weight: bold;',
 			3 => 'color: #7a0874; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			0 => 'color: #666666; font-style: italic;',
 			1 => 'color: #800000;',
 			2 => 'color: #cc0000; font-style: italic;',
@@ -333,47 +333,44 @@ $language_data = array(
 			4 => 'color: #666666;'
 		),
 		'ESCAPE_CHAR' => array(
-			1 => 'color: #000099; font-weight: bold;',
-			2 => 'color: #007800;',
-			3 => 'color: #007800;',
-			4 => 'color: #007800;',
-			5 => 'color: #780078;',
+			1      => 'color: #000099; font-weight: bold;',
+			2      => 'color: #007800;',
+			3      => 'color: #007800;',
+			4      => 'color: #007800;',
+			5      => 'color: #780078;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #7a0874; font-weight: bold;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;',
+		'STRINGS'     => array(
+			0      => 'color: #ff0000;',
 			'HARD' => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #007800;',
 			1 => 'color: #007800;',
 			2 => 'color: #007800;',
 			4 => 'color: #007800;',
 			5 => 'color: #660033;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Variables (will be handled by comment_regexps)
 		0 => "\\$\\{[a-zA-Z_][a-zA-Z0-9_]*?\\}",
 		//Variables without braces
@@ -385,20 +382,18 @@ $language_data = array(
 		//Parameters of commands
 		5 => "(?<=\s)--?[0-9a-zA-Z\-]+(?=[\s=]|<(?:SEMI|PIPE)>|$)"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'COMMENTS' => array(
 			'DISALLOWED_BEFORE' => '$'
 		),
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#:])",
-			'DISALLOWED_AFTER' => "(?![\.\-a-zA-Z0-9_%=\\/:])",
-			2 => array(
+			'DISALLOWED_AFTER'  => "(?![\.\-a-zA-Z0-9_%=\\/:])",
+			2                   => array(
 				'SPACE_AS_WHITESPACE' => false
 			)
 		)

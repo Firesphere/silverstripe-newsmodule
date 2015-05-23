@@ -45,31 +45,31 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'MySQL',
+	'LANG_NAME'              => 'MySQL',
 	//'COMMENT_SINGLE' => array(1 =>'--', 2 => '#'),    // '--' MUST be folowed by whitespace,not necessarily a space
-	'COMMENT_SINGLE' => array(
+	'COMMENT_SINGLE'         => array(
 		1 => '-- ',
 		2 => '#'
 	),
-	'COMMENT_REGEXP' => array(
+	'COMMENT_REGEXP'         => array(
 		1 => "/(?:--\s).*?$/", // double dash followed by any whitespace
 	),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE, // @@@ would be nice if this could be defined per group!
-	'QUOTEMARKS' => array("'", '"', '`'),
-	'ESCAPE_CHAR' => '\\', // by default only, can be specified
-	'ESCAPE_REGEXP' => array(
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE, // @@@ would be nice if this could be defined per group!
+	'QUOTEMARKS'             => array("'", '"', '`'),
+	'ESCAPE_CHAR'            => '\\', // by default only, can be specified
+	'ESCAPE_REGEXP'          => array(
 		1 => "/[_%]/", // search wildcards
 	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_OCT_PREFIX |
-	GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_SCI_SHORT |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
-		1 => array(
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_OCT_PREFIX |
+		GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_SCI_SHORT |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
+		1  => array(
 			// Mix: statement keywords and keywords that don't fit in any other
 			// category, or have multiple usage/meanings
 			'ACTION', 'ADD', 'AFTER', 'ALGORITHM', 'ALL', 'ALTER', 'ANALYZE', 'ANY',
@@ -105,15 +105,15 @@ $language_data = array(
 			'USING', 'VALUES', 'VALUE', 'VIEW', 'WARNINGS', 'WHERE', 'WITH ROLLUP',
 			'WITH', 'WORK', 'WRITE',
 		),
-		2 => array(//No ( must follow
+		2  => array(//No ( must follow
 			// Mix: statement keywords distinguished from functions by the same name
 			"CURRENT_USER", "DATABASE", "IN", "INSERT", "DEFAULT", "REPLACE", "SCHEMA", "TRUNCATE"
 		),
-		3 => array(
+		3  => array(
 			// Values (Constants)
 			'FALSE', 'NULL', 'TRUE',
 		),
-		4 => array(
+		4  => array(
 			// Column Data Types
 			'BIGINT', 'BIT', 'BLOB', 'BOOLEAN', 'BOOL', 'CHARACTER VARYING',
 			'CHAR VARYING', 'DATETIME', 'DECIMAL', 'DEC', 'DOUBLE PRECISION',
@@ -126,11 +126,11 @@ $language_data = array(
 			'SMALLINT', 'TEXT', 'TIMESTAMP', 'TINYBLOB', 'TINYINT',
 			'TINYTEXT', 'VARBINARY', 'VARCHARACTER', 'VARCHAR',
 		),
-		5 => array(//No ( must follow
+		5  => array(//No ( must follow
 			// Column data types distinguished from functions by the same name
 			"CHAR", "DATE", "TIME"
 		),
-		6 => array(
+		6  => array(
 			// Table, Column & Index Attributes
 			'AUTO_INCREMENT', 'AVG_ROW_LENGTH', 'BOTH', 'CHECKSUM', 'CONNECTION',
 			'DATA DIRECTORY', 'DEFAULT NULL', 'DELAY_KEY_WRITE', 'FULLTEXT',
@@ -138,18 +138,18 @@ $language_data = array(
 			'NOT NULL', 'PACK_KEYS', 'ROW_FORMAT', 'SERIAL DEFAULT VALUE', 'SIGNED',
 			'SPATIAL', 'TRAILING', 'UNIQUE', 'UNSIGNED', 'ZEROFILL'
 		),
-		7 => array(//No ( must follow
+		7  => array(//No ( must follow
 			// Column attribute distinguished from function by the same name
 			"CHARSET"
 		),
-		8 => array(
+		8  => array(
 			// Date and Time Unit Specifiers
 			'DAY_HOUR', 'DAY_MICROSECOND', 'DAY_MINUTE', 'DAY_SECOND',
 			'HOUR_MICROSECOND', 'HOUR_MINUTE', 'HOUR_SECOND',
 			'MINUTE_MICROSECOND', 'MINUTE_SECOND',
 			'SECOND_MICROSECOND', 'YEAR_MONTH'
 		),
-		9 => array(//No ( must follow
+		9  => array(//No ( must follow
 			// Date-time unit specifiers distinguished from functions by the same name
 			"DAY", "HOUR", "MICROSECOND", "MINUTE", "MONTH", "QUARTER", "SECOND", "WEEK", "YEAR"
 		),
@@ -283,7 +283,7 @@ $language_data = array(
 			'Y',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			/* Operators */
 			'=', ':=', // assignment operators
@@ -298,48 +298,48 @@ $language_data = array(
 			',', ';',
 		),
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false,
-		9 => false,
-		10 => false,
-		11 => false,
-		12 => false,
-		13 => false,
-		13 => false,
-		14 => false,
-		15 => false,
-		16 => false,
-		17 => false,
-		18 => false,
-		19 => false,
-		20 => false,
-		21 => false,
-		22 => false,
-		23 => false,
-		24 => false,
-		25 => false,
-		26 => false,
-		27 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false,
+		9              => false,
+		10             => false,
+		11             => false,
+		12             => false,
+		13             => false,
+		13             => false,
+		14             => false,
+		15             => false,
+		16             => false,
+		17             => false,
+		18             => false,
+		19             => false,
+		20             => false,
+		21             => false,
+		22             => false,
+		23             => false,
+		24             => false,
+		25             => false,
+		26             => false,
+		27             => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			1 => 'color: #990099; font-weight: bold;', // mix
-			2 => 'color: #990099; font-weight: bold;', // mix
-			3 => 'color: #9900FF; font-weight: bold;', // constants
-			4 => 'color: #999900; font-weight: bold;', // column data types
-			5 => 'color: #999900; font-weight: bold;', // column data types
-			6 => 'color: #FF9900; font-weight: bold;', // attributes
-			7 => 'color: #FF9900; font-weight: bold;', // attributes
-			8 => 'color: #9900FF; font-weight: bold;', // date-time units
-			9 => 'color: #9900FF; font-weight: bold;', // date-time units
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
+			1  => 'color: #990099; font-weight: bold;', // mix
+			2  => 'color: #990099; font-weight: bold;', // mix
+			3  => 'color: #9900FF; font-weight: bold;', // constants
+			4  => 'color: #999900; font-weight: bold;', // column data types
+			5  => 'color: #999900; font-weight: bold;', // column data types
+			6  => 'color: #FF9900; font-weight: bold;', // attributes
+			7  => 'color: #FF9900; font-weight: bold;', // attributes
+			8  => 'color: #9900FF; font-weight: bold;', // date-time units
+			9  => 'color: #9900FF; font-weight: bold;', // date-time units
 			10 => 'color: #CC0099; font-weight: bold;', // operators
 			11 => 'color: #CC0099; font-weight: bold;', // operators
 			12 => 'color: #009900;', // control flow (functions)
@@ -359,45 +359,42 @@ $language_data = array(
 			26 => 'color: #000099;', // miscellaneous functions
 			27 => 'color: #00CC00;', // geometry functions
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #808000; font-style: italic;',
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #808080; font-style: italic;'
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #004000; font-weight: bold;',
 			1 => 'color: #008080; font-weight: bold;'       // search wildcards
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #FF00FF;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #008000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #008080;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			1 => 'color: #CC0099;', // operators
 			2 => 'color: #000033;', // syntax
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		)
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
-		1 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		2 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		3 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		4 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		5 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		6 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		7 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		8 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
-		9 => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+	'URLS'                   => array(
+		1  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		2  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		3  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		4  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		5  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		6  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		7  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		8  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
+		9  => 'http://search.oracle.com/search/search?group=MySQL&amp;q={FNAME}',
 		10 => 'http://dev.mysql.com/doc/refman/%35%2E%31/en/non-typed-operators.html',
 		11 => 'http://dev.mysql.com/doc/refman/%35%2E%31/en/non-typed-operators.html',
 		12 => 'http://dev.mysql.com/doc/refman/%35%2E%31/en/control-flow-functions.html',
@@ -417,29 +414,25 @@ $language_data = array(
 		26 => 'http://dev.mysql.com/doc/refman/%35%2E%31/en/func-op-summary-ref.html',
 		27 => 'http://dev.mysql.com/doc/refman/%35%2E%31/en/analysing-spatial-information.html',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
-			2 => array(
+			2  => array(
 				'DISALLOWED_AFTER' => '(?![\(\w])'
 			),
-			5 => array(
+			5  => array(
 				'DISALLOWED_AFTER' => '(?![\(\w])'
 			),
-			7 => array(
+			7  => array(
 				'DISALLOWED_AFTER' => '(?![\(\w])'
 			),
-			9 => array(
+			9  => array(
 				'DISALLOWED_AFTER' => '(?![\(\w])'
 			),
 			11 => array(

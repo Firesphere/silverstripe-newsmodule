@@ -40,13 +40,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Python for S60',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'", '"""', "'''", '""', '""'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Python for S60',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'", '"""', "'''", '""', '""'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		/*
 		 * * Set 1: reserved words
 		 * * http://python.org/doc/current/ref/keywords.html
@@ -196,66 +196,61 @@ $language_data = array(
 			'__sub__', '__xor__'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?', '`'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #006000;font-weight:bold;', // Reserved
 			2 => 'color: #800950;font-size:105%', // Built-ins + self
 			3 => 'color: #003399;font-size:106%', // Standard lib
 			4 => 'color: #0000cd;'    // Special methods
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style:italic;font-size:92%',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style:italic;font-size:92%',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #930; font-weight: bold;font-size:105%'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: maroon;font-size:102%;padding:2px'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #666;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #2356F8;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: navy;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66ccFF;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

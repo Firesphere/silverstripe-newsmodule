@@ -41,14 +41,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'TypoScript',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(2 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'TypoScript',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(2 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		// Conditions: http://documentation.typo3.org/documentation/tsref/conditions/
 		1 => array(
 			'browser', 'compatVersion', 'dayofmonth', 'dayofweek', 'device',
@@ -119,7 +119,7 @@ $language_data = array(
 	),
 	// Does not include '-' because of stuff like htmlTag_langKey = en-GB and
 	// lib.nav-sub
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'|',
 			'+', '*', '/', '%',
@@ -132,20 +132,20 @@ $language_data = array(
 			'(', ')', '{', '}', '[', ']'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
-		9 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
+		9              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #ed7d14;',
 			2 => 'font-weight: bold;',
 			3 => 'color: #990000; font-weight: bold;',
@@ -156,30 +156,30 @@ $language_data = array(
 			8 => 'font-weight: bold;',
 			9 => 'color: #990000; font-weight: bold;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #aaa; font-style: italic;',
-			2 => 'color: #aaa; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #aaa; font-style: italic;',
+			2       => 'color: #aaa; font-style: italic;',
 			'MULTI' => 'color: #aaa; font-style: italic;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ac14aa;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc0000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #0000e0; font-weight: bold;',
 			2 => 'color: #0000e0; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933; font-weight: bold;',
 			// Set this to the same value as brackets above
 			1 => 'color: #009900; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #009900;',
 			1 => 'color: #009900; font-weight: bold;',
 			2 => 'color: #3366CC;',
@@ -189,12 +189,10 @@ $language_data = array(
 			6 => 'color: #009900;',
 			7 => 'color: #3366CC;'
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'ESCAPE_CHAR' => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://documentation.typo3.org/documentation/tsref/conditions/{FNAME}/',
 		2 => 'http://documentation.typo3.org/documentation/tsref/functions/{FNAME}/',
 		3 => 'http://documentation.typo3.org/documentation/tsref/tlo-objects/{FNAME}/',
@@ -205,79 +203,76 @@ $language_data = array(
 		8 => 'http://documentation.typo3.org/documentation/tsref/menu/common-properties/',
 		9 => 'http://documentation.typo3.org/documentation/tsref/menu/item-states/'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// xhtml tag
 		2 => array(
-			GESHI_SEARCH => '(&lt;)([a-zA-Z\\/][^\\/\\|]*?)(&gt;)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(&lt;)([a-zA-Z\\/][^\\/\\|]*?)(&gt;)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 's',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 		),
 		// Constant
 		0 => array(
-			GESHI_SEARCH => '(\{)(\$[a-zA-Z_\.]+[a-zA-Z0-9_\.]*)(\})',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(\{)(\$[a-zA-Z_\.]+[a-zA-Z0-9_\.]*)(\})',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 		),
 		// Constant dollar sign
 		1 => array(
-			GESHI_SEARCH => '(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(\$)([a-zA-Z_\.]+[a-zA-Z0-9_\.]*)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '\\2'
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => '\\2'
 		),
 		// extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
 		3 => array(
-			GESHI_SEARCH => '(plugin\.|[^\.]\b)((?:static|user|ttx|tx|tt|fe)(?:_[0-9A-Za-z_]+?)\b)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(plugin\.|[^\.]\b)((?:static|user|ttx|tx|tt|fe)(?:_[0-9A-Za-z_]+?)\b)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		// conditions and controls
 		4 => array(
-			GESHI_SEARCH => '(\[)(globalVar|global|end)\b',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(\[)(globalVar|global|end)\b',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'i',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		// lowlevel setup and constant objects
 		5 => array(
-			GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		// markers
 		6 => array(
-			GESHI_SEARCH => '(###[^#]+###)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(###[^#]+###)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		// hex color codes
 		7 => array(
-			GESHI_SEARCH => '(#[a-fA-F0-9]{6}\b|#[a-fA-F0-9]{3}\b)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(#[a-fA-F0-9]{6}\b|#[a-fA-F0-9]{3}\b)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
 );
 ?>

@@ -34,13 +34,13 @@
  * *********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Falcon',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Falcon',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'break', 'case', 'catch', 'class', 'const', 'continue', 'def', 'default',
 			'dropping', 'elif', 'else', 'end', 'enum', 'for', 'forfirst', 'forlast',
@@ -125,7 +125,7 @@ $language_data = array(
 			"GC"
 		),
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -136,40 +136,40 @@ $language_data = array(
 		8 => 'http://falconpl.org/project_docs/core/globals.html#{FNAME}',
 		9 => 'http://falconpl.org/project_docs/core/object_{FNAME}.html)'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
-		9 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
+		9              => true
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '$', '%', '&', '/', '{', '[', ']', '=', '}', '?', '+', '-', '#', '*', '@',
 		'<', '>', '|', ',', ':', ';', '\\', '^'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => array(
-			GESHI_SEARCH => '(\[)([a-zA-Z_]|\c{C})(?:[a-zA-Z0-9_]|\p{C})*(\])',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(\[)([a-zA-Z_]|\c{C})(?:[a-zA-Z0-9_]|\p{C})*(\])',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
 		),
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array('<?' => '?>')
 	),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000080;font-weight:bold;',
 			2 => 'color: #800000;font-weight:bold;',
 			3 => 'color: #800000;font-weight:bold;',
@@ -179,37 +179,37 @@ $language_data = array(
 			7 => 'font-weight:bold;',
 			8 => 'font-weight:bold;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #29B900;',
+		'COMMENTS'    => array(
+			1       => 'color: #29B900;',
 			'MULTI' => 'color: #008080'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #800000'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #800000'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #000000'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #8B0513'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => ''
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #FF00FF'
 		)
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		'.'
 	)
 );

@@ -43,13 +43,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Euphoria',
-	'COMMENT_SINGLE' => array(1 => '--'),
-	'COMMENT_MULTI' => array(), //Euphoria doesn't support multi-line comments
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Euphoria',
+	'COMMENT_SINGLE'         => array(1 => '--'),
+	'COMMENT_MULTI'          => array(), //Euphoria doesn't support multi-line comments
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(// keywords
 			'and', 'by', 'constant', 'do', 'else', 'elsif', 'end', 'exit',
 			'for', 'function', 'global', 'if', 'include', 'not', 'or',
@@ -72,7 +72,7 @@ $language_data = array(
 			'trace', 'xor_bits'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'(', ')', '{', '}', '[', ']'
 		),
@@ -83,57 +83,53 @@ $language_data = array(
 			'&', '?', ','
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
+		1              => true,
+		2              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff; font-weight: bold;', // keywords
 			2 => 'color: #cc33ff; font-weight: bold;', // builtins
 		),
-		'COMMENTS' => array(
-			1 => 'color: #ff0000; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #ff0000; font-style: italic;',
 			'MULTI' => '' // doesn't exist
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #009900; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #999900; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #00cc00;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc33cc; font-style: italic'
 		),
-		'METHODS' => array(// Doesn't exist in Euphoria.  Everything is a function =)
+		'METHODS'     => array(// Doesn't exist in Euphoria.  Everything is a function =)
 			0 => ''
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #999900;', // brackets
 			1 => 'color: #333333;', // operators
 			2 => 'color: #333333; font-style: bold' // print+concat
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(// Never included in scripts.
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array(// Never included in scripts.
 		)
 	),
-	'REGEXPS' => array(
-	),
-	'URLS' => array(
+	'REGEXPS'                => array(),
+	'URLS'                   => array(
 		1 => '',
 		2 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

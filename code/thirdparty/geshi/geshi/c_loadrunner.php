@@ -43,22 +43,22 @@
 
 $language_data = array(
 	// The First Indices
-	'LANG_NAME' => 'C (LoadRunner)',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
+	'LANG_NAME'              => 'C (LoadRunner)',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
 	// Escape characters within strings (like \\) are not highlighted differently in LoadRunner, so
 	// I am using GeSHi escape characters (or regular expressions) to highlight LoadRunner {parameters}.
 	// LoadRunner {parameters} must begin with a letter and contain only alphanumeric characters and '_'
-	'ESCAPE_REGEXP' => array(
+	'ESCAPE_REGEXP'          => array(
 		0 => "#\{[a-zA-Z]{1}[a-zA-Z_]{0,}\}#",
 	),
 	// Keywords
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		// Keywords from http://en.wikipedia.org/wiki/C_syntax
-		1 => array(
+		1  => array(
 			'auto', 'break', 'case', 'char', 'const', 'continue', 'default',
 			'do', 'double', 'else', 'enum', 'extern', 'float', 'for', 'goto',
 			'if', 'inline', 'int', 'long', 'register', 'restrict', 'return',
@@ -67,11 +67,11 @@ $language_data = array(
 			'_Bool', '_Complex', '_Imaginary'
 		),
 		// C preprocessor directives from http://en.wikipedia.org/wiki/C_preprocessor
-		2 => array(
+		2  => array(
 			'#define', '#if', '#ifdef', '#ifndef', '#include', '#else', '#elif', '#endif', '#pragma', '#undef'
 		),
 		// Functions from lrun.h
-		3 => array(
+		3  => array(
 			'lr_start_transaction', 'lr_start_sub_transaction', 'lr_start_transaction_instance', 'lr_end_transaction',
 			'lr_end_sub_transaction', 'lr_end_transaction_instance', 'lr_stop_transaction', 'lr_stop_transaction_instance',
 			'lr_resume_transaction', 'lr_resume_transaction_instance', 'lr_wasted_time', 'lr_set_transaction', 'lr_user_data_point',
@@ -90,7 +90,7 @@ $language_data = array(
 			'lr_get_debug_message', 'lr_enable_ip_spoofing', 'lr_disable_ip_spoofing', 'lr_convert_string_encoding'
 		),
 		// Constants from lrun.h
-		4 => array(
+		4  => array(
 			'DP_FLAGS_NO_LOG', 'DP_FLAGS_STANDARD_LOG', 'DP_FLAGS_EXTENDED_LOG', 'merc_timer_handle_t', 'LR_EXIT_VUSER',
 			'LR_EXIT_ACTION_AND_CONTINUE', 'LR_EXIT_ITERATION_AND_CONTINUE', 'LR_EXIT_VUSER_AFTER_ITERATION',
 			'LR_EXIT_VUSER_AFTER_ACTION', 'LR_EXIT_MAIN_ITERATION_AND_CONTINUE', 'LR_MSG_CLASS_DISABLE_LOG',
@@ -101,7 +101,7 @@ $language_data = array(
 			'LR_MSG_DEFAULT'
 		),
 		// Functions from web_api.h
-		5 => array(
+		5  => array(
 			'web_reg_add_cookie', 'web_report_data_point', 'web_text_link', 'web_element', 'web_image_link', 'web_static_image',
 			'web_image_submit', 'web_button', 'web_edit_field', 'web_radio_group', 'web_check_box', 'web_list', 'web_text_area',
 			'web_map_area', 'web_eval_java_script', 'web_reg_dialog', 'web_reg_cross_step_download', 'web_browser',
@@ -109,12 +109,12 @@ $language_data = array(
 			'web_add_cookie_ex'
 		),
 		// Constants from web_api.h
-		6 => array(
+		6  => array(
 			'DESCRIPTION', 'ACTION', 'VERIFICATION', 'LR_NOT_FOUND', 'HTTP_INFO_TOTAL_REQUEST_STAT',
 			'HTTP_INFO_TOTAL_RESPONSE_STAT', 'LRW_OPT_STOP_VUSER_ON_ERROR', 'LRW_OPT_DISPLAY_IMAGE_BODY'
 		),
 		// Functions from as_web.h
-		7 => array(
+		7  => array(
 			'web_add_filter', 'web_add_auto_filter', 'web_add_auto_header', 'web_add_header', 'web_add_cookie',
 			'web_cleanup_auto_headers', 'web_cleanup_cookies', 'web_concurrent_end', 'web_concurrent_start', 'web_create_html_param',
 			'web_create_html_param_ex', 'web_custom_request', 'web_disable_keep_alive', 'web_enable_keep_alive', 'web_find',
@@ -127,7 +127,7 @@ $language_data = array(
 			'web_create_html_query', 'web_create_radio_button_param', 'web_switch_net_layer'
 		),
 		// Constants from as_web.h
-		8 => array(
+		8  => array(
 			'ENDFORM', 'LAST', 'ENDITEM', 'EXTRARES', 'ITEMDATA', 'STARTHIDDENS', 'ENDHIDDENS', 'CONNECT', 'RECEIVE', 'RESOLVE',
 			'STEP', 'REQUEST', 'RESPONSE', 'STARTQUERY', 'ENDQUERY', 'INPROPS', 'OUTPROPS', 'ENDPROPS', 'RAW_BODY_START',
 			'RAW_BODY_END', 'HTTP_INFO_RETURN_CODE', 'HTTP_INFO_DOWNLOAD_SIZE', 'HTTP_INFO_DOWNLOAD_TIME',
@@ -137,7 +137,7 @@ $language_data = array(
 			'LRW_OPT_HTML_CHAR_REF_BACKWARD_COMPATIBILITY', 'LRW_OPT_VALUE_YES', 'LRW_OPT_VALUE_NO'
 		),
 		// Functions from as_sapgui.h
-		9 => array(
+		9  => array(
 			'sapgui_open_connection', 'sapgui_open_connection_ex', 'sapgui_logon', 'sapgui_create_session',
 			'sapgui_create_new_session', 'sapgui_call_method', 'sapgui_call_method_ex', 'sapgui_set_property',
 			'sapgui_get_property', 'sapgui_set_collection_property', 'sapgui_active_object_from_parent_method',
@@ -207,42 +207,42 @@ $language_data = array(
 	),
 	// Symbols and Case Sensitivity
 	// Symbols from: http://en.wikipedia.org/wiki/C_syntax
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']',
 		'+', '-', '*', '/', '%',
 		'=', '<', '>', '!', '^', '&', '|', '?', ':', ';', ','
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true, // Standard C reserved keywords
-		2 => true, // C preprocessor directives
-		3 => true, // Functions from lrun.h
-		4 => true, // Constants from lrun.h
-		5 => true, // Functions from web_api.h
-		6 => true, // Constants from web_api.h
-		7 => true, // Functions from as_web.h
-		8 => true, // Constants from as_web.h
-		9 => true, // Functions from as_sapgui.h
-		10 => true, // Constants from as_sapgui.h
+		1              => true, // Standard C reserved keywords
+		2              => true, // C preprocessor directives
+		3              => true, // Functions from lrun.h
+		4              => true, // Constants from lrun.h
+		5              => true, // Functions from web_api.h
+		6              => true, // Constants from web_api.h
+		7              => true, // Functions from as_web.h
+		8              => true, // Constants from as_web.h
+		9              => true, // Functions from as_sapgui.h
+		10             => true, // Constants from as_sapgui.h
 	),
 	// Styles
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			// Functions are brown, constants and reserved words are blue
-			1 => 'color: #0000ff;', // Standard C reserved keywords
-			2 => 'color: #0000ff;', // C preprocessor directives
-			3 => 'color: #8a0000;', // Functions from lrun.h
-			4 => 'color: #0000ff;', // Constants from lrun.h
-			5 => 'color: #8a0000;', // Functions from web_api.h
-			6 => 'color: #0000ff;', // Constants from web_api.h
-			7 => 'color: #8a0000;', // Functions from as_web.h
-			8 => 'color: #0000ff;', // Constants from as_web.h
-			9 => 'color: #8a0000;', // Functions from as_sapgui.h
+			1  => 'color: #0000ff;', // Standard C reserved keywords
+			2  => 'color: #0000ff;', // C preprocessor directives
+			3  => 'color: #8a0000;', // Functions from lrun.h
+			4  => 'color: #0000ff;', // Constants from lrun.h
+			5  => 'color: #8a0000;', // Functions from web_api.h
+			6  => 'color: #0000ff;', // Constants from web_api.h
+			7  => 'color: #8a0000;', // Functions from as_web.h
+			8  => 'color: #0000ff;', // Constants from as_web.h
+			9  => 'color: #8a0000;', // Functions from as_sapgui.h
 			10 => 'color: #0000ff;', // Constants from as_sapgui.h
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			// Comments are grey
-			1 => 'color: #9b9b9b;',
+			1       => 'color: #9b9b9b;',
 			'MULTI' => 'color: #9b9b9b;'
 		),
 		'ESCAPE_CHAR' => array(
@@ -251,64 +251,58 @@ $language_data = array(
 			// {parameters} are pink
 			0 => 'color: #c000c0;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			// Strings are green
 			0 => 'color: #008080;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			// Numbers are green
-			0 => 'color: #008080;',
+			0                          => 'color: #008080;',
 			GESHI_NUMBER_BIN_PREFIX_0B => 'color: #008080;',
-			GESHI_NUMBER_OCT_PREFIX => 'color: #008080;',
-			GESHI_NUMBER_HEX_PREFIX => 'color: #008080;',
+			GESHI_NUMBER_OCT_PREFIX    => 'color: #008080;',
+			GESHI_NUMBER_HEX_PREFIX    => 'color: #008080;',
 			GESHI_NUMBER_FLT_SCI_SHORT => 'color:#008080;',
-			GESHI_NUMBER_FLT_SCI_ZERO => 'color:#008080;',
-			GESHI_NUMBER_FLT_NONSCI_F => 'color:#008080;',
-			GESHI_NUMBER_FLT_NONSCI => 'color:#008080;'
+			GESHI_NUMBER_FLT_SCI_ZERO  => 'color:#008080;',
+			GESHI_NUMBER_FLT_NONSCI_F  => 'color:#008080;',
+			GESHI_NUMBER_FLT_NONSCI    => 'color:#008080;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #000000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
 	// URLs for Functions
-	'URLS' => array(
-		1 => '', // Standard C reserved keywords
-		2 => '', // C preprocessor directives
-		3 => '', // Functions from lrun.h
-		4 => '', // Constants from lrun.h
-		5 => '', // Functions from web_api.h
-		6 => '', // Constants from web_api.h
-		7 => '', // Functions from as_web.h
-		8 => '', // Constants from as_web.h
-		9 => '', // Functions from as_sapgui.h
+	'URLS'                   => array(
+		1  => '', // Standard C reserved keywords
+		2  => '', // C preprocessor directives
+		3  => '', // Functions from lrun.h
+		4  => '', // Constants from lrun.h
+		5  => '', // Functions from web_api.h
+		6  => '', // Constants from web_api.h
+		7  => '', // Functions from as_web.h
+		8  => '', // Constants from as_web.h
+		9  => '', // Functions from as_sapgui.h
 		10 => '', // Constants from as_sapgui.h
 	),
 	// Object Orientation
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
 	// Regular Expressions
 	// Note that REGEXPS are not applied within strings.
-	'REGEXPS' => array(
-	),
+	'REGEXPS'                => array(),
 	// Contextual Highlighting and Strict Mode
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
 	// Tabs
 	// Note that if you are using <pre> tags for your code, then the browser chooses how many spaces your tabs will translate to.
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

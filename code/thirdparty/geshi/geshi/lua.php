@@ -43,24 +43,24 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Lua',
-	'COMMENT_SINGLE' => array(1 => "--"),
-	'COMMENT_MULTI' => array('--[[' => ']]'),
-	'COMMENT_REGEXP' => array(2 => '/\[(=*)\[.*?\]\1\]/s'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'LANG_NAME'              => 'Lua',
+	'COMMENT_SINGLE'         => array(1 => "--"),
+	'COMMENT_MULTI'          => array('--[[' => ']]'),
+	'COMMENT_REGEXP'         => array(2 => '/\[(=*)\[.*?\]\1\]/s'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		//Simple Single Char Escapes
 		1 => "#\\\\[\\\\abfnrtv\'\"]#i",
 		//Octal Char Specs
 		2 => "#\\\\\\d{1,3}#"
 	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F |
-	GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F |
+		GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(
 			'break', 'do', 'else', 'elseif', 'end', 'for', 'function', 'if',
 			'local', 'repeat', 'return', 'then', 'until', 'while'
@@ -103,31 +103,31 @@ $language_data = array(
 			'Nil', 'Boolean', 'Number', 'String', 'Userdata', 'Thread', 'Table'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'+', '-', '*', '/', '%', '^', '#',
 		'==', '~=', '<=', '>=', '<', '>', '=',
 		'(', ')', '{', '}', '[', ']',
 		';', ':', ',', '.', '..', '...'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #aa9900; font-weight: bold;',
 			2 => 'color: #aa9900; font-weight: bold;',
 			3 => 'color: #0000aa;',
 			4 => 'color: #aa9900;',
 			5 => 'color: #aa9900;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #ff0000;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #ff0000;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
@@ -135,42 +135,36 @@ $language_data = array(
 			1 => 'color: #000099; font-weight: bold;',
 			2 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff6666;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #aa9900;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

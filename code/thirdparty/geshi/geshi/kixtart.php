@@ -39,13 +39,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'KiXtart',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'KiXtart',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'While', 'Loop',
 			'Use',
@@ -260,69 +260,65 @@ $language_data = array(
 			'Abs'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '?', ':', '+', '-', '*', '/', '&', '|', '^', '~', '<', '>', '='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+		1              => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.kixtart.org/manual/Commands/{FNAMEL}.htm',
 		2 => '',
 		3 => 'http://www.kixtart.org/manual/Functions/{FNAMEL}.htm'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,
 		2 => true,
 		3 => true
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

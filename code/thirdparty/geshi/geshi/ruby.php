@@ -37,17 +37,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Ruby',
-	'COMMENT_SINGLE' => array(1 => "#"),
-	'COMMENT_MULTI' => array("=begin" => "=end"),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'Ruby',
+	'COMMENT_SINGLE'         => array(1 => "#"),
+	'COMMENT_MULTI'          => array("=begin" => "=end"),
+	'COMMENT_REGEXP'         => array(
 		//Heredoc
 		4 => '/<<\s*?(\w+)\\n.*?\\n\\1(?![a-zA-Z0-9])/si',
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', '`', '\''),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', '`', '\''),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'alias', 'and', 'begin', 'break', 'case', 'class',
 			'def', 'defined', 'do', 'else', 'elsif', 'end',
@@ -129,95 +129,95 @@ $language_data = array(
 			'OCI8AutoRecover', 'TimeZone', 'XmlSimple'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '%', '&', '*', '|', '/', '<', '>',
 		'+', '-', '=>', '<<'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => true,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color:#9966CC; font-weight:bold;',
 			2 => 'color:#0000FF; font-weight:bold;',
 			3 => 'color:#CC0066; font-weight:bold;',
 			4 => 'color:#CC00FF; font-weight:bold;',
 		),
-		'COMMENTS' => array(
-			1 => 'color:#008000; font-style:italic;',
-			4 => 'color: #cc0000; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color:#008000; font-style:italic;',
+			4       => 'color: #cc0000; font-style: italic;',
 			'MULTI' => 'color:#000080; font-style:italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color:#000099;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color:#006600; font-weight:bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color:#996600;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color:#006666;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color:#9900CC;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color:#006600; font-weight:bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color:#ff6633; font-weight:bold;',
 			1 => 'color:#0066ff; font-weight:bold;',
 			2 => 'color:#6666ff; font-weight:bold;',
 			3 => 'color:#ff3333; font-weight:bold;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '',
 			1 => '',
 			2 => '',
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => array(//Variables
-			GESHI_SEARCH => "([[:space:]])(\\$[a-zA-Z_][a-zA-Z0-9_]*)",
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => "([[:space:]])(\\$[a-zA-Z_][a-zA-Z0-9_]*)",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		1 => array(//Arrays
-			GESHI_SEARCH => "([[:space:]])(@[a-zA-Z_][a-zA-Z0-9_]*)",
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => "([[:space:]])(@[a-zA-Z_][a-zA-Z0-9_]*)",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		2 => "([A-Z][a-zA-Z0-9_]*::)+[A-Z][a-zA-Z0-9_]*", //Static OOP symbols
 		3 => array(
-			GESHI_SEARCH => "([[:space:]]|\[|\()(:[a-zA-Z_][a-zA-Z0-9_]*)",
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => "([[:space:]]|\[|\()(:[a-zA-Z_][a-zA-Z0-9_]*)",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array(
 			'<%' => '%>'
 		)
@@ -225,6 +225,6 @@ $language_data = array(
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 	),
-	'TAB_WIDTH' => 2
+	'TAB_WIDTH'              => 2
 );
 ?>

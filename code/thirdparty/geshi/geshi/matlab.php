@@ -41,17 +41,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Matlab M',
-	'COMMENT_SINGLE' => array(1 => '%'),
-	'COMMENT_MULTI' => array(),
+	'LANG_NAME'              => 'Matlab M',
+	'COMMENT_SINGLE'         => array(1 => '%'),
+	'COMMENT_MULTI'          => array(),
 	//Matlab Strings
-	'COMMENT_REGEXP' => array(
+	'COMMENT_REGEXP'         => array(
 		2 => "/(?<![\\w\\)\\]\\}\\.])('[^\\n']*?')/"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'break', 'case', 'catch', 'continue', 'elseif', 'else', 'end', 'for',
 			'function', 'global', 'if', 'otherwise', 'persistent', 'return',
@@ -158,68 +158,65 @@ $language_data = array(
 			'what', 'whatsnew', 'which', 'who', 'whos', 'workspace'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'...'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-	//3 => false,
-	//4 => false,
+		1              => false,
+		2              => false,
+		//3 => false,
+		//4 => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF;',
 			2 => 'color: #0000FF;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #228B22;',
 			2 => 'color:#A020F0;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #080;'
 		),
-		'STRINGS' => array(
-		//0 => 'color: #A020F0;'
+		'STRINGS'     => array(//0 => 'color: #A020F0;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #33f;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => '',
 			2 => ''
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #080;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #33f;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => ''
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => 'http://www.mathworks.com/access/helpdesk/help/techdoc/ref/{FNAMEL}.html'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 		2 => '::'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Complex numbers
 		0 => '(?<![\\w\\/])[+-]?[\\d]*([\\d]\\.|\\.[\\d])?[\\d]*[ij](?![\\w]|\<DOT>html)'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

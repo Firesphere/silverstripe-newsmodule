@@ -37,18 +37,18 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'SciLab',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'SciLab',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		2 => "/(?<=\)|\]|\w)'/"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array(),
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array(),
+	'KEYWORDS'               => array(
 		1 => array(
 			'if', 'else', 'elseif', 'end', 'select', 'case', 'for', 'while', 'break'
 		),
@@ -218,77 +218,74 @@ $language_data = array(
 			'xtitle', 'yulewalk', 'zeropen', 'zeros', 'zgrid', 'zoom_rect', 'zpbutt', 'zpch1', 'zpch2', 'zpell'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'<', '>', '=',
 		'!', '@', '~', '&', '|',
 		'+', '-', '*', '/', '%',
 		',', ';', '?', ':', "'"
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true,
+		1              => true,
+		2              => true,
+		3              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
-			2 => '',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
+			2       => '',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;',
+		'STRINGS'     => array(
+			0      => 'color: #ff0000;',
 			'HARD' => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000ff;',
 			4 => 'color: #009999;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
 		2 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
 		3 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '-&gt;',
 		2 => '::'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variable
 		0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
 		//File Descriptor
 		4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

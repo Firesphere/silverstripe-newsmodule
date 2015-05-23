@@ -63,13 +63,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Pixel Bender 1.0',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Pixel Bender 1.0',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'languageVersion', 'kernel'
 		),
@@ -105,21 +105,21 @@ $language_data = array(
 			'AIF_ATI', 'AIF_NVIDIA', 'AIF_FLASH_TARGET'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '!', '%', '&', '|', '+', '-', '*', '/', '=', '<', '>', '?', ':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0033ff;',
 			2 => 'color: #0033ff; font-weight: bold;',
 			3 => 'color: #0033ff;',
@@ -128,34 +128,32 @@ $language_data = array(
 			6 => 'color: #666666;',
 			7 => 'color: #990000;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #009900;',
+		'COMMENTS'    => array(
+			1       => 'color: #009900;',
 			'MULTI' => 'color: #3f5fbf;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #990000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000; font-weight:bold;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #000000;',
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -164,11 +162,11 @@ $language_data = array(
 		6 => '',
 		7 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array('.'),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array('.'),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

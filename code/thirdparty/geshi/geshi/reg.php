@@ -60,13 +60,13 @@
 
  * ********************************************************************************** */
 $language_data = array(
-	'LANG_NAME' => 'Microsoft Registry',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Microsoft Registry',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 //        1 => array(),
 //        2 => array(),
 		/* Registry Key Constants Not Used */
@@ -80,42 +80,38 @@ $language_data = array(
 			'HKLM', 'HKCR', 'HKCU', 'HKU', 'HKCC', 'HKDD'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
 //        1 => false,
 //        2 => false,
-		3 => false
+		3              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 //            1 => 'color: #00CCFF;',
 //            2 => 'color: #0000FF;',
 			3 => 'color: #800000;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #009900;'
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #009900;'
 		),
-		'NUMBERS' => array(
-		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'NUMBERS'     => array(),
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #00CCFF;',
 			1 => 'color: #0000FF;',
 			2 => '',
@@ -127,103 +123,100 @@ $language_data = array(
 			8 => 'color: #FF6600;',
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 //        1 => '',
 //        2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// Highlight Key Delimiters
 		0 => array(
-			GESHI_SEARCH => '((^|\\n)\\s*)(\\\\\\[(.*)\\\\\\])(\\s*(\\n|$))',
-			GESHI_REPLACE => '\\3',
+			GESHI_SEARCH    => '((^|\\n)\\s*)(\\\\\\[(.*)\\\\\\])(\\s*(\\n|$))',
+			GESHI_REPLACE   => '\\3',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\5'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\5'
 //            GESHI_CLASS => 'kw1'
 		),
 		// Highlight File Format Header Version 5
 		1 => array(
-			GESHI_SEARCH => '(^\s*)(Windows Registry Editor Version \d+\.\d+)(\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\s*)(Windows Registry Editor Version \d+\.\d+)(\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
-			GESHI_CLASS => 'geshi_registry_header'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
+			GESHI_CLASS     => 'geshi_registry_header'
 		),
 		// Highlight File Format Header Version 4
 		2 => array(
-			GESHI_SEARCH => '(^\\s*)(REGEDIT\s?\d+)(\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(REGEDIT\s?\d+)(\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
-			GESHI_CLASS => 'geshi_registry_header'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
+			GESHI_CLASS     => 'geshi_registry_header'
 		),
 		// Highlight dword: 32 bit integer values
 		3 => array(
-			GESHI_SEARCH => '(=\s*)(dword:[0-9a-fA-F]{8})(\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(=\s*)(dword:[0-9a-fA-F]{8})(\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 //            GESHI_CLASS => 'kw2'
 		),
 		// Highlight variable names
 		4 => array(
-			GESHI_SEARCH => '(^\s*)(\&quot;.*?\&quot;)(\s*=)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\s*)(\&quot;.*?\&quot;)(\s*=)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
-			GESHI_CLASS => 'geshi_variable'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
+			GESHI_CLASS     => 'geshi_variable'
 		),
 		// Highlight String Values
 		5 => array(
-			GESHI_SEARCH => '(=\s*)(\&quot;.*?\&quot;)(\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(=\s*)(\&quot;.*?\&quot;)(\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
-			GESHI_CLASS => 'st0'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
+			GESHI_CLASS     => 'st0'
 		),
 		// Highlight Hexadecimal Values (Single-Line and Multi-Line)
 		6 => array(
-			GESHI_SEARCH => '(=\s*\n?\s*)(hex:[0-9a-fA-F]{2}(,(\\\s*\n\s*)?[0-9a-fA-F]{2})*)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(=\s*\n?\s*)(hex:[0-9a-fA-F]{2}(,(\\\s*\n\s*)?[0-9a-fA-F]{2})*)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '',
-			GESHI_CLASS => 'kw2'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '',
+			GESHI_CLASS     => 'kw2'
 		),
 		// Highlight Default Variable
 		7 => array(
-			GESHI_SEARCH => '(^\s*)(@)(\s*=)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\s*)(@)(\s*=)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'm',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3',
-			GESHI_CLASS => 'geshi_variable'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3',
+			GESHI_CLASS     => 'geshi_variable'
 		),
 		// Highlight GUID's found anywhere.
 		8 => array(
-			GESHI_SEARCH => '(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\})',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\})',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => 'i',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '',
-			GESHI_CLASS => 'geshi_guid'
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => '',
+			GESHI_CLASS     => 'geshi_guid'
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
 			'NUMBERS' => GESHI_NEVER,
 		)

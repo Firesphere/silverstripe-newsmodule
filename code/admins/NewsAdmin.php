@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Default admin for the newsmodule.
  * This way, it's less of a clutter in the sitetree.
@@ -36,9 +37,9 @@ class NewsAdmin extends ModelAdmin
 				->getConfig()
 				->addComponent(
 					new GridFieldOrderableRows(
-					'SortOrder'
+						'SortOrder'
 					)
-			);
+				);
 		}
 		if ($this->modelClass == "News" && !$siteConfig->AllowExport) {
 			$form->Fields()
@@ -47,7 +48,7 @@ class NewsAdmin extends ModelAdmin
 				->removeComponentsByType('GridFieldExportButton')
 				->addComponent(
 					new GridfieldNewsPublishAction()
-			);
+				);
 		}
 		return $form;
 	}
@@ -69,6 +70,11 @@ class NewsAdmin extends ModelAdmin
 				->filter(array('NewsHolderPage_Newsitems.NewsHolderPageID' => $filter));
 		}
 		return $list;
+	}
+
+	public function subsiteCMSShowInMenu()
+	{
+		return true;
 	}
 
 }

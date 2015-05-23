@@ -39,15 +39,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Autohotkey',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'Autohotkey',
+	'COMMENT_SINGLE'         => array(
 		1 => ';'
 	),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'while', 'if', 'and', 'or', 'else', 'return'
 		),
@@ -268,26 +268,26 @@ $language_data = array(
 			'Slider'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']',
 		'+', '-', '*', '/', '&', '^',
 		'=', '+=', '-=', '*=', '/=', '&=',
 		'==', '<', '<=', '>', '>=', ':=',
 		',', '.'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #AAAAFF; font-weight: bold;', // reserved #blue
 			2 => 'color: #88FF88;', // BIV yellow
 			3 => 'color: #FF00FF; font-style: italic;', // commands purple
@@ -297,42 +297,41 @@ $language_data = array(
 			7 => 'color: #000000; font-style: italic;', // gui commands #black
 			8 => 'color: #000000; font-style: italic;'      // gui controls
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'font-style: italic; color: #669900;',
-			1 => 'font-style: italic; color: #009933;'
+			1       => 'font-style: italic; color: #009933;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #00FF00; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'font-weight: bold; color: #008080;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #0000dd;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #0000FF; font-style: italic; font-weight: italic;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000000; font-weight: italic;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'font-weight: italic; color: #A00A0;',
 			1 => 'color: #CC0000; font-style: italic;',
 			2 => 'color: #DD0000; font-style: italic;',
 			3 => 'color: #88FF88;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '_'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variables
 		0 => '%[a-zA-Z_][a-zA-Z0-9_]*%',
 		//hotstrings
@@ -342,7 +341,7 @@ $language_data = array(
 		//Built-in Variables
 		3 => '\bA_\w+\b(?![^<]*>)'
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => 'http://www.autohotkey.com/docs/Variables.htm#{FNAME}',
 		3 => 'http://www.autohotkey.com/docs/commands/{FNAME}.htm',
@@ -352,16 +351,15 @@ $language_data = array(
 		7 => 'http://www.autohotkey.com/docs/commands/Gui.htm#{FNAME}',
 		8 => 'http://www.autohotkey.com/docs/commands/GuiControls.htm#{FNAME}'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,
 		2 => true,
 		3 => true
 	),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			5 => array(
 				'DISALLOWED_BEFORE' => '(?<!\w)\#'

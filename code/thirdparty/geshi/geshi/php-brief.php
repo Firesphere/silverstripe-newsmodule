@@ -48,20 +48,20 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'PHP (brief)',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
+	'LANG_NAME'              => 'PHP (brief)',
+	'COMMENT_SINGLE'         => array(1 => '//', 2 => '#'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
 	//Heredoc and Nowdoc syntax
-	'COMMENT_REGEXP' => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array("\'"),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'COMMENT_REGEXP'         => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array("\'"),
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(
 			'include', 'require', 'include_once', 'require_once',
 			'for', 'as', 'foreach', 'if', 'elseif', 'else', 'while', 'do', 'endwhile', 'endif', 'switch', 'case', 'endswitch',
@@ -90,7 +90,7 @@ $language_data = array(
 			'echo', 'print', 'global', 'static', 'exit', 'array', 'empty', 'eval', 'isset', 'unset', 'die'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'<%', '<%=', '%>', '<?', '<?=', '?>'
 		),
@@ -102,53 +102,53 @@ $language_data = array(
 			'.', ':', ',', ';'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false
+		1              => false,
+		2              => false,
+		3              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #990000;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
-			2 => 'color: #666666; font-style: italic;',
-			3 => 'color: #0000cc; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
+			2       => 'color: #666666; font-style: italic;',
+			3       => 'color: #0000cc; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #0000ff;',
+		'STRINGS'     => array(
+			0      => 'color: #0000ff;',
 			'HARD' => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
-			0 => 'color: #cc66cc;',
-			GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
-			GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
+		'NUMBERS'     => array(
+			0                         => 'color: #cc66cc;',
+			GESHI_NUMBER_OCT_PREFIX   => 'color: #208080;',
+			GESHI_NUMBER_HEX_PREFIX   => 'color: #208080;',
 			GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #004000;',
 			2 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;',
 			1 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '',
 			1 => '',
 			2 => '',
@@ -157,22 +157,22 @@ $language_data = array(
 			5 => ''
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.php.net/{FNAMEL}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '-&gt;',
 		2 => '::'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variables
 		0 => "[\\$]+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array(
 			'<?php' => '?>'
 		),
@@ -186,27 +186,27 @@ $language_data = array(
 			'<script language="php">' => '</script>'
 		),
 		4 => "/(?P<start><\\?(?>php\b)?)(?:" .
-		"(?>[^\"'?\\/<]+)|" .
-		"\\?(?!>)|" .
-		"(?>'(?>[^'\\\\]|\\\\'|\\\\\\\|\\\\)*')|" .
-		"(?>\"(?>[^\"\\\\]|\\\\\"|\\\\\\\\|\\\\)*\")|" .
-		"(?>\\/\\*(?>[^\\*]|(?!\\*\\/)\\*)*\\*\\/)|" .
-		"\\/\\/(?>.*?$)|" .
-		"\\/(?=[^*\\/])|" .
-		"<(?!<<)|" .
-		"<<<(?P<phpdoc>\w+)\s.*?\s\k<phpdoc>" .
-		")*(?P<end>\\?>|\Z)/sm",
+			"(?>[^\"'?\\/<]+)|" .
+			"\\?(?!>)|" .
+			"(?>'(?>[^'\\\\]|\\\\'|\\\\\\\|\\\\)*')|" .
+			"(?>\"(?>[^\"\\\\]|\\\\\"|\\\\\\\\|\\\\)*\")|" .
+			"(?>\\/\\*(?>[^\\*]|(?!\\*\\/)\\*)*\\*\\/)|" .
+			"\\/\\/(?>.*?$)|" .
+			"\\/(?=[^*\\/])|" .
+			"<(?!<<)|" .
+			"<<<(?P<phpdoc>\w+)\s.*?\s\k<phpdoc>" .
+			")*(?P<end>\\?>|\Z)/sm",
 		5 => "/(?P<start><%)(?:" .
-		"(?>[^\"'%\\/<]+)|" .
-		"%(?!>)|" .
-		"(?>'(?>[^'\\\\]|\\\\'|\\\\\\\|\\\\)*')|" .
-		"(?>\"(?>[^\\\"\\\\]|\\\\\"|\\\\\\\\|\\\\)*\")|" .
-		"(?>\\/\\*(?>[^\\*]|(?!\\*\\/)\\*)*\\*\\/)|" .
-		"\\/\\/(?>.*?$)|" .
-		"\\/(?=[^*\\/])|" .
-		"<(?!<<)|" .
-		"<<<(?P<phpdoc>\w+)\s.*?\s\k<phpdoc>" .
-		")*(?P<end>%>)/sm"
+			"(?>[^\"'%\\/<]+)|" .
+			"%(?!>)|" .
+			"(?>'(?>[^'\\\\]|\\\\'|\\\\\\\|\\\\)*')|" .
+			"(?>\"(?>[^\\\"\\\\]|\\\\\"|\\\\\\\\|\\\\)*\")|" .
+			"(?>\\/\\*(?>[^\\*]|(?!\\*\\/)\\*)*\\*\\/)|" .
+			"\\/\\/(?>.*?$)|" .
+			"\\/(?=[^*\\/])|" .
+			"<(?!<<)|" .
+			"<<<(?P<phpdoc>\w+)\s.*?\s\k<phpdoc>" .
+			")*(?P<end>%>)/sm"
 	),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
@@ -216,6 +216,6 @@ $language_data = array(
 		4 => true,
 		5 => true
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

@@ -42,21 +42,21 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'ARM ASSEMBLER',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'ARM ASSEMBLER',
+	'COMMENT_SINGLE'         => array(
 		1 => ';'
 	),
-	'COMMENT_MULTI' => array(),
+	'COMMENT_MULTI'          => array(),
 	//Line address prefix suppression
-	'COMMENT_REGEXP' => array(
+	'COMMENT_REGEXP'         => array(
 		2 => "/^(?:[0-9a-f]{0,4}:)?[0-9a-f]{4}(?:[0-9a-f]{4})?/mi"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* Unconditional Data Processing Instructions */
-		1 => array(
+		1  => array(
 			/* Data Processing: Unconditional Addition & Subtraction */
 			'adc.w', 'adcal.w',
 			'adc', 'adcal',
@@ -139,7 +139,7 @@ $language_data = array(
 			'udiv', 'udival'
 		),
 		/* Conditional Data Processing Instructions */
-		2 => array(
+		2  => array(
 			/* Data Processing: Conditional Addition & Subtraction */
 			'adceq.w', 'adcne.w', 'adccs.w', 'adchs.w', 'adccc.w', 'adclo.w', 'adcmi.w', 'adcpl.w', 'adcvs.w', 'adcvc.w', 'adchi.w', 'adcls.w', 'adcge.w', 'adclt.w', 'adcgt.w', 'adcle.w',
 			'adceq', 'adcne', 'adccs', 'adchs', 'adccc', 'adclo', 'adcmi', 'adcpl', 'adcvs', 'adcvc', 'adchi', 'adcls', 'adcge', 'adclt', 'adcgt', 'adcle',
@@ -222,7 +222,7 @@ $language_data = array(
 			'udiveq', 'udivne', 'udivcs', 'udivhs', 'udivcc', 'udivlo', 'udivmi', 'udivpl', 'udivvs', 'udivvc', 'udivhi', 'udivls', 'udivge', 'udivlt', 'udivgt', 'udivle'
 		),
 		/* Unconditional Memory Access */
-		3 => array(
+		3  => array(
 			/* Memory Access: Unconditional Memory Loads and Prefetches */
 			'ldm.w', 'ldmal.w',
 			'ldm', 'ldmal',
@@ -280,7 +280,7 @@ $language_data = array(
 			'push', 'pushal'
 		),
 		/* Conditional Memory Access */
-		4 => array(
+		4  => array(
 			/* Memory Access: Conditional Memory Loads and Prefetches */
 			'ldmeq.w', 'ldmne.w', 'ldmcs.w', 'ldmhs.w', 'ldmcc.w', 'ldmlo.w', 'ldmmi.w', 'ldmpl.w', 'ldmvs.w', 'ldmvc.w', 'ldmhi.w', 'ldmls.w', 'ldmge.w', 'ldmlt.w', 'ldmgt.w', 'ldmle.w',
 			'ldmeq', 'ldmne', 'ldmcs', 'ldmhs', 'ldmcc', 'ldmlo', 'ldmmi', 'ldmpl', 'ldmvs', 'ldmvc', 'ldmhi', 'ldmls', 'ldmge', 'ldmlt', 'ldmgt', 'ldmle',
@@ -338,7 +338,7 @@ $language_data = array(
 			'pusheq', 'pushne', 'pushcs', 'pushhs', 'pushcc', 'pushlo', 'pushmi', 'pushpl', 'pushvs', 'pushvc', 'pushhi', 'pushls', 'pushge', 'pushlt', 'pushgt', 'pushle'
 		),
 		/* Unconditional Flags-Affecting Instructions */
-		5 => array(
+		5  => array(
 			/* Set Flags: Unconditional Addition and Subtraction */
 			'adds.w', 'addsal.w',
 			'adds', 'addsal',
@@ -395,7 +395,7 @@ $language_data = array(
 			'umlals', 'umlalsal'
 		),
 		/* Conditional Flags-Affecting Instructions */
-		6 => array(
+		6  => array(
 			/* Set Flags: Conditional Addition and Subtraction */
 			'addseq.w', 'addsne.w', 'addscs.w', 'addshs.w', 'addscc.w', 'addslo.w', 'addsmi.w', 'addspl.w', 'addsvs.w', 'addsvc.w', 'addshi.w', 'addsls.w', 'addsge.w', 'addslt.w', 'addsgt.w', 'addsle.w',
 			'addseq', 'addsne', 'addscs', 'addshs', 'addscc', 'addslo', 'addsmi', 'addspl', 'addsvs', 'addsvc', 'addshi', 'addsls', 'addsge', 'addslt', 'addsgt', 'addsle',
@@ -452,7 +452,7 @@ $language_data = array(
 			'umlalseq', 'umlalsne', 'umlalscs', 'umlalshs', 'umlalscc', 'umlalslo', 'umlalsmi', 'umlalspl', 'umlalsvs', 'umlalsvc', 'umlalshi', 'umlalsls', 'umlalsge', 'umlalslt', 'umlalsgt', 'umlalsle'
 		),
 		/* Unconditional Flow Control Instructions */
-		7 => array(
+		7  => array(
 			/* Flow Control: Unconditional Branch and If-Then-Else */
 			'b.w', 'bal.w',
 			'b', 'bal',
@@ -481,7 +481,7 @@ $language_data = array(
 			'iteee'
 		),
 		/* Conditional Flow Control Instructions */
-		8 => array(
+		8  => array(
 			/* Flow Control: Conditional Branch and If-Then-Else */
 			'beq.w', 'bne.w', 'bcs.w', 'bhs.w', 'bcc.w', 'blo.w', 'bmi.w', 'bpl.w', 'bvs.w', 'bvc.w', 'bhi.w', 'bls.w', 'bge.w', 'blt.w', 'bgt.w', 'ble.w',
 			'beq', 'bne', 'bcs', 'bhs', 'bcc', 'blo', 'bmi', 'bpl', 'bvs', 'bvc', 'bhi', 'bls', 'bge', 'blt', 'bgt', 'ble',
@@ -493,7 +493,7 @@ $language_data = array(
 			'tbheq', 'tbhne', 'tbhcs', 'tbhhs', 'tbhcc', 'tbhlo', 'tbhmi', 'tbhpl', 'tbhvs', 'tbhvc', 'tbhhi', 'tbhls', 'tbhge', 'tbhlt', 'tbhgt', 'tbhle'
 		),
 		/* Unconditional Syncronization Instructions */
-		9 => array(
+		9  => array(
 			/* Synchronization: Unconditional Loads, Stores and Barriers */
 			'ldrexd', 'ldrexdal',
 			'ldrex', 'ldrexal',
@@ -2767,69 +2767,69 @@ $language_data = array(
 			'q8', 'q9', 'q10', 'q11', 'q12', 'q13', 'q14', 'q15'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'[', ']', '(', ')',
 		'+', '-', '*', '/', '%',
 		'.', ',', ';', ':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false,
-		9 => false,
-		10 => false,
-		11 => false,
-		12 => false,
-		13 => false,
-		14 => false,
-		15 => false,
-		16 => false,
-		17 => false,
-		18 => false,
-		19 => false,
-		20 => false,
-		21 => false,
-		22 => false,
-		23 => false,
-		24 => false,
-		25 => false,
-		26 => false,
-		27 => false,
-		28 => false,
-		29 => false,
-		30 => false,
-		31 => false,
-		32 => false,
-		33 => false,
-		34 => false,
-		35 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false,
+		9              => false,
+		10             => false,
+		11             => false,
+		12             => false,
+		13             => false,
+		14             => false,
+		15             => false,
+		16             => false,
+		17             => false,
+		18             => false,
+		19             => false,
+		20             => false,
+		21             => false,
+		22             => false,
+		23             => false,
+		24             => false,
+		25             => false,
+		26             => false,
+		27             => false,
+		28             => false,
+		29             => false,
+		30             => false,
+		31             => false,
+		32             => false,
+		33             => false,
+		34             => false,
+		35             => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			/* Unconditional Data Processing Instructions */
-			1 => 'color: #00007f; font-weight: normal; font-style: normal;',
+			1  => 'color: #00007f; font-weight: normal; font-style: normal;',
 			/* Conditional Data Processing Instructions */
-			2 => 'color: #00007f; font-weight: normal; font-style: italic;',
+			2  => 'color: #00007f; font-weight: normal; font-style: italic;',
 			/* Unconditional Memory Access Instructions */
-			3 => 'color: #00007f; font-weight: normal; font-style: normal;',
+			3  => 'color: #00007f; font-weight: normal; font-style: normal;',
 			/* Conditional Memory Access Instructions */
-			4 => 'color: #00007f; font-weight: normal; font-style: italic;',
+			4  => 'color: #00007f; font-weight: normal; font-style: italic;',
 			/* Unconditional Flags Changing Instructions */
-			5 => 'color: #00007f; font-weight: bold; font-style: normal;',
+			5  => 'color: #00007f; font-weight: bold; font-style: normal;',
 			/* Conditional Flags Changing Instructions */
-			6 => 'color: #00007f; font-weight: bold; font-style: italic;',
+			6  => 'color: #00007f; font-weight: bold; font-style: italic;',
 			/* Unconditional Flow Control Instructions */
-			7 => 'color: #0000ff; font-weight: normal; font-style: normal;',
+			7  => 'color: #0000ff; font-weight: normal; font-style: normal;',
 			/* Conditional Flow Control Instructions */
-			8 => 'color: #0000ff; font-weight: normal; font-style: italic;',
+			8  => 'color: #0000ff; font-weight: normal; font-style: italic;',
 			/* Unconditional Syncronization Instructions */
-			9 => 'color: #00007f; font-weight: normal; font-style: normal;',
+			9  => 'color: #00007f; font-weight: normal; font-style: normal;',
 			/* Conditional Syncronization Instructions */
 			10 => 'color: #00007f; font-weight: normal; font-style: italic;',
 			/* Unonditional ARMv6 SIMD */
@@ -2883,42 +2883,39 @@ $language_data = array(
 			/* Registers */
 			35 => 'color: #46aa03; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #666666; font-style: italic;',
 			2 => 'color: #adadad; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7f007f;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => '',
-		4 => '',
-		5 => '',
-		6 => '',
-		7 => '',
-		8 => '',
-		9 => '',
+	'URLS'                   => array(
+		1  => '',
+		2  => '',
+		3  => '',
+		4  => '',
+		5  => '',
+		6  => '',
+		7  => '',
+		8  => '',
+		9  => '',
 		10 => '',
 		11 => '',
 		12 => '',
@@ -2946,31 +2943,27 @@ $language_data = array(
 		34 => '',
 		35 => ''
 	),
-	'NUMBERS' =>
-	GESHI_NUMBER_BIN_PREFIX_PERCENT |
-	GESHI_NUMBER_BIN_SUFFIX |
-	GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_HEX_SUFFIX |
-	GESHI_NUMBER_OCT_SUFFIX |
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_NONSCI_F |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 8,
-	'PARSER_CONTROL' => array(
+	'NUMBERS'                =>
+		GESHI_NUMBER_BIN_PREFIX_PERCENT |
+		GESHI_NUMBER_BIN_SUFFIX |
+		GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_HEX_SUFFIX |
+		GESHI_NUMBER_OCT_SUFFIX |
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_NONSCI_F |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 8,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#>|^])",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_<\|%])"
 		)
 	)
 );

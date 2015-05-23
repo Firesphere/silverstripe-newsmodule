@@ -39,70 +39,70 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'LLVM Intermediate Representation',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'HARDQUOTE' => array("\"", "\""),
-	'HARDESCAPE' => array("\"", "\\"),
-	'HARDCHAR' => "\\",
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
-	//Simple Single Char Escapes
-	// 1 => "#\\\\[nfrtv\$\"\n\\\\]#i",
-	//Hexadecimal Char Specs
-	// 2 => "#\\\\x[\da-fA-F]{1,2}#i",
-	//Octal Char Specs
-	// 3 => "#\\\\[0-7]{1,3}#",
-	//String Parsing of Variable Names
-	// 4 => "#\\$[a-z0-9_]+(?:\\[[a-z0-9_]+\\]|->[a-z0-9_]+)?|(?:\\{\\$|\\$\\{)[a-z0-9_]+(?:\\[('?)[a-z0-9_]*\\1\\]|->[a-z0-9_]+)*\\}#i",
-	//Experimental extension supporting cascaded {${$var}} syntax
-	// 5 => "#\$[a-z0-9_]+(?:\[[a-z0-9_]+\]|->[a-z0-9_]+)?|(?:\{\$|\$\{)[a-z0-9_]+(?:\[('?)[a-z0-9_]*\\1\]|->[a-z0-9_]+)*\}|\{\$(?R)\}#i",
-	//Format String support in ""-Strings
-	// 6 => "#%(?:%|(?:\d+\\\\\\\$)?\\+?(?:\x20|0|'.)?-?(?:\d+|\\*)?(?:\.\d+)?[bcdefFosuxX])#"
+	'LANG_NAME'              => 'LLVM Intermediate Representation',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'HARDQUOTE'              => array("\"", "\""),
+	'HARDESCAPE'             => array("\"", "\\"),
+	'HARDCHAR'               => "\\",
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
+		//Simple Single Char Escapes
+		// 1 => "#\\\\[nfrtv\$\"\n\\\\]#i",
+		//Hexadecimal Char Specs
+		// 2 => "#\\\\x[\da-fA-F]{1,2}#i",
+		//Octal Char Specs
+		// 3 => "#\\\\[0-7]{1,3}#",
+		//String Parsing of Variable Names
+		// 4 => "#\\$[a-z0-9_]+(?:\\[[a-z0-9_]+\\]|->[a-z0-9_]+)?|(?:\\{\\$|\\$\\{)[a-z0-9_]+(?:\\[('?)[a-z0-9_]*\\1\\]|->[a-z0-9_]+)*\\}#i",
+		//Experimental extension supporting cascaded {${$var}} syntax
+		// 5 => "#\$[a-z0-9_]+(?:\[[a-z0-9_]+\]|->[a-z0-9_]+)?|(?:\{\$|\$\{)[a-z0-9_]+(?:\[('?)[a-z0-9_]*\\1\]|->[a-z0-9_]+)*\}|\{\$(?R)\}#i",
+		//Format String support in ""-Strings
+		// 6 => "#%(?:%|(?:\d+\\\\\\\$)?\\+?(?:\x20|0|'.)?-?(?:\d+|\\*)?(?:\.\d+)?[bcdefFosuxX])#"
 	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
-		0 => array(
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
+		0  => array(
 			'to', 'nuw', 'nsw', 'align', 'inbounds', 'entry', 'return'
 		),
 		//Terminator Instructions
-		1 => array(
+		1  => array(
 			'ret', 'br', 'switch', 'indirectbr', 'invoke', 'unwind', 'unreachable'
 		),
 		//Binary Operations
-		2 => array(
+		2  => array(
 			'add', 'fadd', 'sub', 'fsub', 'mul', 'fmul', 'udiv', 'sdiv', 'fdiv', 'urem', 'frem', 'srem'
 		),
 		//Bitwise Binary Operations
-		3 => array(
+		3  => array(
 			'shl', 'lshr', 'ashr', 'and', 'or', 'xor'
 		),
 		//Vector Operations
-		4 => array(
+		4  => array(
 			'extractelement', 'insertelement', 'shufflevector'
 		),
 		//Aggregate Operations
-		5 => array(
+		5  => array(
 			'extractvalue', 'insertvalue'
 		),
 		//Memory Access and Addressing Operations
-		6 => array(
+		6  => array(
 			'alloca', 'load', 'store', 'getelementptr'
 		),
 		//Conversion Operations
-		7 => array(
+		7  => array(
 			'trunc', 'zext', 'sext', 'fptrunc', 'fpext', 'fptoui', 'fptosi',
 			'uitofp', 'sitofp', 'ptrtoint', 'inttoptr', 'bitcast'
 		),
 		//Other Operations
-		8 => array(
+		8  => array(
 			'icmp', 'fcmp', 'phi', 'select', 'call', 'va_arg'
 		),
 		//Linkage Types
-		9 => array(
+		9  => array(
 			'private', 'linker_private', 'linker_private_weak', 'linker_private_weak_def_auto',
 			'internal', 'available_externally', 'linkonce', 'common', 'weak', 'appending',
 			'extern_weak', 'linkonce_odr', 'weak_odr', 'externally visible', 'dllimport', 'dllexport',
@@ -179,7 +179,7 @@ $language_data = array(
 			'tail'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'(', ')', '[', ']', '{', '}',
 			'!', '@', '%', '&', '|', '/',
@@ -188,47 +188,47 @@ $language_data = array(
 			'.', ':', ',', ';'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
-		9 => true,
-		10 => true,
-		11 => true,
-		12 => true,
-		13 => true,
-		14 => true,
-		15 => true,
-		16 => true,
-		17 => true,
-		18 => true,
-		19 => true,
-		20 => true,
-		21 => true,
-		22 => true,
-		23 => true,
-		24 => true,
-		25 => true,
-		26 => true,
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
+		9              => true,
+		10             => true,
+		11             => true,
+		12             => true,
+		13             => true,
+		14             => true,
+		15             => true,
+		16             => true,
+		17             => true,
+		18             => true,
+		19             => true,
+		20             => true,
+		21             => true,
+		22             => true,
+		23             => true,
+		24             => true,
+		25             => true,
+		26             => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			0 => 'color: #209090;',
-			1 => 'color: #0000F0;',
-			2 => 'color: #00F000; font-weight: bold;',
-			3 => 'color: #F00000;',
-			4 => 'color: #00F0F0; font-weight: bold;',
-			5 => 'color: #F000F0; font-weight: bold;',
-			6 => 'color: #403020; font-weight: bold;',
-			7 => 'color: #909090; font-weight: bold;',
-			8 => 'color: #009090; font-weight: bold;',
-			9 => 'color: #900090; font-weight: bold;',
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
+			0  => 'color: #209090;',
+			1  => 'color: #0000F0;',
+			2  => 'color: #00F000; font-weight: bold;',
+			3  => 'color: #F00000;',
+			4  => 'color: #00F0F0; font-weight: bold;',
+			5  => 'color: #F000F0; font-weight: bold;',
+			6  => 'color: #403020; font-weight: bold;',
+			7  => 'color: #909090; font-weight: bold;',
+			8  => 'color: #009090; font-weight: bold;',
+			9  => 'color: #900090; font-weight: bold;',
 			10 => 'color: #909000; font-weight: bold;',
 			11 => 'color: #000090; font-weight: bold;',
 			12 => 'color: #900000; font-weight: bold;',
@@ -247,41 +247,41 @@ $language_data = array(
 			25 => 'color: #40F0F0; font-weight: bold;',
 			26 => 'color: #904040; font-weight: bold;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
-			1 => 'color: #000099; font-weight: bold;',
-			2 => 'color: #660099; font-weight: bold;',
-			3 => 'color: #660099; font-weight: bold;',
-			4 => 'color: #006699; font-weight: bold;',
-			5 => 'color: #006699; font-weight: bold; font-style: italic;',
-			6 => 'color: #009933; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
+			1      => 'color: #000099; font-weight: bold;',
+			2      => 'color: #660099; font-weight: bold;',
+			3      => 'color: #660099; font-weight: bold;',
+			4      => 'color: #006699; font-weight: bold;',
+			5      => 'color: #006699; font-weight: bold; font-style: italic;',
+			6      => 'color: #009933; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #0000ff;',
+		'STRINGS'     => array(
+			0      => 'color: #0000ff;',
 			'HARD' => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
-			0 => 'color: #cc66cc;',
-			GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
-			GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
+		'NUMBERS'     => array(
+			0                         => 'color: #cc66cc;',
+			GESHI_NUMBER_OCT_PREFIX   => 'color: #208080;',
+			GESHI_NUMBER_HEX_PREFIX   => 'color: #208080;',
 			GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #004000;',
 			2 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;',
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #007088;',
 			1 => 'color: #007088;',
 			// 2 => 'color: #000088;',
@@ -293,7 +293,7 @@ $language_data = array(
 			// 8 => 'color: #616908;',
 			9 => 'color: #6109F8;',
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '',
 			1 => '',
 			2 => '',
@@ -302,17 +302,17 @@ $language_data = array(
 			5 => ''
 		)
 	),
-	'URLS' => array(
-		0 => '',
-		1 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		2 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		3 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		4 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		5 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		6 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		7 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		8 => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
-		9 => 'http://llvm.org/docs/LangRef.html#linkage_{FNAME}',
+	'URLS'                   => array(
+		0  => '',
+		1  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		2  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		3  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		4  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		5  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		6  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		7  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		8  => 'http://llvm.org/docs/LangRef.html#i_{FNAME}',
+		9  => 'http://llvm.org/docs/LangRef.html#linkage_{FNAME}',
 		10 => 'http://llvm.org/docs/LangRef.html#callingconv',
 		11 => 'http://llvm.org/docs/LangRef.html#namedtypes',
 		12 => 'http://llvm.org/docs/LangRef.html#paramattrs',
@@ -331,10 +331,9 @@ $language_data = array(
 		25 => 'http://llvm.org/docs/LangRef.html#volatile',
 		26 => 'http://llvm.org/docs/LangRef.html#i_call',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Variables
 		0 => '%[-a-zA-Z$\._][-a-zA-Z$\._0-9]*',
 		//Labels
@@ -346,11 +345,11 @@ $language_data = array(
 		3 => '%[-]?[0-9]+',
 		//Integer Types
 		4 => array(
-			GESHI_SEARCH => '(?<!\w)i\d+(?!\w)',
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => '(?<!\w)i\d+(?!\w)',
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '<a href="http://llvm.org/docs/LangRef.html#t_integer">',
-			GESHI_AFTER => '</a>'
+			GESHI_BEFORE    => '<a href="http://llvm.org/docs/LangRef.html#t_integer">',
+			GESHI_AFTER     => '</a>'
 		),
 		//Comments
 		// 5 => ';.*',
@@ -362,14 +361,14 @@ $language_data = array(
 		// 8 => '\\b0x[0-9A-Fa-f]+\\b',
 		//Global variables
 		9 => array(
-			GESHI_SEARCH => '@[-a-zA-Z$\._][-a-zA-Z$\._0-9]*',
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => '@[-a-zA-Z$\._][-a-zA-Z$\._0-9]*',
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '<a href="http://llvm.org/docs/LangRef.html#globalvars">',
-			GESHI_AFTER => '</a>'
+			GESHI_BEFORE    => '<a href="http://llvm.org/docs/LangRef.html#globalvars">',
+			GESHI_AFTER     => '</a>'
 		),
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,
@@ -378,7 +377,7 @@ $language_data = array(
 		4 => true,
 		5 => true
 	),
-	'SCRIPT_DELIMITERS' => array(),
-	'TAB_WIDTH' => 4
+	'SCRIPT_DELIMITERS'      => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

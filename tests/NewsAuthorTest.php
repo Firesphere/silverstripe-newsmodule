@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test if the author is correctly set and created.
  * That means, extra spaces removed etc.

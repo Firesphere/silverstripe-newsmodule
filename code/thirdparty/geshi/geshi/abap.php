@@ -86,24 +86,24 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'ABAP',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'ABAP',
+	'COMMENT_SINGLE'         => array(
 		1 => '"'
 	),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		// lines beginning with star at 1st position are comments
 		// (star anywhere else is not a comment, especially be careful with
 		// "assign dref->* to <fs>" statement)
 		2 => '/^\*.*?$/m'
 	),
-	'CASE_KEYWORDS' => 0,
-	'QUOTEMARKS' => array(
+	'CASE_KEYWORDS'          => 0,
+	'QUOTEMARKS'             => array(
 		1 => "'",
 		2 => "`"
 	),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		//***********************************************
 		// Section 2 : process sequences of several tokens
 		//***********************************************
@@ -1219,7 +1219,7 @@ $language_data = array(
 			'types'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'->*', '->', '=>',
 			'(', ')', '{', '}', '[', ']', '+', '-', '*', '/', '!', '%', '^', '&', ':', ',', '.'
@@ -1231,20 +1231,20 @@ $language_data = array(
 			'?='
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false,
-		9 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false,
+		9              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;', //control statements
 			2 => 'color: #cc4050; text-transform: uppercase; font-weight: bold; zzz:data;', //data statements
 			3 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;', //first token of other statements
@@ -1255,38 +1255,36 @@ $language_data = array(
 			8 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;',
 			9 => 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #339933;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #339933;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #808080;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #4da619;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #3399ff;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #202020;',
 			2 => 'color: #202020;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #808080;',
 			1 => 'color: #800080;',
 			2 => 'color: #0000ff;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
 		2 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
 		3 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
@@ -1297,19 +1295,16 @@ $language_data = array(
 		8 => '',
 		9 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '-&gt;',
 		2 => '=&gt;'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			7 => array(
 				'SPACE_AS_WHITESPACE' => true
@@ -1322,6 +1317,6 @@ $language_data = array(
 			)
 		)
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

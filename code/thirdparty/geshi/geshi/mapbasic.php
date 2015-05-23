@@ -41,14 +41,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'MapBasic',
-	'COMMENT_SINGLE' => array(1 => "'"),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'MapBasic',
+	'COMMENT_SINGLE'         => array(1 => "'"),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/*
 		  1 - Statements + Clauses + Data Types + Logical Operators, Geographical Operators + SQL
 		  2 - Special Procedures
@@ -834,74 +834,68 @@ $language_data = array(
 			'Yaw', 'Zoom'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		//Numeric/String Operators + Comparison Operators
 		'(', ')', '[', ']', '+', '-', '*', '/', '\\', '^', '&',
 		'=', '<', '>'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => true
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff;', //Statements + Clauses + Data Types + Logical Operators, Geographical Operators + SQL
 			2 => 'color: #2391af;', //Special Procedures
 			3 => 'color: #2391af;', //Functions
 			4 => 'color: #c635cb;', //Constants
 			5 => 'color: #0000ff;'  //Extended keywords (case sensitive)
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000;',
 			'MULTI' => 'color: #008000;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #a31515;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'ESCAPE_CHAR' => array(),
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #12198b;', //Table Attributes
 			1 => 'color: #2391af;'      //Data Types
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Table Attribute
 		0 => "[\\.]{1}[a-zA-Z0-9_]+",
 		//Data Type
 		1 => "(?xi) \\s+ as \\s+ (Alias|Brush|Date|Float|Font|Integer|Logical|Object|Pen|SmallInt|String|Symbol)"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
 );
 ?>

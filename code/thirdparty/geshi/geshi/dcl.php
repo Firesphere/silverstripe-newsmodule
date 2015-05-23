@@ -38,20 +38,20 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'DCL',
-	'COMMENT_SINGLE' => array('$!', '!'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'DCL',
+	'COMMENT_SINGLE'         => array('$!', '!'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		2 => '/(?<=\$)\s*sql\s+.*?(?:quit|exit);?\s*?$/sim' // do not highlight inline sql
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'HARDESCAPE' => array(),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'HARDESCAPE'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		1 => "/''[a-zA-Z\\-_]+'/"
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(// commands
 			'ACCOUNTING', 'ALLOCATE', 'ANALYZE', 'APPEND', 'ASSIGN', 'ATTACH', 'BACKUP',
 			'CALL', 'CANCEL', 'CHECKSUM', 'CLOSE', 'CONNECT', 'CONTINUE', 'CONVERT',
@@ -102,7 +102,7 @@ $language_data = array(
 			'sys$input', 'sys$output', 'sys$pipe'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '@', '&', '|', '<', '>', '-',
 		'.eqs.', '.eq.', '.lt.', '.lts.', '.gt.', '.gts.', '.ne.', '.nes.',
 		'.le.', '.ge.', '.ges.', '.les.',
@@ -112,19 +112,19 @@ $language_data = array(
 		'.AND.', '.OR.', '.NOT.',
 		'==', ':==', '=', ':='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false
+		1              => false,
+		2              => false,
+		3              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000099; font-weight: bold;',
 			2 => 'color: #0066FF;',
 			3 => 'color: #993300;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			0 => 'color: #666666; font-style: italic;',
 			1 => 'color: #666666; font-style: italic;',
 			2 => 'color: #9999FF; font-style: italic;'
@@ -137,37 +137,34 @@ $language_data = array(
 			4 => 'color: #007800;',
 			5 => 'color: #780078;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #7a0874; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #009900;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0099FF;', // variables
 			1 => 'color: #0000FF;', // qualifiers
 			2 => 'color: #FF6600; font-weight: bold;'   // labels
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// variables
 		0 => "'[a-zA-Z_\\-$]+'",
 		// qualifiers and parameters
@@ -175,17 +172,13 @@ $language_data = array(
 		// labels
 		2 => '(?<=\$)\s*[a-zA-Z\-_]+:'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
-		'COMMENTS' => array(
-		),
-		'KEYWORDS' => array(
-		)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
+		'COMMENTS' => array(),
+		'KEYWORDS' => array()
 	)
 );
 ?>

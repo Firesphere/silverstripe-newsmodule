@@ -42,15 +42,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Fortran',
-	'COMMENT_SINGLE' => array(1 => '!', 2 => 'Cf2py'),
-	'COMMENT_MULTI' => array(),
+	'LANG_NAME'              => 'Fortran',
+	'COMMENT_SINGLE'         => array(1 => '!', 2 => 'Cf2py'),
+	'COMMENT_MULTI'          => array(),
 	//Fortran Comments
-	'COMMENT_REGEXP' => array(1 => '/^C.*?$/mi'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'COMMENT_REGEXP'         => array(1 => '/^C.*?$/mi'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'allocate', 'block', 'call', 'case', 'contains', 'continue', 'cycle', 'deallocate',
 			'default', 'do', 'else', 'elseif', 'elsewhere', 'end', 'enddo', 'endif', 'endwhere',
@@ -91,69 +91,64 @@ $language_data = array(
 			'trim', 'ubound', 'undfl', 'unpack', 'val', 'verify'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;',
 			4 => 'color: #993333;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
-			2 => 'color: #339933;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
+			2       => 'color: #339933;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #202020;',
 			2 => 'color: #202020;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 		2 => '::'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

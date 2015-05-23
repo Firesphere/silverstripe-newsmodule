@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Take the Form-creation outside of the page. This is a cleaner way of getting everything correct.
  * This split makes sure things are easier to view, read and edit.
@@ -33,7 +34,7 @@ class CommentForm extends Form
 			$fields->push(LiteralField::create('noscript', '<noscript><input type="hidden" value="1" name="nsas" /></noscript>'));
 		}
 		$actions = FieldList::create(
-				FormAction::create('CommentStore', 'Send')
+			FormAction::create('CommentStore', 'Send')
 		);
 		$required_fields = array(
 			'Name',

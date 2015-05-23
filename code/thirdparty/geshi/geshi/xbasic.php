@@ -34,13 +34,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'XBasic',
-	'COMMENT_SINGLE' => array(1 => "'"),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'XBasic',
+	'COMMENT_SINGLE'         => array(1 => "'"),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'WHILE', 'UNTIL', 'TRUE', 'TO', 'THEN', 'SUB', 'STOP', 'STEP',
 			'SELECT', 'RETURN', 'PROGRAM', 'NEXT', 'LOOP', 'IFZ',
@@ -79,64 +79,57 @@ $language_data = array(
 			'ACSC', 'ACOSH', 'ACOS'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>',
 		'=', '+', '-'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00a1a1;font-weight: bold',
 			2 => 'color: #000066;font-weight: bold',
 			3 => 'color: #00a166;font-weight: bold',
 			4 => 'color: #0066a1;font-weight: bold'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #808080;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		)
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.xbasic.org',
 		4 => 'http://www.xbasic.org'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

@@ -47,13 +47,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'PowerShell',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array('<#' => '#>'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '`',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'PowerShell',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array('<#' => '#>'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '`',
+	'KEYWORDS'               => array(
 		1 => array(
 			// Cmdlets
 			'Add-Content', 'Add-History', 'Add-Member', 'Add-PSSnapin', 'Clear-Content', 'Clear-Item',
@@ -151,21 +151,21 @@ $language_data = array(
 			'StackTrace', 'VerbosePreference', 'WarningPreference', 'PWD'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '=', '<', '>', '@', '|', '&', ',', '?',
 		'+=', '-=', '*=', '/=', '%=', '*', '/', '%', '!', '+', '-', '++', '--'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => true
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #008080; font-weight: bold;',
 			2 => 'color: #008080; font-weight: bold;',
 			3 => 'color: #0000FF;',
@@ -173,39 +173,38 @@ $language_data = array(
 			5 => 'color: #008080; font-style: italic;',
 			6 => 'color: #000080;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000;',
 			'MULTI' => 'color: #008000;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #008080; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #800000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #804000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: pink;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: pink;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #800080;',
 			3 => 'color: #008080;',
 			4 => 'color: #008080;',
 			5 => 'color: #800000;',
 			6 => 'color: #000080;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -213,42 +212,41 @@ $language_data = array(
 		5 => '',
 		6 => 'about:blank',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// special after pipe
 		3 => array(
-			GESHI_SEARCH => '(\[)(int|long|string|char|bool|byte|double|decimal|float|single|regex|array|xml|scriptblock|switch|hashtable|type|ref|psobject|wmi|wmisearcher|wmiclass|object)((\[.*\])?\])',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(\[)(int|long|string|char|bool|byte|double|decimal|float|single|regex|array|xml|scriptblock|switch|hashtable|type|ref|psobject|wmi|wmisearcher|wmiclass|object)((\[.*\])?\])',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => 'si',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Classes
 		4 => array(
-			GESHI_SEARCH => '(\[)(System\.Reflection\.Assembly|System\.Net\.CredentialCache|Microsoft\.SharePoint\.SPFileLevel|Microsoft\.SharePoint\.Publishing\.PublishingWeb|Microsoft\.SharePoint\.Publishing|Microsoft\.SharePoint\.SPWeb)(\])',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(\[)(System\.Reflection\.Assembly|System\.Net\.CredentialCache|Microsoft\.SharePoint\.SPFileLevel|Microsoft\.SharePoint\.Publishing\.PublishingWeb|Microsoft\.SharePoint\.Publishing|Microsoft\.SharePoint\.SPWeb)(\])',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => 'i',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Members
 		// There's about a hundred million of these, add the ones you need as you need them
 		5 => array(
-			GESHI_SEARCH => '(::)(ReflectionOnlyLoadFrom|ReflectionOnlyLoad|ReferenceEquals|LoadWithPartialName|LoadFrom|LoadFile|Load|GetExecutingAssembly|GetEntryAssembly|GetCallingAssembly|GetAssembly|Equals|DefaultNetworkCredentials|DefaultCredentials|CreateQualifiedName|Checkout|Draft|Published|IsPublishingWeb)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(::)(ReflectionOnlyLoadFrom|ReflectionOnlyLoad|ReferenceEquals|LoadWithPartialName|LoadFrom|LoadFile|Load|GetExecutingAssembly|GetEntryAssembly|GetCallingAssembly|GetAssembly|Equals|DefaultNetworkCredentials|DefaultCredentials|CreateQualifiedName|Checkout|Draft|Published|IsPublishingWeb)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => ''
 		),
 		// Special variables
 		6 => array(
-			GESHI_SEARCH => '(\$)(\$[_\^]?|\?)(?!\w)',
-			GESHI_REPLACE => '\1\2',
+			GESHI_SEARCH    => '(\$)(\$[_\^]?|\?)(?!\w)',
+			GESHI_REPLACE   => '\1\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		// variables
 		//BenBE: Please note that changes here and in Keyword group 6 have to be synchronized in order to work properly.
@@ -256,15 +254,13 @@ $language_data = array(
 		//Highlighting of the keywords will be incomplete or incorrect!
 		0 => "(?<!\\\$|>)[\\\$](\w+)(?=[^|\w])",
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			4 => array(
-				'DISALLOWED_AFTER' => '(?![a-zA-Z])',
+				'DISALLOWED_AFTER'  => '(?![a-zA-Z])',
 				'DISALLOWED_BEFORE' => ''
 			),
 			6 => array(

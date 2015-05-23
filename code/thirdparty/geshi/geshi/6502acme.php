@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'MOS 6502 (6510) ACME Cross Assembler format',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'MOS 6502 (6510) ACME Cross Assembler format',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* 6502/6510 Opcodes. */
 		1 => array(
 			'adc', 'and', 'asl', 'bcc', 'bcs', 'beq', 'bit', 'bmi',
@@ -125,26 +125,26 @@ $language_data = array(
 			'arcsin', 'arccos', 'arctan', 'int', 'float',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 //        '[', ']', '(', ')', '{', '}',    // These are already defined by GeSHi as BRACKETS.
 		'*=', '#', '!', '^', '-', '*', '/',
 		'%', '+', '-', '<<', '>>', '>>>',
 		'<', '>', '^', '<=', '<', '>=', '>', '!=',
 		'=', '&', '|', '<>',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00f; font-weight:bold;',
 			2 => 'color: #00f; font-weight:bold;',
 			3 => 'color: #080; font-weight:bold;',
@@ -154,38 +154,36 @@ $language_data = array(
 			7 => 'color: #a04; font-weight:bold; font-style: italic;',
 			8 => 'color: #000;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #999; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #009; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #080;'
 		),
-		'NUMBERS' => array(
-			GESHI_NUMBER_INT_BASIC => 'color: #f00;',
-			GESHI_NUMBER_HEX_PREFIX_DOLLAR => 'color: #f00;',
-			GESHI_NUMBER_HEX_PREFIX => 'color: #f00;',
+		'NUMBERS'     => array(
+			GESHI_NUMBER_INT_BASIC          => 'color: #f00;',
+			GESHI_NUMBER_HEX_PREFIX_DOLLAR  => 'color: #f00;',
+			GESHI_NUMBER_HEX_PREFIX         => 'color: #f00;',
 			GESHI_NUMBER_BIN_PREFIX_PERCENT => 'color: #f00;',
-			GESHI_NUMBER_FLT_NONSCI => 'color: #f00;',
+			GESHI_NUMBER_FLT_NONSCI         => 'color: #f00;',
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #080;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #f00;'
-			, 1 => 'color: #933;'
+		, 1   => 'color: #933;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -195,29 +193,26 @@ $language_data = array(
 		7 => '',
 		8 => '',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_HEX_PREFIX_DOLLAR |
-	GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_BIN_PREFIX_PERCENT,
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_HEX_PREFIX_DOLLAR |
+		GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_BIN_PREFIX_PERCENT,
 	// AMCE Octal format not support and gets picked up as Decimal unfortunately.
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//ACME .# Binary number format. e.g. %..##..##..##
 		0 => '\%[\.\#]{1,64}',
 		//ACME Local Labels
 		1 => '\.[_a-zA-Z][_a-zA-Z0-9]*',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 8,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 8,
+	'PARSER_CONTROL'         => array(
 		'NUMBERS' => array(
 			'PRECHECK_RX' => '/[\da-fA-F\.\$\%]/'
 		)

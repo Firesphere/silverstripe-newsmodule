@@ -41,13 +41,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'PL/SQL',
-	'COMMENT_SINGLE' => array(1 => '--'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm#2930
-	'COMMENT_MULTI' => array('/*' => '*/'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm#2950
-	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
-	'QUOTEMARKS' => array("'", '"'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'PL/SQL',
+	'COMMENT_SINGLE'         => array(1 => '--'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm#2930
+	'COMMENT_MULTI'          => array('/*' => '*/'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm#2950
+	'CASE_KEYWORDS'          => GESHI_CAPS_UPPER,
+	'QUOTEMARKS'             => array("'", '"'), //http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		//PL/SQL reserved keywords (http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/f_words.htm#LNPLS019)
 		1 => array('ZONE', 'YEAR', 'WRITE', 'WORK', 'WITH', 'WHILE', 'WHERE',
 			'WHENEVER', 'WHEN', 'VIEW', 'VARCHAR2', 'VARCHAR', 'VALUES',
@@ -190,66 +190,65 @@ $language_data = array(
 			'ALL_REPCAT_TEMPLATE_OBJECTS', 'ALL_REPCAT_REFRESH_TEMPLATES',
 			'ALL_REPCAT', 'ALL_REPAUDIT_COLUMN', 'ALL_REPAUDIT_ATTRIBUTE')
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		//PL/SQL delimiters (http://download-uk.oracle.com/docs/cd/B10501_01/appdev.920/a96624/02_funds.htm#2732)
 		'+', '%', "'", '.', '/', '(', ')', ':', ',', '*', '"', '=', '<', '>', '@', ';', '-', ':=', '=>', '||', '**', '<<', '>>', '/*', '*/', '..', '<>', '!=', '~=', '^=', '<=', '>='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00F;',
 			2 => 'color: #000;',
 			3 => 'color: #00F;',
 			4 => 'color: #F00;',
 			5 => 'color: #800;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #080; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #080; font-style: italic;',
 			'MULTI' => 'color: #080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #00F;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #F00;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #800;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #0F0;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #00F;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array(
 			0 => 'color: #0F0;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
 		2 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
 		3 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
 		4 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
 		5 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

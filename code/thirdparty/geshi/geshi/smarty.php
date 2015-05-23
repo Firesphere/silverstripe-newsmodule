@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Smarty',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array('{*' => '*}'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Smarty',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array('{*' => '*}'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'$smarty', 'now', 'const', 'capture', 'config', 'section', 'foreach', 'template', 'version', 'ldelim', 'rdelim',
 			'foreachelse', 'include', 'include_php', 'insert', 'if', 'elseif', 'else', 'php',
@@ -91,22 +91,22 @@ $language_data = array(
 			'isset', 'is_array', 'empty', 'count', 'sizeof'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'/', '=', '==', '!=', '>', '<', '>=', '<=', '!', '%'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0600FF;', //Functions
 			2 => 'color: #008000;', //Modifiers
 			3 => 'color: #0600FF;', //Custom Functions
@@ -116,37 +116,37 @@ $language_data = array(
 			7 => 'color: #D36900;', //Text-based symbols
 			8 => 'color: #0600FF;' //php functions
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #008080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #D36900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #D36900;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '',
 			1 => 'color: #808080; font-style: italic;',
 			2 => 'color: #009000;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #00aaff;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://smarty.php.net/{FNAMEL}',
 		2 => 'http://smarty.php.net/{FNAMEL}',
 		3 => 'http://smarty.php.net/{FNAMEL}',
@@ -156,16 +156,16 @@ $language_data = array(
 		7 => 'http://smarty.php.net/{FNAMEL}',
 		8 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		// variables
 		0 => '\$[a-zA-Z][a-zA-Z0-9_]*'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
-	'SCRIPT_DELIMITERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_ALWAYS,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array(
 			'{' => '}'
 		),
@@ -181,10 +181,10 @@ $language_data = array(
 		1 => false,
 		2 => false
 	),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#;>|^])",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%\\-&])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_<\|%\\-&])"
 		)
 	)
 );

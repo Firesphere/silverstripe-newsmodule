@@ -35,14 +35,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'CoffeeScript',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array('###' => '###'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+	'LANG_NAME'              => 'CoffeeScript',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array('###' => '###'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
 	//Longest quotemarks ALWAYS first
-	'QUOTEMARKS' => array('"""', "'''", '"', "'"),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'QUOTEMARKS'             => array('"""', "'''", '"', "'"),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		/*
 		 * * Set 1: control keywords
 		 */
@@ -71,65 +71,62 @@ $language_data = array(
 			'Infinity', 'NaN', 'undefined', 'null'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '*', '&', '|', '%', '!', ',', ';', '<', '>', '?', '`',
 		'+', '-', '*', '/', '->', '=>', '<<', '>>', '@', ':', '^'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #ff7700;font-weight:bold;',
 			2 => 'color: #008000;',
 			3 => 'color: #dc143c;',
 			4 => 'color: #0000cd;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: black;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #483d8b;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff4500;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: black;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array(
 			'<script type="text/coffeescript">' => '</script>'
 		)

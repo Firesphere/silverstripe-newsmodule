@@ -55,19 +55,19 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'AutoIt',
-	'COMMENT_SINGLE' => array(';'),
-	'COMMENT_MULTI' => array(
+	'LANG_NAME'              => 'AutoIt',
+	'COMMENT_SINGLE'         => array(';'),
+	'COMMENT_MULTI'          => array(
 		'#comments-start' => '#comments-end',
-		'#cs' => '#ce'),
-	'COMMENT_REGEXP' => array(
+		'#cs'             => '#ce'),
+	'COMMENT_REGEXP'         => array(
 		0 => '/(?<!#)#(\s.*)?$/m',
 		1 => '/(?<=include)\s+<.*?>/'
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'And', 'ByRef', 'Case', 'Const', 'ContinueCase', 'ContinueLoop',
 			'Default', 'Dim', 'Do', 'Else', 'ElseIf', 'EndFunc', 'EndIf', 'EndSelect',
@@ -1078,24 +1078,24 @@ $language_data = array(
 			'Obfuscator_Parameters', 'Region', 'Tidy_Parameters'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']',
 		'+', '-', '*', '/', '&', '^',
 		'=', '+=', '-=', '*=', '/=', '&=',
 		'==', '<', '<=', '>', '>=',
 		',', '.'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF; font-weight: bold;',
 			2 => 'color: #800000; font-weight: bold;',
 			3 => 'color: #000080; font-style: italic; font-weight: bold;',
@@ -1103,36 +1103,35 @@ $language_data = array(
 			5 => 'color: #F000FF; font-style: italic;',
 			6 => 'color: #A00FF0; font-style: italic;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'font-style: italic; color: #669900;',
-			0 => 'font-style: italic; color: #009933;',
-			1 => 'font-style: italic; color: #9977BB;',
+			0       => 'font-style: italic; color: #009933;',
+			1       => 'font-style: italic; color: #9977BB;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #FF0000; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'font-weight: bold; color: #9977BB;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #AC00A9; font-style: italic; font-weight: bold;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #0000FF; font-style: italic; font-weight: bold;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #FF0000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'font-weight: bold; color: #AA0000;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.autoitscript.com/autoit3/docs/keywords.htm',
 		2 => 'http://www.autoitscript.com/autoit3/docs/macros.htm',
 		3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAME}.htm',
@@ -1140,24 +1139,23 @@ $language_data = array(
 		5 => '',
 		6 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variables
 		0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,
 		2 => true,
 		3 => true
 	),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			4 => array(
 				'DISALLOWED_BEFORE' => '(?<!\w)\_'

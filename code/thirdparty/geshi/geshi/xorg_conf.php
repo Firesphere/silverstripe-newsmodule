@@ -35,13 +35,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Xorg configuration',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Xorg configuration',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		// sections
 		1 => array(
 			'Section', 'EndSection', 'SubSection', 'EndSubSection'
@@ -67,57 +67,46 @@ $language_data = array(
 			'DotClock', 'Flags', 'HSkew', 'HTimings', 'VScan', 'VTimings'
 		),
 	),
-	'REGEXPS' => array(
-	),
-	'SYMBOLS' => array(
-	),
-	'CASE_SENSITIVE' => array(
+	'REGEXPS'                => array(),
+	'SYMBOLS'                => array(),
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false
+		1              => false,
+		2              => false,
+		3              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #990000;',
 			3 => 'color: #550000;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #adadad; font-style: italic;',
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
-		),
-		'STRINGS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(),
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;',
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
-		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(),
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

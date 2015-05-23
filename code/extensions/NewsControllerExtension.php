@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Make the news globally available. So you don't have to be on a NewsHolderPage.
  * Same goes for tags. For if you want a tagcloud in your sidebar, for example.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  * @todo Better comments
@@ -16,8 +17,9 @@ class NewsControllerExtension extends DataExtension
 	 * @param $limit integer with chosen limit. Called from template via <% loop NewsArchive(5) %> for the 5 latest items.
 	 * @param $random boolean Called from template. e.g. <% loop NewsArchive(5,1) %> to show random posts, related via the tags.
 	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 related items.
-	 * 	Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
-	 * 	To loop ALL items, set the first parameter (@param $limit) to zero. As you can see.
+	 *    Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
+	 *    To loop ALL items, set the first parameter (@param $limit ) to zero. As you can see.
+	 * @return DataList|News[]
 	 * @todo implement subsites
 	 * @todo clean this up. It's a mess. It's too long and too unreadable.
 	 */
@@ -83,12 +85,12 @@ class NewsControllerExtension extends DataExtension
 		if ($news->count() == 0) {
 			return null;
 		}
-		return($news);
+		return ($news);
 	}
 
 	/**
 	 * Get the NewsItems as groupedList for global archive-listing.
-	 * @todo obey translatable maybe? I think it's supported by default, but I could be wrong	
+	 * @todo obey translatable maybe? I think it's supported by default, but I could be wrong
 	 * @return GroupedList of NewsItems.
 	 */
 	public function getArchiveList()
@@ -117,7 +119,7 @@ class NewsControllerExtension extends DataExtension
 	public function NewsArchiveByHolderID($holderID = null, $limit = 5)
 	{
 		$filter = array(
-			'Live' => 1,
+			'Live'             => 1,
 			'NewsHolderPageID' => $holderID,
 		);
 		if ($limit == 0) {

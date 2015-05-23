@@ -39,19 +39,19 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'PARI/GP',
-	'COMMENT_SINGLE' => array(1 => '\\\\'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' => array(
+	'LANG_NAME'              => 'PARI/GP',
+	'COMMENT_SINGLE'         => array(1 => '\\\\'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                => array(
 		# Integers
 		1 => GESHI_NUMBER_INT_BASIC,
 		# Reals
 		2 => GESHI_NUMBER_FLT_SCI_ZERO
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(
 			'addprimes', 'bestappr', 'bezout', 'bezoutres', 'bigomega', 'binomial',
 			'chinese', 'content', 'contfrac', 'contfracpnqn', 'core', 'coredisc',
@@ -164,100 +164,103 @@ $language_data = array(
 			'vectorv', 'ellheegner'
 		),
 		2 => array(
-			'void', 'bool', 'negbool', 'small', 'int', /* 'real', */ 'mp', 'var', 'lg', 'pol',
+			'void', 'bool', 'negbool', 'small', 'int', /* 'real', */
+			'mp', 'var', 'lg', 'pol',
 			'vecsmall', 'vec', 'list', 'str', 'genstr', 'gen', 'typ'
 		),
 		3 => array(
 			'TeXstyle', 'breakloop', 'colors', 'compatible', 'datadir', 'debug',
 			'debugfiles', 'debugmem', 'echo', 'factor_add_primes', 'factor_proven',
 			'format', 'graphcolormap', 'graphcolors', 'help', 'histfile', 'histsize',
-			'lines', 'linewrap', /* 'log', */ 'logfile', 'new_galois_format', 'output',
+			'lines', 'linewrap', /* 'log', */
+			'logfile', 'new_galois_format', 'output',
 			'parisize', 'path', 'prettyprinter', 'primelimit', 'prompt_cont',
 			'prompt', 'psfile', 'readline', 'realprecision', 'recover', 'secure',
-			'seriesprecision', /* 'simplify', */ 'strictmatch', 'timer'
+			'seriesprecision', /* 'simplify', */
+			'strictmatch', 'timer'
 		),
 		4 => array(
 			'alarmer', 'archer', 'errpile', 'gdiver', 'impl', 'syntaxer', 'invmoder',
 			'overflower', 'talker', 'typeer', 'user'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'(', ')', '{', '}', '[', ']', '+', '-', '*', '/', '%', '=', '<', '>', '!', '^', '&', '|', '?', ';', ':', ',', '\\', '\''
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff;',
 			2 => 'color: #e07022;',
 			3 => 'color: #00d2d2;',
 			4 => 'color: #00d2d2;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000;',
 			'MULTI' => 'color: #008000;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #111111; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #002222;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #800080;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #666666;',
 			1 => 'color: #666666;',
 			2 => 'color: #666666;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			1 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #e07022', # Should be the same as keyword group 2
 			1 => 'color: #555555'
 		),
-		'SCRIPT' => array()
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => array(# types marked on variables
-			GESHI_SEARCH => '(?<!\\\\ )"(t_(?:INT|REAL|INTMOD|FRAC|FFELT|COMPLEX|PADIC|QUAD|POLMOD|POL|SER|RFRAC|QFR|QFI|VEC|COL|MAT|LIST|STR|VECSMALL|CLOSURE))"',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(?<!\\\\ )"(t_(?:INT|REAL|INTMOD|FRAC|FFELT|COMPLEX|PADIC|QUAD|POLMOD|POL|SER|RFRAC|QFR|QFI|VEC|COL|MAT|LIST|STR|VECSMALL|CLOSURE))"',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '"',
-			GESHI_AFTER => '"'
+			GESHI_BEFORE    => '"',
+			GESHI_AFTER     => '"'
 		),
 		1 => array(# literal variables
-			GESHI_SEARCH => '(?<!\\\\)(\'[a-zA-Z][a-zA-Z0-9_]*)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(?<!\\\\)(\'[a-zA-Z][a-zA-Z0-9_]*)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(
 		2 => array(
 			'[a-zA-Z][a-zA-Z0-9_]*:' => ''
 		),

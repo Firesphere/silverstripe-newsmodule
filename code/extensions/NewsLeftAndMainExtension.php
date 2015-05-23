@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Decorate Left and Main with the CSS for the NewsAdmin
  * This is cleaner than including via _config.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  * @thanks FrozenFire for telling me this actually works this way.

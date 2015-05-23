@@ -41,17 +41,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'F#',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(3 => '/\(\*(?!\)).*?\*\)/s'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'HARDQUOTE' => array('@"', '"'),
-	'HARDESCAPE' => array('"'),
-	'HARDCHAR' => '"',
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'F#',
+	'COMMENT_SINGLE'         => array(1 => '//', 2 => '#'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(3 => '/\(\*(?!\)).*?\*\)/s'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'HARDQUOTE'              => array('@"', '"'),
+	'HARDESCAPE'             => array('"'),
+	'HARDCHAR'               => '"',
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		/* main F# keywords */
 		/* section 3.4 */
 		1 => array(
@@ -120,7 +120,7 @@ $language_data = array(
 		)
 	),
 	/* 17.2 basic operators + the yield and yield! arrows */
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array('+', '-', '/', '*', '**', '%', '~-'),
 		2 => array('<', '<=', '>', '<=', '=', '<>'),
 		3 => array('<<<', '>>>', '^^^', '&&&', '|||', '~~~'),
@@ -129,19 +129,19 @@ $language_data = array(
 		6 => array('[', ']', '(', ')', '{', '}', '[|', '|]', '(|', '|)'),
 		7 => array(':=', ';', ';;')
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true, /* keywords */
-		2 => true, /* modules */
-		3 => true, /* pervasives functions */
-		4 => true, /* types and overloaded conversion operators */
-		5 => true, /* exceptions */
-		6 => true, /* conditional compilation & compiler Directives */
-		7 => true, /* pre-processor declarations / identifier replacements */
-		8 => true /* object transformation operators */
+		1              => true, /* keywords */
+		2              => true, /* modules */
+		3              => true, /* pervasives functions */
+		4              => true, /* types and overloaded conversion operators */
+		5              => true, /* exceptions */
+		6              => true, /* conditional compilation & compiler Directives */
+		7              => true, /* pre-processor declarations / identifier replacements */
+		8              => true /* object transformation operators */
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #06c; font-weight: bold;', /* nice blue */
 			2 => 'color: #06c; font-weight: bold;', /* nice blue */
 			3 => 'color: #06c; font-weight: bold;', /* nice blue */
@@ -151,35 +151,32 @@ $language_data = array(
 			7 => 'color: #06c; font-weight: bold;', /* nice blue */
 			8 => 'color: #06c; font-weight: bold;' /* nice blue */
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #5d478b; font-style: italic;', /* light purple */
-			1 => 'color: #5d478b; font-style: italic;',
-			2 => 'color: #5d478b; font-style: italic;', /* light purple */
-			3 => 'color: #5d478b; font-style: italic;' /* light purple */
+			1       => 'color: #5d478b; font-style: italic;',
+			2       => 'color: #5d478b; font-style: italic;', /* light purple */
+			3       => 'color: #5d478b; font-style: italic;' /* light purple */
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #6c6;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #3cb371;' /* nice green */
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #c6c;' /* pink */
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #060;' /* dark green */
 		),
-		'REGEXPS' => array(
-		),
-		'SYMBOLS' => array(
+		'REGEXPS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #a52a2a;' /* maroon */
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		/* some of keywords are Pervasives functions (land, lxor, asr, ...) */
 		1 => '',
 		2 => 'http://research.microsoft.com/en-us/um/cambridge/projects/fsharp/manual/namespaces.html',
@@ -190,22 +187,19 @@ $language_data = array(
 		7 => '',
 		8 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#>|^])",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%\\-])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_<\|%\\-])"
 		)
 	)
 );

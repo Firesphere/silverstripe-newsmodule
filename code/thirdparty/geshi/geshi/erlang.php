@@ -52,17 +52,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Erlang',
-	'COMMENT_SINGLE' => array(1 => '%'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array("'", "\\"),
-	'HARDCHAR' => "\\",
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Erlang',
+	'COMMENT_SINGLE'         => array(1 => '%'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array("'", "\\"),
+	'HARDCHAR'               => "\\",
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		//Control flow keywrods
 		1 => array(
 			'after', 'andalso', 'begin', 'case', 'catch', 'end', 'fun', 'if',
@@ -275,24 +275,24 @@ $language_data = array(
 			'big', 'binary', 'float', 'integer', 'little', 'signed', 'unit', 'unsigned'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array('(', ')', '[', ']', '{', '}'),
 		1 => array('->', ',', ';', '.'),
 		2 => array('<<', '>>'),
 		3 => array('=', '||', '-', '+', '*', '/', '++', '--', '!', '<', '>', '>=',
 			'=<', '==', '/=', '=:=', '=/=')
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #186895;',
 			2 => 'color: #014ea4;',
 			3 => 'color: #fa6fff;',
@@ -300,34 +300,34 @@ $language_data = array(
 			5 => 'color: #ff4e18;',
 			6 => 'color: #9d4f37;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #109ab8;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff7800;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff9600;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #004866;',
 			1 => 'color: #6bb810;',
 			2 => 'color: #ee3800;',
 			3 => 'color: #014ea4;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #6941fd;',
 			1 => 'color: #d400ed;',
 			2 => 'color: #5400b3;',
@@ -338,10 +338,9 @@ $language_data = array(
 			7 => 'color: #d400ed;',
 			8 => 'color: #ff9600;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -349,90 +348,90 @@ $language_data = array(
 		5 => 'http://erlang.org/doc/man/{FNAME}.html',
 		6 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '-&gt;',
 		2 => ':'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//�Macro definitions
 		0 => array(
-			GESHI_SEARCH => '(-define\s*\()([a-zA-Z0-9_]+)(\(|,)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(-define\s*\()([a-zA-Z0-9_]+)(\(|,)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Record definitions
 		1 => array(
-			GESHI_SEARCH => '(-record\s*\()([a-zA-Z0-9_]+)(,)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(-record\s*\()([a-zA-Z0-9_]+)(,)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Precompiler directives
 		2 => array(
-			GESHI_SEARCH => '(-)([a-z][a-zA-Z0-9_]*)(\()',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(-)([a-z][a-zA-Z0-9_]*)(\()',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Functions
 		3 => array(
-			GESHI_SEARCH => '([a-z]\w*|\'\w*\')(\s*\()',
-			GESHI_REPLACE => '\1',
+			GESHI_SEARCH    => '([a-z]\w*|\'\w*\')(\s*\()',
+			GESHI_REPLACE   => '\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '\2'
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => '\2'
 		),
 		// Macros
 		4 => array(
-			GESHI_SEARCH => '(\?)([a-zA-Z0-9_]+)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(\?)([a-zA-Z0-9_]+)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => ''
 		),
 		// Variables - With hack to avoid interfering wish GeSHi internals
 		5 => array(
-			GESHI_SEARCH => '([([{,<+*-\/=\s!]|&lt;)(?!(?:PIPE|SEMI|DOT|NUM|REG3XP\d*)\W)([A-Z_]\w*)(?!\w)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '([([{,<+*-\/=\s!]|&lt;)(?!(?:PIPE|SEMI|DOT|NUM|REG3XP\d*)\W)([A-Z_]\w*)(?!\w)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => ''
 		),
 		// ASCII�codes
 		6 => '(\$[a-zA-Z0-9_])',
 		// Records
 		7 => array(
-			GESHI_SEARCH => '(#)([a-z][a-zA-Z0-9_]*)(\.|\{)',
-			GESHI_REPLACE => '\2',
+			GESHI_SEARCH    => '(#)([a-z][a-zA-Z0-9_]*)(\.|\{)',
+			GESHI_REPLACE   => '\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\3'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\3'
 		),
 		// Numbers with a different radix
 		8 => '(?<=>)(#[a-zA-Z0-9]*)'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			3 => array(
 				'DISALLOWED_BEFORE' => '(?<![\w])',
-				'DISALLOWED_AFTER' => ''//'(?=\s*\()'
+				'DISALLOWED_AFTER'  => ''//'(?=\s*\()'
 			),
 			5 => array(
 				'DISALLOWED_BEFORE' => '(?<=\'|)',
-				'DISALLOWED_AFTER' => '(?=(\'|):)'
+				'DISALLOWED_AFTER'  => '(?=(\'|):)'
 			),
 			6 => array(
 				'DISALLOWED_BEFORE' => '(?<=\/|-)',
-				'DISALLOWED_AFTER' => ''
+				'DISALLOWED_AFTER'  => ''
 			)
 		)
 	),

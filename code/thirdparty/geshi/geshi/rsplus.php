@@ -56,13 +56,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'R / S+',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'R / S+',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'else', 'global', 'in', 'otherwise', 'persistent',
 		),
@@ -389,23 +389,23 @@ $language_data = array(
 			'write.table', 'wsbrowser', 'xedit', 'xemacs', 'zip.file.extract',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']', '!', '%', '^', '&', '/', '+', '-', '*', '=', '<', '>', ';', '|', '<-', '->',
 		'^', '-', ':', '::', ':::', '!', '!=', '*', '?',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF; font-weight: bold;',
 			2 => 'color: #0000FF; font-weight: bold;',
 			3 => 'color: #CC9900; font-weight: bold;',
@@ -415,35 +415,35 @@ $language_data = array(
 			7 => 'color: #0000FF; font-weight: bold;',
 			8 => 'color: #0000FF; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #228B22;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;',
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #080;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => '',
 			2 => ''
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #080;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color:#A020F0;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '')
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => 'http://stat.ethz.ch/R-manual/R-devel/library/base/html/{FNAME}.html', // Base Package
 		3 => 'http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/{FNAME}.html', // Datasets
@@ -453,29 +453,27 @@ $language_data = array(
 		7 => 'http://stat.ethz.ch/R-manual/R-devel/library/stats/html/{FNAME}.html', // stats
 		8 => 'http://stat.ethz.ch/R-manual/R-devel/library/utils/html/{FNAME}.html' // utils
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 		2 => '::'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => array(
-			GESHI_SEARCH => "([^\w])'([^\\n\\r']*)'",
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => "([^\w])'([^\\n\\r']*)'",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => "\\1'",
-			GESHI_AFTER => "'"
+			GESHI_BEFORE    => "\\1'",
+			GESHI_AFTER     => "'"
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#;>|^&\\.])(?<!\/html\/)",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-&;\\.])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_\|%\\-&;\\.])"
 		)
 	)
 );

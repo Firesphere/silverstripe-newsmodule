@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Comment model.
  * Holds the comments for the selected news-item where it's posted.
@@ -6,6 +7,15 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @property string Title
+ * @property string Name
+ * @property string Email
+ * @property string MD5Email
+ * @property string URL
+ * @property HTMLText Comment
+ * @property Boolean AkismetMarked
+ * @property Boolean Visible
+ * @property Boolean ShowGravatar
  * @method News News() The origin of the comment
  */
 class Comment extends DataObject implements PermissionProvider
@@ -14,15 +24,15 @@ class Comment extends DataObject implements PermissionProvider
 	 * Here are a bunch of statics. If you don't know what it does, you should read the Silverstripe documentation.
 	 */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
-		'Name' => 'Varchar(255)',
-		'Email' => 'Varchar(255)',
-		'MD5Email' => 'Varchar(255)',
-		'URL' => 'Varchar(255)',
-		'Comment' => 'HTMLText',
-		'AkismetMarked' => 'boolean(false)',
-		'Visible' => 'boolean(true)',
-		'ShowGravatar' => 'Boolean(true)',
+		'Title'         => 'Varchar(255)',
+		'Name'          => 'Varchar(255)',
+		'Email'         => 'Varchar(255)',
+		'MD5Email'      => 'Varchar(255)',
+		'URL'           => 'Varchar(255)',
+		'Comment'       => 'HTMLText',
+		'AkismetMarked' => 'Boolean(false)',
+		'Visible'       => 'Boolean(true)',
+		'ShowGravatar'  => 'Boolean(true)',
 	);
 	private static $has_one = array(
 		'News' => 'News',
@@ -37,7 +47,7 @@ class Comment extends DataObject implements PermissionProvider
 
 	/**
 	 * Define singular name translatable
-	 * @return type Singular name
+	 * @return string Singular name
 	 */
 	public function singular_name()
 	{
@@ -50,7 +60,7 @@ class Comment extends DataObject implements PermissionProvider
 
 	/**
 	 * Define plural name translatable
-	 * @return type Plural name
+	 * @return string Plural name
 	 */
 	public function plural_name()
 	{
@@ -70,15 +80,15 @@ class Comment extends DataObject implements PermissionProvider
 	{
 		$labels = parent::fieldLabels($includerelations);
 		$commentLabels = array(
-			'Title' => _t('Comment.TITLE', 'Title'),
-			'Name' => _t('Comment.NAME', 'Name'),
-			'Email' => _t('Comment.EMAIL', 'Email'),
-			'URL' => _t('Comment.URL', 'URL'),
-			'Comment' => _t('Comment.COMMENT', 'Comment'),
+			'Title'         => _t('Comment.TITLE', 'Title'),
+			'Name'          => _t('Comment.NAME', 'Name'),
+			'Email'         => _t('Comment.EMAIL', 'Email'),
+			'URL'           => _t('Comment.URL', 'URL'),
+			'Comment'       => _t('Comment.COMMENT', 'Comment'),
 			'AkismetMarked' => _t('Comment.AKISMETMARKED', 'Akismet marked'),
-			'Visible' => _t('Comment.VISIBLE', 'Visible'),
-			'ShowGravatar' => _t('Comment.GRAVATAR', 'Show Gravatar'),
-			'News' => _t('Comment.NEWS', 'News'),
+			'Visible'       => _t('Comment.VISIBLE', 'Visible'),
+			'ShowGravatar'  => _t('Comment.GRAVATAR', 'Show Gravatar'),
+			'News'          => _t('Comment.NEWS', 'News'),
 		);
 		return array_merge($commentLabels, $labels);
 	}
@@ -178,7 +188,7 @@ class Comment extends DataObject implements PermissionProvider
 			$akismet->setCommentContent($this->Comment);
 			$akismet->setCommentAuthorEmail($this->Email);
 			$akismet->setCommentAuthorURL($this->URL);
-			$result = (int) $akismet->isCommentSpam();
+			$result = (int)$akismet->isCommentSpam();
 			if ($result) {
 				$this->AkismetMarked = true;
 				$this->Visible = false;
@@ -200,46 +210,46 @@ class Comment extends DataObject implements PermissionProvider
 	{
 		return array(
 			'CREATE_COMMENT' => array(
-				'name' => _t('Comment.PERMISSION_CREATE_DESCRIPTION', 'Create comments'),
+				'name'     => _t('Comment.PERMISSION_CREATE_DESCRIPTION', 'Create comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Comment.PERMISSION_CREATE_HELP', 'Permission required to create new comments in the CMS.')
+				'help'     => _t('Comment.PERMISSION_CREATE_HELP', 'Permission required to create new comments in the CMS.')
 			),
-			'EDIT_COMMENT' => array(
-				'name' => _t('Comment.PERMISSION_EDIT_DESCRIPTION', 'Edit comments'),
+			'EDIT_COMMENT'   => array(
+				'name'     => _t('Comment.PERMISSION_EDIT_DESCRIPTION', 'Edit comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Comment.PERMISSION_EDIT_HELP', 'Permission required to edit existing comments.')
+				'help'     => _t('Comment.PERMISSION_EDIT_HELP', 'Permission required to edit existing comments.')
 			),
 			'DELETE_COMMENT' => array(
-				'name' => _t('Comment.PERMISSION_DELETE_DESCRIPTION', 'Delete comments'),
+				'name'     => _t('Comment.PERMISSION_DELETE_DESCRIPTION', 'Delete comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Comment.PERMISSION_DELETE_HELP', 'Permission required to delete existing comments.')
+				'help'     => _t('Comment.PERMISSION_DELETE_HELP', 'Permission required to delete existing comments.')
 			),
-			'VIEW_COMMENT' => array(
-				'name' => _t('Comment.PERMISSION_VIEW_DESCRIPTION', 'View comments'),
+			'VIEW_COMMENT'   => array(
+				'name'     => _t('Comment.PERMISSION_VIEW_DESCRIPTION', 'View comments'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Comment.PERMISSION_VIEW_HELP', 'Permission required to view existing comments in the CMS.')
+				'help'     => _t('Comment.PERMISSION_VIEW_HELP', 'Permission required to view existing comments in the CMS.')
 			),
 		);
 	}
 
 	public function canCreate($member = null)
 	{
-		return(Permission::checkMember($member, array('CREATE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('CREATE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null)
 	{
-		return(Permission::checkMember($member, array('EDIT_COMMENT', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('EDIT_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null)
 	{
-		return(Permission::checkMember($member, array('DELETE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('DELETE_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null)
 	{
-		return(Permission::checkMember($member, array('VIEW_COMMENT', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('VIEW_COMMENT', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 }

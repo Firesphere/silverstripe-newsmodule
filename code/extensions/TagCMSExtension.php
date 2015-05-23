@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Handler for the CMS options for tags. This cleans up the Tags class.
  * This is pure for readability, it has no super powers.
@@ -10,7 +11,7 @@ class TagCMSExtension extends DataExtension
 
 	/**
 	 * @todo fix sortorder
-	 * @return FieldList $fields Fields that are editable.
+	 * @param FieldList $fields
 	 */
 	public function updateCMSFields(FieldList $fields)
 	{
@@ -23,7 +24,8 @@ class TagCMSExtension extends DataExtension
 			Tab::create(
 				'Main', // Name
 				_t('Tag.MAIN', 'Main'), // Title
-				/** Fields */ $text = TextField::create('Title', $owner->fieldLabel('Title')), $html = HTMLEditorField::create('Description', $owner->fieldLabel('Description')), $uplo = UploadField::create('Impression', $owner->fieldLabel('Impression'))
+				/** Fields */
+				$text = TextField::create('Title', $owner->fieldLabel('Title')), $html = HTMLEditorField::create('Description', $owner->fieldLabel('Description')), $uplo = UploadField::create('Impression', $owner->fieldLabel('Impression'))
 			)
 		);
 	}

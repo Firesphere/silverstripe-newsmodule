@@ -39,50 +39,50 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Smalltalk',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array('"' => '"'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'"),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Smalltalk',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array('"' => '"'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'"),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'self', 'super', 'true', 'false', 'nil'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'[', ']', '=', ':=', '(', ')', '#'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true
+		1              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #7f007f;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #007f00; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => ''
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7f0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #7f0000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => ''
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000066; font-weight:bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000ff;',
 			1 => 'color: #7f0000;',
 			2 => 'color: #7f0000;',
@@ -90,64 +90,61 @@ $language_data = array(
 			5 => 'color: #00007f;',
 			6 => 'color: #00007f;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => ''
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		0 => array(
-			GESHI_SEARCH => '([^a-zA-Z0-9_#<])([A-Z]+[a-zA-Z0-9_]*)(?!>)', //class names
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '([^a-zA-Z0-9_#<])([A-Z]+[a-zA-Z0-9_]*)(?!>)', //class names
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		1 => array(
-			GESHI_SEARCH => '(#+)([a-zA-Z0-9_]+)', //symbols
-			GESHI_REPLACE => '\\1\\2',
+			GESHI_SEARCH    => '(#+)([a-zA-Z0-9_]+)', //symbols
+			GESHI_REPLACE   => '\\1\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		2 => array(
-			GESHI_SEARCH => '(#\s*\([^)]*\))', //array symbols
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(#\s*\([^)]*\))', //array symbols
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		3 => array(
-			GESHI_SEARCH => '<PIPE>([a-zA-Z0-9_\s]+)<PIPE>', //temporary variables
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '<PIPE>([a-zA-Z0-9_\s]+)<PIPE>', //temporary variables
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '|',
-			GESHI_AFTER => '|'
+			GESHI_BEFORE    => '|',
+			GESHI_AFTER     => '|'
 		),
 		5 => array(
-			GESHI_SEARCH => '([:(,=[.*\/+-]\s*(?!\d+\/))([a-zA-Z0-9_]+)', //message parameters, message receivers
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '([:(,=[.*\/+-]\s*(?!\d+\/))([a-zA-Z0-9_]+)', //message parameters, message receivers
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 's',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		6 => array(
-			GESHI_SEARCH => '([a-zA-Z0-9_]+)(\s*:=)', //assignment targets
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '([a-zA-Z0-9_]+)(\s*:=)', //assignment targets
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '\\2'
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => '\\2'
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

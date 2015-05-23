@@ -1,9 +1,10 @@
 <?php
+
 /**
  * To clean up and make the News object cleaner.
  * Also, easier reading for functions etc.
  * It has no super powers.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  */
@@ -46,10 +47,10 @@ class NewsCMSExtension extends DataExtension
 		$owner = $this->owner;
 		$this->field_list = array(
 			'Root.Main' => array(
-				0 => TextField::create('Title', $owner->fieldLabel('Title')),
-				6 => HTMLEditorField::create('Content', $owner->fieldLabel('Content')),
-				8 => TextField::create('Author', $owner->fieldLabel('Author')),
-				9 => DateField::create('PublishFrom', $owner->fieldLabel('PublishFrom'))->setConfig('showcalendar', true),
+				0  => TextField::create('Title', $owner->fieldLabel('Title')),
+				6  => HTMLEditorField::create('Content', $owner->fieldLabel('Content')),
+				8  => TextField::create('Author', $owner->fieldLabel('Author')),
+				9  => DateField::create('PublishFrom', $owner->fieldLabel('PublishFrom'))->setConfig('showcalendar', true),
 				10 => CheckboxField::create('Live', $owner->fieldLabel('Published')),
 				11 => CheckboxField::create('Commenting', $owner->fieldLabel('Commenting')),
 				12 => UploadField::create('Impression', $owner->fieldLabel('Impression')),
@@ -80,9 +81,9 @@ class NewsCMSExtension extends DataExtension
 		/** Setup the tab for comments, if allowed */
 		if ($siteConfig->Comments) {
 			$this->field_list['Root'][] = Tab::create(
-					'Comments', $owner->fieldLabel('Comments'), GridField::create(
-						'Comment', _t('News.COMMENTS', 'Comments'), $owner->Comments(), GridFieldConfig_RelationEditor::create()
-					)
+				'Comments', $owner->fieldLabel('Comments'), GridField::create(
+				'Comment', _t('News.COMMENTS', 'Comments'), $owner->Comments(), GridFieldConfig_RelationEditor::create()
+			)
 			);
 		}
 	}
@@ -132,7 +133,7 @@ class NewsCMSExtension extends DataExtension
 		} else {
 			if (class_exists('MultiSelectField')) {
 				/** I like multiselectfield and needed a reason to commit something */
-				$this->field_list['Root.Main'][13] = MultiSelectField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
+				$this->field_list['Root.Main'][13] = MultiSelectField::create('Tags', $owner->fieldLabel('Tags'), $this->owner);
 			} else {
 				$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
 			}
@@ -168,9 +169,9 @@ class NewsCMSExtension extends DataExtension
 				}
 
 				$this->field_list['Root'][] = Tab::create(
-						'SlideshowImages', $owner->fieldLabel('SlideshowImages'), GridField::create(
-							'SlideshowImage', _t('News.IMAGES', 'Slideshow images'), $owner->SlideshowImages()
-								->sort('SortOrder'), $gridFieldConfig)
+					'SlideshowImages', $owner->fieldLabel('SlideshowImages'), GridField::create(
+					'SlideshowImage', _t('News.IMAGES', 'Slideshow images'), $owner->SlideshowImages()
+					->sort('SortOrder'), $gridFieldConfig)
 				);
 			}
 		}
@@ -195,7 +196,7 @@ class NewsCMSExtension extends DataExtension
 	{
 		$helpText = "Publish from is auto-filled with a date if it isn't set. Note that setting a publishdate in the future will NOT make this module auto-tweet. Also, to publish from a specific date, the Published-checkbox needs to be checked. It won't go live if it isn't set to true.";
 		$this->field_list['Root'][] = Tab::create(
-				'Help', _t('News.HELPTAB', 'Help'), ReadonlyField::create('', $this->owner->fieldLabel('Help'), _t('News.BASEHELPTEXT', $helpText))
+			'Help', _t('News.HELPTAB', 'Help'), ReadonlyField::create('', $this->owner->fieldLabel('Help'), _t('News.BASEHELPTEXT', $helpText))
 		);
 	}
 

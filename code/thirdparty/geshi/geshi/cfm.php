@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'ColdFusion',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'ColdFusion',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		/* CFM Tags */
 		1 => array(
 			'cfabort', 'cfapplet', 'cfapplication', 'cfargument', 'cfassociate',
@@ -162,21 +162,21 @@ $language_data = array(
 			'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', 'NEQ'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'/', '=', '{', '}', '(', ')', '[', ']', '<', '>', '&'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #990000; font-weight: bold;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #0000FF;',
@@ -185,28 +185,27 @@ $language_data = array(
 			6 => 'color: #0000FF;',
 			7 => 'color: #0000FF;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #0000FF;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #009900;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #FF0000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #0000FF;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => 'color: #808080; font-style: italic;',
 			1 => 'color: #00bbdd;',
 			2 => 'color: #0000FF;',
@@ -214,10 +213,9 @@ $language_data = array(
 			4 => 'color: #333333;',
 			5 => 'color: #333333;'
 		),
-		'REGEXPS' => array(
-		)
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => 'http://december.com/html/4/element/{FNAMEL}.html',
 		3 => '',
@@ -226,13 +224,11 @@ $language_data = array(
 		6 => '',
 		7 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
-	'SCRIPT_DELIMITERS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_ALWAYS,
+	'SCRIPT_DELIMITERS'      => array(
 		0 => array(
 			'<!--' => '-->'
 		),
@@ -256,23 +252,23 @@ $language_data = array(
 		4 => true,
 		5 => true
 	),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			1 => array(
 				'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
-				'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+				'DISALLOWED_AFTER'  => '(?=\s|\/|&gt;)',
 			),
 			2 => array(
 				'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
-				'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+				'DISALLOWED_AFTER'  => '(?=\s|\/|&gt;)',
 			),
 			3 => array(
 				'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^])', // allow ; before keywords
-				'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-])', // allow & after keywords
+				'DISALLOWED_AFTER'  => '(?![a-zA-Z0-9_\|%\\-])', // allow & after keywords
 			),
 			7 => array(
 				'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>&|^])', // allow ; before keywords
-				'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-])', // allow & after keywords
+				'DISALLOWED_AFTER'  => '(?![a-zA-Z0-9_\|%\\-])', // allow & after keywords
 			)
 		)
 	)

@@ -40,15 +40,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'newlisp',
-	'COMMENT_SINGLE' => array(1 => ';', 2 => '#'),
-	'COMMENT_MULTI' => array('[text]' => '[/text]', '{' => '}'), // also used for strings
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_SCI_ZERO,
-	'TAB_WIDTH' => 2,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'newlisp',
+	'COMMENT_SINGLE'         => array(1 => ';', 2 => '#'),
+	'COMMENT_MULTI'          => array('[text]' => '[/text]', '{' => '}'), // also used for strings
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_SCI_ZERO,
+	'TAB_WIDTH'              => 2,
+	'KEYWORDS'               => array(
 		1 => array(
 			'NaN?', 'abort', 'abs', 'acos', 'acosh', 'add', 'address', 'amb', 'and',
 			'append', 'append-file', 'apply', 'args', 'array', 'array-list', 'array?',
@@ -101,7 +101,7 @@ $language_data = array(
 			'zero?'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'(', ')', '\''
 		),
@@ -110,39 +110,39 @@ $language_data = array(
 			'<', '<<', '<=', '=', '>', '>=', '>>', '^', '|'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false
+		1              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000AA;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #808080; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #808080; font-style: italic;',
 			'MULTI' => 'color: #00aa00; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #009900;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #009900;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #777700;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #000099;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #AA0000;',
 			1 => 'color: #0000AA;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #00aa00;',
 			1 => 'color: #00aa00;',
 			2 => 'color: #00aa00;',
@@ -150,15 +150,14 @@ $language_data = array(
 			4 => 'color: #00aa00;',
 			5 => 'color: #AA0000;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.newlisp.org/downloads/newlisp_manual.html#{FNAME}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(':'),
-	'REGEXPS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(':'),
+	'REGEXPS'                => array(
 		// tags in newlispdoc
 		0 => "\s+@\S*?\s+",
 		// dollar sign symbols
@@ -172,13 +171,11 @@ $language_data = array(
 		// variable references
 		5 => "'[\w\-]+"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
-		'OOLANG' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
+		'OOLANG'   => array(
 			'MATCH_AFTER' => '[a-zA-Z][a-zA-Z0-9_\-]*'
 		),
 		'KEYWORDS' => array(

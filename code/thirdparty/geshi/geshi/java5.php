@@ -51,20 +51,20 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Java(TM) 2 Platform Standard Edition 5.0',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'Java(TM) 2 Platform Standard Edition 5.0',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		//Import and Package directives (Basic Support only)
 		2 => '/(?:(?<=import[\\n\\s](?!static))|(?<=import[\\n\\s]static[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
 		// javadoc comments
 		3 => '#/\*\*(?![\*\/]).*\*/#sU'
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
-		1 => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
+		1   => array(
 			/* see the authoritative list of all 50 Java keywords at */
 			/* http://java.sun.com/docs/books/jls/third_edition/html/lexical.html#229308 */
 
@@ -72,12 +72,12 @@ $language_data = array(
 			'case', 'default', 'do', 'else', 'for',
 			'goto', 'if', 'switch', 'while'
 
-		/* IMO 'break', 'continue', 'return' and 'throw' */
-		/* should also be added to this group, as they   */
-		/* also manage the control flow,                 */
-		/* arguably 'try'/'catch'/'finally' as well      */
+			/* IMO 'break', 'continue', 'return' and 'throw' */
+			/* should also be added to this group, as they   */
+			/* also manage the control flow,                 */
+			/* arguably 'try'/'catch'/'finally' as well      */
 		),
-		2 => array(
+		2   => array(
 			/* java keywords, part 2 */
 
 			'break', 'continue', 'return', 'throw',
@@ -88,306 +88,306 @@ $language_data = array(
 			'public', 'static', 'strictfp', 'super', 'synchronized',
 			'this', 'throws', 'transient', 'volatile'
 		),
-		3 => array(
+		3   => array(
 			/* Java keywords, part 3: primitive data types and 'void' */
 			'boolean', 'byte', 'char', 'double',
 			'float', 'int', 'long', 'short', 'void'
 		),
-		4 => array(
+		4   => array(
 			/* other reserved words in Java: literals */
 			/* should be styled to look similar to numbers and Strings */
 			'false', 'null', 'true'
 		),
-		5 => array(
+		5   => array(
 			'Applet', 'AppletContext', 'AppletStub', 'AudioClip'
 		),
-		6 => array(
+		6   => array(
 			'AWTError', 'AWTEvent', 'AWTEventMulticaster', 'AWTException', 'AWTKeyStroke', 'AWTPermission', 'ActiveEvent', 'Adjustable', 'AlphaComposite', 'BasicStroke', 'BorderLayout', 'BufferCapabilities', 'BufferCapabilities.FlipContents', 'Button', 'Canvas', 'CardLayout', 'Checkbox', 'CheckboxGroup', 'CheckboxMenuItem', 'Choice', 'Color', 'Component', 'ComponentOrientation', 'Composite', 'CompositeContext', 'Container', 'ContainerOrderFocusTraversalPolicy', 'Cursor', 'DefaultFocusTraversalPolicy', 'DefaultKeyboardFocusManager', 'Dialog', 'Dimension', 'DisplayMode', 'EventQueue', 'FileDialog', 'FlowLayout', 'FocusTraversalPolicy', 'Font', 'FontFormatException', 'FontMetrics', 'Frame', 'GradientPaint', 'Graphics', 'Graphics2D', 'GraphicsConfigTemplate', 'GraphicsConfiguration', 'GraphicsDevice', 'GraphicsEnvironment', 'GridBagConstraints', 'GridBagLayout', 'GridLayout', 'HeadlessException', 'IllegalComponentStateException', 'Image', 'ImageCapabilities', 'Insets', 'ItemSelectable', 'JobAttributes',
 			'JobAttributes.DefaultSelectionType', 'JobAttributes.DestinationType', 'JobAttributes.DialogType', 'JobAttributes.MultipleDocumentHandlingType', 'JobAttributes.SidesType', 'KeyEventDispatcher', 'KeyEventPostProcessor', 'KeyboardFocusManager', 'Label', 'LayoutManager', 'LayoutManager2', 'MediaTracker', 'Menu', 'MenuBar', 'MenuComponent', 'MenuContainer', 'MenuItem', 'MenuShortcut', 'MouseInfo', 'PageAttributes', 'PageAttributes.ColorType', 'PageAttributes.MediaType', 'PageAttributes.OrientationRequestedType', 'PageAttributes.OriginType', 'PageAttributes.PrintQualityType', 'Paint', 'PaintContext', 'Panel', 'Point', 'PointerInfo', 'Polygon', 'PopupMenu', 'PrintGraphics', 'PrintJob', 'Rectangle', 'RenderingHints', 'RenderingHints.Key', 'Robot', 'ScrollPane', 'ScrollPaneAdjustable', 'Scrollbar', 'Shape', 'Stroke', 'SystemColor', 'TextArea', 'TextComponent', 'TextField', 'TexturePaint', 'Toolkit', 'Transparency', 'Window'
 		),
-		7 => array(
+		7   => array(
 			'CMMException', 'ColorSpace', 'ICC_ColorSpace', 'ICC_Profile', 'ICC_ProfileGray', 'ICC_ProfileRGB', 'ProfileDataException'
 		),
-		8 => array(
+		8   => array(
 			'Clipboard', 'ClipboardOwner', 'DataFlavor', 'FlavorEvent', 'FlavorListener', 'FlavorMap', 'FlavorTable', 'MimeTypeParseException', 'StringSelection', 'SystemFlavorMap', 'Transferable', 'UnsupportedFlavorException'
 		),
-		9 => array(
+		9   => array(
 			'Autoscroll', 'DnDConstants', 'DragGestureEvent', 'DragGestureListener', 'DragGestureRecognizer', 'DragSource', 'DragSourceAdapter', 'DragSourceContext', 'DragSourceDragEvent', 'DragSourceDropEvent', 'DragSourceEvent', 'DragSourceListener', 'DragSourceMotionListener', 'DropTarget', 'DropTarget.DropTargetAutoScroller', 'DropTargetAdapter', 'DropTargetContext', 'DropTargetDragEvent', 'DropTargetDropEvent', 'DropTargetEvent', 'DropTargetListener', 'InvalidDnDOperationException', 'MouseDragGestureRecognizer'
 		),
-		10 => array(
+		10  => array(
 			'AWTEventListener', 'AWTEventListenerProxy', 'ActionEvent', 'ActionListener', 'AdjustmentEvent', 'AdjustmentListener', 'ComponentAdapter', 'ComponentEvent', 'ComponentListener', 'ContainerAdapter', 'ContainerEvent', 'ContainerListener', 'FocusAdapter', 'FocusEvent', 'FocusListener', 'HierarchyBoundsAdapter', 'HierarchyBoundsListener', 'HierarchyEvent', 'HierarchyListener', 'InputEvent', 'InputMethodEvent', 'InputMethodListener', 'InvocationEvent', 'ItemEvent', 'ItemListener', 'KeyAdapter', 'KeyEvent', 'KeyListener', 'MouseAdapter', 'MouseListener', 'MouseMotionAdapter', 'MouseMotionListener', 'MouseWheelEvent', 'MouseWheelListener', 'PaintEvent', 'TextEvent', 'TextListener', 'WindowAdapter', 'WindowEvent', 'WindowFocusListener', 'WindowListener', 'WindowStateListener'
 		),
-		11 => array(
+		11  => array(
 			'FontRenderContext', 'GlyphJustificationInfo', 'GlyphMetrics', 'GlyphVector', 'GraphicAttribute', 'ImageGraphicAttribute', 'LineBreakMeasurer', 'LineMetrics', 'MultipleMaster', 'NumericShaper', 'ShapeGraphicAttribute', 'TextAttribute', 'TextHitInfo', 'TextLayout', 'TextLayout.CaretPolicy', 'TextMeasurer', 'TransformAttribute'
 		),
-		12 => array(
+		12  => array(
 			'AffineTransform', 'Arc2D', 'Arc2D.Double', 'Arc2D.Float', 'Area', 'CubicCurve2D', 'CubicCurve2D.Double', 'CubicCurve2D.Float', 'Dimension2D', 'Ellipse2D', 'Ellipse2D.Double', 'Ellipse2D.Float', 'FlatteningPathIterator', 'GeneralPath', 'IllegalPathStateException', 'Line2D', 'Line2D.Double', 'Line2D.Float', 'NoninvertibleTransformException', 'PathIterator', 'Point2D', 'Point2D.Double', 'Point2D.Float', 'QuadCurve2D', 'QuadCurve2D.Double', 'QuadCurve2D.Float', 'Rectangle2D', 'Rectangle2D.Double', 'Rectangle2D.Float', 'RectangularShape', 'RoundRectangle2D', 'RoundRectangle2D.Double', 'RoundRectangle2D.Float'
 		),
-		13 => array(
+		13  => array(
 			'InputContext', 'InputMethodHighlight', 'InputMethodRequests', 'InputSubset'
 		),
-		14 => array(
+		14  => array(
 			'InputMethod', 'InputMethodContext', 'InputMethodDescriptor'
 		),
-		15 => array(
+		15  => array(
 			'AffineTransformOp', 'AreaAveragingScaleFilter', 'BandCombineOp', 'BandedSampleModel', 'BufferStrategy', 'BufferedImage', 'BufferedImageFilter', 'BufferedImageOp', 'ByteLookupTable', 'ColorConvertOp', 'ColorModel', 'ComponentColorModel', 'ComponentSampleModel', 'ConvolveOp', 'CropImageFilter', 'DataBuffer', 'DataBufferByte', 'DataBufferDouble', 'DataBufferFloat', 'DataBufferInt', 'DataBufferShort', 'DataBufferUShort', 'DirectColorModel', 'FilteredImageSource', 'ImageConsumer', 'ImageFilter', 'ImageObserver', 'ImageProducer', 'ImagingOpException', 'IndexColorModel', 'Kernel', 'LookupOp', 'LookupTable', 'MemoryImageSource', 'MultiPixelPackedSampleModel', 'PackedColorModel', 'PixelGrabber', 'PixelInterleavedSampleModel', 'RGBImageFilter', 'Raster', 'RasterFormatException', 'RasterOp', 'RenderedImage', 'ReplicateScaleFilter', 'RescaleOp', 'SampleModel', 'ShortLookupTable', 'SinglePixelPackedSampleModel', 'TileObserver', 'VolatileImage', 'WritableRaster', 'WritableRenderedImage'
 		),
-		16 => array(
+		16  => array(
 			'ContextualRenderedImageFactory', 'ParameterBlock', 'RenderContext', 'RenderableImage', 'RenderableImageOp', 'RenderableImageProducer', 'RenderedImageFactory'
 		),
-		17 => array(
+		17  => array(
 			'Book', 'PageFormat', 'Pageable', 'Paper', 'Printable', 'PrinterAbortException', 'PrinterException', 'PrinterGraphics', 'PrinterIOException', 'PrinterJob'
 		),
-		18 => array(
+		18  => array(
 			'AppletInitializer', 'BeanDescriptor', 'BeanInfo', 'Beans', 'Customizer', 'DefaultPersistenceDelegate', 'DesignMode', 'Encoder', 'EventHandler', 'EventSetDescriptor', 'ExceptionListener', 'Expression', 'FeatureDescriptor', 'IndexedPropertyChangeEvent', 'IndexedPropertyDescriptor', 'Introspector', 'MethodDescriptor', 'ParameterDescriptor', 'PersistenceDelegate', 'PropertyChangeEvent', 'PropertyChangeListener', 'PropertyChangeListenerProxy', 'PropertyChangeSupport', 'PropertyDescriptor', 'PropertyEditor', 'PropertyEditorManager', 'PropertyEditorSupport', 'PropertyVetoException', 'SimpleBeanInfo', 'VetoableChangeListener', 'VetoableChangeListenerProxy', 'VetoableChangeSupport', 'Visibility', 'XMLDecoder', 'XMLEncoder'
 		),
-		19 => array(
+		19  => array(
 			'BeanContext', 'BeanContextChild', 'BeanContextChildComponentProxy', 'BeanContextChildSupport', 'BeanContextContainerProxy', 'BeanContextEvent', 'BeanContextMembershipEvent', 'BeanContextMembershipListener', 'BeanContextProxy', 'BeanContextServiceAvailableEvent', 'BeanContextServiceProvider', 'BeanContextServiceProviderBeanInfo', 'BeanContextServiceRevokedEvent', 'BeanContextServiceRevokedListener', 'BeanContextServices', 'BeanContextServicesListener', 'BeanContextServicesSupport', 'BeanContextServicesSupport.BCSSServiceProvider', 'BeanContextSupport', 'BeanContextSupport.BCSIterator'
 		),
-		20 => array(
+		20  => array(
 			'BufferedInputStream', 'BufferedOutputStream', 'BufferedReader', 'BufferedWriter', 'ByteArrayInputStream', 'ByteArrayOutputStream', 'CharArrayReader', 'CharArrayWriter', 'CharConversionException', 'Closeable', 'DataInput', 'DataOutput', 'EOFException', 'Externalizable', 'File', 'FileDescriptor', 'FileInputStream', 'FileNotFoundException', 'FileOutputStream', 'FilePermission', 'FileReader', 'FileWriter', 'FilenameFilter', 'FilterInputStream', 'FilterOutputStream', 'FilterReader', 'FilterWriter', 'Flushable', 'IOException', 'InputStreamReader', 'InterruptedIOException', 'InvalidClassException', 'InvalidObjectException', 'LineNumberInputStream', 'LineNumberReader', 'NotActiveException', 'NotSerializableException', 'ObjectInput', 'ObjectInputStream', 'ObjectInputStream.GetField', 'ObjectInputValidation', 'ObjectOutput', 'ObjectOutputStream', 'ObjectOutputStream.PutField', 'ObjectStreamClass', 'ObjectStreamConstants', 'ObjectStreamException', 'ObjectStreamField', 'OptionalDataException', 'OutputStreamWriter',
 			'PipedInputStream', 'PipedOutputStream', 'PipedReader', 'PipedWriter', 'PrintStream', 'PrintWriter', 'PushbackInputStream', 'PushbackReader', 'RandomAccessFile', 'Reader', 'SequenceInputStream', 'Serializable', 'SerializablePermission', 'StreamCorruptedException', 'StreamTokenizer', 'StringBufferInputStream', 'StringReader', 'StringWriter', 'SyncFailedException', 'UTFDataFormatException', 'UnsupportedEncodingException', 'WriteAbortedException', 'Writer'
 		),
-		21 => array(
+		21  => array(
 			'AbstractMethodError', 'Appendable', 'ArithmeticException', 'ArrayIndexOutOfBoundsException', 'ArrayStoreException', 'AssertionError', 'Boolean', 'Byte', 'CharSequence', 'Character', 'Character.Subset', 'Character.UnicodeBlock', 'Class', 'ClassCastException', 'ClassCircularityError', 'ClassFormatError', 'ClassLoader', 'ClassNotFoundException', 'CloneNotSupportedException', 'Cloneable', 'Comparable', 'Compiler', 'Deprecated', 'Double', 'Enum', 'EnumConstantNotPresentException', 'Error', 'Exception', 'ExceptionInInitializerError', 'Float', 'IllegalAccessError', 'IllegalAccessException', 'IllegalArgumentException', 'IllegalMonitorStateException', 'IllegalStateException', 'IllegalThreadStateException', 'IncompatibleClassChangeError', 'IndexOutOfBoundsException', 'InheritableThreadLocal', 'InstantiationError', 'InstantiationException', 'Integer', 'InternalError', 'InterruptedException', 'Iterable', 'LinkageError', 'Long', 'Math', 'NegativeArraySizeException', 'NoClassDefFoundError', 'NoSuchFieldError',
 			'NoSuchFieldException', 'NoSuchMethodError', 'NoSuchMethodException', 'NullPointerException', 'Number', 'NumberFormatException', 'OutOfMemoryError', 'Override', 'Package', 'Process', 'ProcessBuilder', 'Readable', 'Runnable', 'Runtime', 'RuntimeException', 'RuntimePermission', 'SecurityException', 'SecurityManager', 'Short', 'StackOverflowError', 'StackTraceElement', 'StrictMath', 'String', 'StringBuffer', 'StringBuilder', 'StringIndexOutOfBoundsException', 'SuppressWarnings', 'System', 'Thread', 'Thread.State', 'Thread.UncaughtExceptionHandler', 'ThreadDeath', 'ThreadGroup', 'ThreadLocal', 'Throwable', 'TypeNotPresentException', 'UnknownError', 'UnsatisfiedLinkError', 'UnsupportedClassVersionError', 'UnsupportedOperationException', 'VerifyError', 'VirtualMachineError', 'Void'
 		),
-		22 => array(
+		22  => array(
 			'AnnotationFormatError', 'AnnotationTypeMismatchException', 'Documented', 'ElementType', 'IncompleteAnnotationException', 'Inherited', 'Retention', 'RetentionPolicy', 'Target'
 		),
-		23 => array(
+		23  => array(
 			'ClassDefinition', 'ClassFileTransformer', 'IllegalClassFormatException', 'Instrumentation', 'UnmodifiableClassException'
 		),
-		24 => array(
+		24  => array(
 			'ClassLoadingMXBean', 'CompilationMXBean', 'GarbageCollectorMXBean', 'ManagementFactory', 'ManagementPermission', 'MemoryMXBean', 'MemoryManagerMXBean', 'MemoryNotificationInfo', 'MemoryPoolMXBean', 'MemoryType', 'MemoryUsage', 'OperatingSystemMXBean', 'RuntimeMXBean', 'ThreadInfo', 'ThreadMXBean'
 		),
-		25 => array(
+		25  => array(
 			'PhantomReference', 'ReferenceQueue', 'SoftReference', 'WeakReference'
 		),
-		26 => array(
+		26  => array(
 			'AccessibleObject', 'AnnotatedElement', 'Constructor', 'Field', 'GenericArrayType', 'GenericDeclaration', 'GenericSignatureFormatError', 'InvocationHandler', 'InvocationTargetException', 'MalformedParameterizedTypeException', 'Member', 'Method', 'Modifier', 'ParameterizedType', 'ReflectPermission', 'Type', 'TypeVariable', 'UndeclaredThrowableException', 'WildcardType'
 		),
-		27 => array(
+		27  => array(
 			'BigDecimal', 'BigInteger', 'MathContext', 'RoundingMode'
 		),
-		28 => array(
+		28  => array(
 			'Authenticator', 'Authenticator.RequestorType', 'BindException', 'CacheRequest', 'CacheResponse', 'ContentHandlerFactory', 'CookieHandler', 'DatagramPacket', 'DatagramSocket', 'DatagramSocketImpl', 'DatagramSocketImplFactory', 'FileNameMap', 'HttpRetryException', 'HttpURLConnection', 'Inet4Address', 'Inet6Address', 'InetAddress', 'InetSocketAddress', 'JarURLConnection', 'MalformedURLException', 'MulticastSocket', 'NetPermission', 'NetworkInterface', 'NoRouteToHostException', 'PasswordAuthentication', 'PortUnreachableException', 'ProtocolException', 'Proxy.Type', 'ProxySelector', 'ResponseCache', 'SecureCacheResponse', 'ServerSocket', 'Socket', 'SocketAddress', 'SocketException', 'SocketImpl', 'SocketImplFactory', 'SocketOptions', 'SocketPermission', 'SocketTimeoutException', 'URI', 'URISyntaxException', 'URL', 'URLClassLoader', 'URLConnection', 'URLDecoder', 'URLEncoder', 'URLStreamHandler', 'URLStreamHandlerFactory', 'UnknownServiceException'
 		),
-		29 => array(
+		29  => array(
 			'Buffer', 'BufferOverflowException', 'BufferUnderflowException', 'ByteBuffer', 'ByteOrder', 'CharBuffer', 'DoubleBuffer', 'FloatBuffer', 'IntBuffer', 'InvalidMarkException', 'LongBuffer', 'MappedByteBuffer', 'ReadOnlyBufferException', 'ShortBuffer'
 		),
-		30 => array(
+		30  => array(
 			'AlreadyConnectedException', 'AsynchronousCloseException', 'ByteChannel', 'CancelledKeyException', 'Channel', 'Channels', 'ClosedByInterruptException', 'ClosedChannelException', 'ClosedSelectorException', 'ConnectionPendingException', 'DatagramChannel', 'FileChannel', 'FileChannel.MapMode', 'FileLock', 'FileLockInterruptionException', 'GatheringByteChannel', 'IllegalBlockingModeException', 'IllegalSelectorException', 'InterruptibleChannel', 'NoConnectionPendingException', 'NonReadableChannelException', 'NonWritableChannelException', 'NotYetBoundException', 'NotYetConnectedException', 'OverlappingFileLockException', 'Pipe', 'Pipe.SinkChannel', 'Pipe.SourceChannel', 'ReadableByteChannel', 'ScatteringByteChannel', 'SelectableChannel', 'SelectionKey', 'Selector', 'ServerSocketChannel', 'SocketChannel', 'UnresolvedAddressException', 'UnsupportedAddressTypeException', 'WritableByteChannel'
 		),
-		31 => array(
+		31  => array(
 			'AbstractInterruptibleChannel', 'AbstractSelectableChannel', 'AbstractSelectionKey', 'AbstractSelector', 'SelectorProvider'
 		),
-		32 => array(
+		32  => array(
 			'CharacterCodingException', 'Charset', 'CharsetDecoder', 'CharsetEncoder', 'CoderMalfunctionError', 'CoderResult', 'CodingErrorAction', 'IllegalCharsetNameException', 'MalformedInputException', 'UnmappableCharacterException', 'UnsupportedCharsetException'
 		),
-		33 => array(
+		33  => array(
 			'CharsetProvider'
 		),
-		34 => array(
+		34  => array(
 			'AccessException', 'AlreadyBoundException', 'ConnectIOException', 'MarshalException', 'MarshalledObject', 'Naming', 'NoSuchObjectException', 'NotBoundException', 'RMISecurityException', 'RMISecurityManager', 'Remote', 'RemoteException', 'ServerError', 'ServerException', 'ServerRuntimeException', 'StubNotFoundException', 'UnexpectedException', 'UnmarshalException'
 		),
-		35 => array(
+		35  => array(
 			'Activatable', 'ActivateFailedException', 'ActivationDesc', 'ActivationException', 'ActivationGroup', 'ActivationGroupDesc', 'ActivationGroupDesc.CommandEnvironment', 'ActivationGroupID', 'ActivationGroup_Stub', 'ActivationID', 'ActivationInstantiator', 'ActivationMonitor', 'ActivationSystem', 'Activator', 'UnknownGroupException', 'UnknownObjectException'
 		),
-		36 => array(
+		36  => array(
 			'DGC', 'Lease', 'VMID'
 		),
-		37 => array(
+		37  => array(
 			'LocateRegistry', 'Registry', 'RegistryHandler'
 		),
-		38 => array(
+		38  => array(
 			'ExportException', 'LoaderHandler', 'LogStream', 'ObjID', 'Operation', 'RMIClassLoader', 'RMIClassLoaderSpi', 'RMIClientSocketFactory', 'RMIFailureHandler', 'RMIServerSocketFactory', 'RMISocketFactory', 'RemoteCall', 'RemoteObject', 'RemoteObjectInvocationHandler', 'RemoteRef', 'RemoteServer', 'RemoteStub', 'ServerCloneException', 'ServerNotActiveException', 'ServerRef', 'Skeleton', 'SkeletonMismatchException', 'SkeletonNotFoundException', 'SocketSecurityException', 'UID', 'UnicastRemoteObject', 'Unreferenced'
 		),
-		39 => array(
+		39  => array(
 			'AccessControlContext', 'AccessControlException', 'AccessController', 'AlgorithmParameterGenerator', 'AlgorithmParameterGeneratorSpi', 'AlgorithmParameters', 'AlgorithmParametersSpi', 'AllPermission', 'AuthProvider', 'BasicPermission', 'CodeSigner', 'CodeSource', 'DigestException', 'DigestInputStream', 'DigestOutputStream', 'DomainCombiner', 'GeneralSecurityException', 'Guard', 'GuardedObject', 'Identity', 'IdentityScope', 'InvalidAlgorithmParameterException', 'InvalidParameterException', 'Key', 'KeyException', 'KeyFactory', 'KeyFactorySpi', 'KeyManagementException', 'KeyPair', 'KeyPairGenerator', 'KeyPairGeneratorSpi', 'KeyRep', 'KeyRep.Type', 'KeyStore', 'KeyStore.Builder', 'KeyStore.CallbackHandlerProtection', 'KeyStore.Entry', 'KeyStore.LoadStoreParameter', 'KeyStore.PasswordProtection', 'KeyStore.PrivateKeyEntry', 'KeyStore.ProtectionParameter', 'KeyStore.SecretKeyEntry', 'KeyStore.TrustedCertificateEntry', 'KeyStoreException', 'KeyStoreSpi', 'MessageDigest', 'MessageDigestSpi',
 			'NoSuchAlgorithmException', 'NoSuchProviderException', 'PermissionCollection', 'Permissions', 'PrivateKey', 'PrivilegedAction', 'PrivilegedActionException', 'PrivilegedExceptionAction', 'ProtectionDomain', 'Provider', 'Provider.Service', 'ProviderException', 'PublicKey', 'SecureClassLoader', 'SecureRandom', 'SecureRandomSpi', 'Security', 'SecurityPermission', 'Signature', 'SignatureException', 'SignatureSpi', 'SignedObject', 'Signer', 'UnrecoverableEntryException', 'UnrecoverableKeyException', 'UnresolvedPermission'
 		),
-		40 => array(
+		40  => array(
 			'Acl', 'AclEntry', 'AclNotFoundException', 'Group', 'LastOwnerException', 'NotOwnerException', 'Owner'
 		),
-		41 => array(
+		41  => array(
 			'CRL', 'CRLException', 'CRLSelector', 'CertPath', 'CertPath.CertPathRep', 'CertPathBuilder', 'CertPathBuilderException', 'CertPathBuilderResult', 'CertPathBuilderSpi', 'CertPathParameters', 'CertPathValidator', 'CertPathValidatorException', 'CertPathValidatorResult', 'CertPathValidatorSpi', 'CertSelector', 'CertStore', 'CertStoreException', 'CertStoreParameters', 'CertStoreSpi', 'Certificate.CertificateRep', 'CertificateFactory', 'CertificateFactorySpi', 'CollectionCertStoreParameters', 'LDAPCertStoreParameters', 'PKIXBuilderParameters', 'PKIXCertPathBuilderResult', 'PKIXCertPathChecker', 'PKIXCertPathValidatorResult', 'PKIXParameters', 'PolicyNode', 'PolicyQualifierInfo', 'TrustAnchor', 'X509CRL', 'X509CRLEntry', 'X509CRLSelector', 'X509CertSelector', 'X509Extension'
 		),
-		42 => array(
+		42  => array(
 			'DSAKey', 'DSAKeyPairGenerator', 'DSAParams', 'DSAPrivateKey', 'DSAPublicKey', 'ECKey', 'ECPrivateKey', 'ECPublicKey', 'RSAKey', 'RSAMultiPrimePrivateCrtKey', 'RSAPrivateCrtKey', 'RSAPrivateKey', 'RSAPublicKey'
 		),
-		43 => array(
+		43  => array(
 			'AlgorithmParameterSpec', 'DSAParameterSpec', 'DSAPrivateKeySpec', 'DSAPublicKeySpec', 'ECField', 'ECFieldF2m', 'ECFieldFp', 'ECGenParameterSpec', 'ECParameterSpec', 'ECPoint', 'ECPrivateKeySpec', 'ECPublicKeySpec', 'EllipticCurve', 'EncodedKeySpec', 'InvalidKeySpecException', 'InvalidParameterSpecException', 'KeySpec', 'MGF1ParameterSpec', 'PKCS8EncodedKeySpec', 'PSSParameterSpec', 'RSAKeyGenParameterSpec', 'RSAMultiPrimePrivateCrtKeySpec', 'RSAOtherPrimeInfo', 'RSAPrivateCrtKeySpec', 'RSAPrivateKeySpec', 'RSAPublicKeySpec', 'X509EncodedKeySpec'
 		),
-		44 => array(
+		44  => array(
 			'BatchUpdateException', 'Blob', 'CallableStatement', 'Clob', 'Connection', 'DataTruncation', 'DatabaseMetaData', 'Driver', 'DriverManager', 'DriverPropertyInfo', 'ParameterMetaData', 'PreparedStatement', 'Ref', 'ResultSet', 'ResultSetMetaData', 'SQLData', 'SQLException', 'SQLInput', 'SQLOutput', 'SQLPermission', 'SQLWarning', 'Savepoint', 'Struct', 'Time', 'Types'
 		),
-		45 => array(
+		45  => array(
 			'AttributedCharacterIterator', 'AttributedCharacterIterator.Attribute', 'AttributedString', 'Bidi', 'BreakIterator', 'CharacterIterator', 'ChoiceFormat', 'CollationElementIterator', 'CollationKey', 'Collator', 'DateFormat', 'DateFormat.Field', 'DateFormatSymbols', 'DecimalFormat', 'DecimalFormatSymbols', 'FieldPosition', 'Format', 'Format.Field', 'MessageFormat', 'MessageFormat.Field', 'NumberFormat', 'NumberFormat.Field', 'ParseException', 'ParsePosition', 'RuleBasedCollator', 'SimpleDateFormat', 'StringCharacterIterator'
 		),
-		46 => array(
+		46  => array(
 			'AbstractCollection', 'AbstractList', 'AbstractMap', 'AbstractQueue', 'AbstractSequentialList', 'AbstractSet', 'ArrayList', 'Arrays', 'BitSet', 'Calendar', 'Collection', 'Collections', 'Comparator', 'ConcurrentModificationException', 'Currency', 'Dictionary', 'DuplicateFormatFlagsException', 'EmptyStackException', 'EnumMap', 'EnumSet', 'Enumeration', 'EventListenerProxy', 'EventObject', 'FormatFlagsConversionMismatchException', 'Formattable', 'FormattableFlags', 'Formatter.BigDecimalLayoutForm', 'FormatterClosedException', 'GregorianCalendar', 'HashMap', 'HashSet', 'Hashtable', 'IdentityHashMap', 'IllegalFormatCodePointException', 'IllegalFormatConversionException', 'IllegalFormatException', 'IllegalFormatFlagsException', 'IllegalFormatPrecisionException', 'IllegalFormatWidthException', 'InputMismatchException', 'InvalidPropertiesFormatException', 'Iterator', 'LinkedHashMap', 'LinkedHashSet', 'LinkedList', 'ListIterator', 'ListResourceBundle', 'Locale', 'Map', 'Map.Entry', 'MissingFormatArgumentException',
 			'MissingFormatWidthException', 'MissingResourceException', 'NoSuchElementException', 'Observable', 'Observer', 'PriorityQueue', 'Properties', 'PropertyPermission', 'PropertyResourceBundle', 'Queue', 'Random', 'RandomAccess', 'ResourceBundle', 'Scanner', 'Set', 'SimpleTimeZone', 'SortedMap', 'SortedSet', 'Stack', 'StringTokenizer', 'TimeZone', 'TimerTask', 'TooManyListenersException', 'TreeMap', 'TreeSet', 'UUID', 'UnknownFormatConversionException', 'UnknownFormatFlagsException', 'Vector', 'WeakHashMap'
 		),
-		47 => array(
+		47  => array(
 			'AbstractExecutorService', 'ArrayBlockingQueue', 'BlockingQueue', 'BrokenBarrierException', 'Callable', 'CancellationException', 'CompletionService', 'ConcurrentHashMap', 'ConcurrentLinkedQueue', 'ConcurrentMap', 'CopyOnWriteArrayList', 'CopyOnWriteArraySet', 'CountDownLatch', 'CyclicBarrier', 'DelayQueue', 'Delayed', 'Exchanger', 'ExecutionException', 'Executor', 'ExecutorCompletionService', 'ExecutorService', 'Executors', 'Future', 'FutureTask', 'LinkedBlockingQueue', 'PriorityBlockingQueue', 'RejectedExecutionException', 'RejectedExecutionHandler', 'ScheduledExecutorService', 'ScheduledFuture', 'ScheduledThreadPoolExecutor', 'Semaphore', 'SynchronousQueue', 'ThreadFactory', 'ThreadPoolExecutor', 'ThreadPoolExecutor.AbortPolicy', 'ThreadPoolExecutor.CallerRunsPolicy', 'ThreadPoolExecutor.DiscardOldestPolicy', 'ThreadPoolExecutor.DiscardPolicy', 'TimeUnit', 'TimeoutException'
 		),
-		48 => array(
+		48  => array(
 			'AtomicBoolean', 'AtomicInteger', 'AtomicIntegerArray', 'AtomicIntegerFieldUpdater', 'AtomicLong', 'AtomicLongArray', 'AtomicLongFieldUpdater', 'AtomicMarkableReference', 'AtomicReference', 'AtomicReferenceArray', 'AtomicReferenceFieldUpdater', 'AtomicStampedReference'
 		),
-		49 => array(
+		49  => array(
 			'AbstractQueuedSynchronizer', 'Condition', 'Lock', 'LockSupport', 'ReadWriteLock', 'ReentrantLock', 'ReentrantReadWriteLock', 'ReentrantReadWriteLock.ReadLock', 'ReentrantReadWriteLock.WriteLock'
 		),
-		50 => array(
+		50  => array(
 			'Attributes.Name', 'JarEntry', 'JarException', 'JarFile', 'JarInputStream', 'JarOutputStream', 'Manifest', 'Pack200', 'Pack200.Packer', 'Pack200.Unpacker'
 		),
-		51 => array(
+		51  => array(
 			'ConsoleHandler', 'ErrorManager', 'FileHandler', 'Filter', 'Handler', 'Level', 'LogManager', 'LogRecord', 'Logger', 'LoggingMXBean', 'LoggingPermission', 'MemoryHandler', 'SimpleFormatter', 'SocketHandler', 'StreamHandler', 'XMLFormatter'
 		),
-		52 => array(
+		52  => array(
 			'AbstractPreferences', 'BackingStoreException', 'InvalidPreferencesFormatException', 'NodeChangeEvent', 'NodeChangeListener', 'PreferenceChangeEvent', 'PreferenceChangeListener', 'Preferences', 'PreferencesFactory'
 		),
-		53 => array(
+		53  => array(
 			'MatchResult', 'Matcher', 'Pattern', 'PatternSyntaxException'
 		),
-		54 => array(
+		54  => array(
 			'Adler32', 'CRC32', 'CheckedInputStream', 'CheckedOutputStream', 'Checksum', 'DataFormatException', 'Deflater', 'DeflaterOutputStream', 'GZIPInputStream', 'GZIPOutputStream', 'Inflater', 'InflaterInputStream', 'ZipEntry', 'ZipException', 'ZipFile', 'ZipInputStream', 'ZipOutputStream'
 		),
-		55 => array(
+		55  => array(
 			'Accessible', 'AccessibleAction', 'AccessibleAttributeSequence', 'AccessibleBundle', 'AccessibleComponent', 'AccessibleContext', 'AccessibleEditableText', 'AccessibleExtendedComponent', 'AccessibleExtendedTable', 'AccessibleExtendedText', 'AccessibleHyperlink', 'AccessibleHypertext', 'AccessibleIcon', 'AccessibleKeyBinding', 'AccessibleRelation', 'AccessibleRelationSet', 'AccessibleResourceBundle', 'AccessibleRole', 'AccessibleSelection', 'AccessibleState', 'AccessibleStateSet', 'AccessibleStreamable', 'AccessibleTable', 'AccessibleTableModelChange', 'AccessibleText', 'AccessibleTextSequence', 'AccessibleValue'
 		),
-		56 => array(
+		56  => array(
 			'ActivityCompletedException', 'ActivityRequiredException', 'InvalidActivityException'
 		),
-		57 => array(
+		57  => array(
 			'BadPaddingException', 'Cipher', 'CipherInputStream', 'CipherOutputStream', 'CipherSpi', 'EncryptedPrivateKeyInfo', 'ExemptionMechanism', 'ExemptionMechanismException', 'ExemptionMechanismSpi', 'IllegalBlockSizeException', 'KeyAgreement', 'KeyAgreementSpi', 'KeyGenerator', 'KeyGeneratorSpi', 'Mac', 'MacSpi', 'NoSuchPaddingException', 'NullCipher', 'SealedObject', 'SecretKey', 'SecretKeyFactory', 'SecretKeyFactorySpi', 'ShortBufferException'
 		),
-		58 => array(
+		58  => array(
 			'DHKey', 'DHPrivateKey', 'DHPublicKey', 'PBEKey'
 		),
-		59 => array(
+		59  => array(
 			'DESKeySpec', 'DESedeKeySpec', 'DHGenParameterSpec', 'DHParameterSpec', 'DHPrivateKeySpec', 'DHPublicKeySpec', 'IvParameterSpec', 'OAEPParameterSpec', 'PBEKeySpec', 'PBEParameterSpec', 'PSource', 'PSource.PSpecified', 'RC2ParameterSpec', 'RC5ParameterSpec', 'SecretKeySpec'
 		),
-		60 => array(
+		60  => array(
 			'IIOException', 'IIOImage', 'IIOParam', 'IIOParamController', 'ImageIO', 'ImageReadParam', 'ImageReader', 'ImageTranscoder', 'ImageTypeSpecifier', 'ImageWriteParam', 'ImageWriter'
 		),
-		61 => array(
+		61  => array(
 			'IIOReadProgressListener', 'IIOReadUpdateListener', 'IIOReadWarningListener', 'IIOWriteProgressListener', 'IIOWriteWarningListener'
 		),
-		62 => array(
+		62  => array(
 			'IIOInvalidTreeException', 'IIOMetadata', 'IIOMetadataController', 'IIOMetadataFormat', 'IIOMetadataFormatImpl', 'IIOMetadataNode'
 		),
-		63 => array(
+		63  => array(
 			'BMPImageWriteParam'
 		),
-		64 => array(
+		64  => array(
 			'JPEGHuffmanTable', 'JPEGImageReadParam', 'JPEGImageWriteParam', 'JPEGQTable'
 		),
-		65 => array(
+		65  => array(
 			'IIORegistry', 'IIOServiceProvider', 'ImageInputStreamSpi', 'ImageOutputStreamSpi', 'ImageReaderSpi', 'ImageReaderWriterSpi', 'ImageTranscoderSpi', 'ImageWriterSpi', 'RegisterableService', 'ServiceRegistry', 'ServiceRegistry.Filter'
 		),
-		66 => array(
+		66  => array(
 			'FileCacheImageInputStream', 'FileCacheImageOutputStream', 'FileImageInputStream', 'FileImageOutputStream', 'IIOByteBuffer', 'ImageInputStream', 'ImageInputStreamImpl', 'ImageOutputStream', 'ImageOutputStreamImpl', 'MemoryCacheImageInputStream', 'MemoryCacheImageOutputStream'
 		),
-		67 => array(
+		67  => array(
 			'AttributeChangeNotification', 'AttributeChangeNotificationFilter', 'AttributeNotFoundException', 'AttributeValueExp', 'BadAttributeValueExpException', 'BadBinaryOpValueExpException', 'BadStringOperationException', 'Descriptor', 'DescriptorAccess', 'DynamicMBean', 'InstanceAlreadyExistsException', 'InstanceNotFoundException', 'InvalidApplicationException', 'JMException', 'JMRuntimeException', 'ListenerNotFoundException', 'MBeanAttributeInfo', 'MBeanConstructorInfo', 'MBeanException', 'MBeanFeatureInfo', 'MBeanInfo', 'MBeanNotificationInfo', 'MBeanOperationInfo', 'MBeanParameterInfo', 'MBeanPermission', 'MBeanRegistration', 'MBeanRegistrationException', 'MBeanServer', 'MBeanServerBuilder', 'MBeanServerConnection', 'MBeanServerDelegate', 'MBeanServerDelegateMBean', 'MBeanServerFactory', 'MBeanServerInvocationHandler', 'MBeanServerNotification', 'MBeanServerPermission', 'MBeanTrustPermission', 'MalformedObjectNameException', 'NotCompliantMBeanException', 'Notification', 'NotificationBroadcaster',
 			'NotificationBroadcasterSupport', 'NotificationEmitter', 'NotificationFilter', 'NotificationFilterSupport', 'NotificationListener', 'ObjectInstance', 'ObjectName', 'OperationsException', 'PersistentMBean', 'Query', 'QueryEval', 'QueryExp', 'ReflectionException', 'RuntimeErrorException', 'RuntimeMBeanException', 'RuntimeOperationsException', 'ServiceNotFoundException', 'StandardMBean', 'StringValueExp', 'ValueExp'
 		),
-		68 => array(
+		68  => array(
 			'ClassLoaderRepository', 'MLet', 'MLetMBean', 'PrivateClassLoader', 'PrivateMLet'
 		),
-		69 => array(
+		69  => array(
 			'DescriptorSupport', 'InvalidTargetObjectTypeException', 'ModelMBean', 'ModelMBeanAttributeInfo', 'ModelMBeanConstructorInfo', 'ModelMBeanInfo', 'ModelMBeanInfoSupport', 'ModelMBeanNotificationBroadcaster', 'ModelMBeanNotificationInfo', 'ModelMBeanOperationInfo', 'RequiredModelMBean', 'XMLParseException'
 		),
-		70 => array(
+		70  => array(
 			'CounterMonitor', 'CounterMonitorMBean', 'GaugeMonitor', 'GaugeMonitorMBean', 'Monitor', 'MonitorMBean', 'MonitorNotification', 'MonitorSettingException', 'StringMonitor', 'StringMonitorMBean'
 		),
-		71 => array(
+		71  => array(
 			'ArrayType', 'CompositeData', 'CompositeDataSupport', 'CompositeType', 'InvalidOpenTypeException', 'KeyAlreadyExistsException', 'OpenDataException', 'OpenMBeanAttributeInfo', 'OpenMBeanAttributeInfoSupport', 'OpenMBeanConstructorInfo', 'OpenMBeanConstructorInfoSupport', 'OpenMBeanInfo', 'OpenMBeanInfoSupport', 'OpenMBeanOperationInfo', 'OpenMBeanOperationInfoSupport', 'OpenMBeanParameterInfo', 'OpenMBeanParameterInfoSupport', 'SimpleType', 'TabularData', 'TabularDataSupport', 'TabularType'
 		),
-		72 => array(
+		72  => array(
 			'InvalidRelationIdException', 'InvalidRelationServiceException', 'InvalidRelationTypeException', 'InvalidRoleInfoException', 'InvalidRoleValueException', 'MBeanServerNotificationFilter', 'Relation', 'RelationException', 'RelationNotFoundException', 'RelationNotification', 'RelationService', 'RelationServiceMBean', 'RelationServiceNotRegisteredException', 'RelationSupport', 'RelationSupportMBean', 'RelationType', 'RelationTypeNotFoundException', 'RelationTypeSupport', 'Role', 'RoleInfo', 'RoleInfoNotFoundException', 'RoleList', 'RoleNotFoundException', 'RoleResult', 'RoleStatus', 'RoleUnresolved', 'RoleUnresolvedList'
 		),
-		73 => array(
+		73  => array(
 			'JMXAuthenticator', 'JMXConnectionNotification', 'JMXConnector', 'JMXConnectorFactory', 'JMXConnectorProvider', 'JMXConnectorServer', 'JMXConnectorServerFactory', 'JMXConnectorServerMBean', 'JMXConnectorServerProvider', 'JMXPrincipal', 'JMXProviderException', 'JMXServerErrorException', 'JMXServiceURL', 'MBeanServerForwarder', 'NotificationResult', 'SubjectDelegationPermission', 'TargetedNotification'
 		),
-		74 => array(
+		74  => array(
 			'RMIConnection', 'RMIConnectionImpl', 'RMIConnectionImpl_Stub', 'RMIConnector', 'RMIConnectorServer', 'RMIIIOPServerImpl', 'RMIJRMPServerImpl', 'RMIServer', 'RMIServerImpl', 'RMIServerImpl_Stub'
 		),
-		75 => array(
+		75  => array(
 			'TimerAlarmClockNotification', 'TimerMBean', 'TimerNotification'
 		),
-		76 => array(
+		76  => array(
 			'AuthenticationNotSupportedException', 'BinaryRefAddr', 'CannotProceedException', 'CommunicationException', 'CompositeName', 'CompoundName', 'ConfigurationException', 'ContextNotEmptyException', 'InitialContext', 'InsufficientResourcesException', 'InterruptedNamingException', 'InvalidNameException', 'LimitExceededException', 'LinkException', 'LinkLoopException', 'LinkRef', 'MalformedLinkException', 'Name', 'NameAlreadyBoundException', 'NameClassPair', 'NameNotFoundException', 'NameParser', 'NamingEnumeration', 'NamingException', 'NamingSecurityException', 'NoInitialContextException', 'NoPermissionException', 'NotContextException', 'OperationNotSupportedException', 'PartialResultException', 'RefAddr', 'Referenceable', 'ReferralException', 'ServiceUnavailableException', 'SizeLimitExceededException', 'StringRefAddr', 'TimeLimitExceededException'
 		),
-		77 => array(
+		77  => array(
 			'AttributeInUseException', 'AttributeModificationException', 'BasicAttribute', 'BasicAttributes', 'DirContext', 'InitialDirContext', 'InvalidAttributeIdentifierException', 'InvalidAttributesException', 'InvalidSearchControlsException', 'InvalidSearchFilterException', 'ModificationItem', 'NoSuchAttributeException', 'SchemaViolationException', 'SearchControls', 'SearchResult'
 		),
-		78 => array(
+		78  => array(
 			'EventContext', 'EventDirContext', 'NamespaceChangeListener', 'NamingEvent', 'NamingExceptionEvent', 'NamingListener', 'ObjectChangeListener'
 		),
-		79 => array(
+		79  => array(
 			'BasicControl', 'ControlFactory', 'ExtendedRequest', 'ExtendedResponse', 'HasControls', 'InitialLdapContext', 'LdapContext', 'LdapName', 'LdapReferralException', 'ManageReferralControl', 'PagedResultsControl', 'PagedResultsResponseControl', 'Rdn', 'SortControl', 'SortKey', 'SortResponseControl', 'StartTlsRequest', 'StartTlsResponse', 'UnsolicitedNotification', 'UnsolicitedNotificationEvent', 'UnsolicitedNotificationListener'
 		),
-		80 => array(
+		80  => array(
 			'DirObjectFactory', 'DirStateFactory', 'DirStateFactory.Result', 'DirectoryManager', 'InitialContextFactory', 'InitialContextFactoryBuilder', 'NamingManager', 'ObjectFactory', 'ObjectFactoryBuilder', 'ResolveResult', 'Resolver', 'StateFactory'
 		),
-		81 => array(
+		81  => array(
 			'ServerSocketFactory', 'SocketFactory'
 		),
-		82 => array(
+		82  => array(
 			'CertPathTrustManagerParameters', 'HandshakeCompletedEvent', 'HandshakeCompletedListener', 'HostnameVerifier', 'HttpsURLConnection', 'KeyManager', 'KeyManagerFactory', 'KeyManagerFactorySpi', 'KeyStoreBuilderParameters', 'ManagerFactoryParameters', 'SSLContext', 'SSLContextSpi', 'SSLEngine', 'SSLEngineResult', 'SSLEngineResult.HandshakeStatus', 'SSLEngineResult.Status', 'SSLException', 'SSLHandshakeException', 'SSLKeyException', 'SSLPeerUnverifiedException', 'SSLPermission', 'SSLProtocolException', 'SSLServerSocket', 'SSLServerSocketFactory', 'SSLSession', 'SSLSessionBindingEvent', 'SSLSessionBindingListener', 'SSLSessionContext', 'SSLSocket', 'SSLSocketFactory', 'TrustManager', 'TrustManagerFactory', 'TrustManagerFactorySpi', 'X509ExtendedKeyManager', 'X509KeyManager', 'X509TrustManager'
 		),
-		83 => array(
+		83  => array(
 			'AttributeException', 'CancelablePrintJob', 'Doc', 'DocFlavor', 'DocFlavor.BYTE_ARRAY', 'DocFlavor.CHAR_ARRAY', 'DocFlavor.INPUT_STREAM', 'DocFlavor.READER', 'DocFlavor.SERVICE_FORMATTED', 'DocFlavor.STRING', 'DocFlavor.URL', 'DocPrintJob', 'FlavorException', 'MultiDoc', 'MultiDocPrintJob', 'MultiDocPrintService', 'PrintException', 'PrintService', 'PrintServiceLookup', 'ServiceUI', 'ServiceUIFactory', 'SimpleDoc', 'StreamPrintService', 'StreamPrintServiceFactory', 'URIException'
 		),
-		84 => array(
+		84  => array(
 			'AttributeSetUtilities', 'DateTimeSyntax', 'DocAttribute', 'DocAttributeSet', 'EnumSyntax', 'HashAttributeSet', 'HashDocAttributeSet', 'HashPrintJobAttributeSet', 'HashPrintRequestAttributeSet', 'HashPrintServiceAttributeSet', 'IntegerSyntax', 'PrintJobAttribute', 'PrintJobAttributeSet', 'PrintRequestAttribute', 'PrintRequestAttributeSet', 'PrintServiceAttribute', 'PrintServiceAttributeSet', 'ResolutionSyntax', 'SetOfIntegerSyntax', 'Size2DSyntax', 'SupportedValuesAttribute', 'TextSyntax', 'URISyntax', 'UnmodifiableSetException'
 		),
-		85 => array(
+		85  => array(
 			'Chromaticity', 'ColorSupported', 'Compression', 'Copies', 'CopiesSupported', 'DateTimeAtCompleted', 'DateTimeAtCreation', 'DateTimeAtProcessing', 'Destination', 'DocumentName', 'Fidelity', 'Finishings', 'JobHoldUntil', 'JobImpressions', 'JobImpressionsCompleted', 'JobImpressionsSupported', 'JobKOctets', 'JobKOctetsProcessed', 'JobKOctetsSupported', 'JobMediaSheets', 'JobMediaSheetsCompleted', 'JobMediaSheetsSupported', 'JobMessageFromOperator', 'JobName', 'JobOriginatingUserName', 'JobPriority', 'JobPrioritySupported', 'JobSheets', 'JobState', 'JobStateReason', 'JobStateReasons', 'Media', 'MediaName', 'MediaPrintableArea', 'MediaSize', 'MediaSize.Engineering', 'MediaSize.ISO', 'MediaSize.JIS', 'MediaSize.NA', 'MediaSize.Other', 'MediaSizeName', 'MediaTray', 'MultipleDocumentHandling', 'NumberOfDocuments', 'NumberOfInterveningJobs', 'NumberUp', 'NumberUpSupported', 'OrientationRequested', 'OutputDeviceAssigned', 'PDLOverrideSupported', 'PageRanges', 'PagesPerMinute', 'PagesPerMinuteColor',
 			'PresentationDirection', 'PrintQuality', 'PrinterInfo', 'PrinterIsAcceptingJobs', 'PrinterLocation', 'PrinterMakeAndModel', 'PrinterMessageFromOperator', 'PrinterMoreInfo', 'PrinterMoreInfoManufacturer', 'PrinterName', 'PrinterResolution', 'PrinterState', 'PrinterStateReason', 'PrinterStateReasons', 'PrinterURI', 'QueuedJobCount', 'ReferenceUriSchemesSupported', 'RequestingUserName', 'Severity', 'SheetCollate', 'Sides'
 		),
-		86 => array(
+		86  => array(
 			'PrintEvent', 'PrintJobAdapter', 'PrintJobAttributeEvent', 'PrintJobAttributeListener', 'PrintJobEvent', 'PrintJobListener', 'PrintServiceAttributeEvent', 'PrintServiceAttributeListener'
 		),
-		87 => array(
+		87  => array(
 			'PortableRemoteObject'
 		),
-		88 => array(
+		88  => array(
 			'ClassDesc', 'PortableRemoteObjectDelegate', 'Stub', 'StubDelegate', 'Tie', 'Util', 'UtilDelegate', 'ValueHandler', 'ValueHandlerMultiFormat'
 		),
-		89 => array(
+		89  => array(
 			'SslRMIClientSocketFactory', 'SslRMIServerSocketFactory'
 		),
-		90 => array(
+		90  => array(
 			'AuthPermission', 'DestroyFailedException', 'Destroyable', 'PrivateCredentialPermission', 'RefreshFailedException', 'Refreshable', 'Subject', 'SubjectDomainCombiner'
 		),
-		91 => array(
+		91  => array(
 			'Callback', 'CallbackHandler', 'ChoiceCallback', 'ConfirmationCallback', 'LanguageCallback', 'NameCallback', 'PasswordCallback', 'TextInputCallback', 'TextOutputCallback', 'UnsupportedCallbackException'
 		),
-		92 => array(
+		92  => array(
 			'DelegationPermission', 'KerberosKey', 'KerberosPrincipal', 'KerberosTicket', 'ServicePermission'
 		),
-		93 => array(
+		93  => array(
 			'AccountException', 'AccountExpiredException', 'AccountLockedException', 'AccountNotFoundException', 'AppConfigurationEntry', 'AppConfigurationEntry.LoginModuleControlFlag', 'Configuration', 'CredentialException', 'CredentialExpiredException', 'CredentialNotFoundException', 'FailedLoginException', 'LoginContext', 'LoginException'
 		),
-		94 => array(
+		94  => array(
 			'LoginModule'
 		),
-		95 => array(
+		95  => array(
 			'X500Principal', 'X500PrivateCredential'
 		),
-		96 => array(
+		96  => array(
 			'AuthorizeCallback', 'RealmCallback', 'RealmChoiceCallback', 'Sasl', 'SaslClient', 'SaslClientFactory', 'SaslException', 'SaslServer', 'SaslServerFactory'
 		),
-		97 => array(
+		97  => array(
 			'ControllerEventListener', 'Instrument', 'InvalidMidiDataException', 'MetaEventListener', 'MetaMessage', 'MidiChannel', 'MidiDevice', 'MidiDevice.Info', 'MidiEvent', 'MidiFileFormat', 'MidiMessage', 'MidiSystem', 'MidiUnavailableException', 'Patch', 'Receiver', 'Sequence', 'Sequencer', 'Sequencer.SyncMode', 'ShortMessage', 'Soundbank', 'SoundbankResource', 'Synthesizer', 'SysexMessage', 'Track', 'Transmitter', 'VoiceStatus'
 		),
-		98 => array(
+		98  => array(
 			'MidiDeviceProvider', 'MidiFileReader', 'MidiFileWriter', 'SoundbankReader'
 		),
-		99 => array(
+		99  => array(
 			'AudioFileFormat', 'AudioFileFormat.Type', 'AudioFormat', 'AudioFormat.Encoding', 'AudioInputStream', 'AudioPermission', 'AudioSystem', 'BooleanControl', 'BooleanControl.Type', 'Clip', 'CompoundControl', 'CompoundControl.Type', 'Control.Type', 'DataLine', 'DataLine.Info', 'EnumControl', 'EnumControl.Type', 'FloatControl', 'FloatControl.Type', 'Line', 'Line.Info', 'LineEvent', 'LineEvent.Type', 'LineListener', 'LineUnavailableException', 'Mixer', 'Mixer.Info', 'Port', 'Port.Info', 'ReverbType', 'SourceDataLine', 'TargetDataLine', 'UnsupportedAudioFileException'
 		),
 		100 => array(
@@ -604,148 +604,148 @@ $language_data = array(
 			'NameValuePair', 'NameValuePairHelper', 'ORB', 'Object', 'ObjectIdHelper', 'ObjectImpl', 'OpenType', 'OutputStream', 'ParagraphView', 'Parser', 'Permission', 'Policy', 'Principal', 'Proxy', 'Reference', 'Statement', 'Timer', 'Timestamp', 'TypeMismatch', 'TypeMismatchHelper', 'UNKNOWN', 'UnknownHostException', 'X509Certificate'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
 		/* all Java keywords are case sensitive */
-		1 => true, 2 => true, 3 => true, 4 => true,
-		5 => true, 6 => true, 7 => true, 8 => true, 9 => true,
-		10 => true, 11 => true, 12 => true, 13 => true, 14 => true,
-		15 => true, 16 => true, 17 => true, 18 => true, 19 => true,
-		20 => true, 21 => true, 22 => true, 23 => true, 24 => true,
-		25 => true, 26 => true, 27 => true, 28 => true, 29 => true,
-		30 => true, 31 => true, 32 => true, 33 => true, 34 => true,
-		35 => true, 36 => true, 37 => true, 38 => true, 39 => true,
-		40 => true, 41 => true, 42 => true, 43 => true, 44 => true,
-		45 => true, 46 => true, 47 => true, 48 => true, 49 => true,
-		50 => true, 51 => true, 52 => true, 53 => true, 54 => true,
-		55 => true, 56 => true, 57 => true, 58 => true, 59 => true,
-		60 => true, 61 => true, 62 => true, 63 => true, 64 => true,
-		65 => true, 66 => true, 67 => true, 68 => true, 69 => true,
-		70 => true, 71 => true, 72 => true, 73 => true, 74 => true,
-		75 => true, 76 => true, 77 => true, 78 => true, 79 => true,
-		80 => true, 81 => true, 82 => true, 83 => true, 84 => true,
-		85 => true, 86 => true, 87 => true, 88 => true, 89 => true,
-		90 => true, 91 => true, 92 => true, 93 => true, 94 => true,
-		95 => true, 96 => true, 97 => true, 98 => true, 99 => true,
-		100 => true, 101 => true, 102 => true, 103 => true, 104 => true,
-		105 => true, 106 => true, 107 => true, 108 => true, 109 => true,
-		110 => true, 111 => true, 112 => true, 113 => true, 114 => true,
-		115 => true, 116 => true, 117 => true, 118 => true, 119 => true,
-		120 => true, 121 => true, 122 => true, 123 => true, 124 => true,
-		125 => true, 126 => true, 127 => true, 128 => true, 129 => true,
-		130 => true, 131 => true, 132 => true, 133 => true, 134 => true,
-		135 => true, 136 => true, 137 => true, 138 => true, 139 => true,
-		140 => true, 141 => true, 142 => true, 143 => true, 144 => true,
-		145 => true, 146 => true, 147 => true, 148 => true, 149 => true,
-		150 => true, 151 => true, 152 => true, 153 => true, 154 => true,
-		155 => true, 156 => true, 157 => true, 158 => true, 159 => true,
-		160 => true, 161 => true, 162 => true, 163 => true, 164 => true,
-		165 => true, 166 => true
+		1              => true, 2 => true, 3 => true, 4 => true,
+		5              => true, 6 => true, 7 => true, 8 => true, 9 => true,
+		10             => true, 11 => true, 12 => true, 13 => true, 14 => true,
+		15             => true, 16 => true, 17 => true, 18 => true, 19 => true,
+		20             => true, 21 => true, 22 => true, 23 => true, 24 => true,
+		25             => true, 26 => true, 27 => true, 28 => true, 29 => true,
+		30             => true, 31 => true, 32 => true, 33 => true, 34 => true,
+		35             => true, 36 => true, 37 => true, 38 => true, 39 => true,
+		40             => true, 41 => true, 42 => true, 43 => true, 44 => true,
+		45             => true, 46 => true, 47 => true, 48 => true, 49 => true,
+		50             => true, 51 => true, 52 => true, 53 => true, 54 => true,
+		55             => true, 56 => true, 57 => true, 58 => true, 59 => true,
+		60             => true, 61 => true, 62 => true, 63 => true, 64 => true,
+		65             => true, 66 => true, 67 => true, 68 => true, 69 => true,
+		70             => true, 71 => true, 72 => true, 73 => true, 74 => true,
+		75             => true, 76 => true, 77 => true, 78 => true, 79 => true,
+		80             => true, 81 => true, 82 => true, 83 => true, 84 => true,
+		85             => true, 86 => true, 87 => true, 88 => true, 89 => true,
+		90             => true, 91 => true, 92 => true, 93 => true, 94 => true,
+		95             => true, 96 => true, 97 => true, 98 => true, 99 => true,
+		100            => true, 101 => true, 102 => true, 103 => true, 104 => true,
+		105            => true, 106 => true, 107 => true, 108 => true, 109 => true,
+		110            => true, 111 => true, 112 => true, 113 => true, 114 => true,
+		115            => true, 116 => true, 117 => true, 118 => true, 119 => true,
+		120            => true, 121 => true, 122 => true, 123 => true, 124 => true,
+		125            => true, 126 => true, 127 => true, 128 => true, 129 => true,
+		130            => true, 131 => true, 132 => true, 133 => true, 134 => true,
+		135            => true, 136 => true, 137 => true, 138 => true, 139 => true,
+		140            => true, 141 => true, 142 => true, 143 => true, 144 => true,
+		145            => true, 146 => true, 147 => true, 148 => true, 149 => true,
+		150            => true, 151 => true, 152 => true, 153 => true, 154 => true,
+		155            => true, 156 => true, 157 => true, 158 => true, 159 => true,
+		160            => true, 161 => true, 162 => true, 163 => true, 164 => true,
+		165            => true, 166 => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			1 => 'color: #000000;  font-weight: bold;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #006600; font-weight: bold;',
-			4 => 'color: #006600; font-weight: bold;',
-			5 => 'color: #003399; font-weight: bold;',
-			6 => 'color: #003399; font-weight: bold;',
-			7 => 'color: #003399; font-weight: bold;',
-			8 => 'color: #003399; font-weight: bold;',
-			9 => 'color: #003399; font-weight: bold;',
-			10 => 'color: #003399; font-weight: bold;',
-			11 => 'color: #003399; font-weight: bold;',
-			12 => 'color: #003399; font-weight: bold;',
-			13 => 'color: #003399; font-weight: bold;',
-			14 => 'color: #003399; font-weight: bold;',
-			15 => 'color: #003399; font-weight: bold;',
-			16 => 'color: #003399; font-weight: bold;',
-			17 => 'color: #003399; font-weight: bold;',
-			18 => 'color: #003399; font-weight: bold;',
-			19 => 'color: #003399; font-weight: bold;',
-			20 => 'color: #003399; font-weight: bold;',
-			21 => 'color: #003399; font-weight: bold;',
-			22 => 'color: #003399; font-weight: bold;',
-			23 => 'color: #003399; font-weight: bold;',
-			24 => 'color: #003399; font-weight: bold;',
-			25 => 'color: #003399; font-weight: bold;',
-			26 => 'color: #003399; font-weight: bold;',
-			27 => 'color: #003399; font-weight: bold;',
-			28 => 'color: #003399; font-weight: bold;',
-			29 => 'color: #003399; font-weight: bold;',
-			30 => 'color: #003399; font-weight: bold;',
-			31 => 'color: #003399; font-weight: bold;',
-			32 => 'color: #003399; font-weight: bold;',
-			33 => 'color: #003399; font-weight: bold;',
-			34 => 'color: #003399; font-weight: bold;',
-			35 => 'color: #003399; font-weight: bold;',
-			36 => 'color: #003399; font-weight: bold;',
-			37 => 'color: #003399; font-weight: bold;',
-			38 => 'color: #003399; font-weight: bold;',
-			39 => 'color: #003399; font-weight: bold;',
-			40 => 'color: #003399; font-weight: bold;',
-			41 => 'color: #003399; font-weight: bold;',
-			42 => 'color: #003399; font-weight: bold;',
-			43 => 'color: #003399; font-weight: bold;',
-			44 => 'color: #003399; font-weight: bold;',
-			45 => 'color: #003399; font-weight: bold;',
-			46 => 'color: #003399; font-weight: bold;',
-			47 => 'color: #003399; font-weight: bold;',
-			48 => 'color: #003399; font-weight: bold;',
-			49 => 'color: #003399; font-weight: bold;',
-			50 => 'color: #003399; font-weight: bold;',
-			51 => 'color: #003399; font-weight: bold;',
-			52 => 'color: #003399; font-weight: bold;',
-			53 => 'color: #003399; font-weight: bold;',
-			54 => 'color: #003399; font-weight: bold;',
-			55 => 'color: #003399; font-weight: bold;',
-			56 => 'color: #003399; font-weight: bold;',
-			57 => 'color: #003399; font-weight: bold;',
-			58 => 'color: #003399; font-weight: bold;',
-			59 => 'color: #003399; font-weight: bold;',
-			60 => 'color: #003399; font-weight: bold;',
-			61 => 'color: #003399; font-weight: bold;',
-			62 => 'color: #003399; font-weight: bold;',
-			63 => 'color: #003399; font-weight: bold;',
-			64 => 'color: #003399; font-weight: bold;',
-			65 => 'color: #003399; font-weight: bold;',
-			66 => 'color: #003399; font-weight: bold;',
-			67 => 'color: #003399; font-weight: bold;',
-			68 => 'color: #003399; font-weight: bold;',
-			69 => 'color: #003399; font-weight: bold;',
-			70 => 'color: #003399; font-weight: bold;',
-			71 => 'color: #003399; font-weight: bold;',
-			72 => 'color: #003399; font-weight: bold;',
-			73 => 'color: #003399; font-weight: bold;',
-			74 => 'color: #003399; font-weight: bold;',
-			75 => 'color: #003399; font-weight: bold;',
-			76 => 'color: #003399; font-weight: bold;',
-			77 => 'color: #003399; font-weight: bold;',
-			78 => 'color: #003399; font-weight: bold;',
-			79 => 'color: #003399; font-weight: bold;',
-			80 => 'color: #003399; font-weight: bold;',
-			81 => 'color: #003399; font-weight: bold;',
-			82 => 'color: #003399; font-weight: bold;',
-			83 => 'color: #003399; font-weight: bold;',
-			84 => 'color: #003399; font-weight: bold;',
-			85 => 'color: #003399; font-weight: bold;',
-			86 => 'color: #003399; font-weight: bold;',
-			87 => 'color: #003399; font-weight: bold;',
-			88 => 'color: #003399; font-weight: bold;',
-			89 => 'color: #003399; font-weight: bold;',
-			90 => 'color: #003399; font-weight: bold;',
-			91 => 'color: #003399; font-weight: bold;',
-			92 => 'color: #003399; font-weight: bold;',
-			93 => 'color: #003399; font-weight: bold;',
-			94 => 'color: #003399; font-weight: bold;',
-			95 => 'color: #003399; font-weight: bold;',
-			96 => 'color: #003399; font-weight: bold;',
-			97 => 'color: #003399; font-weight: bold;',
-			98 => 'color: #003399; font-weight: bold;',
-			99 => 'color: #003399; font-weight: bold;',
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
+			1   => 'color: #000000;  font-weight: bold;',
+			2   => 'color: #000000; font-weight: bold;',
+			3   => 'color: #006600; font-weight: bold;',
+			4   => 'color: #006600; font-weight: bold;',
+			5   => 'color: #003399; font-weight: bold;',
+			6   => 'color: #003399; font-weight: bold;',
+			7   => 'color: #003399; font-weight: bold;',
+			8   => 'color: #003399; font-weight: bold;',
+			9   => 'color: #003399; font-weight: bold;',
+			10  => 'color: #003399; font-weight: bold;',
+			11  => 'color: #003399; font-weight: bold;',
+			12  => 'color: #003399; font-weight: bold;',
+			13  => 'color: #003399; font-weight: bold;',
+			14  => 'color: #003399; font-weight: bold;',
+			15  => 'color: #003399; font-weight: bold;',
+			16  => 'color: #003399; font-weight: bold;',
+			17  => 'color: #003399; font-weight: bold;',
+			18  => 'color: #003399; font-weight: bold;',
+			19  => 'color: #003399; font-weight: bold;',
+			20  => 'color: #003399; font-weight: bold;',
+			21  => 'color: #003399; font-weight: bold;',
+			22  => 'color: #003399; font-weight: bold;',
+			23  => 'color: #003399; font-weight: bold;',
+			24  => 'color: #003399; font-weight: bold;',
+			25  => 'color: #003399; font-weight: bold;',
+			26  => 'color: #003399; font-weight: bold;',
+			27  => 'color: #003399; font-weight: bold;',
+			28  => 'color: #003399; font-weight: bold;',
+			29  => 'color: #003399; font-weight: bold;',
+			30  => 'color: #003399; font-weight: bold;',
+			31  => 'color: #003399; font-weight: bold;',
+			32  => 'color: #003399; font-weight: bold;',
+			33  => 'color: #003399; font-weight: bold;',
+			34  => 'color: #003399; font-weight: bold;',
+			35  => 'color: #003399; font-weight: bold;',
+			36  => 'color: #003399; font-weight: bold;',
+			37  => 'color: #003399; font-weight: bold;',
+			38  => 'color: #003399; font-weight: bold;',
+			39  => 'color: #003399; font-weight: bold;',
+			40  => 'color: #003399; font-weight: bold;',
+			41  => 'color: #003399; font-weight: bold;',
+			42  => 'color: #003399; font-weight: bold;',
+			43  => 'color: #003399; font-weight: bold;',
+			44  => 'color: #003399; font-weight: bold;',
+			45  => 'color: #003399; font-weight: bold;',
+			46  => 'color: #003399; font-weight: bold;',
+			47  => 'color: #003399; font-weight: bold;',
+			48  => 'color: #003399; font-weight: bold;',
+			49  => 'color: #003399; font-weight: bold;',
+			50  => 'color: #003399; font-weight: bold;',
+			51  => 'color: #003399; font-weight: bold;',
+			52  => 'color: #003399; font-weight: bold;',
+			53  => 'color: #003399; font-weight: bold;',
+			54  => 'color: #003399; font-weight: bold;',
+			55  => 'color: #003399; font-weight: bold;',
+			56  => 'color: #003399; font-weight: bold;',
+			57  => 'color: #003399; font-weight: bold;',
+			58  => 'color: #003399; font-weight: bold;',
+			59  => 'color: #003399; font-weight: bold;',
+			60  => 'color: #003399; font-weight: bold;',
+			61  => 'color: #003399; font-weight: bold;',
+			62  => 'color: #003399; font-weight: bold;',
+			63  => 'color: #003399; font-weight: bold;',
+			64  => 'color: #003399; font-weight: bold;',
+			65  => 'color: #003399; font-weight: bold;',
+			66  => 'color: #003399; font-weight: bold;',
+			67  => 'color: #003399; font-weight: bold;',
+			68  => 'color: #003399; font-weight: bold;',
+			69  => 'color: #003399; font-weight: bold;',
+			70  => 'color: #003399; font-weight: bold;',
+			71  => 'color: #003399; font-weight: bold;',
+			72  => 'color: #003399; font-weight: bold;',
+			73  => 'color: #003399; font-weight: bold;',
+			74  => 'color: #003399; font-weight: bold;',
+			75  => 'color: #003399; font-weight: bold;',
+			76  => 'color: #003399; font-weight: bold;',
+			77  => 'color: #003399; font-weight: bold;',
+			78  => 'color: #003399; font-weight: bold;',
+			79  => 'color: #003399; font-weight: bold;',
+			80  => 'color: #003399; font-weight: bold;',
+			81  => 'color: #003399; font-weight: bold;',
+			82  => 'color: #003399; font-weight: bold;',
+			83  => 'color: #003399; font-weight: bold;',
+			84  => 'color: #003399; font-weight: bold;',
+			85  => 'color: #003399; font-weight: bold;',
+			86  => 'color: #003399; font-weight: bold;',
+			87  => 'color: #003399; font-weight: bold;',
+			88  => 'color: #003399; font-weight: bold;',
+			89  => 'color: #003399; font-weight: bold;',
+			90  => 'color: #003399; font-weight: bold;',
+			91  => 'color: #003399; font-weight: bold;',
+			92  => 'color: #003399; font-weight: bold;',
+			93  => 'color: #003399; font-weight: bold;',
+			94  => 'color: #003399; font-weight: bold;',
+			95  => 'color: #003399; font-weight: bold;',
+			96  => 'color: #003399; font-weight: bold;',
+			97  => 'color: #003399; font-weight: bold;',
+			98  => 'color: #003399; font-weight: bold;',
+			99  => 'color: #003399; font-weight: bold;',
 			100 => 'color: #003399; font-weight: bold;',
 			101 => 'color: #003399; font-weight: bold;',
 			102 => 'color: #003399; font-weight: bold;',
@@ -814,136 +814,134 @@ $language_data = array(
 			165 => 'color: #003399; font-weight: bold;',
 			166 => 'color: #003399; font-weight: bold;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
-			2 => 'color: #006699;',
-			3 => 'color: #008000; font-style: italic; font-weight: bold;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
+			2       => 'color: #006699;',
+			3       => 'color: #008000; font-style: italic; font-weight: bold;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006633;',
 			2 => 'color: #006633;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		)
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => '',
-		4 => '',
-		5 => 'http://docs.oracle.com/javase/7/docs/api/java/applet/{FNAME}.html',
-		6 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/{FNAME}.html',
-		7 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/color/{FNAME}.html',
-		8 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/{FNAME}.html',
-		9 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/dnd/{FNAME}.html',
-		10 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/event/{FNAME}.html',
-		11 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/font/{FNAME}.html',
-		12 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/geom/{FNAME}.html',
-		13 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/im/{FNAME}.html',
-		14 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/im/spi/{FNAME}.html',
-		15 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/image/{FNAME}.html',
-		16 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/image/renderable/{FNAME}.html',
-		17 => 'http://docs.oracle.com/javase/7/docs/api/java/awt/print/{FNAME}.html',
-		18 => 'http://docs.oracle.com/javase/7/docs/api/java/beans/{FNAME}.html',
-		19 => 'http://docs.oracle.com/javase/7/docs/api/java/beans/beancontext/{FNAME}.html',
-		20 => 'http://docs.oracle.com/javase/7/docs/api/java/io/{FNAME}.html',
-		21 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/{FNAME}.html',
-		22 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/{FNAME}.html',
-		23 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/instrument/{FNAME}.html',
-		24 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/management/{FNAME}.html',
-		25 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/ref/{FNAME}.html',
-		26 => 'http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/{FNAME}.html',
-		27 => 'http://docs.oracle.com/javase/7/docs/api/java/math/{FNAME}.html',
-		28 => 'http://docs.oracle.com/javase/7/docs/api/java/net/{FNAME}.html',
-		29 => 'http://docs.oracle.com/javase/7/docs/api/java/nio/{FNAME}.html',
-		30 => 'http://docs.oracle.com/javase/7/docs/api/java/nio/channels/{FNAME}.html',
-		31 => 'http://docs.oracle.com/javase/7/docs/api/java/nio/channels/spi/{FNAME}.html',
-		32 => 'http://docs.oracle.com/javase/7/docs/api/java/nio/charset/{FNAME}.html',
-		33 => 'http://docs.oracle.com/javase/7/docs/api/java/nio/charset/spi/{FNAME}.html',
-		34 => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/{FNAME}.html',
-		35 => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/activation/{FNAME}.html',
-		36 => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/dgc/{FNAME}.html',
-		37 => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/registry/{FNAME}.html',
-		38 => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/server/{FNAME}.html',
-		39 => 'http://docs.oracle.com/javase/7/docs/api/java/security/{FNAME}.html',
-		40 => 'http://docs.oracle.com/javase/7/docs/api/java/security/acl/{FNAME}.html',
-		41 => 'http://docs.oracle.com/javase/7/docs/api/java/security/cert/{FNAME}.html',
-		42 => 'http://docs.oracle.com/javase/7/docs/api/java/security/interfaces/{FNAME}.html',
-		43 => 'http://docs.oracle.com/javase/7/docs/api/java/security/spec/{FNAME}.html',
-		44 => 'http://docs.oracle.com/javase/7/docs/api/java/sql/{FNAME}.html',
-		45 => 'http://docs.oracle.com/javase/7/docs/api/java/text/{FNAME}.html',
-		46 => 'http://docs.oracle.com/javase/7/docs/api/java/util/{FNAME}.html',
-		47 => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/{FNAME}.html',
-		48 => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/{FNAME}.html',
-		49 => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/{FNAME}.html',
-		50 => 'http://docs.oracle.com/javase/7/docs/api/java/util/jar/{FNAME}.html',
-		51 => 'http://docs.oracle.com/javase/7/docs/api/java/util/logging/{FNAME}.html',
-		52 => 'http://docs.oracle.com/javase/7/docs/api/java/util/prefs/{FNAME}.html',
-		53 => 'http://docs.oracle.com/javase/7/docs/api/java/util/regex/{FNAME}.html',
-		54 => 'http://docs.oracle.com/javase/7/docs/api/java/util/zip/{FNAME}.html',
-		55 => 'http://docs.oracle.com/javase/7/docs/api/javax/accessibility/{FNAME}.html',
-		56 => 'http://docs.oracle.com/javase/7/docs/api/javax/activity/{FNAME}.html',
-		57 => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/{FNAME}.html',
-		58 => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/interfaces/{FNAME}.html',
-		59 => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/spec/{FNAME}.html',
-		60 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/{FNAME}.html',
-		61 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/event/{FNAME}.html',
-		62 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/metadata/{FNAME}.html',
-		63 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/plugins/bmp/{FNAME}.html',
-		64 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/plugins/jpeg/{FNAME}.html',
-		65 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/spi/{FNAME}.html',
-		66 => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/stream/{FNAME}.html',
-		67 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/{FNAME}.html',
-		68 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/loading/{FNAME}.html',
-		69 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/modelmbean/{FNAME}.html',
-		70 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/monitor/{FNAME}.html',
-		71 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/openmbean/{FNAME}.html',
-		72 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/relation/{FNAME}.html',
-		73 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/remote/{FNAME}.html',
-		74 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/remote/rmi/{FNAME}.html',
-		75 => 'http://docs.oracle.com/javase/7/docs/api/javax/management/timer/{FNAME}.html',
-		76 => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/{FNAME}.html',
-		77 => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/directory/{FNAME}.html',
-		78 => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/event/{FNAME}.html',
-		79 => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/ldap/{FNAME}.html',
-		80 => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/spi/{FNAME}.html',
-		81 => 'http://docs.oracle.com/javase/7/docs/api/javax/net/{FNAME}.html',
-		82 => 'http://docs.oracle.com/javase/7/docs/api/javax/net/ssl/{FNAME}.html',
-		83 => 'http://docs.oracle.com/javase/7/docs/api/javax/print/{FNAME}.html',
-		84 => 'http://docs.oracle.com/javase/7/docs/api/javax/print/attribute/{FNAME}.html',
-		85 => 'http://docs.oracle.com/javase/7/docs/api/javax/print/attribute/standard/{FNAME}.html',
-		86 => 'http://docs.oracle.com/javase/7/docs/api/javax/print/event/{FNAME}.html',
-		87 => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/{FNAME}.html',
-		88 => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/CORBA/{FNAME}.html',
-		89 => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/ssl/{FNAME}.html',
-		90 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/{FNAME}.html',
-		91 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/callback/{FNAME}.html',
-		92 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/kerberos/{FNAME}.html',
-		93 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/login/{FNAME}.html',
-		94 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/spi/{FNAME}.html',
-		95 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/x500/{FNAME}.html',
-		96 => 'http://docs.oracle.com/javase/7/docs/api/javax/security/sasl/{FNAME}.html',
-		97 => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/midi/{FNAME}.html',
-		98 => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/midi/spi/{FNAME}.html',
-		99 => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/sampled/{FNAME}.html',
+	'URLS'                   => array(
+		1   => '',
+		2   => '',
+		3   => '',
+		4   => '',
+		5   => 'http://docs.oracle.com/javase/7/docs/api/java/applet/{FNAME}.html',
+		6   => 'http://docs.oracle.com/javase/7/docs/api/java/awt/{FNAME}.html',
+		7   => 'http://docs.oracle.com/javase/7/docs/api/java/awt/color/{FNAME}.html',
+		8   => 'http://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/{FNAME}.html',
+		9   => 'http://docs.oracle.com/javase/7/docs/api/java/awt/dnd/{FNAME}.html',
+		10  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/event/{FNAME}.html',
+		11  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/font/{FNAME}.html',
+		12  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/geom/{FNAME}.html',
+		13  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/im/{FNAME}.html',
+		14  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/im/spi/{FNAME}.html',
+		15  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/image/{FNAME}.html',
+		16  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/image/renderable/{FNAME}.html',
+		17  => 'http://docs.oracle.com/javase/7/docs/api/java/awt/print/{FNAME}.html',
+		18  => 'http://docs.oracle.com/javase/7/docs/api/java/beans/{FNAME}.html',
+		19  => 'http://docs.oracle.com/javase/7/docs/api/java/beans/beancontext/{FNAME}.html',
+		20  => 'http://docs.oracle.com/javase/7/docs/api/java/io/{FNAME}.html',
+		21  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/{FNAME}.html',
+		22  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/annotation/{FNAME}.html',
+		23  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/instrument/{FNAME}.html',
+		24  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/management/{FNAME}.html',
+		25  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/ref/{FNAME}.html',
+		26  => 'http://docs.oracle.com/javase/7/docs/api/java/lang/reflect/{FNAME}.html',
+		27  => 'http://docs.oracle.com/javase/7/docs/api/java/math/{FNAME}.html',
+		28  => 'http://docs.oracle.com/javase/7/docs/api/java/net/{FNAME}.html',
+		29  => 'http://docs.oracle.com/javase/7/docs/api/java/nio/{FNAME}.html',
+		30  => 'http://docs.oracle.com/javase/7/docs/api/java/nio/channels/{FNAME}.html',
+		31  => 'http://docs.oracle.com/javase/7/docs/api/java/nio/channels/spi/{FNAME}.html',
+		32  => 'http://docs.oracle.com/javase/7/docs/api/java/nio/charset/{FNAME}.html',
+		33  => 'http://docs.oracle.com/javase/7/docs/api/java/nio/charset/spi/{FNAME}.html',
+		34  => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/{FNAME}.html',
+		35  => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/activation/{FNAME}.html',
+		36  => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/dgc/{FNAME}.html',
+		37  => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/registry/{FNAME}.html',
+		38  => 'http://docs.oracle.com/javase/7/docs/api/java/rmi/server/{FNAME}.html',
+		39  => 'http://docs.oracle.com/javase/7/docs/api/java/security/{FNAME}.html',
+		40  => 'http://docs.oracle.com/javase/7/docs/api/java/security/acl/{FNAME}.html',
+		41  => 'http://docs.oracle.com/javase/7/docs/api/java/security/cert/{FNAME}.html',
+		42  => 'http://docs.oracle.com/javase/7/docs/api/java/security/interfaces/{FNAME}.html',
+		43  => 'http://docs.oracle.com/javase/7/docs/api/java/security/spec/{FNAME}.html',
+		44  => 'http://docs.oracle.com/javase/7/docs/api/java/sql/{FNAME}.html',
+		45  => 'http://docs.oracle.com/javase/7/docs/api/java/text/{FNAME}.html',
+		46  => 'http://docs.oracle.com/javase/7/docs/api/java/util/{FNAME}.html',
+		47  => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/{FNAME}.html',
+		48  => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/atomic/{FNAME}.html',
+		49  => 'http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/{FNAME}.html',
+		50  => 'http://docs.oracle.com/javase/7/docs/api/java/util/jar/{FNAME}.html',
+		51  => 'http://docs.oracle.com/javase/7/docs/api/java/util/logging/{FNAME}.html',
+		52  => 'http://docs.oracle.com/javase/7/docs/api/java/util/prefs/{FNAME}.html',
+		53  => 'http://docs.oracle.com/javase/7/docs/api/java/util/regex/{FNAME}.html',
+		54  => 'http://docs.oracle.com/javase/7/docs/api/java/util/zip/{FNAME}.html',
+		55  => 'http://docs.oracle.com/javase/7/docs/api/javax/accessibility/{FNAME}.html',
+		56  => 'http://docs.oracle.com/javase/7/docs/api/javax/activity/{FNAME}.html',
+		57  => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/{FNAME}.html',
+		58  => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/interfaces/{FNAME}.html',
+		59  => 'http://docs.oracle.com/javase/7/docs/api/javax/crypto/spec/{FNAME}.html',
+		60  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/{FNAME}.html',
+		61  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/event/{FNAME}.html',
+		62  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/metadata/{FNAME}.html',
+		63  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/plugins/bmp/{FNAME}.html',
+		64  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/plugins/jpeg/{FNAME}.html',
+		65  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/spi/{FNAME}.html',
+		66  => 'http://docs.oracle.com/javase/7/docs/api/javax/imageio/stream/{FNAME}.html',
+		67  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/{FNAME}.html',
+		68  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/loading/{FNAME}.html',
+		69  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/modelmbean/{FNAME}.html',
+		70  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/monitor/{FNAME}.html',
+		71  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/openmbean/{FNAME}.html',
+		72  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/relation/{FNAME}.html',
+		73  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/remote/{FNAME}.html',
+		74  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/remote/rmi/{FNAME}.html',
+		75  => 'http://docs.oracle.com/javase/7/docs/api/javax/management/timer/{FNAME}.html',
+		76  => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/{FNAME}.html',
+		77  => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/directory/{FNAME}.html',
+		78  => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/event/{FNAME}.html',
+		79  => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/ldap/{FNAME}.html',
+		80  => 'http://docs.oracle.com/javase/7/docs/api/javax/naming/spi/{FNAME}.html',
+		81  => 'http://docs.oracle.com/javase/7/docs/api/javax/net/{FNAME}.html',
+		82  => 'http://docs.oracle.com/javase/7/docs/api/javax/net/ssl/{FNAME}.html',
+		83  => 'http://docs.oracle.com/javase/7/docs/api/javax/print/{FNAME}.html',
+		84  => 'http://docs.oracle.com/javase/7/docs/api/javax/print/attribute/{FNAME}.html',
+		85  => 'http://docs.oracle.com/javase/7/docs/api/javax/print/attribute/standard/{FNAME}.html',
+		86  => 'http://docs.oracle.com/javase/7/docs/api/javax/print/event/{FNAME}.html',
+		87  => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/{FNAME}.html',
+		88  => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/CORBA/{FNAME}.html',
+		89  => 'http://docs.oracle.com/javase/7/docs/api/javax/rmi/ssl/{FNAME}.html',
+		90  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/{FNAME}.html',
+		91  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/callback/{FNAME}.html',
+		92  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/kerberos/{FNAME}.html',
+		93  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/login/{FNAME}.html',
+		94  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/spi/{FNAME}.html',
+		95  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/auth/x500/{FNAME}.html',
+		96  => 'http://docs.oracle.com/javase/7/docs/api/javax/security/sasl/{FNAME}.html',
+		97  => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/midi/{FNAME}.html',
+		98  => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/midi/spi/{FNAME}.html',
+		99  => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/sampled/{FNAME}.html',
 		100 => 'http://docs.oracle.com/javase/7/docs/api/javax/sound/sampled/spi/{FNAME}.html',
 		101 => 'http://docs.oracle.com/javase/7/docs/api/javax/sql/{FNAME}.html',
 		102 => 'http://docs.oracle.com/javase/7/docs/api/javax/sql/rowset/{FNAME}.html',
@@ -1013,22 +1011,19 @@ $language_data = array(
 		/* ambiguous class names (appear in more than one package) */
 		166 => 'http://www.google.com/search?sitesearch=docs.oracle.com&amp;q=allinurl%3Ajavase+docs+api+{FNAME}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
-	/* Java does not use '::' */
+		/* Java does not use '::' */
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&"\'])',
-			'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-;"\'])'
+			'DISALLOWED_AFTER'  => '(?![a-zA-Z0-9_\|%\\-;"\'])'
 		)
 	)
 );

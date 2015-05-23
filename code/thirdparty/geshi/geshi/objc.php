@@ -48,24 +48,24 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Objective-C',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'Objective-C',
+	'COMMENT_SINGLE'         => array(
 		//Compiler directives
 		1 => '#',
 		//Single line C-Comments
 		2 => '//'
 	),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		//Multiline Continuation for single-line comment
 		2 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
 		//Pseudo-Highlighting of the @-sign before strings
 		3 => "/@(?=\")/"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		// Objective-C keywords
 		1 => array(
 			'while', 'switch', 'return', 'in', 'if', 'goto', 'foreach', 'for',
@@ -275,24 +275,24 @@ $language_data = array(
 			'NSAtomicStoreCacheNode', 'NSAtomicStore'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
-		9 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
+		9              => true
 	),
 	// Define the colors for the groups listed above
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #a61390;', // Objective-C keywords
 			2 => 'color: #a61390;', // Macros and constants
 			3 => 'color: #a61390;', // C standard library functions
@@ -303,35 +303,32 @@ $language_data = array(
 			8 => 'color: #2a6f76;', // AppKit protocols
 			9 => 'color: #400080;' // CoreData classes
 		),
-		'COMMENTS' => array(
-			1 => 'color: #6e371a;', // Preprocessor directives
-			2 => 'color: #11740a; font-style: italic;', // Normal C single-line comments
-			3 => 'color: #bf1d1a;', // Q-sign in front of Strings
+		'COMMENTS'    => array(
+			1       => 'color: #6e371a;', // Preprocessor directives
+			2       => 'color: #11740a; font-style: italic;', // Normal C single-line comments
+			3       => 'color: #bf1d1a;', // Q-sign in front of Strings
 			'MULTI' => 'color: #11740a; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #2400d9;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #002200;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #bf1d1a;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #2400d9;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #002200;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAME}.html',
@@ -342,15 +339,11 @@ $language_data = array(
 		8 => 'http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Protocols/{FNAME}_Protocol/',
 		9 => 'http://developer.apple.com/documentation/Cocoa/Reference/CoreDataFramework/Classes/{FNAME}_Class/'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

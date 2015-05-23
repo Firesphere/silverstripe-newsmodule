@@ -38,14 +38,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Scala',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(2 => "/\\'(?!\w\\'|\\\\)\w+(?=\s)/"),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'ESCAPE_REGEXP' => array(
+	'LANG_NAME'              => 'Scala',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(2 => "/\\'(?!\w\\'|\\\\)\w+(?=\s)/"),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'ESCAPE_REGEXP'          => array(
 		//Simple Single Char Escapes
 		1 => "#\\\\[nfrtv\$\"\n\\\\]#i",
 		//Hexadecimal Char Specs
@@ -55,7 +55,7 @@ $language_data = array(
 		//Hexadecimal Char Specs (Extended Unicode)
 		4 => "#\\\\U[\da-fA-F]{1,8}#",
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(
 			'abstract', 'case', 'catch', 'class', 'def',
 			'do', 'else', 'extends', 'false', 'final',
@@ -70,24 +70,24 @@ $language_data = array(
 			'void', 'double', 'int', 'boolean', 'byte', 'short', 'long', 'char', 'float'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?',
 		'_', ':', '=', '=>', '<<:',
 		'<%', '>:', '#', '@'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true
+		1              => true,
+		2              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff; font-weight: bold;',
 			2 => 'color: #9999cc; font-weight: bold;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000; font-style: italic;',
-			2 => 'color: #CC66FF;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000; font-style: italic;',
+			2       => 'color: #CC66FF;',
 			'MULTI' => 'color: #00ff00; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
@@ -97,41 +97,36 @@ $language_data = array(
 			3 => 'color: #4444ff; font-weight: bold;',
 			4 => 'color: #3333ff; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #F78811;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #6666FF;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #F78811;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #000000;',
 			2 => 'color: #000000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000080;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		)
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://scala-lang.org',
 		2 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

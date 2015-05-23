@@ -39,17 +39,17 @@
  *
  * *************************************************************************** */
 $language_data = array(
-	'LANG_NAME' => 'ProvideX',
-	'COMMENT_SINGLE' => array(1 => '!'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'ProvideX',
+	'COMMENT_SINGLE'         => array(1 => '!'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		// Single-Line Comments using REM command
 		2 => "/\bREM\b.*?$/i"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			// Directives
 			'*break', '*continue', '*end', '*escape', '*next', '*proceed',
@@ -197,46 +197,45 @@ $language_data = array(
 			"'_magenta'", "'_red'", "'_white'", "'_yellow'"
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array('+', '-', '*', '/', '^', '|'),
 		1 => array('++', '--', '+=', '-=', '*=', '/=', '^=', '|='),
 		2 => array('&lt;', '&gt;', '='),
 		3 => array('(', ')', '[', ']', '{', '}'),
 		4 => array(',', '@', ';', '\\')
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: navy;', // Directives
 			2 => 'color: blue;', // System Functions
 			3 => 'color: blue;', // System Variables
 			4 => 'color: #6A5ACD; font-style: italic;', // Nomads Global Variables
 			5 => 'color: #BDB76B;', // Mnemonics
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008080; font-style: italic;',
-			2 => 'color: #008080;',
+		'COMMENTS'    => array(
+			1       => 'color: #008080; font-style: italic;',
+			2       => 'color: #008080;',
 			'MULTI' => 'color: #008080; font-style: italic;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000066;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: green;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #00008B;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #008000;',
 			1 => 'color: #000099;',
 			2 => 'color: #000099;',
@@ -246,52 +245,49 @@ $language_data = array(
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			1 => 'color: #006400; font-weight: bold',
 			2 => 'color: #6A5ACD;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.allbasic.info./wiki/index.php/PX:Directive_{FNAME}',
 		2 => 'http://www.allbasic.info./wiki/index.php/PX:System_function_{FNAME}',
 		3 => 'http://www.allbasic.info./wiki/index.php/PX:System_variable_{FNAME}',
 		4 => 'http://www.allbasic.info./wiki/index.php/PX:Nomads_{FNAME}',
 		5 => 'http://www.allbasic.info./wiki/index.php/PX:Mnemonic_{FNAMEU}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => "'"
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		1 => array(
 			// Line Labels
-			GESHI_SEARCH => '([[:space:]])([a-zA-Z_][a-zA-Z0-9_]+)(:)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '([[:space:]])([a-zA-Z_][a-zA-Z0-9_]+)(:)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 		),
 		2 => array(
 			// Global String Variables
-			GESHI_SEARCH => '(\%)([a-zA-Z_][a-zA-Z0-9_]+)(\$)',
-			GESHI_REPLACE => '\\1\\2\\3',
+			GESHI_SEARCH    => '(\%)([a-zA-Z_][a-zA-Z0-9_]+)(\$)',
+			GESHI_REPLACE   => '\\1\\2\\3',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
 			'NUMBERS' => GESHI_NEVER
 		)
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

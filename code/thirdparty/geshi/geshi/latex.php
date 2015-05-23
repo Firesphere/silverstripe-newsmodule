@@ -51,15 +51,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'LaTeX',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'LaTeX',
+	'COMMENT_SINGLE'         => array(
 		1 => '%'
 	),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'addlinespace', 'and', 'address', 'appendix', 'author', 'backmatter',
 			'bfseries', 'bibitem', 'bigskip', 'blindtext', 'caption', 'captionabove',
@@ -84,112 +84,107 @@ $language_data = array(
 			'usepackage', 'vfil', 'vfill', 'vfilll', 'vspace'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		"&", "\\", "{", "}", "[", "]"
 	),
-	'CASE_SENSITIVE' => array(
-		1 => true,
+	'CASE_SENSITIVE'         => array(
+		1              => true,
 		GESHI_COMMENTS => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #800000;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #2C922C; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'BRACKETS' => array(
-		),
-		'STRINGS' => array(
+		'BRACKETS'    => array(),
+		'STRINGS'     => array(
 			0 => 'color: #000000;'
 		),
-		'NUMBERS' => array(
-		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'NUMBERS'     => array(),
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #E02020; '
 		),
-		'REGEXPS' => array(
-			1 => 'color: #8020E0; font-weight: normal;', // Math inner
-			2 => 'color: #C08020; font-weight: normal;', // [Option]
-			3 => 'color: #8020E0; font-weight: normal;', // Maths
-			4 => 'color: #800000; font-weight: normal;', // Structure: Labels
-			5 => 'color: #00008B; font-weight: bold;', // Structure (\section{->x<-})
-			6 => 'color: #800000; font-weight: normal;', // Structure (\section)
-			7 => 'color: #0000D0; font-weight: normal;', // Environment \end or \begin{->x<-} (brighter blue)
-			8 => 'color: #C00000; font-weight: normal;', // Structure \end or \begin
-			9 => 'color: #2020C0; font-weight: normal;', // {...}
+		'REGEXPS'     => array(
+			1  => 'color: #8020E0; font-weight: normal;', // Math inner
+			2  => 'color: #C08020; font-weight: normal;', // [Option]
+			3  => 'color: #8020E0; font-weight: normal;', // Maths
+			4  => 'color: #800000; font-weight: normal;', // Structure: Labels
+			5  => 'color: #00008B; font-weight: bold;', // Structure (\section{->x<-})
+			6  => 'color: #800000; font-weight: normal;', // Structure (\section)
+			7  => 'color: #0000D0; font-weight: normal;', // Environment \end or \begin{->x<-} (brighter blue)
+			8  => 'color: #C00000; font-weight: normal;', // Structure \end or \begin
+			9  => 'color: #2020C0; font-weight: normal;', // {...}
 			10 => 'color: #800000; font-weight: normal;', // \%, \& etc.
 			11 => 'color: #E00000; font-weight: normal;', // \@keyword
 			12 => 'color: #800000; font-weight: normal;', // \keyword
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.golatex.de/wiki/index.php?title=%5C{FNAME}',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// Math inner
-		1 => array(
-			GESHI_SEARCH => "(\\\\begin\\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)\\})(.*)(\\\\end\\{\\2\\})",
-			GESHI_REPLACE => '\3',
+		1  => array(
+			GESHI_SEARCH    => "(\\\\begin\\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)\\})(.*)(\\\\end\\{\\2\\})",
+			GESHI_REPLACE   => '\3',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '\1',
-			GESHI_AFTER => '\4'
+			GESHI_BEFORE    => '\1',
+			GESHI_AFTER     => '\4'
 		),
 		// [options]
-		2 => array(
-			GESHI_SEARCH => "(?<=\[).*(?=\])",
-			GESHI_REPLACE => '\0',
+		2  => array(
+			GESHI_SEARCH    => "(?<=\[).*(?=\])",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		// Math mode with $ ... $
-		3 => array(
-			GESHI_SEARCH => "\\$.+\\$",
-			GESHI_REPLACE => '\0',
+		3  => array(
+			GESHI_SEARCH    => "\\$.+\\$",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		// Structure: Label
-		4 => "\\\\(?:label|pageref|ref|cite)(?=[^a-zA-Z])",
+		4  => "\\\\(?:label|pageref|ref|cite)(?=[^a-zA-Z])",
 		// Structure: sections
-		5 => array(
-			GESHI_SEARCH => "(\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?\\{)(.*)(?=\\})",
-			GESHI_REPLACE => '\\2',
+		5  => array(
+			GESHI_SEARCH    => "(\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?\\{)(.*)(?=\\})",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'U',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		// Structure: sections
-		6 => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?(?=[^a-zA-Z])",
+		6  => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?(?=[^a-zA-Z])",
 		// environment \begin{} and \end{} (i.e. the things inside the {})
-		7 => array(
-			GESHI_SEARCH => "(\\\\(?:begin|end)\\{)(.*)(?=\\})",
-			GESHI_REPLACE => '\\2',
+		7  => array(
+			GESHI_SEARCH    => "(\\\\(?:begin|end)\\{)(.*)(?=\\})",
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'U',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		// Structure \begin and \end
-		8 => "\\\\(?:end|begin)(?=[^a-zA-Z])",
+		8  => "\\\\(?:end|begin)(?=[^a-zA-Z])",
 		// {parameters}
-		9 => array(
-			GESHI_SEARCH => "(?<=\\{)(?!<\|!REG3XP5!>).*?(?=\\})",
-			GESHI_REPLACE => '\0',
+		9  => array(
+			GESHI_SEARCH    => "(?<=\\{)(?!<\|!REG3XP5!>).*?(?=\\})",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		// \%, \& usw.
 		10 => "\\\\(?:[_$%]|&amp;)",
@@ -199,21 +194,19 @@ $language_data = array(
 		12 => "(?<!<\|!REG3XP[468]!>)\\\\[a-zA-Z]+\*?",
 // ---------------------------------------------
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
-		'COMMENTS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
+		'COMMENTS'     => array(
 			'DISALLOWED_BEFORE' => '\\'
 		),
-		'KEYWORDS' => array(
+		'KEYWORDS'     => array(
 			'DISALLOWED_BEFORE' => "(?<=\\\\)",
-			'DISALLOWED_AFTER' => "(?![A-Za-z0-9])"
+			'DISALLOWED_AFTER'  => "(?![A-Za-z0-9])"
 		),
 		'ENABLE_FLAGS' => array(
-			'NUMBERS' => GESHI_NEVER,
+			'NUMBERS'  => GESHI_NEVER,
 			'BRACKETS' => GESHI_NEVER
 		)
 	)

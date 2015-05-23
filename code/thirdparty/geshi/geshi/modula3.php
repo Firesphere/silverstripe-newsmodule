@@ -36,15 +36,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Modula-3',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array('(*' => '*)'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array("''"),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Modula-3',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array('(*' => '*)'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array("''"),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'AND', 'ANY', 'ARRAY', 'AS', 'BEGIN', 'BITS', 'BRANDED', 'BY', 'CASE',
 			'CONST', 'DIV', 'DO', 'ELSE', 'ELSIF', 'END', 'EVAL', 'EXCEPT', 'EXCEPTION',
@@ -67,68 +67,63 @@ $language_data = array(
 			'LONGREAL', 'MUTEX', 'REAL', 'REFANY', 'TEXT'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		',', ':', '=', '+', '-', '*', '/', '#'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;',
 			4 => 'color: #000066; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;',
+		'STRINGS'     => array(
+			0      => 'color: #ff0000;',
 			'HARD' => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #0066ee;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

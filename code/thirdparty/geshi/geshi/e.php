@@ -44,14 +44,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'E',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array('/**' => '*/'), // Note: This is method doc, not a general comment syntax.
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+	'LANG_NAME'              => 'E',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array('/**' => '*/'), // Note: This is method doc, not a general comment syntax.
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
 	// FIXME: The escaping inside ` is actually doubling of any interior `, $, or @ -- backslash is NOT special
-	'QUOTEMARKS' => array('\'', '"', '`'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'QUOTEMARKS'             => array('\'', '"', '`'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		// builtin control structures
 		1 => array(
 			'accum', 'break', 'try', 'continue', 'if', 'while', 'for', 'switch'
@@ -122,24 +122,24 @@ $language_data = array(
 			'virtual', 'volatile', 'wstring'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'(', ')', '{', '}', '[', ']', '+', '-', '*', '/', '%', '=', '<', '>', '!', '^', '&', '|', '?', ':', ';', ','
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #b1b100;',
 			3 => 'color: #b1b100;',
@@ -149,32 +149,32 @@ $language_data = array(
 			7 => 'color: #b1b100;',
 			8 => 'color: #b1b100;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;',
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			1 => 'color: #339933;'
 		),
-		'REGEXPS' => array(),
-		'SCRIPT' => array()
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://wiki.erights.org/wiki/{FNAME}',
 		2 => 'http://wiki.erights.org/wiki/{FNAME}',
 		3 => 'http://wiki.erights.org/wiki/{FNAME}',
@@ -184,15 +184,15 @@ $language_data = array(
 		7 => 'http://wiki.erights.org/wiki/{FNAME}',
 		8 => 'http://wiki.erights.org/wiki/{FNAME}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 		2 => '<-',
 		3 => '::'
 	),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

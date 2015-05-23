@@ -38,24 +38,24 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Go',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'Go',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		# Raw strings (escapes and linebreaks ignored)
 		2 => "#`[^`]*`#"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		1 => "#\\\\[abfnrtv\\\\\'\"]#",
 		2 => "#\\\\[0-7]{3}#",
 		3 => "#\\\\x[0-9a-fA-F]{2}#",
 		4 => "#\\\\u[0-9a-fA-F]{4}#",
 		5 => "#\\\\U[0-9a-fA-F]{8}#"
 	),
-	'NUMBERS' => array(
+	'NUMBERS'                => array(
 		# integer literals (possibly imaginary)
 		0 => '\b([1-9][0-9]*i?|0[0-7]*|0[xX][0-9a-f]+|0[0-9]*i)\b',
 		# real floating point literals
@@ -63,7 +63,7 @@ $language_data = array(
 		# imaginary floating point literals
 		2 => '\b((?:\d+\.\d*(?:[Ee][+-]?\d+)?|\.\d+(?:[Ee][+-]?\d+)?|\d+[Ee][+-]?\d+)?i)\b'
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		# statements
 		1 => array(
 			'break', 'case', 'const', 'continue', 'default', 'defer', 'else',
@@ -257,7 +257,7 @@ $language_data = array(
 			'xtea.KeySizeError'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		# delimiters
 		1 => array(
 			'(', ')', '{', '}', '[', ']', ',', ':', ';'
@@ -276,16 +276,16 @@ $language_data = array(
 			'...'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			# statements
 			1 => 'color: #b1b100; font-weight: bold;',
 			# literals
@@ -297,11 +297,11 @@ $language_data = array(
 			# library types
 			5 => 'color: #003399;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			# single-line comments
-			1 => 'color: #666666; font-style: italic;',
+			1       => 'color: #666666; font-style: italic;',
 			# raw strings
-			2 => 'color: #0000ff;',
+			2       => 'color: #0000ff;',
 			# multi-line comments
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
@@ -317,19 +317,18 @@ $language_data = array(
 			# long unicode escape
 			5 => 'color: #000099;'
 		),
-		'BRACKETS' => array(
-		),
-		'STRINGS' => array(
+		'BRACKETS'    => array(),
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;',
 			0 => 'color: #cc66cc;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			# delimiters
 			1 => 'color: #339933;',
 			# assignments
@@ -339,33 +338,31 @@ $language_data = array(
 			# vararg (highlighted as a keyword)
 			4 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
-		# If CSS classes are enabled, these would be highlighted as numbers (nu0)
-		# integer literals (possibly imaginary)
-		//0 => 'color: #cc66cc;',
-		# real floating point literals
-		//1 => 'color: #cc66cc;',
-		# imaginary floating point literals
-		//2 => 'color: #cc66cc;'
+		'REGEXPS'     => array(
+			# If CSS classes are enabled, these would be highlighted as numbers (nu0)
+			# integer literals (possibly imaginary)
+			//0 => 'color: #cc66cc;',
+			# real floating point literals
+			//1 => 'color: #cc66cc;',
+			# imaginary floating point literals
+			//2 => 'color: #cc66cc;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => 'http://golang.org/search?q={FNAME}'
 	),
-	'REGEXPS' => array(
-	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(1 => '.'),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'REGEXPS'                => array(),
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(1 => '.'),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
 			'BRACKETS' => GESHI_NEVER, # handled by symbols
 		)

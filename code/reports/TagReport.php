@@ -1,7 +1,8 @@
 <?php
+
 /**
  * Content side-report listing tags and amount of usage.
- * 
+ *
  * @package News/Blog module
  * @author Simon 'Sphere'
  * @todo Semantics
@@ -21,7 +22,7 @@ class TagReport extends SS_Report
 	/**
 	 * Setup the list of records to show.
 	 * @param type $params array of filter-rules.
-	 * @param type $sort 
+	 * @param type $sort
 	 * @param type $limit
 	 * @return \ArrayList with the records.
 	 */
@@ -54,14 +55,14 @@ class TagReport extends SS_Report
 	public function columns()
 	{
 		$fields = array(
-			"Title" => array(
-				"title" => _t('TagReport.NEWSTITLE', 'News title'),
+			"Title"     => array(
+				"title"      => _t('TagReport.NEWSTITLE', 'News title'),
 				'formatting' => sprintf(
 					'<a href=\"admin/news/Tag/EditForm/field/Tag/item/$ID/edit\" title=\"%s\">$value</a>', _t('TagReport.EDIT', 'Edit tag')
 				)
 			),
 			"Itemcount" => array(
-				"title" => _t('TagReport.NEWSCOUNT', 'Total items linked'),
+				"title"   => _t('TagReport.NEWSCOUNT', 'Total items linked'),
 				'casting' => 'Int'
 			),
 		);
@@ -76,9 +77,9 @@ class TagReport extends SS_Report
 	public function parameterFields()
 	{
 		$return = FieldList::create(
-				$title = TextField::create(
-					'Title', _t('TagReport.TAGTITLE', 'Search for tag')
-				)
+			$title = TextField::create(
+				'Title', _t('TagReport.TAGTITLE', 'Search for tag')
+			)
 		);
 		return $return;
 	}

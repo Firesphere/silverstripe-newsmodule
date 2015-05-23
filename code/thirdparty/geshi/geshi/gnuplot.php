@@ -35,18 +35,18 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Gnuplot',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('`', '"', "'"),
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_SCI_SHORT |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Gnuplot',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('`', '"', "'"),
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_SCI_SHORT |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		// copy output of help command, indent properly and use this replace regexp:
 		// ([a-z0-9_\-]+)(( )+|$)          =>     '\1',\3
 		// commands as found in `help commands`
@@ -207,82 +207,77 @@ $language_data = array(
 			'vttek', 'x11', 'xlib',
 		)
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variable assignment
 		0 => "(?<![?;>\w])([a-zA-Z_][a-zA-Z0-9_]*)\s*=",
 		//Numbers with unit
 		1 => "(?<=^|\s)([0-9]*\.?[0-9]+\s*cm)"
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'-', '+', '~', '!', '$',
 		'*', '/', '%', '=', '<', '>', '&',
 		'^', '|', '.', 'eq', 'ne', '?:', ':', '`', ','
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #990000;',
 			3 => 'color: #550000;',
 			4 => 'color: #7a0874;',
 			5 => 'color: #448888;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #adadad; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight:bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000099; font-weight:bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;',
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000; font-weight: bold;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #007800;',
 			1 => 'color: #cc66cc;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => 'http://www.google.com/search?q=%22set+{FNAME}%22+site%3Ahttp%3A%2F%2Fwww.gnuplot.info%2Fdocs%2F&amp;btnI=lucky',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			4 => array(
 				'DISALLOWED_AFTER' => "(?![\.\-a-zA-Z0-9_%])"
 			)
 		)
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

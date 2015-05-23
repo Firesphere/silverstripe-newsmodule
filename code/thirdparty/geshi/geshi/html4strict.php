@@ -50,13 +50,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'HTML',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'HTML',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		2 => array(
 			'a', 'abbr', 'acronym', 'address', 'applet', 'area',
 			'base', 'basefont', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'b',
@@ -100,88 +100,83 @@ $language_data = array(
 			'width'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'/', '='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		2 => false,
-		3 => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;'
 		),
-		'COMMENTS' => array(
-		),
+		'COMMENTS'    => array(),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			-2 => 'color: #404040;', // CDATA
 			-1 => 'color: #808080; font-style: italic;', // comments
-			0 => 'color: #00bbdd;',
-			1 => 'color: #ddbb00;',
-			2 => 'color: #009900;'
+			0  => 'color: #00bbdd;',
+			1  => 'color: #ddbb00;',
+			2  => 'color: #009900;'
 		),
-		'REGEXPS' => array(
-		)
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		2 => 'http://december.com/html/4/element/{FNAMEL}.html',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
-	'SCRIPT_DELIMITERS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_ALWAYS,
+	'SCRIPT_DELIMITERS'      => array(
 		-2 => array(
 			'<![CDATA[' => ']]>'
 		),
 		-1 => array(
 			'<!--' => '-->'
 		),
-		0 => array(
+		0  => array(
 			'<!DOCTYPE' => '>'
 		),
-		1 => array(
+		1  => array(
 			'&' => ';'
 		),
-		2 => array(
+		2  => array(
 			'<' => '>'
 		)
 	),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		-2 => false,
 		-1 => false,
-		0 => false,
-		1 => false,
-		2 => true
+		0  => false,
+		1  => false,
+		2  => true
 	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			2 => array(
 				'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
-				'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+				'DISALLOWED_AFTER'  => '(?=\s|\/|&gt;)',
 			)
 		)
 	)

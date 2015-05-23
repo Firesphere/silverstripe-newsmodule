@@ -49,13 +49,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Winbatch',
-	'COMMENT_SINGLE' => array(1 => ';', 2 => ':'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"', '`'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Winbatch',
+	'COMMENT_SINGLE'         => array(1 => ';', 2 => ':'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"', '`'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'While', 'To', 'Then', 'Switch', 'Select', 'Return', 'Next', 'IntControl', 'Include', 'In', 'If',
 			'Goto', 'GoSub', 'ForEach', 'For', 'Exit', 'Execute', 'ErrorMode', 'EndWhile', 'EndSwitch', '#EndSubRoutine',
@@ -299,70 +299,67 @@ $language_data = array(
 			'edEditBackTab', 'edEditBackspace', 'edDeleteButton', 'edAddButton'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '!', '+', '-', '~', '$', '^', '?', '@', '%', '#', '&', '*', '|', '/', '<', '>'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #800080;',
 			2 => 'color: #0080FF; font-weight: bold;',
 			3 => 'color: #0000FF;',
 			4 => 'color: #FF00FF;',
 			5 => 'color: #008000;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000; font-style: italic;',
-			2 => 'color: #FF1010; font-weight: bold;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000; font-style: italic;',
+			2       => 'color: #FF1010; font-weight: bold;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(//Variable names
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(//Variable names
 		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

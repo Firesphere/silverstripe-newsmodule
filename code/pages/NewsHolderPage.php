@@ -1,4 +1,5 @@
 <?php
+
 /**
  * News page and controller.
  *
@@ -6,6 +7,7 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @property Boolean IsPrimary
  * @method News Newsitems() linked to this page (for Translatable)
  * @todo WHOAH! This thing is fat. Slim it down boy!
  * @todo besides the general getters, the news-functions should be in the model
@@ -141,11 +143,12 @@ class NewsHolderPage extends Page
 	{
 		$now = SS_DateTime::now()->Format('Y-m-d');
 		return $this->Newsitems()
-				->filter(array('Live' => true))
-				->exclude(array('PublishFrom:GreaterThan' => $now));
+			->filter(array('Live' => true))
+			->exclude(array('PublishFrom:GreaterThan' => $now));
 	}
 
 }
+
 class NewsHolderPage_Controller extends Page_Controller
 {
 	private static $allowed_actions = array(
@@ -254,7 +257,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	{
 		$Params = $this->getURLParams();
 		$tag = Tag::get()
-				->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))->first();
+			->filter(array('URLSegment' => Convert::raw2sql($Params['ID'])))->first();
 		$this->current_tag = $tag;
 	}
 
@@ -369,7 +372,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	public function rss()
 	{
 		$rss = RSSFeed::create(
-				$list = $this->getRSSFeed(), $link = $this->Link('rss'), $title = _t('News.RSSFEED', 'News feed')
+			$list = $this->getRSSFeed(), $link = $this->Link('rss'), $title = _t('News.RSSFEED', 'News feed')
 		);
 		return $rss->outputToBrowser();
 	}
@@ -395,8 +398,8 @@ class NewsHolderPage_Controller extends Page_Controller
 	private function setupFilter($params)
 	{
 		$filter = array(
-			'URLSegment' => Convert::raw2sql($params['ID']),
-			'Live'       => 1,
+			'URLSegment'           => Convert::raw2sql($params['ID']),
+			'Live'                 => 1,
 			'PublishFrom:LessThan' => SS_Datetime::now()->Rfc2822()
 		);
 		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
@@ -464,7 +467,7 @@ class NewsHolderPage_Controller extends Page_Controller
 					} else {
 						$year = $params['ID'];
 						$month = date_parse('01-' . $params['OtherID'] . '-1970');
-						$month = str_pad((int) $month['month'], 2, "0", STR_PAD_LEFT);
+						$month = str_pad((int)$month['month'], 2, "0", STR_PAD_LEFT);
 					}
 					$filter['PublishFrom:PartialMatch'] = $year . '-' . $month;
 					break;
@@ -485,7 +488,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	{
 		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
-		return(CommentForm::create($this, 'CommentForm', $siteconfig, $params));
+		return (CommentForm::create($this, 'CommentForm', $siteconfig, $params));
 	}
 
 }

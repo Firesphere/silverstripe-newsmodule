@@ -10,8 +10,7 @@
 	/*global jQuery*/
 	"use strict";
 
-	var compareWeights = function (a, b)
-	{
+	var compareWeights = function (a, b) {
 		return a - b;
 	};
 
@@ -27,10 +26,10 @@
 	// Converts an RGB array to hex
 	var toHex = function (ary) {
 		return "#" + jQuery.map(ary, function (i) {
-			var hex = i.toString(16);
-			hex = (hex.length === 1) ? "0" + hex : hex;
-			return hex;
-		}).join("");
+				var hex = i.toString(16);
+				hex = (hex.length === 1) ? "0" + hex : hex;
+				return hex;
+			}).join("");
 	};
 
 	var colorIncrement = function (color, range) {

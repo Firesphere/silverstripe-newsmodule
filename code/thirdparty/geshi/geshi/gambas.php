@@ -43,16 +43,16 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'GAMBAS',
-	'COMMENT_SINGLE' => array(1 => "'"),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'GAMBAS',
+	'COMMENT_SINGLE'         => array(1 => "'"),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		//keywords
 		1 => array(
 			'APPEND', 'AS', 'BREAK', 'BYREF', 'CASE', 'CATCH', 'CLASS', 'CLOSE', 'CONST', 'CONTINUE', 'COPY',
@@ -128,22 +128,22 @@ $language_data = array(
 			'Pi'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'&', '&=', '&/', '*', '*=', '+', '+=', '-', '-=', '//', '/', '/=', '=', '==', '\\', '\\=',
 		'^', '^=', '[', ']', '{', '}', '<', '>', '<>', '<=', '>='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0600FF; font-weight: bold;', // Keywords
 			2 => 'color: #8B1433;', // Functions
 			3 => 'color: #8B1433;', // String Functions
@@ -152,36 +152,34 @@ $language_data = array(
 			6 => 'color: #0600FF;', // Objects/Components
 			7 => 'color: #0600FF;'  // Constants
 		),
-		'COMMENTS' => array(
-			1 => 'color: #1A5B1A; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #1A5B1A; font-style: italic;',
 			'MULTI' => 'color: #1A5B1A; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #008080;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #612188;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7E4B05;'
 		),
-		'NUMBERS' => array(
-			0 => 'color: #FF0000;',
+		'NUMBERS'     => array(
+			0                      => 'color: #FF0000;',
 			GESHI_NUMBER_INT_BASIC => 'color: #FF0000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #0000FF;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #6132B2;'
 		),
-		'REGEXPS' => array(
-		//3 => 'color: #8B1433;'  //fakes '$' colour matched by REGEXP
+		'REGEXPS'     => array(//3 => 'color: #8B1433;'  //fakes '$' colour matched by REGEXP
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://gambasdoc.org/help/lang/{FNAMEL}',
 		2 => 'http://gambasdoc.org/help/lang/{FNAMEL}',
 		3 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:http://gambasdoc.org/help/lang/&amp;btnI=I%27m%20Feeling%20Lucky',
@@ -190,19 +188,16 @@ $language_data = array(
 		6 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:http://gambasdoc.org/&amp;btnI=I%27m%20Feeling%20Lucky',
 		7 => 'http://gambasdoc.org/help/lang/{FNAMEL}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	//3 => "\\$(?!\\w)"   //matches '$' at the end of Keyword
+	'REGEXPS'                => array(//3 => "\\$(?!\\w)"   //matches '$' at the end of Keyword
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			2 => array(
 				'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-&;\$])"

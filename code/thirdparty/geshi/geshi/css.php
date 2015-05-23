@@ -50,24 +50,24 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'CSS',
-	'COMMENT_SINGLE' => array(1 => '@'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'CSS',
+	'COMMENT_SINGLE'         => array(1 => '@'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		2 => "/(?<=\\()\\s*(?:(?:[a-z0-9]+?:\\/\\/)?[a-z0-9_\\-\\.\\/:]+?)?[a-z]+?\\.[a-z]+?(\\?[^\)]+?)?\\s*?(?=\\))/i"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		//Simple Single Char Escapes
 		//1 => "#\\\\[nfrtv\$\"\n\\\\]#i",
 		//Hexadecimal Char Specs
 		2 => "#\\\\[\da-fA-F]{1,6}\s?#i",
-	//Unicode Char Specs
-	//3 => "#\\\\u[\da-fA-F]{1,8}#i",
+		//Unicode Char Specs
+		//3 => "#\\\\u[\da-fA-F]{1,8}#i",
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(
 			'aqua', 'azimuth', 'background-attachment', 'background-color',
 			'background-image', 'background-position', 'background-repeat',
@@ -143,62 +143,59 @@ $language_data = array(
 			'yes'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', ':', ';',
 		'>', '+', '*', ',', '^', '='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true
+		1              => true,
+		2              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #993333;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #a1a100;',
-			2 => 'color: #ff0000; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #a1a100;',
+			2       => 'color: #ff0000; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;',
 			//1 => 'color: #000099; font-weight: bold;',
 			2 => 'color: #000099; font-weight: bold;'
-		//3 => 'color: #000099; font-weight: bold;'
+			//3 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #00AA00;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #00AA00;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #cc00cc;',
 			1 => 'color: #6666ff;',
 			2 => 'color: #3333ff;',
 			3 => 'color: #933;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//DOM Node ID
 		0 => '\#[a-zA-Z0-9\-_]+(?:\\\\:[a-zA-Z0-9\-_]+)*',
 		//CSS classname
@@ -209,15 +206,13 @@ $language_data = array(
 		//Measurements
 		3 => '[+\-]?(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
-			'DISALLOWED_AFTER' => '(?![\-a-zA-Z0-9_\|%\\-&\.])',
+			'DISALLOWED_AFTER'  => '(?![\-a-zA-Z0-9_\|%\\-&\.])',
 			'DISALLOWED_BEFORE' => '(?<![\-a-zA-Z0-9_\|%\\~&\.])'
 		)
 	)

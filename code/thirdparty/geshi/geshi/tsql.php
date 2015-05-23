@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'T-SQL',
-	'COMMENT_SINGLE' => array(1 => '--'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'T-SQL',
+	'COMMENT_SINGLE'         => array(1 => '--'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			// Datatypes
 			'bigint', 'tinyint', 'money',
@@ -277,69 +277,64 @@ $language_data = array(
 			'fn_trace_gettable', 'fn_virtualfilestats', 'fn_listextendedproperty',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'!', '!=', '%', '&', '&&', '(', ')', '*', '+', '-', '/', '<', '<<', '<=',
 		'<=>', '<>', '=', '>', '>=', '>>', '^', 'ALL', 'AND', 'ANY', 'BETWEEN', 'CROSS',
 		'EXISTS', 'IN', 'JOIN', 'LIKE', 'NOT', 'NULL', 'OR', 'OUTER', 'SOME', '|', '||', '~'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF;',
 			2 => 'color: #FF00FF;',
 			3 => 'color: #AF0000;',
 			4 => 'color: #AF0000;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008080;',
+		'COMMENTS'    => array(
+			1       => 'color: #008080;',
 			'MULTI' => 'color: #008080;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #808080;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #FF0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #202020;',
 			2 => 'color: #202020;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #808080;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>
