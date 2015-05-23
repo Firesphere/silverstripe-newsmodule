@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functional tests to see if comments are correctly linked.
  *

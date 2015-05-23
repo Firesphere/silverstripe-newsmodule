@@ -53,25 +53,24 @@
  * *********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'DCS',
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'DCS',
+	'COMMENT_SINGLE'         => array(
 		1 => ';'
 	),
-	'COMMENT_MULTI' => array(
-	),
-	'COMMENT_REGEXP' => array(
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		// Highlight embedded C code in a separate color:
 		2 => '/\bINSERT_C_CODE\b.*?\bEND_C_CODE\b/ims'
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
-	'QUOTEMARKS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_UPPER,
+	'QUOTEMARKS'             => array(
 		'"'
 	),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => '',
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => '',
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(
 			'abs', 'ascii_value', 'bit_value', 'blank_date', 'calc_unit_values', 'cm',
 			'complete_months', 'complete_years', 'correct', 'create_input_file', 'cy',
@@ -117,65 +116,57 @@ $language_data = array(
 			'mp_file', 'odbc_file'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']',
 		'=', '<', '>',
 		'+', '-', '*', '/', '^',
 		':', ','
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+		1              => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: red;',
 			2 => 'color: blue;',
 			3 => 'color: black;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: black; background-color: silver;',
 			// Colors for highlighting embedded C code:
 			2 => 'color: maroon; background-color: pink;'
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: black;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: green;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: green;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: black;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		),
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array(),
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

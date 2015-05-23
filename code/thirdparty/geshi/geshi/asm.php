@@ -87,15 +87,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'ASM',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
+	'LANG_NAME'              => 'ASM',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
 	//Line address prefix suppression
-	'COMMENT_REGEXP' => array(2 => "/^(?:[0-9a-f]{0,4}:)?[0-9a-f]{4}(?:[0-9a-f]{4})?/mi"),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'COMMENT_REGEXP'         => array(2 => "/^(?:[0-9a-f]{0,4}:)?[0-9a-f]{4}(?:[0-9a-f]{4})?/mi"),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* General-Purpose */
 		1 => array(
 			/* BCD instructions */
@@ -127,8 +127,10 @@ $language_data = array(
 			/* Prefix instructions */
 			'lock', 'rep', 'repe', 'repz', 'repne', 'repnz',
 			/* String instructions */
-			'cmps', 'cmpsb', 'cmpsw', /* 'cmpsd', */ 'cmpsq', /* CMPSD conflicts with the SSE2 instructions of the same name */
-			'movs', 'movsb', 'movsw', /* 'movsd', */ 'movsq', /* MOVSD conflicts with the SSE2 instructions of the same name */
+			'cmps', 'cmpsb', 'cmpsw', /* 'cmpsd', */
+			'cmpsq', /* CMPSD conflicts with the SSE2 instructions of the same name */
+			'movs', 'movsb', 'movsw', /* 'movsd', */
+			'movsq', /* MOVSD conflicts with the SSE2 instructions of the same name */
 			'scas', 'scasb', 'scasw', 'scasd', 'scasq',
 			'stos', 'stosb', 'stosw', 'stosd', 'stosq',
 			'lods', 'lodsb', 'lodsw', 'lodsd', 'lodsq',
@@ -202,7 +204,8 @@ $language_data = array(
 			'maskmovq', 'movntq', 'sfence',
 			/* EMMX instructions (only available on Cyrix MediaGXm) */
 			'paddsiw', 'psubsiw',
-			/* 'pmulhrw', */ 'pmachriw', 'pmulhriw', /* PMULHRW conflicts with the 3dnow! instruction of the same name */
+			/* 'pmulhrw', */
+			'pmachriw', 'pmulhriw', /* PMULHRW conflicts with the 3dnow! instruction of the same name */
 			'pmagw', 'pdistib', 'paveb',
 			'pmvzb', 'pmvnzb', 'pmvlzb', 'pmvgezb',
 			/* 3dnow! instructions! */
@@ -508,7 +511,7 @@ $language_data = array(
 			'seg', 'wrt'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'[', ']', '(', ')',
 			'+', '-', '*', '/', '%',
@@ -518,17 +521,17 @@ $language_data = array(
 			'$', '$$', '%+', '%?', '%??'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00007f; font-weight: bold;',
 			2 => 'color: #0000ff;',
 			3 => 'color: #b00040;',
@@ -536,34 +539,31 @@ $language_data = array(
 			5 => 'color: #0000ff; font-weight: bold;',
 			6 => 'color: #0000ff; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #666666; font-style: italic;',
 			2 => 'color: #adadad; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7f007f;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			1 => 'color: #339933;',
 			2 => 'color: #0000ff; font-weight: bold;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -571,31 +571,27 @@ $language_data = array(
 		5 => '',
 		6 => ''
 	),
-	'NUMBERS' =>
-	GESHI_NUMBER_BIN_PREFIX_PERCENT |
-	GESHI_NUMBER_BIN_SUFFIX |
-	GESHI_NUMBER_HEX_PREFIX |
-	GESHI_NUMBER_HEX_SUFFIX |
-	GESHI_NUMBER_OCT_SUFFIX |
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_NONSCI_F |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 8,
-	'PARSER_CONTROL' => array(
+	'NUMBERS'                =>
+		GESHI_NUMBER_BIN_PREFIX_PERCENT |
+		GESHI_NUMBER_BIN_SUFFIX |
+		GESHI_NUMBER_HEX_PREFIX |
+		GESHI_NUMBER_HEX_SUFFIX |
+		GESHI_NUMBER_OCT_SUFFIX |
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_NONSCI_F |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 8,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#>|^])",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_<\|%])"
 		)
 	)
 );

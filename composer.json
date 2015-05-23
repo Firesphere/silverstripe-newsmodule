@@ -2,7 +2,12 @@
 	"name": "firesphere/newsmodule",
 	"description": "A ModelAdmin based newsmodule to prevent clutter in the SiteTree",
 	"type": "silverstripe-module",
-	"keywords": ["silverstripe", "news", "blog", "slideshow"],
+	"keywords": [
+		"silverstripe",
+		"news",
+		"blog",
+		"slideshow"
+	],
 	"license": "BSD-2-Clause",
 	"authors": [
 		{

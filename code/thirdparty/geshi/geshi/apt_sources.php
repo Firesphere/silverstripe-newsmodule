@@ -35,13 +35,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Apt sources',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Apt sources',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		/* keywords */
 		1 => array(
 			'deb-src', 'deb'
@@ -76,72 +76,61 @@ $language_data = array(
 			'commercial', 'universe', 'multiverse'
 		)
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => "(((http|ftp):\/\/|file:\/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
 	),
-	'SYMBOLS' => array(
-	),
-	'CASE_SENSITIVE' => array(
+	'SYMBOLS'                => array(),
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => true,
-		3 => true
+		1              => false,
+		2              => true,
+		3              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00007f;',
 			2 => 'color: #b1b100;',
 			3 => 'color: #b16000;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #adadad; font-style: italic;',
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
-		),
-		'STRINGS' => array(
-		),
-		'NUMBERS' => array(
-		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
-		),
-		'REGEXPS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(),
+		'STRINGS'     => array(),
+		'NUMBERS'     => array(),
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #009900;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
-			'NUMBERS' => GESHI_NEVER,
-			'METHODS' => GESHI_NEVER,
-			'SCRIPT' => GESHI_NEVER,
-			'SYMBOLS' => GESHI_NEVER,
+			'NUMBERS'     => GESHI_NEVER,
+			'METHODS'     => GESHI_NEVER,
+			'SCRIPT'      => GESHI_NEVER,
+			'SYMBOLS'     => GESHI_NEVER,
 			'ESCAPE_CHAR' => GESHI_NEVER,
-			'BRACKETS' => GESHI_NEVER,
-			'STRINGS' => GESHI_NEVER,
+			'BRACKETS'    => GESHI_NEVER,
+			'STRINGS'     => GESHI_NEVER,
 		),
-		'KEYWORDS' => array(
+		'KEYWORDS'     => array(
 			'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^\/])',
-			'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\.])'
+			'DISALLOWED_AFTER'  => '(?![a-zA-Z0-9_\|%\\-&\.])'
 		)
 	),
-	'TAB_WIDTH' => 4
+	'TAB_WIDTH'              => 4
 );
 ?>

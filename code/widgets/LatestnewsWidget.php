@@ -1,9 +1,9 @@
 <?php
 /**
  * The LatestNews widget to be globally used.
- * 
+ *
  * Requires the Widgets module.
- * 
+ *
  * @package Silverstripe
  * @subpackage Newsmodule
  * @author Simon 'Sphere' Erkelens
@@ -15,7 +15,7 @@ if (class_exists('Widget')) {
 	{
 		private static $db = array(
 			'WidgetTitle' => 'Varchar(255)',
-			'Amount' => 'Int'
+			'Amount'      => 'Int'
 		);
 		private static $defaults = array(
 			'WidgetTitle' => 'Latest news',

@@ -39,13 +39,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'dot',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'dot',
+	'COMMENT_SINGLE'         => array(1 => '//', 2 => '#'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'URL', 'arrowhead', 'arrowsize', 'arrowtail', 'bb', 'bgcolor', 'bottomlabel',
 			'center', 'clusterrank', 'color', 'comment', 'constraint', 'decorate',
@@ -98,61 +98,58 @@ $language_data = array(
 			'violetred', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'[', ']', '{', '}', '-', '+', '*', '/', '<', '>', '!', '~', '%', '&', '|', '='
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000066;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #993333;',
 			4 => 'color: #b1b100;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #339933;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #339933;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #af624d; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'METHODS' => array(
-		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		),
+		'METHODS'     => array(),
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(),
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(),
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,

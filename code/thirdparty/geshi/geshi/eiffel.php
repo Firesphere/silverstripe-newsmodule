@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Eiffel',
-	'COMMENT_SINGLE' => array(1 => '--'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '%',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Eiffel',
+	'COMMENT_SINGLE'         => array(1 => '--'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '%',
+	'KEYWORDS'               => array(
 		1 => array(
 			'separate',
 			'invariant',
@@ -324,71 +324,66 @@ $language_data = array(
 			'address_expression'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'+', '-', '*', '?', '=', '/', '%', '&', '>', '<', '^', '!', '|', ':',
 		'(', ')', '{', '}', '[', ']', '#'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => true,
-		5 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => true,
+		5              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0600FF; font-weight: bold;',
 			2 => 'color: #0600FF; font-weight: bold;',
 			3 => 'color: #800080;',
 			4 => 'color: #800000',
 			5 => 'color: #603000;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000; font-style: italic;',
 			'MULTI' => ''
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #005070; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #FF0000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #0080A0;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #FF0000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #000060;',
 			2 => 'color: #000050;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #600000;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => 'http://www.google.com/search?q=site%3Ahttp%3A%2F%2Fdocs.eiffel.com%2Feiffelstudio%2Flibraries+{FNAMEL}&amp;btnI=I%27m+Feeling+Lucky',
 		5 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

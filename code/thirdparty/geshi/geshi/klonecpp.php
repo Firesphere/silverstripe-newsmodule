@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'KLone C++',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'), //#pour precede les include de C
-	'COMMENT_MULTI' => array('/*' => '*/', '<!--' => '-->'), //comentaires C et KLone suivi de ceux pour HTML
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'KLone C++',
+	'COMMENT_SINGLE'         => array(1 => '//', 2 => '#'), //#pour precede les include de C
+	'COMMENT_MULTI'          => array('/*' => '*/', '<!--' => '-->'), //comentaires C et KLone suivi de ceux pour HTML
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(//mots-cles C++
 			'if', 'return', 'while', 'case', 'continue', 'default',
 			'do', 'else', 'for', 'switch', 'goto',
@@ -161,7 +161,7 @@ $language_data = array(
 			'width'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'<%=', '<%!', '<%', '%>'
 		),
@@ -173,18 +173,18 @@ $language_data = array(
 			'.', ':', ',', ';', '^'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100; font-weight: bold;', //pour les mots-cles C++
 			2 => 'color: #000000; font-weight: bold;', //pour les mots-cles KLone
 			3 => 'color: #6600FF;', //pour les fonctions C++
@@ -193,33 +193,33 @@ $language_data = array(
 			6 => 'color: #990099; font-weight: bold;', //pour les mots-cles HTML
 			7 => 'color: #000066;'//pour les autres mots-cles HTML
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;', //commentaire sur une ligne C++ et KLone
-			2 => 'color: #339933;', //pour les #... en C++
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;', //commentaire sur une ligne C++ et KLone
+			2       => 'color: #339933;', //pour les #... en C++
 			'MULTI' => 'color: #808080; font-style: italic;'//commentaire sur plusieurs lignes C++ et KLone
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;',
 			1 => 'color: #000000; font-weight: bold;'
 		),
-		'REGEXPS' => array(),
-		'SCRIPT' => array(
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array(
 			0 => 'background-color:#ffccff; font-weight: bold; color:#000000;',
 			1 => '',
 			2 => '',
@@ -228,7 +228,7 @@ $language_data = array(
 			5 => 'color: #009900;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAMEL}.html',
@@ -237,15 +237,14 @@ $language_data = array(
 		6 => 'http://december.com/html/4/element/{FNAMEL}.html',
 		7 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 		2 => '::'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
-	'SCRIPT_DELIMITERS' => array(
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_ALWAYS,
+	'SCRIPT_DELIMITERS'      => array(
 		//delimiteurs pour KLone
 		0 => array(
 			'<%=' => '%>'
@@ -275,12 +274,12 @@ $language_data = array(
 		4 => false,
 		5 => true
 	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			6 => array(
 				'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
-				'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+				'DISALLOWED_AFTER'  => '(?=\s|\/|&gt;)',
 			),
 			7 => array(
 				'DISALLOWED_AFTER' => '(?=\s*=)',

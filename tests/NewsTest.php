@@ -1,7 +1,8 @@
 <?php
+
 /**
  * Tests for the Newsitems.
- * 
+ *
  * If I missed any test, feel free to add!
  *
  * @package News/blog module
@@ -21,7 +22,7 @@ class NewsTest extends SapphireTest
 	 * Check if only the items with a date in the past AND Live items are there.
 	 * Since all items are linked to page1, we only check if page1 has them all indeed.
 	 * And the children should only be the published or in the past, thus there should be 2 excluded at first run.
-	 * 
+	 *
 	 * The future-published-test fails because mock_now doesn't work as expected?!
 	 */
 	public function testItemPublished()

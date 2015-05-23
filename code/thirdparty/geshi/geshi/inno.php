@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Inno',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('(*' => '*)'),
-	'CASE_KEYWORDS' => 0,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Inno',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('(*' => '*)'),
+	'CASE_KEYWORDS'          => 0,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'Setup', 'Types', 'Components', 'Tasks', 'Dirs', 'Files', 'Icons', 'INI',
 			'InstallDelete', 'Languages', 'Messages', 'CustomMessage',
@@ -145,65 +145,59 @@ $language_data = array(
 			'TThreadFunc', 'Variant', 'WideChar', 'WideString', 'Word'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '@', '%', '&', '*', '|', '/', '<', '>'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;', /* bold Black */
 			2 => 'color: #000000;font-style: italic;', /* Black */
 			3 => 'color: #0000FF;', /* blue */
 			4 => 'color: #CC0000;'/* red */
 		),
-		'COMMENTS' => array(
-			1 => 'color: #33FF00; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #33FF00; font-style: italic;',
 			'MULTI' => 'color: #33FF00; font-style: italic;'
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;'
 		),
-		'REGEXPS' => array(
-		),
-		'SYMBOLS' => array(
+		'REGEXPS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000; font-weight: bold;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

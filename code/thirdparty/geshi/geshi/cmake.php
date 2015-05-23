@@ -40,19 +40,19 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'CMake',
-	'COMMENT_SINGLE' => array(1 => '#'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'ESCAPE_REGEXP' => array(
+	'LANG_NAME'              => 'CMake',
+	'COMMENT_SINGLE'         => array(1 => '#'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'ESCAPE_REGEXP'          => array(
 		// Quoted variables ${...}
 		1 => "/\\$(ENV)?\\{[^\\n\\}]*?\\}/i",
 		// Quoted registry keys [...]
 		2 => "/\\[HKEY[^\n\\]]*?]/i"
 	),
-	'KEYWORDS' => array(
+	'KEYWORDS'               => array(
 		1 => array(
 			'add_custom_command', 'add_custom_target', 'add_definitions',
 			'add_dependencies', 'add_executable', 'add_library',
@@ -105,23 +105,23 @@ $language_data = array(
 			'VERSION_LESS', 'WORKING_DIRECTORY',
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => true
+		1              => false,
+		2              => false,
+		3              => true
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array('(', ')')
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #1f3f81; font-style: bold;',
 			2 => 'color: #1f3f81;',
 			3 => 'color: #077807; font-sytle: italic;'
 		),
-		'BRACKETS' => array(),
-		'COMMENTS' => array(
+		'BRACKETS'    => array(),
+		'COMMENTS'    => array(
 			1 => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
@@ -129,39 +129,39 @@ $language_data = array(
 			1 => 'color: #b08000;',
 			2 => 'color: #0000cd;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #912f11;',
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #197d8b;'
 		),
-		'NUMBERS' => array(),
-		'METHODS' => array(),
-		'REGEXPS' => array(
+		'NUMBERS'     => array(),
+		'METHODS'     => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #b08000;',
 			1 => 'color: #0000cd;'
 		),
-		'SCRIPT' => array()
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://www.cmake.org/cmake/help/cmake2.6docs.html#command:{FNAMEL}',
 		2 => 'http://www.cmake.org/cmake/help/cmake2.6docs.html#command:{FNAMEL}',
 		3 => '',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		// Unquoted variables
 		0 => "\\$(ENV)?\\{[^\\n}]*?\\}",
 		// Unquoted registry keys
 		1 => "\\[HKEY[^\n\\]]*?]"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
-		'KEYWORDS' => array(
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
+		'KEYWORDS'     => array(
 			// These keywords cannot come after a open paren
 			1 => array(
 				'DISALLOWED_AFTER' => '(?= *\()'
@@ -172,8 +172,8 @@ $language_data = array(
 		),
 		'ENABLE_FLAGS' => array(
 			'BRACKETS' => GESHI_NEVER,
-			'METHODS' => GESHI_NEVER,
-			'NUMBERS' => GESHI_NEVER
+			'METHODS'  => GESHI_NEVER,
+			'NUMBERS'  => GESHI_NEVER
 		)
 	)
 );

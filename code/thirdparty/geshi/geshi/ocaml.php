@@ -40,14 +40,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'OCaml',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array('(*' => '*)'),
-	'COMMENT_REGEXP' => array(1 => '/\(\*(?:(?R)|.)+?\*\)/s'),
-	'CASE_KEYWORDS' => 0,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => "",
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'OCaml',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array('(*' => '*)'),
+	'COMMENT_REGEXP'         => array(1 => '/\(\*(?:(?R)|.)+?\*\)/s'),
+	'CASE_KEYWORDS'          => 0,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => "",
+	'KEYWORDS'               => array(
 		/* main OCaml keywords */
 		1 => array(
 			'and', 'as', 'asr', 'begin', 'class', 'closed', 'constraint', 'do', 'done', 'downto', 'else',
@@ -108,56 +108,54 @@ $language_data = array(
 		)
 	),
 	/* highlighting symbols is really important in OCaml */
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'+.', '-.', '*.', '/.', '[<', '>]',
 		';', '!', ':', '.', '=', '%', '^', '*', '-', '/', '+',
 		'>', '<', '(', ')', '[', ']', '&', '|', '#', "'",
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => true, /* functions name are case sensitive */
-		3 => true, /* types name too */
-		4 => true, /* pervasives types */
-		5 => true /* pervasives exceptions */
+		1              => false,
+		2              => true, /* functions name are case sensitive */
+		3              => true, /* types name too */
+		4              => true, /* pervasives types */
+		5              => true /* pervasives exceptions */
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #06c; font-weight: bold;', /* nice blue */
 			2 => 'color: #06c; font-weight: bold;', /* nice blue */
 			3 => 'color: #06c; font-weight: bold;', /* nice blue */
 			4 => 'color: #06c; font-weight: bold;', /* nice blue */
 			5 => 'color: #06c; font-weight: bold;' /* nice blue */
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			'MULTI' => 'color: #5d478b; font-style: italic;', /* light purple */
-			1 => 'color: #5d478b; font-style: italic;' /* light purple */
+			1       => 'color: #5d478b; font-style: italic;' /* light purple */
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #a52a2a;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #3cb371;' /* nice green */
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #c6c;' /* pink */
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #060;' /* dark green */
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			1 => 'font-weight:bold; color:#339933;',
 			2 => 'font-weight:bold; color:#993399;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #a52a2a;' /* maroon */
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		/* some of keywords are Pervasives functions (land, lxor, asr, ...) */
 		1 => '',
 		/* link to the wanted library */
@@ -169,18 +167,16 @@ $language_data = array(
 		/* link to Pervasives exceptions */
 		5 => 'http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html#EXCEPTION{FNAME}'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		1 => '~\w+',
 		2 => '`(?=(?-i:[a-z]))\w*',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

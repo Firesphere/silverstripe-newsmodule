@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Add shortcode features.
  *
@@ -29,7 +30,7 @@ class ExtraShortcodeParser
 
 	/**
 	 * @param string $arguments array with the type
-	 * @param array $code string of the code to parse 
+	 * @param array $code string of the code to parse
 	 * @return HTMLString of parsed code.
 	 */
 	public static function GeshiParser($arguments, $code)
@@ -57,10 +58,10 @@ class ExtraShortcodeParser
 		/*		 * * SET DEFAULTS ** */
 		$defaults = array(
 			'YouTubeID' => $arguments['id'],
-			'autoplay' => false,
-			'caption' => $caption ? Convert::raw2xml($caption) : false,
-			'width' => 640,
-			'height' => 385,
+			'autoplay'  => false,
+			'caption'   => $caption ? Convert::raw2xml($caption) : false,
+			'width'     => 640,
+			'height'    => 385,
 		);
 
 		//overide the defaults with the arguments supplied
@@ -86,7 +87,7 @@ class ExtraShortcodeParser
 			}
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
 			$template = new SSViewer($template);
-			return($template->process($record));
+			return ($template->process($record));
 		}
 	}
 

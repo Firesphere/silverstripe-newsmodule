@@ -55,17 +55,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'ActionScript 3',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'ActionScript 3',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		//Regular expressions
 		2 => "/(?<=[\\s^])(s|tr|y)\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])*(?<!\s)\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'with', 'while', 'void', 'undefined', 'typeof', 'try', 'true',
 			'throw', 'this', 'switch', 'super', 'set', 'return', 'public', 'protected',
@@ -394,22 +394,22 @@ $language_data = array(
 			'Accessibility', 'AVM1Movie'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '!', '%', '&', '*', '|', '/', '<', '>', '^', '-', '+', '~', '?', ':', ';', '.', ','
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0033ff; font-weight: bold;',
 			2 => 'color: #6699cc; font-weight: bold;',
 			3 => 'color: #339966; font-weight: bold;',
@@ -419,35 +419,33 @@ $language_data = array(
 			7 => 'color: #004993;',
 			8 => 'color: #004993;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #009900; font-style: italic;',
-			2 => 'color: #009966; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #009900; font-style: italic;',
+			2       => 'color: #009966; font-style: italic;',
 			'MULTI' => 'color: #3f5fbf;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => ''
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #990000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000; font-weight:bold;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #000000;',
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000066; font-weight: bold;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -457,16 +455,15 @@ $language_data = array(
 		7 => '',
 		8 => ''
 	),
-	'OOLANG' => false, //Save some time as OO identifiers aren't used
-	'OBJECT_SPLITTERS' => array(
-	// commented out because it's not very relevant for AS, as all properties, methods and constants are dot-accessed.
-	// I believe it's preferable to have package highlighting for example, which is not possible with this enabled.
-	// 0 => '.'
+	'OOLANG'                 => false, //Save some time as OO identifiers aren't used
+	'OBJECT_SPLITTERS'       => array(
+		// commented out because it's not very relevant for AS, as all properties, methods and constants are dot-accessed.
+		// I believe it's preferable to have package highlighting for example, which is not possible with this enabled.
+		// 0 => '.'
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

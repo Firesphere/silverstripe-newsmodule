@@ -42,13 +42,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'SAS',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array('/*' => '*/', '*' => ';'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'SAS',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array('/*' => '*/', '*' => ';'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'_ALL_', '_CHARACTER_', '_INFILE_', '_N_', '_NULL_', '_NUMERIC_',
 			'_WEBOUT_'
@@ -134,22 +134,21 @@ $language_data = array(
 			'NOTE'
 		)
 	),
-	'SYMBOLS' => array(
-	),
-	'CASE_SENSITIVE' => array(
+	'SYMBOLS'                => array(),
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false,
-		8 => false,
-		9 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false,
+		8              => false,
+		9              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff;',
 			2 => 'color: #0000ff;',
 			3 => 'color: #0000ff;',
@@ -160,34 +159,33 @@ $language_data = array(
 			8 => 'color: #00ff00;',
 			9 => 'color: #0000ff;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 //            1 => 'color: #006400; font-style: italic;',
 			'MULTI' => 'color: #006400; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #a020f0;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #2e8b57; font-weight: bold;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'SCRIPT' => array(
+		'SCRIPT'      => array(
 			0 => '',
 			1 => '',
 			2 => '',
 			3 => ''
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000ff; font-weight: bold;',
 			1 => 'color: #000080; font-weight: bold;',
 			2 => 'color: #006400; font-style: italic;',
@@ -200,7 +198,7 @@ $language_data = array(
 			9 => 'color: #b218b2; font-weight: bold;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -211,79 +209,76 @@ $language_data = array(
 		8 => '',
 		9 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		0 => "&amp;[a-zA-Z_][a-zA-Z0-9_]*",
 		1 => array(//Procedures
-			GESHI_SEARCH => '(^\\s*)(PROC \\w+)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(PROC \\w+)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		2 => array(
-			GESHI_SEARCH => '(^\\s*)(\\*.*;)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(\\*.*;)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		3 => array(
-			GESHI_SEARCH => '(.*;\\s*)(\\*.*;)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(.*;\\s*)(\\*.*;)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		4 => array(
-			GESHI_SEARCH => '(^\\s*)(%\\*.*;)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(%\\*.*;)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => ''
 		),
 		5 => array(//Error messages
-			GESHI_SEARCH => '(^ERROR.*)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(^ERROR.*)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		6 => array(//Warning messages
-			GESHI_SEARCH => '(^WARNING.*)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(^WARNING.*)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		7 => array(//Notice messages
-			GESHI_SEARCH => '(^NOTE.*)',
-			GESHI_REPLACE => '\\1',
+			GESHI_SEARCH    => '(^NOTE.*)',
+			GESHI_REPLACE   => '\\1',
 			GESHI_MODIFIERS => 'im',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		8 => array(
-			GESHI_SEARCH => '(^\\s*)(CARDS.*)(^\\s*;\\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(CARDS.*)(^\\s*;\\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'sim',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 		),
 		9 => array(
-			GESHI_SEARCH => '(^\\s*)(DATALINES.*)(^\\s*;\\s*$)',
-			GESHI_REPLACE => '\\2',
+			GESHI_SEARCH    => '(^\\s*)(DATALINES.*)(^\\s*;\\s*$)',
+			GESHI_REPLACE   => '\\2',
 			GESHI_MODIFIERS => 'sim',
-			GESHI_BEFORE => '\\1',
-			GESHI_AFTER => '\\3'
+			GESHI_BEFORE    => '\\1',
+			GESHI_AFTER     => '\\3'
 		)
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

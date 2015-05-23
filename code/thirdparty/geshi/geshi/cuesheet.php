@@ -38,17 +38,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Cuesheet',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'Cuesheet',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		//Single-Line Comments using REM command
 		1 => "/(?<=\bREM\b).*?$/im",
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_UPPER,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'CATALOG', 'CDTEXTFILE', 'FILE', 'FLAGS', 'INDEX', 'ISRC', 'PERFORMER',
 			'POSTGAP', 'PREGAP', 'REM', 'SONGWRITER', 'TITLE', 'TRACK'
@@ -64,73 +64,68 @@ $language_data = array(
 			'MODE2/2352', 'CDI/2336', 'CDI/2352'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #000066; font-weight: bold;',
 			3 => 'color: #000066; font-weight: bold;',
 			4 => 'color: #000066; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #808080;',
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #0000ff;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #006600;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000066;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			1 => 'color: #000099;',
 			2 => 'color: #009900;',
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://digitalx.org/cuesheetsyntax.php#{FNAMEL}',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		2 => '\b[A-Za-z0-9]{5}\d{7}\b',
 		1 => '(?<=[\s:]|^)\d+(?=[\s:]|$)',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 2,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 2,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => '(?<![\w\.])',
-			'DISALLOWED_AFTER' => '(?![\w\.])',
+			'DISALLOWED_AFTER'  => '(?![\w\.])',
 		)
 	)
 );

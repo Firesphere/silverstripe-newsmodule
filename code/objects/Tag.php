@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tagging for your news, so you can categorize everything and optionally even create a tagcloud.
  * In the Holderpage, there's an option for the tags to view everything by tag.
@@ -14,11 +15,11 @@ class Tag extends DataObject
 {
 	/** @var array $db database-fields */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
+		'Title'       => 'Varchar(255)',
 		'Description' => 'HTMLText',
-		'URLSegment' => 'Varchar(255)',
-		'Locale' => 'Varchar(10)', // NOT YET SUPPORTED (I think)
-		'SortOrder' => 'Int',
+		'URLSegment'  => 'Varchar(255)',
+		'Locale'      => 'Varchar(10)', // NOT YET SUPPORTED (I think)
+		'SortOrder'   => 'Int',
 	);
 
 	/** @var array $has_one relationships. */
@@ -81,9 +82,9 @@ class Tag extends DataObject
 	{
 		$labels = parent::fieldLabels($includerelations);
 		$tagLabels = array(
-			'Title' => _t('Tag.TITLE', 'Title'),
+			'Title'       => _t('Tag.TITLE', 'Title'),
 			'Description' => _t('Tag.DESCRIPTION', 'Description'),
-			'Impression' => _t('Tag.IMPRESSION', 'Impression image'),
+			'Impression'  => _t('Tag.IMPRESSION', 'Impression image'),
 		);
 		return array_merge($tagLabels, $labels);
 	}
@@ -114,7 +115,7 @@ class Tag extends DataObject
 	 */
 	public function LookForExistingURLSegment($URLSegment)
 	{
-		return(Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
+		return (Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
 	}
 
 	/**
@@ -128,7 +129,7 @@ class Tag extends DataObject
 			$action = $config . '/';
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action . $this->URLSegment));
+			return ($Page->Link($action . $this->URLSegment));
 		}
 		return false;
 	}
@@ -141,7 +142,7 @@ class Tag extends DataObject
 	public function AbsoluteLink()
 	{
 		if ($Page = $this->Link()) {
-			return(Director::absoluteURL($Page));
+			return (Director::absoluteURL($Page));
 		}
 	}
 
@@ -149,8 +150,8 @@ class Tag extends DataObject
 	{
 		$now = SS_DateTime::now()->Format('Y-m-d');
 		return $this->News()
-				->filter(array('Live' => true))
-				->exclude(array('PublishFrom:GreaterThan' => $now));
+			->filter(array('Live' => true))
+			->exclude(array('PublishFrom:GreaterThan' => $now));
 	}
 
 	/**
@@ -160,46 +161,46 @@ class Tag extends DataObject
 	{
 		return array(
 			'CREATE_TAG' => array(
-				'name' => _t('Tag.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
+				'name'     => _t('Tag.PERMISSION_CREATE_DESCRIPTION', 'Create tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Tag.PERMISSION_CREATE_HELP', 'Permission required to create new tags.')
+				'help'     => _t('Tag.PERMISSION_CREATE_HELP', 'Permission required to create new tags.')
 			),
-			'EDIT_TAG' => array(
-				'name' => _t('Tag.PERMISSION_EDIT_DESCRIPTION', 'Edit tags'),
+			'EDIT_TAG'   => array(
+				'name'     => _t('Tag.PERMISSION_EDIT_DESCRIPTION', 'Edit tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Tag.PERMISSION_EDIT_HELP', 'Permission required to edit existing tags.')
+				'help'     => _t('Tag.PERMISSION_EDIT_HELP', 'Permission required to edit existing tags.')
 			),
 			'DELETE_TAG' => array(
-				'name' => _t('Tag.PERMISSION_DELETE_DESCRIPTION', 'Delete tags'),
+				'name'     => _t('Tag.PERMISSION_DELETE_DESCRIPTION', 'Delete tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Tag.PERMISSION_DELETE_HELP', 'Permission required to delete existing tags.')
+				'help'     => _t('Tag.PERMISSION_DELETE_HELP', 'Permission required to delete existing tags.')
 			),
-			'VIEW_TAG' => array(
-				'name' => _t('Tag.PERMISSION_VIEW_DESCRIPTION', 'View tags'),
+			'VIEW_TAG'   => array(
+				'name'     => _t('Tag.PERMISSION_VIEW_DESCRIPTION', 'View tags'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('Tag.PERMISSION_VIEW_HELP', 'Permission required to view existing tags.')
+				'help'     => _t('Tag.PERMISSION_VIEW_HELP', 'Permission required to view existing tags.')
 			),
 		);
 	}
 
 	public function canCreate($member = null)
 	{
-		return(Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null)
 	{
-		return(Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null)
 	{
-		return(Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null)
 	{
-		return(Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 }

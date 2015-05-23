@@ -37,13 +37,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'mIRC Scripting',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'mIRC Scripting',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'alias', 'menu', 'dialog',
 		),
@@ -75,41 +75,39 @@ $language_data = array(
 			'writeini', 'who', 'whois', 'whowas'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']', '/'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+		1              => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #994444;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #990000; font-weight: bold;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #808080; font-style: italic;',
 		),
-		'ESCAPE_CHAR' => array(
-		),
-		'BRACKETS' => array(
+		'ESCAPE_CHAR' => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #FF0000;',
 		),
-		'STRINGS' => array(
-		),
-		'NUMBERS' => array(
+		'STRINGS'     => array(),
+		'NUMBERS'     => array(
 			0 => '',
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #008000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #FF0000;',
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #000099;',
 			1 => 'color: #990000;',
 			2 => 'color: #000099;',
@@ -119,17 +117,16 @@ $language_data = array(
 			6 => 'color: #990000; font-weight: bold;',
 			7 => 'color: #990000; font-weight: bold;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.mirc.com/{FNAMEL}'
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array('.'),
-	'REGEXPS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array('.'),
+	'REGEXPS'                => array(
 		//Variable names
 		0 => '\$[a-zA-Z0-9]+',
 		//Variable names
@@ -153,16 +150,14 @@ $language_data = array(
 		// /...
 		7 => '(?<!>|:|\/|\w)\/[a-zA-Z][a-zA-Z0-9]*(?!>)'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
 			'NUMBERS' => GESHI_NEVER
 		),
-		'KEYWORDS' => array(
+		'KEYWORDS'     => array(
 			'DISALLOWED_BEFORE' => '(?<![\w\$\|\#;<^&])'
 		)
 	)

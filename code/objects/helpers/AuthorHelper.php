@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Collect the authors for author-specific pages.
  * NOT needed for users to edit, thus NOT in the admin.
@@ -11,7 +12,7 @@ class AuthorHelper extends DataObject
 {
 	private static $db = array(
 		'OriginalName' => 'Varchar(255)',
-		'URLSegment' => 'Varchar(255)',
+		'URLSegment'   => 'Varchar(255)',
 	);
 	private static $has_many = array(
 		'NewsItems' => 'News',
@@ -45,7 +46,7 @@ class AuthorHelper extends DataObject
 			$action = $siteConfigAction . '/';
 		}
 		if ($Page = NewsHolderPage::get()->first()) {
-			return($Page->Link($action . $this->URLSegment));
+			return ($Page->Link($action . $this->URLSegment));
 		}
 		return false;
 	}
@@ -58,7 +59,7 @@ class AuthorHelper extends DataObject
 	public function AbsoluteLink()
 	{
 		if ($Page = $this->Link()) {
-			return(Director::absoluteURL($Page));
+			return (Director::absoluteURL($Page));
 		}
 	}
 

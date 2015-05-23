@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'MOS 6502 (6510) Kick Assembler format',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'MOS 6502 (6510) Kick Assembler format',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* 6502/6510 Opcodes including undocumented opcodes as Kick Assembler 3.13 does not make a distinction - they are ALL valid. */
 		1 => array(
 			'adc', 'ahx', 'alr', 'anc', 'anc2', 'and', 'arr', 'asl',
@@ -117,24 +117,24 @@ $language_data = array(
 			'BF_C64FILE', 'BF_BITMAP_SINGLECOLOR', 'BF_KOALA', 'BF_FLI', // Binary format constant
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 //        '[', ']', '(', ')', '{', '}',    // These are already defined by GeSHi as BRACKETS.
 		'-', '+', '-', '*', '/', '>', '<', '<<', '>>', '&', '|', '^', '=', '==',
 		'!=', '>=', '<=', '!', '&&', '||', '#',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #00f; font-weight:bold;',
 			2 => 'color: #00f; font-weight:bold;',
 			3 => 'color: #00f; font-weight:bold;',
@@ -144,39 +144,37 @@ $language_data = array(
 			7 => 'color: #a04; font-weight:bold; font-style: italic;',
 			8 => 'color: #f08; font-weight:bold;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #999; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #009; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #080;'
 		),
-		'NUMBERS' => array(
-			GESHI_NUMBER_INT_BASIC => 'color: #f00;',
-			GESHI_NUMBER_HEX_PREFIX_DOLLAR => 'color: #f00;',
+		'NUMBERS'     => array(
+			GESHI_NUMBER_INT_BASIC          => 'color: #f00;',
+			GESHI_NUMBER_HEX_PREFIX_DOLLAR  => 'color: #f00;',
 			GESHI_NUMBER_BIN_PREFIX_PERCENT => 'color: #f00;',
-			GESHI_NUMBER_FLT_NONSCI => 'color: #f00;',
+			GESHI_NUMBER_FLT_NONSCI         => 'color: #f00;',
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #080;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #933;',
 			1 => 'color: #933;',
 			2 => 'color: #933;',
 			3 => 'color: #00f; font-weight:bold;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -186,16 +184,15 @@ $language_data = array(
 		7 => '',
 		8 => '',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_HEX_PREFIX_DOLLAR |
-	GESHI_NUMBER_BIN_PREFIX_PERCENT,
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_HEX_PREFIX_DOLLAR |
+		GESHI_NUMBER_BIN_PREFIX_PERCENT,
 	// AMCE Octal format not support and gets picked up as Decimal unfortunately.
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Labels end with a collon.
 		0 => '[!]{0,1}[_a-zA-Z][_a-zA-Z0-9]*\:',
 		//Multi Labels (local labels) references start with ! and end with + or - for forward/backward reference.
@@ -209,14 +206,12 @@ $language_data = array(
 		// NOTE: The order of the Address Modes must be maintained or it wont work properly (eg. place ZP first and find out!)
 		3 => '[A-Z]{3}[2]?_(?:IMM|IND|IZPX|IZPY|ZPX|ZPY|ABSX|ABSY|REL|ABS|ZP)',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 8,
-	'PARSER_CONTROL' => array(
-		'NUMBERS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 8,
+	'PARSER_CONTROL'         => array(
+		'NUMBERS'  => array(
 			'PRECHECK_RX' => '/[\da-fA-F\.\$\%]/'
 		),
 		'KEYWORDS' => array(

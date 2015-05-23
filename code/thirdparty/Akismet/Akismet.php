@@ -6,7 +6,7 @@
  *
  * This service performs a number of checks on submitted data and returns whether or not the data is likely to be spam.
  *
- * Please note that in order to use this class, you must have a vaild {@link http://wordpress.com/api-keys/ WordPress API key}.  They are free for non/small-profit types and getting one will only take a couple of minutes.  
+ * Please note that in order to use this class, you must have a vaild {@link http://wordpress.com/api-keys/ WordPress API key}.  They are free for non/small-profit types and getting one will only take a couple of minutes.
  *
  * For commercial use, please {@link http://akismet.com/commercial/ visit the Akismet commercial licensing page}.
  *
@@ -21,8 +21,9 @@
  * @copyright Alex Potsides, {@link http://www.achingbrain.net http://www.achingbrain.net}
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License
  */
+
 /**
- * 	The Akismet PHP5 Class
+ *    The Akismet PHP5 Class
  *
  *  This class takes the functionality from the Akismet WordPress plugin written by {@link http://photomatt.net/ Matt Mullenweg} and allows it to be integrated into any PHP5 application or website.
  *
@@ -42,9 +43,9 @@
  *      // store the comment normally
  *  </code>
  *
- * 	@version	0.2
- *  @author		Alex Potsides
- *  @link		http://www.achingbrain.net/
+ * @version    0.2
+ * @author        Alex Potsides
+ * @link        http://www.achingbrain.net/
  * @package cms
  * @subpackage comments
  */
@@ -72,9 +73,9 @@ class Akismet
 		'PHP_SELF');
 
 	/**
-	 * 	@throws	Exception	An exception is thrown if your API key is invalid.
-	 * 	@param	string	Your WordPress API key.
-	 * 	@param	string	$blogURL			The URL of your blog.
+	 * @throws    Exception    An exception is thrown if your API key is invalid.
+	 * @param    string    Your WordPress API key.
+	 * @param    string $blogURL The URL of your blog.
 	 */
 	public function __construct($blogURL, $wordPressAPIKey)
 	{
@@ -95,7 +96,7 @@ class Akismet
 		// PHP5 concurently and is actually running through a separate proxy al a these instructions:
 		// http://www.schlitt.info/applications/blog/archives/83_How_to_run_PHP4_and_PHP_5_parallel.html
 		// and http://wiki.coggeshall.org/37.html
-		// Otherwise the user_ip appears as the IP address of the PHP4 server passing the requests to the 
+		// Otherwise the user_ip appears as the IP address of the PHP4 server passing the requests to the
 		// PHP5 one...
 		$this->comment['user_ip'] = $_SERVER['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $_SERVER['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
 
@@ -147,11 +148,11 @@ class Akismet
 	}
 
 	/**
-	 * 	Tests for spam.
+	 *    Tests for spam.
 	 *
-	 * 	Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
+	 *    Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
 	 *
-	 * 	@return		bool	True if the comment is spam, false if not
+	 * @return        bool    True if the comment is spam, false if not
 	 */
 	public function isCommentSpam()
 	{
@@ -161,9 +162,9 @@ class Akismet
 	}
 
 	/**
-	 * 	Submit spam that is incorrectly tagged as ham.
+	 *    Submit spam that is incorrectly tagged as ham.
 	 *
-	 * 	Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
+	 *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
 	 */
 	public function submitSpam()
 	{
@@ -171,9 +172,9 @@ class Akismet
 	}
 
 	/**
-	 * 	Submit ham that is incorrectly tagged as spam.
+	 *    Submit ham that is incorrectly tagged as spam.
 	 *
-	 * 	Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
+	 *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
 	 */
 	public function submitHam()
 	{
@@ -181,9 +182,9 @@ class Akismet
 	}
 
 	/**
-	 * 	To override the user IP address when submitting spam/ham later on
+	 *    To override the user IP address when submitting spam/ham later on
 	 *
-	 * 	@param string $userip	An IP address.  Optional.
+	 * @param string $userip An IP address.  Optional.
 	 */
 	public function setUserIP($userip)
 	{
@@ -191,9 +192,9 @@ class Akismet
 	}
 
 	/**
-	 * 	To override the referring page when submitting spam/ham later on
+	 *    To override the referring page when submitting spam/ham later on
 	 *
-	 * 	@param string $referrer	The referring page.  Optional.
+	 * @param string $referrer The referring page.  Optional.
 	 */
 	public function setReferrer($referrer)
 	{
@@ -201,9 +202,9 @@ class Akismet
 	}
 
 	/**
-	 * 	A permanent URL referencing the blog post the comment was submitted to.
+	 *    A permanent URL referencing the blog post the comment was submitted to.
 	 *
-	 * 	@param string $permalink	The URL.  Optional.
+	 * @param string $permalink The URL.  Optional.
 	 */
 	public function setPermalink($permalink)
 	{
@@ -211,9 +212,9 @@ class Akismet
 	}
 
 	/**
-	 * 	The type of comment being submitted.  
+	 *    The type of comment being submitted.
 	 *
-	 * 	May be blank, comment, trackback, pingback, or a made up value like "registration" or "wiki".
+	 *    May be blank, comment, trackback, pingback, or a made up value like "registration" or "wiki".
 	 */
 	public function setCommentType($commentType)
 	{
@@ -221,7 +222,7 @@ class Akismet
 	}
 
 	/**
-	 * 	The name that the author submitted with the comment.
+	 *    The name that the author submitted with the comment.
 	 */
 	public function setCommentAuthor($commentAuthor)
 	{
@@ -229,9 +230,9 @@ class Akismet
 	}
 
 	/**
-	 * 	The email address that the author submitted with the comment.
+	 *    The email address that the author submitted with the comment.
 	 *
-	 * 	The address is assumed to be valid.
+	 *    The address is assumed to be valid.
 	 */
 	public function setCommentAuthorEmail($authorEmail)
 	{
@@ -239,7 +240,7 @@ class Akismet
 	}
 
 	/**
-	 * 	The URL that the author submitted with the comment.
+	 *    The URL that the author submitted with the comment.
 	 */
 	public function setCommentAuthorURL($authorURL)
 	{
@@ -247,7 +248,7 @@ class Akismet
 	}
 
 	/**
-	 * 	The comment's body text.
+	 *    The comment's body text.
 	 */
 	public function setCommentContent($commentBody)
 	{
@@ -255,7 +256,7 @@ class Akismet
 	}
 
 	/**
-	 * 	Defaults to 80
+	 *    Defaults to 80
 	 */
 	public function setAPIPort($apiPort)
 	{
@@ -263,7 +264,7 @@ class Akismet
 	}
 
 	/**
-	 * 	Defaults to rest.akismet.com
+	 *    Defaults to rest.akismet.com
 	 */
 	public function setAkismetServer($akismetServer)
 	{
@@ -271,7 +272,7 @@ class Akismet
 	}
 
 	/**
-	 * 	Defaults to '1.1'
+	 *    Defaults to '1.1'
 	 */
 	public function setAkismetVersion($akismetVersion)
 	{
@@ -279,19 +280,20 @@ class Akismet
 	}
 
 }
+
 /**
- * 	Utility class used by Akismet
+ *    Utility class used by Akismet
  *
  *  This class is used by Akismet to do the actual sending and receiving of data.  It opens a connection to a remote host, sends some data and the reads the response and makes it available to the calling program.
  *
  *  The code that makes up this class originates in the Akismet WordPress plugin, which is {@link http://akismet.com/download/ available on the Akismet website}.
  *
- * 	N.B. It is not necessary to call this class directly to use the Akismet class.  This is included here mainly out of a sense of completeness.
+ *    N.B. It is not necessary to call this class directly to use the Akismet class.  This is included here mainly out of a sense of completeness.
  *
- * 	@name		SocketWriteRead
- * 	@version	0.1
- *  @author		Alex Potsides
- *  @link		http://www.achingbrain.net/
+ * @name        SocketWriteRead
+ * @version    0.1
+ * @author        Alex Potsides
+ * @link        http://www.achingbrain.net/
  * @package cms
  * @subpackage comments
  */
@@ -306,10 +308,10 @@ class SocketWriteRead
 	private $errorString;
 
 	/**
-	 * 	@param	string	$host			The host to send/receive data.
-	 * 	@param	int		$port			The port on the remote host.
-	 * 	@param	string	$request		The data to send.
-	 * 	@param	int		$responseLength	The amount of data to read.  Defaults to 1160 bytes.
+	 * @param    string $host The host to send/receive data.
+	 * @param    int $port The port on the remote host.
+	 * @param    string $request The data to send.
+	 * @param    int $responseLength The amount of data to read.  Defaults to 1160 bytes.
 	 */
 	public function __construct($host, $port, $request, $responseLength = 1160)
 	{
@@ -324,7 +326,7 @@ class SocketWriteRead
 	/**
 	 *  Sends the data to the remote host.
 	 *
-	 * @throws	An exception is thrown if a connection cannot be made to the remote host.
+	 * @throws    An exception is thrown if a connection cannot be made to the remote host.
 	 */
 	public function send()
 	{
@@ -350,7 +352,7 @@ class SocketWriteRead
 	/**
 	 *  Returns the server response text
 	 *
-	 *  @return	string
+	 * @return    string
 	 */
 	public function getResponse()
 	{
@@ -358,11 +360,11 @@ class SocketWriteRead
 	}
 
 	/**
-	 * 	Returns the error number
+	 *    Returns the error number
 	 *
-	 * 	If there was no error, 0 will be returned.
+	 *    If there was no error, 0 will be returned.
 	 *
-	 * 	@return int
+	 * @return int
 	 */
 	public function getErrorNumner()
 	{
@@ -370,11 +372,11 @@ class SocketWriteRead
 	}
 
 	/**
-	 * 	Returns the error string
+	 *    Returns the error string
 	 *
-	 * 	If there was no error, an empty string will be returned.
+	 *    If there was no error, an empty string will be returned.
 	 *
-	 * 	@return string
+	 * @return string
 	 */
 	public function getErrorString()
 	{
@@ -382,4 +384,5 @@ class SocketWriteRead
 	}
 
 }
+
 ?>

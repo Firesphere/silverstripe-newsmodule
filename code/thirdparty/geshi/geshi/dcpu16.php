@@ -39,14 +39,14 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'DCPU-16 Assembly',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_HEX_PREFIX,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'DCPU-16 Assembly',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'NUMBERS'                => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_HEX_PREFIX,
+	'KEYWORDS'               => array(
 		/* CPU */
 		1 => array(
 			'set', 'add', 'sub', 'mul', 'div', 'mod', 'shl', 'shr', 'and', 'bor', 'xor',
@@ -60,53 +60,50 @@ $language_data = array(
 			'pop', 'peek', 'push' //Special cases with DCPU-16
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'[', ']', '+', '-', ','
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
+		1              => false,
+		2              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000088; font-weight:bold;',
 			2 => 'color: #0000ff;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #adadad; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000088;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7f007f;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #880000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #008000;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			2 => 'color: #993333;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://0x10c.com/doc/dcpu-16.txt',
 		2 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Hex numbers
 		//0 => '0[0-9a-fA-F]{1,32}[hH]',
 		//Binary numbers
@@ -114,16 +111,14 @@ $language_data = array(
 		//Labels
 		2 => '^:[_a-zA-Z][_a-zA-Z0-9]?(?=\s|$)'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#\/])",
-			'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-])"
+			'DISALLOWED_AFTER'  => "(?![a-zA-Z0-9_\|%\\-])"
 		)
 	)
 );

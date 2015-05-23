@@ -44,16 +44,16 @@
 // http://www.fb10.uni-bremen.de/anglistik/langpro/bibliographies/jacobsen-bibtex.html
 
 $language_data = array(
-	'LANG_NAME' => 'BibTeX',
-	'OOLANG' => false,
-	'COMMENT_SINGLE' => array(
+	'LANG_NAME'              => 'BibTeX',
+	'OOLANG'                 => false,
+	'COMMENT_SINGLE'         => array(
 		1 => '%%'
 	),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		0 => array(
 			'@comment', '@preamble', '@string'
 		),
@@ -82,41 +82,41 @@ $language_data = array(
 			'location', 'price', 'rating', 'read', 'size', 'source', 'url'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		0 => '',
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'{', '}', '#', '=', ','
 	),
-	'CASE_SENSITIVE' => array(
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+	'CASE_SENSITIVE'         => array(
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 		GESHI_COMMENTS => false,
 	),
 	// Define the colors for the groups listed above
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #C02020;', // Standard entry types
 			2 => 'color: #C02020;', // Custom entry types
 			3 => 'color: #C08020;', // Standard entry field names
 			4 => 'color: #C08020;'  // Custom entry field names
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #2C922C; font-style: italic;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #2020C0;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #E02020;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			1 => 'color: #2020C0;', // {...}
 			2 => 'color: #C08020;', // BibDesk fields
 			3 => 'color: #800000;'   // LaTeX commands
@@ -124,52 +124,46 @@ $language_data = array(
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #E02020;'
 		),
-		'NUMBERS' => array(
-		),
-		'METHODS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'NUMBERS'     => array(),
+		'METHODS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		// {parameters}
 		1 => array(
-			GESHI_SEARCH => "(?<=\\{)(?:\\{(?R)\\}|[^\\{\\}])*(?=\\})",
-			GESHI_REPLACE => '\0',
+			GESHI_SEARCH    => "(?<=\\{)(?:\\{(?R)\\}|[^\\{\\}])*(?=\\})",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 's',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		2 => array(
-			GESHI_SEARCH => "\bBdsk-(File|Url)-\d+",
-			GESHI_REPLACE => '\0',
+			GESHI_SEARCH    => "\bBdsk-(File|Url)-\d+",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		3 => array(
-			GESHI_SEARCH => "\\\\[A-Za-z0-9]*+",
-			GESHI_REPLACE => '\0',
+			GESHI_SEARCH    => "\\\\[A-Za-z0-9]*+",
+			GESHI_REPLACE   => '\0',
 			GESHI_MODIFIERS => 'Us',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'OBJECT_SPLITTERS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'PARSER_CONTROL'         => array(
 		'ENABLE_FLAGS' => array(
 			'NUMBERS' => GESHI_NEVER
 		),
-		'KEYWORDS' => array(
+		'KEYWORDS'     => array(
 			3 => array(
 				'DISALLOWED_AFTER' => '(?=\s*=)'
 			),

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This extension sets up the fields for the Slideshow images.
  *
@@ -17,9 +18,9 @@ class SlideshowCMSExtension extends DataExtension
 		$fields->removeByName(array('News', 'NewsID', 'SortOrder'));
 		$fields->addFieldsToTab(
 			'Root.Main', array(
-			TextField::create('Title', $owner->fieldLabel('Title')),
-			HtmlEditorField::create('Description', $owner->fieldLabel('Description')),
-			UploadField::create('Image', $owner->fieldLabel('Image')),
+				TextField::create('Title', $owner->fieldLabel('Title')),
+				HtmlEditorField::create('Description', $owner->fieldLabel('Description')),
+				UploadField::create('Image', $owner->fieldLabel('Image')),
 			)
 		);
 	}

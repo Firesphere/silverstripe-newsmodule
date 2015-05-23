@@ -38,13 +38,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Motorola 68000 - HiSoft Devpac ST 2 Assembler format',
-	'COMMENT_SINGLE' => array(1 => ';'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Motorola 68000 - HiSoft Devpac ST 2 Assembler format',
+	'COMMENT_SINGLE'         => array(1 => ';'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* Directives. */
 		1 => array(
 			'end', 'include', 'incbin', 'opt', 'even', 'cnop', 'dc.b', 'dc.w',
@@ -86,79 +86,74 @@ $language_data = array(
 			'pc', 'ccr', 'sr',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 //        '[', ']', '(', ')', '{', '}',    // These are already defined by GeSHi as BRACKETS.
 		'+', '-', '~', '<<', '>>', '&',
 		'!', '^', '*', '/', '=', '<', '>',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #f08; font-weight:bold;',
 			2 => 'color: #00f; font-weight:bold;',
 			3 => 'color: #00f; font-weight:bold;',
 			4 => 'color: #080; font-weight:bold;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #999; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #009; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #080;'
 		),
-		'NUMBERS' => array(
-			GESHI_NUMBER_INT_BASIC => 'color: #f00;',
-			GESHI_NUMBER_HEX_PREFIX_DOLLAR => 'color: #f00;',
+		'NUMBERS'     => array(
+			GESHI_NUMBER_INT_BASIC          => 'color: #f00;',
+			GESHI_NUMBER_HEX_PREFIX_DOLLAR  => 'color: #f00;',
 			GESHI_NUMBER_BIN_PREFIX_PERCENT => 'color: #f00;',
-			GESHI_NUMBER_OCT_PREFIX_AT => 'color: #f00;',
+			GESHI_NUMBER_OCT_PREFIX_AT      => 'color: #f00;',
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #080;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #933;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_HEX_PREFIX_DOLLAR |
-	GESHI_NUMBER_OCT_PREFIX_AT |
-	GESHI_NUMBER_BIN_PREFIX_PERCENT,
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_HEX_PREFIX_DOLLAR |
+		GESHI_NUMBER_OCT_PREFIX_AT |
+		GESHI_NUMBER_BIN_PREFIX_PERCENT,
+	'REGEXPS'                => array(
 		//Labels may end in a colon.
 		0 => '(?<=\A\x20|\r|\n|^)[\._a-zA-Z][\._a-zA-Z0-9]*[\:]?[\s]'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 8,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 8,
+	'PARSER_CONTROL'         => array(
 		'NUMBERS' => array(
 			'PRECHECK_RX' => '/[\da-fA-F\.\$\%\@]/'
 		)

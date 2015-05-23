@@ -47,10 +47,10 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'D',
-	'COMMENT_SINGLE' => array(2 => '///', 1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/', '/+' => '+/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'D',
+	'COMMENT_SINGLE'         => array(2 => '///', 1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/', '/+' => '+/'),
+	'COMMENT_REGEXP'         => array(
 		// doxygen comments
 		3 => '#/\*\*(?![\*\/]).*\*/#sU',
 		// raw strings
@@ -58,10 +58,10 @@ $language_data = array(
 		// Script Style interpreter comment
 		5 => "/\A#!(?=\\/).*?$/m"
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '',
-	'ESCAPE_REGEXP' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '',
+	'ESCAPE_REGEXP'          => array(
 		//Simple Single Char Escapes
 		1 => "#\\\\[abfnrtv\\'\"?\n\\\\]#i",
 		//Hexadecimal Char Specs
@@ -98,35 +98,35 @@ $language_data = array(
 		  "lang|rang|loz|spades|clubs|hearts|diams);#", */
 		// optimized:
 		6 => "#\\\\&(?:A(?:Elig|acute|circ|grave|lpha|ring|tilde|uml)|Beta|" .
-		"C(?:cedil|hi)|D(?:agger|elta)|E(?:TH|acute|circ|grave|psilon|ta|uml)|" .
-		"Gamma|I(?:acute|circ|grave|ota|uml)|Kappa|Lambda|Mu|N(?:tilde|u)|" .
-		"O(?:Elig|acute|circ|grave|m(?:ega|icron)|slash|tilde|uml)|" .
-		"P(?:hi|i|rime|si)|Rho|S(?:caron|igma)|T(?:HORN|au|heta)|" .
-		"U(?:acute|circ|grave|psilon|uml)|Xi|Y(?:acute|uml)|Zeta|" .
-		"a(?:acute|c(?:irc|ute)|elig|grave|l(?:efsym|pha)|mp|n[dg]|ring|" .
-		"symp|tilde|uml)|b(?:dquo|eta|rvbar|ull)|c(?:ap|cedil|e(?:dil|nt)|" .
-		"hi|irc|lubs|o(?:ng|py)|rarr|u(?:p|rren))|d(?:Arr|a(?:gger|rr)|" .
-		"e(?:g|lta)|i(?:ams|vide))|e(?:acute|circ|grave|m(?:pty|sp)|nsp|" .
-		"psilon|quiv|t[ah]|u(?:ml|ro)|xist)|f(?:nof|orall|ra(?:c(?:1[24]|34)|sl))|" .
-		"g(?:amma|e|t)|h(?:Arr|arr|e(?:arts|llip))|i(?:acute|circ|excl|grave|mage|" .
-		"n(?:fin|t)|ota|quest|sin|uml)|kappa|l(?:Arr|a(?:mbda|ng|quo|rr)|ceil|" .
-		"dquo|e|floor|o(?:wast|z)|rm|s(?:aquo|quo)|t)|m(?:acr|dash|" .
-		"i(?:cro|ddot|nus)|u)|n(?:abla|bsp|dash|e|i|ot(?:in)?|sub|tilde|u)|" .
-		"o(?:acute|circ|elig|grave|line|m(?:ega|icron)|plus|r(?:d[fm])?|" .
-		"slash|ti(?:lde|mes)|uml)|p(?:ar[at]|er(?:mil|p)|hi|iv?|lusmn|ound|" .
-		"r(?:ime|o[dp])|si)|quot|r(?:Arr|a(?:dic|ng|quo|rr)|ceil|dquo|e(?:al|g)|" .
-		"floor|ho|lm|s(?:aquo|quo))|s(?:bquo|caron|dot|ect|hy|i(?:gmaf?|m)|" .
-		"pades|u(?:be?|m|p[123e]?)|zlig)|t(?:au|h(?:e(?:re4|ta(?:sym)?)|insp|" .
-		"orn)|i(?:lde|mes)|rade)|u(?:Arr|a(?:cute|rr)|circ|grave|ml|" .
-		"psi(?:h|lon)|uml)|weierp|xi|y(?:acute|en|uml)|z(?:eta|w(?:j|nj)));#",
+			"C(?:cedil|hi)|D(?:agger|elta)|E(?:TH|acute|circ|grave|psilon|ta|uml)|" .
+			"Gamma|I(?:acute|circ|grave|ota|uml)|Kappa|Lambda|Mu|N(?:tilde|u)|" .
+			"O(?:Elig|acute|circ|grave|m(?:ega|icron)|slash|tilde|uml)|" .
+			"P(?:hi|i|rime|si)|Rho|S(?:caron|igma)|T(?:HORN|au|heta)|" .
+			"U(?:acute|circ|grave|psilon|uml)|Xi|Y(?:acute|uml)|Zeta|" .
+			"a(?:acute|c(?:irc|ute)|elig|grave|l(?:efsym|pha)|mp|n[dg]|ring|" .
+			"symp|tilde|uml)|b(?:dquo|eta|rvbar|ull)|c(?:ap|cedil|e(?:dil|nt)|" .
+			"hi|irc|lubs|o(?:ng|py)|rarr|u(?:p|rren))|d(?:Arr|a(?:gger|rr)|" .
+			"e(?:g|lta)|i(?:ams|vide))|e(?:acute|circ|grave|m(?:pty|sp)|nsp|" .
+			"psilon|quiv|t[ah]|u(?:ml|ro)|xist)|f(?:nof|orall|ra(?:c(?:1[24]|34)|sl))|" .
+			"g(?:amma|e|t)|h(?:Arr|arr|e(?:arts|llip))|i(?:acute|circ|excl|grave|mage|" .
+			"n(?:fin|t)|ota|quest|sin|uml)|kappa|l(?:Arr|a(?:mbda|ng|quo|rr)|ceil|" .
+			"dquo|e|floor|o(?:wast|z)|rm|s(?:aquo|quo)|t)|m(?:acr|dash|" .
+			"i(?:cro|ddot|nus)|u)|n(?:abla|bsp|dash|e|i|ot(?:in)?|sub|tilde|u)|" .
+			"o(?:acute|circ|elig|grave|line|m(?:ega|icron)|plus|r(?:d[fm])?|" .
+			"slash|ti(?:lde|mes)|uml)|p(?:ar[at]|er(?:mil|p)|hi|iv?|lusmn|ound|" .
+			"r(?:ime|o[dp])|si)|quot|r(?:Arr|a(?:dic|ng|quo|rr)|ceil|dquo|e(?:al|g)|" .
+			"floor|ho|lm|s(?:aquo|quo))|s(?:bquo|caron|dot|ect|hy|i(?:gmaf?|m)|" .
+			"pades|u(?:be?|m|p[123e]?)|zlig)|t(?:au|h(?:e(?:re4|ta(?:sym)?)|insp|" .
+			"orn)|i(?:lde|mes)|rade)|u(?:Arr|a(?:cute|rr)|circ|grave|ml|" .
+			"psi(?:h|lon)|uml)|weierp|xi|y(?:acute|en|uml)|z(?:eta|w(?:j|nj)));#",
 	),
-	'HARDQUOTE' => array('`', '`'),
-	'HARDESCAPE' => array(),
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
-	GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'HARDQUOTE'              => array('`', '`'),
+	'HARDESCAPE'             => array(),
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
+		GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(
 			'break', 'case', 'continue', 'do', 'else',
 			'for', 'foreach', 'goto', 'if', 'return',
@@ -165,87 +165,82 @@ $language_data = array(
 			'__gshared', '@disable', '@property', 'pure', 'safe'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '[', ']', '{', '}', '?', '!', ';', ':', ',', '...', '..',
 		'+', '-', '*', '/', '%', '&', '|', '^', '<', '>', '=', '~',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #b1b100;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #aaaadd; font-weight: bold;',
 			4 => 'color: #993333;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #009933; font-style: italic;',
-			3 => 'color: #009933; font-style: italic;',
-			4 => 'color: #ff0000;',
-			5 => 'color: #0040ff;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #009933; font-style: italic;',
+			3       => 'color: #009933; font-style: italic;',
+			4       => 'color: #ff0000;',
+			5       => 'color: #0040ff;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
-			1 => 'color: #000099; font-weight: bold;',
-			2 => 'color: #660099; font-weight: bold;',
-			3 => 'color: #660099; font-weight: bold;',
-			4 => 'color: #660099; font-weight: bold;',
-			5 => 'color: #006699; font-weight: bold;',
-			6 => 'color: #666699; font-weight: bold; font-style: italic;',
+			0      => 'color: #000099; font-weight: bold;',
+			1      => 'color: #000099; font-weight: bold;',
+			2      => 'color: #660099; font-weight: bold;',
+			3      => 'color: #660099; font-weight: bold;',
+			4      => 'color: #660099; font-weight: bold;',
+			5      => 'color: #006699; font-weight: bold;',
+			6      => 'color: #666699; font-weight: bold; font-style: italic;',
 			'HARD' => '',
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #66cc66;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;',
+		'STRINGS'     => array(
+			0      => 'color: #ff0000;',
 			'HARD' => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
-			0 => 'color: #0000dd;',
+		'NUMBERS'     => array(
+			0                          => 'color: #0000dd;',
 			GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
-			GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
-			GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
+			GESHI_NUMBER_OCT_PREFIX    => 'color: #208080;',
+			GESHI_NUMBER_HEX_PREFIX    => 'color: #208080;',
 			GESHI_NUMBER_FLT_SCI_SHORT => 'color:#800080;',
-			GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
-			GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
-			GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
+			GESHI_NUMBER_FLT_SCI_ZERO  => 'color:#800080;',
+			GESHI_NUMBER_FLT_NONSCI_F  => 'color:#800080;',
+			GESHI_NUMBER_FLT_NONSCI    => 'color:#800080;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #66cc66;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
-		)
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.',
 	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

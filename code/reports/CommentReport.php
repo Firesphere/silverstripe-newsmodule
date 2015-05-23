@@ -1,7 +1,8 @@
 <?php
+
 /**
  * Content side-report listing newsitems with broken comments
- * 
+ *
  * @package News/Blog module
  * @author Simon 'Sphere'
  */
@@ -20,7 +21,7 @@ class CommentReport extends SS_Report
 	/**
 	 * Setup the list of records to show.
 	 * @param array $params array of filter-rules.
-	 * @param array $sort 
+	 * @param array $sort
 	 * @param integer $limit
 	 * @return ArrayList with the records.
 	 */
@@ -65,22 +66,22 @@ class CommentReport extends SS_Report
 	public function columns()
 	{
 		$fields = array(
-			"Title" => array(
-				"title" => _t('CommentReport.NEWSTITLE', 'News title'),
+			"Title"        => array(
+				"title"      => _t('CommentReport.NEWSTITLE', 'News title'),
 				'formatting' => sprintf(
 					'<a href=\"admin/news/News/EditForm/field/News/item/$ID/edit\" title=\"%s\">$value</a>', _t('CommentReport.EDIT', 'Edit item')
 				)
 			),
 			"Commentcount" => array(
-				"title" => _t('CommentReport.COMMENTCOUNT', 'Total amount of comments'),
+				"title"   => _t('CommentReport.COMMENTCOUNT', 'Total amount of comments'),
 				'casting' => 'Int'
 			),
-			"Spamcount" => array(
-				"title" => _t('CommentReport.COMMENTSPAMCOUNT', 'Spam comments'),
+			"Spamcount"    => array(
+				"title"   => _t('CommentReport.COMMENTSPAMCOUNT', 'Spam comments'),
 				'casting' => 'Int'
 			),
-			"Hiddencount" => array(
-				"title" => _t('CommentReport.HIDDENCOUNT', 'Hidden comments'),
+			"Hiddencount"  => array(
+				"title"   => _t('CommentReport.HIDDENCOUNT', 'Hidden comments'),
 				'casting' => 'Int'
 			),
 		);
@@ -95,15 +96,15 @@ class CommentReport extends SS_Report
 	public function parameterFields()
 	{
 		$return = FieldList::create(
-				$title = TextField::create(
-					'Title', _t('CommentReport.NEWSSEARCHTITLE', 'Search newsitem')
-				), $count = DropdownField::create(
-					'Comment', _t('CommentReport.COUNTFILTER', 'Comment count filter'), array(
-					'' => _t('CommentReport.ANY', 'All'),
-					'SPAMCOUNT' => _t('CommentReport.SPAMCOUNT', 'One or more spam comments'),
-					'HIDDENCOUNT' => _t('CommentReport.HIDDENCOUNT', 'One or more hidden comments'),
-					)
-				)
+			$title = TextField::create(
+				'Title', _t('CommentReport.NEWSSEARCHTITLE', 'Search newsitem')
+			), $count = DropdownField::create(
+			'Comment', _t('CommentReport.COUNTFILTER', 'Comment count filter'), array(
+				''            => _t('CommentReport.ANY', 'All'),
+				'SPAMCOUNT'   => _t('CommentReport.SPAMCOUNT', 'One or more spam comments'),
+				'HIDDENCOUNT' => _t('CommentReport.HIDDENCOUNT', 'One or more hidden comments'),
+			)
+		)
 		);
 		return $return;
 	}

@@ -33,15 +33,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Visual Prolog',
-	'COMMENT_SINGLE' => array(1 => '%'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'HARDQUOTE' => array('@"', '"'),
-	'HARDESCAPE' => array('""'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Visual Prolog',
+	'COMMENT_SINGLE'         => array(1 => '%'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'HARDQUOTE'              => array('@"', '"'),
+	'HARDESCAPE'             => array('""'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'clauses', 'constants', 'constructors', 'delegate', 'domains', 'facts',
 			'goal', 'guards', 'inherits', 'monitor', 'namespace', 'open',
@@ -59,70 +59,66 @@ $language_data = array(
 			'#orrequires', '#requires', '#then', '#warning'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'+', '-', '*', '?', '=', '/', '>', '<', '^', '!', ':', '(', ')', '{', '}', '[', ']'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true
+		1              => true,
+		2              => true,
+		3              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #808000;',
 			2 => 'color: #333399;',
 			3 => 'color: #800080;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #AA77BD',
+		'COMMENTS'    => array(
+			1       => 'color: #AA77BD',
 			'MULTI' => 'color: #AA77BD'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #008080;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #00B7B7;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #0000FF;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'SCRIPT' => array(
-		),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			0 => 'color: #008000;',
 			1 => 'color: #808000;',
 			2 => 'color: #333399;',
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => ':',
 		2 => '::'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		0 => "(?<![a-zA-Z0-9_])(?!(?:PIPE|SEMI)>)[A-Z_]\w*(?!\w)",
 		1 => "\\b(end\\s+)?(implement|class|interface)\\b",
 		2 => "\\b(end\\s+)?(foreach|if|try)\\b",
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

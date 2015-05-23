@@ -1,11 +1,24 @@
 <?php
+
 /**
  * The news.
  * Sit back and relax, this might take a while.
  * History is NOT supported. Only the URLSegment is being tracked. This makes it a bit more simplistic.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @property string Title
+ * @property string Author
+ * @property string URLSegment
+ * @property Text Synopsis
+ * @property HTMLText Content
+ * @property Date PublishFrom
+ * @property Boolean Tweeted
+ * @property Boolean FBPosted
+ * @property Boolean Live
+ * @property Boolean Commenting
+ * @property Enum Type
+ * @property string External
  * @method Image Impression() the Impression for this NewsItem
  * @method File Download() Get the downloadable file
  * @method AuthorHelper AuthorHelper() Get the author of this post
@@ -18,31 +31,31 @@
 class News extends DataObject implements PermissionProvider
 {
 	private static $db = array(
-		'Title' => 'Varchar(255)',
+		'Title'       => 'Varchar(255)',
 		/** Author might be handled via Member, but that's not useful if you want a non-member to post in his/her name */
-		'Author' => 'Varchar(255)',
-		'URLSegment' => 'Varchar(255)',
-		'Synopsis' => 'Text',
-		'Content' => 'HTMLText',
+		'Author'      => 'Varchar(255)',
+		'URLSegment'  => 'Varchar(255)',
+		'Synopsis'    => 'Text',
+		'Content'     => 'HTMLText',
 		'PublishFrom' => 'Date',
-		'Tweeted' => 'Boolean(false)',
-		'FBPosted' => 'Boolean(false)',
-		'Live' => 'Boolean(true)',
-		'Commenting' => 'Boolean(true)',
+		'Tweeted'     => 'Boolean(false)',
+		'FBPosted'    => 'Boolean(false)',
+		'Live'        => 'Boolean(true)',
+		'Commenting'  => 'Boolean(true)',
 		/** This is for the external location of a link */
-		'Type' => 'Enum("news,external,download","news")',
-		'External' => 'Varchar(255)',
+		'Type'        => 'Enum("news,external,download","news")',
+		'External'    => 'Varchar(255)',
 	);
 	private static $has_one = array(
-		'Impression' => 'Image',
+		'Impression'   => 'Image',
 		/** If you want to have a download-file */
-		'Download' => 'File',
+		'Download'     => 'File',
 		/** Generic helper to have Author-specific pages */
 		'AuthorHelper' => 'AuthorHelper',
 	);
 	private static $has_many = array(
-		'Comments' => 'Comment',
-		'Renamed' => 'Renamed',
+		'Comments'        => 'Comment',
+		'Renamed'         => 'Renamed',
 		'SlideshowImages' => 'SlideshowImage',
 	);
 	private static $many_many = array(
@@ -57,7 +70,7 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * Set defaults. Commenting (show comments if allowed in siteconfig) is default to true.
-	 * @var array $defaults. Commenting is true, SiteConfig overrides this!
+	 * @var array $defaults . Commenting is true, SiteConfig overrides this!
 	 */
 	private static $defaults = array(
 		'Commenting' => true,
@@ -65,7 +78,7 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * On large databases, this is a small performance improvement.
-	 * @var array $indexes.
+	 * @var array $indexes .
 	 */
 	private static $indexes = array(
 		'URLSegment' => true,
@@ -106,10 +119,10 @@ class News extends DataObject implements PermissionProvider
 		$summaryFields = parent::summaryFields();
 		$summaryFields = array_merge(
 			$summaryFields, array(
-			'Title' => _t('News.TITLE', 'Title'),
-			'Author' => _t('News.AUTHOR', 'Author'),
-			'PublishFrom' => _t('News.PUBLISH', 'Publish from'),
-			'Status' => _t('News.STATUS', 'Status'),
+				'Title'       => _t('News.TITLE', 'Title'),
+				'Author'      => _t('News.AUTHOR', 'Author'),
+				'PublishFrom' => _t('News.PUBLISH', 'Publish from'),
+				'Status'      => _t('News.STATUS', 'Status'),
 			)
 		);
 		return $summaryFields;
@@ -124,14 +137,14 @@ class News extends DataObject implements PermissionProvider
 		$searchableFields = parent::searchableFields();
 		unset($searchableFields['PublishFrom']);
 		$searchableFields['Title'] = array(
-			'field' => 'TextField',
+			'field'  => 'TextField',
 			'filter' => 'PartialMatchFilter',
-			'title' => _t('News.TITLE', 'Title')
+			'title'  => _t('News.TITLE', 'Title')
 		);
 		$searchableFields['Author'] = array(
-			'field' => 'TextField',
+			'field'  => 'TextField',
 			'filter' => 'PartialMatchFilter',
-			'title' => _t('News.AUTHOR', 'Author')
+			'title'  => _t('News.AUTHOR', 'Author')
 		);
 		return $searchableFields;
 	}
@@ -145,22 +158,22 @@ class News extends DataObject implements PermissionProvider
 	{
 		$labels = parent::fieldLabels($includerelations);
 		$newsLabels = array(
-			'Title' => _t('News.TITLE', 'Title'),
-			'Author' => _t('News.AUTHOR', 'Author'),
-			'Synopsis' => _t('News.SUMMARY', 'Summary/Abstract'),
-			'Content' => _t('News.CONTENT', 'Content'),
-			'PublishFrom' => _t('News.PUBDATE', 'Publish from'),
-			'Live' => _t('News.PUSHLIVE', 'Published'),
-			'Commenting' => _t('News.COMMENTING', 'Allow comments on this item'),
-			'Type' => _t('News.NEWSTYPE', 'Type of item'),
-			'External' => _t('News.EXTERNAL', 'External link'),
-			'Download' => _t('News.DOWNLOAD', 'Downloadable file'),
-			'Impression' => _t('News.IMPRESSION', 'Impression image'),
-			'Comments' => _t('News.COMMENTS', 'Comments'),
+			'Title'           => _t('News.TITLE', 'Title'),
+			'Author'          => _t('News.AUTHOR', 'Author'),
+			'Synopsis'        => _t('News.SUMMARY', 'Summary/Abstract'),
+			'Content'         => _t('News.CONTENT', 'Content'),
+			'PublishFrom'     => _t('News.PUBDATE', 'Publish from'),
+			'Live'            => _t('News.PUSHLIVE', 'Published'),
+			'Commenting'      => _t('News.COMMENTING', 'Allow comments on this item'),
+			'Type'            => _t('News.NEWSTYPE', 'Type of item'),
+			'External'        => _t('News.EXTERNAL', 'External link'),
+			'Download'        => _t('News.DOWNLOAD', 'Downloadable file'),
+			'Impression'      => _t('News.IMPRESSION', 'Impression image'),
+			'Comments'        => _t('News.COMMENTS', 'Comments'),
 			'SlideshowImages' => _t('News.SLIDE', 'Slideshow'),
-			'Tags' => _t('News.TAGS', 'Tags'),
+			'Tags'            => _t('News.TAGS', 'Tags'),
 			'NewsHolderPages' => _t('News.LINKEDPAGES', 'Linked pages'),
-			'Help' => _t('News.BASEHELPLABEL', 'Help')
+			'Help'            => _t('News.BASEHELPLABEL', 'Help')
 		);
 		return array_merge($newsLabels, $labels);
 	}
@@ -176,7 +189,7 @@ class News extends DataObject implements PermissionProvider
 			$action = $config . '/';
 		}
 		if ($Page = $this->NewsHolderPages()->first()) {
-			return($Page->Link($action . $this->URLSegment));
+			return ($Page->Link($action . $this->URLSegment));
 		}
 		return false;
 	}
@@ -188,7 +201,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function AbsoluteLink()
 	{
-		return(Director::absoluteURL($this->Link()));
+		return (Director::absoluteURL($this->Link()));
 	}
 
 	public function AllowComments()
@@ -276,7 +289,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	private function LookForExistingURLSegment($URLSegment)
 	{
-		return(News::get()
+		return (News::get()
 				->filter(array("URLSegment" => $URLSegment))
 				->exclude(array("ID" => $this->ID))
 				->count() != 0);
@@ -311,7 +324,7 @@ class News extends DataObject implements PermissionProvider
 	public function getAllowedComments()
 	{
 		return $this->Comments()
-				->filter(array('AkismetMarked' => false, 'Visible' => true));
+			->filter(array('AkismetMarked' => false, 'Visible' => true));
 	}
 
 	/**
@@ -352,24 +365,24 @@ class News extends DataObject implements PermissionProvider
 	{
 		return array(
 			'CREATE_NEWS' => array(
-				'name' => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create newsitems'),
+				'name'     => _t('News.PERMISSION_CREATE_DESCRIPTION', 'Create newsitems'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new newsitems.')
+				'help'     => _t('News.PERMISSION_CREATE_HELP', 'Permission required to create new newsitems.')
 			),
-			'EDIT_NEWS' => array(
-				'name' => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit newsitems'),
+			'EDIT_NEWS'   => array(
+				'name'     => _t('News.PERMISSION_EDIT_DESCRIPTION', 'Edit newsitems'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing newsitems.')
+				'help'     => _t('News.PERMISSION_EDIT_HELP', 'Permission required to edit existing newsitems.')
 			),
 			'DELETE_NEWS' => array(
-				'name' => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete newsitems'),
+				'name'     => _t('News.PERMISSION_DELETE_DESCRIPTION', 'Delete newsitems'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing newsitems.')
+				'help'     => _t('News.PERMISSION_DELETE_HELP', 'Permission required to delete existing newsitems.')
 			),
-			'VIEW_NEWS' => array(
-				'name' => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View newsitems'),
+			'VIEW_NEWS'   => array(
+				'name'     => _t('News.PERMISSION_VIEW_DESCRIPTION', 'View newsitems'),
 				'category' => _t('Permissions.CONTENT_CATEGORY', 'Content permissions'),
-				'help' => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing newsitems.')
+				'help'     => _t('News.PERMISSION_VIEW_HELP', 'Permission required to view existing newsitems.')
 			),
 		);
 	}
@@ -379,7 +392,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canCreate($member = null)
 	{
-		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	/**
@@ -387,7 +400,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canEdit($member = null)
 	{
-		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	/**
@@ -395,7 +408,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canDelete($member = null)
 	{
-		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	/**
@@ -403,7 +416,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canView($member = null)
 	{
-		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
+		return (Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
 
 	/**

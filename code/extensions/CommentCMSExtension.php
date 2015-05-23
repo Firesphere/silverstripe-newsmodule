@@ -1,4 +1,5 @@
 <?php
+
 /**
  * To keep everything consistent an clean/readable, this class handles the
  * parts needed for the CMS to manage comments.
@@ -20,14 +21,14 @@ class CommentCMSExtension extends DataExtension
 		$fields->removeByName(array('MD5Email', 'NewsID'));
 		$fields->addFieldsToTab(
 			'Root.Main', array(
-			TextField::create('Title', $owner->fieldLabel('Title')),
-			TextField::create('Name', $owner->fieldLabel('Name')),
-			TextField::create('Email', $owner->fieldLabel('Email')),
-			TextField::create('URL', $owner->fieldLabel('URL')),
-			HtmlEditorField::create('Comment', $owner->fieldLabel('Comment')),
-			CheckboxField::create('AkismetMarked', $owner->fieldLabel('AkismetMarked')),
-			CheckboxField::create('Visible', $owner->fieldLabel('Visible')),
-			CheckboxField::create('ShowGravatar', $owner->fieldLabel('ShowGravatar')),
+				TextField::create('Title', $owner->fieldLabel('Title')),
+				TextField::create('Name', $owner->fieldLabel('Name')),
+				TextField::create('Email', $owner->fieldLabel('Email')),
+				TextField::create('URL', $owner->fieldLabel('URL')),
+				HtmlEditorField::create('Comment', $owner->fieldLabel('Comment')),
+				CheckboxField::create('AkismetMarked', $owner->fieldLabel('AkismetMarked')),
+				CheckboxField::create('Visible', $owner->fieldLabel('Visible')),
+				CheckboxField::create('ShowGravatar', $owner->fieldLabel('ShowGravatar')),
 			)
 		);
 	}

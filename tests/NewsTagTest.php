@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Unittests for tags.
  * Tags should be linked to multiple items, but not all, and vice-versa.

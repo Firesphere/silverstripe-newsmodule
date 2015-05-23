@@ -38,10 +38,10 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Whois (RPSL format)',
-	'COMMENT_SINGLE' => array(1 => '% ', 2 => '%ERROR:'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'Whois (RPSL format)',
+	'COMMENT_SINGLE'         => array(1 => '% ', 2 => '%ERROR:'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(
 		//Description
 		3 => '/(?:(?<=^remarks:)|(?<=^descr:))(.|\n\s)*$/mi',
 		//Contact Details
@@ -52,10 +52,10 @@ $language_data = array(
 		7 => '/\b(?<!\.|\-)(?:[\da-f:]+(?!\.)|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:\/1?\d\d?)?(?<!\.|\-)\b/',
 		8 => '/\bAS\d+\b/'
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(//Object Types
 			'as-block', 'as-set', 'aut-num', 'domain', 'filter-set', 'inet-rtr',
 			'inet6num', 'inetnum', 'irt', 'key-cert', 'limerick', 'mntner',
@@ -86,76 +86,71 @@ $language_data = array(
 			'peeras', 'refine', 'rs-any', 'to'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		':'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+		1              => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF; font-weight: bold;',
 			2 => 'color: #000080; font-weight: bold;',
 			3 => 'color: #990000; font-weight: bold;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
-			2 => 'color: #666666; font-style: italic;',
-			3 => 'color: #404080;',
-			4 => 'color: #408040;',
-			5 => 'color: #408040;',
-			6 => 'color: #408040;',
-			7 => 'color: #804040;',
-			8 => 'color: #804040;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
+			2       => 'color: #666666; font-style: italic;',
+			3       => 'color: #404080;',
+			4       => 'color: #408040;',
+			5       => 'color: #408040;',
+			6       => 'color: #408040;',
+			7       => 'color: #804040;',
+			8       => 'color: #804040;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => '',
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000080;',
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #0000FF;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #000088;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.irr.net/docs/rpsl.html'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Variables
 		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
-		'KEYWORDS' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_MAYBE,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
+		'KEYWORDS'     => array(
 			1 => array(
 				'DISALLOWED_BEFORE' => '(?<=\A |\A \n(?m:^)|\n\n(?m:^))'
 			),
@@ -164,14 +159,14 @@ $language_data = array(
 			)
 		),
 		'ENABLE_FLAGS' => array(
-			'BRACKETS' => GESHI_NEVER,
-			'SYMBOLS' => GESHI_NEVER,
-			'BRACKETS' => GESHI_NEVER,
-			'STRINGS' => GESHI_NEVER,
+			'BRACKETS'    => GESHI_NEVER,
+			'SYMBOLS'     => GESHI_NEVER,
+			'BRACKETS'    => GESHI_NEVER,
+			'STRINGS'     => GESHI_NEVER,
 			'ESCAPE_CHAR' => GESHI_NEVER,
-			'NUMBERS' => GESHI_NEVER,
-			'METHODS' => GESHI_NEVER,
-			'SCRIPT' => GESHI_NEVER
+			'NUMBERS'     => GESHI_NEVER,
+			'METHODS'     => GESHI_NEVER,
+			'SCRIPT'      => GESHI_NEVER
 		)
 	),
 );

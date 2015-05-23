@@ -39,17 +39,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'AppleScript',
-	'COMMENT_SINGLE' => array(1 => '--'),
-	'COMMENT_MULTI' => array('(*' => '*)'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'AppleScript',
+	'COMMENT_SINGLE'         => array(1 => '--'),
+	'COMMENT_MULTI'          => array('(*' => '*)'),
+	'COMMENT_REGEXP'         => array(
 		2 => '/(?<=[a-z])\'/i',
 		3 => '/(?<![a-z])\'.*?\'/i',
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'application', 'close', 'count', 'delete', 'duplicate', 'exists', 'launch', 'make', 'move', 'open',
 			'print', 'quit', 'reopen', 'run', 'save', 'saving', 'idle', 'path to', 'number', 'alias', 'list', 'text', 'string',
@@ -80,74 +80,71 @@ $language_data = array(
 			'transaction', 'my', 'get', 'put', 'is', 'copy'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		')', '+', '-', '^', '*', '/', '&', '<', '>=', '<', '<=', '=', '�'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+		1              => false,
+		2              => false,
+		3              => false,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0066ff;',
 			2 => 'color: #ff0033;',
 			3 => 'color: #ff0033; font-weight: bold;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => '',
-			3 => 'color: #ff0000;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => '',
+			3       => 'color: #ff0000;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000000; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #009900;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;',
 			2 => 'color: #006600;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #339933;',
 			4 => 'color: #0066ff;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => ',+-=&lt;&gt;/?^&amp;*'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variables
 		0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
 		//File descriptors
 		4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			'SPACE_AS_WHITESPACE' => true
 		)

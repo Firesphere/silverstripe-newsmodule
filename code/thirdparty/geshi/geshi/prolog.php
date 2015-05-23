@@ -38,17 +38,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Prolog',
-	'COMMENT_SINGLE' => array(1 => '%'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'HARDQUOTE' => array("'", "'"),
-	'HARDESCAPE' => array("\'"),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
-	'ESCAPE_CHAR' => '',
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Prolog',
+	'COMMENT_SINGLE'         => array(1 => '%'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'HARDQUOTE'              => array("'", "'"),
+	'HARDESCAPE'             => array("\'"),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array(),
+	'ESCAPE_CHAR'            => '',
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(
 			'abolish', 'abs', 'arg', 'asserta', 'assertz', 'at_end_of_stream', 'atan',
 			'atom', 'atom_chars', 'atom_codes', 'atom_concat', 'atom_length',
@@ -70,7 +70,7 @@ $language_data = array(
 			'write_term', 'writeq'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array('(', ')', '[', ']', '{', '}',),
 		1 => array('?-', ':-', '=:='),
 		2 => array('\-', '\+', '\*', '\/'),
@@ -79,35 +79,34 @@ $language_data = array(
 		5 => array('!', '@', '&', '|'),
 		6 => array('<', '>', '=')
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false
+		1              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #990000;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;',
+			0      => 'color: #000099; font-weight: bold;',
 			'HARD' => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
-			0 => 'color: #0000ff;',
+		'STRINGS'     => array(
+			0      => 'color: #0000ff;',
 			'HARD' => 'color: #0000ff;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #800080;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #339933;',
 			1 => 'color: #339933;',
 			2 => 'color: #339933;',
@@ -116,27 +115,23 @@ $language_data = array(
 			5 => 'color: #339933;',
 			6 => 'color: #339933;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #008080;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => 'http://pauillac.inria.fr/~deransar/prolog/bips.html'
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Variables
 		0 => "(?<![a-zA-Z0-9_])(?!(?:PIPE|SEMI|DOT)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])(?!\x7C)"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

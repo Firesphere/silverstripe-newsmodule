@@ -50,15 +50,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Delphi',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
+	'LANG_NAME'              => 'Delphi',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('(*' => '*)', '{' => '}'),
 	//Compiler directives
-	'COMMENT_REGEXP' => array(2 => '/\\{\\$.*?}|\\(\\*\\$.*?\\*\\)/U'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'"),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'COMMENT_REGEXP'         => array(2 => '/\\{\\$.*?}|\\(\\*\\$.*?\\*\\)/U'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'"),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'Abstract', 'And', 'Array', 'As', 'Asm', 'At', 'Begin', 'Case',
 			'Class', 'Const', 'Constructor', 'Contains', 'Default', 'delayed', 'Destructor',
@@ -210,82 +210,79 @@ $language_data = array(
 			'TObject', 'TTime', 'Variant', 'WideChar', 'WideString', 'Word', 'WordBool'
 		),
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array('(', ')', '[', ']'),
 		1 => array('.', ',', ':', ';'),
 		2 => array('@', '^'),
 		3 => array('=', '+', '-', '*', '/')
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #000066;',
 			4 => 'color: #000066; font-weight: bold;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #008000; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #808080; font-style: italic;',
+			2       => 'color: #008000; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #ff0000; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000066;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #0000ff;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #006600;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #0000cc;',
 			1 => 'color: #ff0000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000066;',
 			1 => 'color: #000066;',
 			2 => 'color: #000066;',
 			3 => 'color: #000066;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Hex numbers
 		0 => '(?<!\#)\$[0-9a-fA-F]+(?!\w)',
 		//Characters
 		1 => '\#(?:\$[0-9a-fA-F]{1,4}|\d{1,5})'
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 2,
-	'PARSER_CONTROL' => array(
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 2,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			3 => array(
 				'DISALLOWED_AFTER' => '(?=\s*[(;])'

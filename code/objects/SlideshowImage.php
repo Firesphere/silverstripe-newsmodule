@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slideshow Image is the holder for the images for the slideshow.
  *
@@ -11,15 +12,15 @@ class SlideshowImage extends DataObject
 {
 	/** @var array $db */
 	private static $db = array(
-		'Title' => 'Varchar(255)',
+		'Title'       => 'Varchar(255)',
 		'Description' => 'HTMLText',
-		'SortOrder' => 'Int',
+		'SortOrder'   => 'Int',
 	);
 
 	/** @var array $has_one */
 	private static $has_one = array(
 		'Image' => 'Image',
-		'News' => 'News',
+		'News'  => 'News',
 	);
 
 	/**
@@ -31,9 +32,9 @@ class SlideshowImage extends DataObject
 	{
 		$labels = parent::fieldLabels($includerelations);
 		$slideshowImageLabels = array(
-			'Title' => _t('SlideshowImage.TITLE', 'Title'),
+			'Title'       => _t('SlideshowImage.TITLE', 'Title'),
 			'Description' => _t('SlideshowImage.DESCRIPTION', 'Description'),
-			'Image' => _t('SlideshowImage.IMAGE', 'Image'),
+			'Image'       => _t('SlideshowImage.IMAGE', 'Image'),
 		);
 		return array_merge($slideshowImageLabels, $labels);
 	}
@@ -78,22 +79,22 @@ class SlideshowImage extends DataObject
 	 */
 	public function canCreate($member = null)
 	{
-		return(Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canEdit($member = null)
 	{
-		return(Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canDelete($member = null)
 	{
-		return(Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return (Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
 	}
 
 	public function canView($member = null)
 	{
-		return(Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
+		return (Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
 	}
 
 }

@@ -44,15 +44,15 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'ESCAPE_CHAR' => null,
-	'LANG_NAME' => 'MagikSF',
-	'COMMENT_SINGLE' => array(1 => '##', 2 => '#%', 3 => '#'),
-	'COMMENT_MULTI' => array("_pragma(" => ")"),
+	'ESCAPE_CHAR'            => null,
+	'LANG_NAME'              => 'MagikSF',
+	'COMMENT_SINGLE'         => array(1 => '##', 2 => '#%', 3 => '#'),
+	'COMMENT_MULTI'          => array("_pragma(" => ")"),
 	//Multiline-continued single-line comments
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'_block', '_endblock', '_proc', '_endproc', '_loop', '_endloop',
 			'_method', '_endmethod',
@@ -82,23 +82,23 @@ $language_data = array(
 			'property_list', 'rope', 'def_property', 'def_mixin'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']',
 		'+', '-', '*', '/', '**',
 		'=', '<', '>', '<<', '>>',
 		',', '$',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #ff3f3f;',
 			3 => 'color: #3f7f3f; font-weight: bold;',
@@ -106,41 +106,40 @@ $language_data = array(
 			5 => 'color: #ff3fff; font-weight: bold;',
 			6 => 'font-weight: bold;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #339933; font-weight: bold;',
-			2 => 'color: #993333;',
-			3 => 'color: #339933;',
+		'COMMENTS'    => array(
+			1       => 'color: #339933; font-weight: bold;',
+			2       => 'color: #993333;',
+			3       => 'color: #339933;',
 			'MULTI' => 'color: #7f7f7f; font-style: italic',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #ff3f3f;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #cc66cc;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #202020;',
 			2 => 'color: #202020;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #ff3f3f;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			1 => 'color: #3f3fff;',
 			2 => 'color: #3f3fff;',
 			3 => 'color: #cc66cc;',
 			4 => 'color: #7f3f7f; font-style: italic;',
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -148,45 +147,43 @@ $language_data = array(
 		5 => '',
 		6 => ''
 	),
-	'OOLANG' => true,
-	'OBJECT_SPLITTERS' => array(
+	'OOLANG'                 => true,
+	'OBJECT_SPLITTERS'       => array(
 		1 => '.'
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		1 => array(
-			GESHI_SEARCH => '\b[a-zA-Z0-9_]+:', // package identifiers
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => '\b[a-zA-Z0-9_]+:', // package identifiers
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		2 => array(
-			GESHI_SEARCH => ':(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => ':(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		3 => array(
-			GESHI_SEARCH => '%space|%tab|%newline|%.', //characters
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => '%space|%tab|%newline|%.', //characters
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 		4 => array(
-			GESHI_SEARCH => '@(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
-			GESHI_REPLACE => '\\0',
+			GESHI_SEARCH    => '@(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
+			GESHI_REPLACE   => '\\0',
 			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+			GESHI_BEFORE    => '',
+			GESHI_AFTER     => ''
 		),
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

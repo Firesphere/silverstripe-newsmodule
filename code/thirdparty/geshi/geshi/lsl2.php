@@ -43,13 +43,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'LSL2',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'LSL2',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(// flow control
 			'do',
 			'else',
@@ -820,7 +820,7 @@ $language_data = array(
 			'llSetObjectPermMask',
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'{', '}', '(', ')', '[', ']',
 		'=', '+', '-', '*', '/',
 		'+=', '-=', '*=', '/=', '++', '--',
@@ -828,19 +828,19 @@ $language_data = array(
 		'==', '!=', '&lt;', '&gt;', '&lt;=', '&gt;=',
 		'~', '&lt;&lt;', '&gt;&gt;', '^', ':',
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => true,
-		2 => true,
-		3 => true,
-		4 => true,
-		5 => true,
-		6 => true,
-		7 => true,
-		8 => true,
+		1              => true,
+		2              => true,
+		3              => true,
+		4              => true,
+		5              => true,
+		6              => true,
+		7              => true,
+		8              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000ff;',
 			2 => 'color: #000080;',
 			3 => 'color: #008080;',
@@ -850,32 +850,29 @@ $language_data = array(
 			7 => 'color: #8b0000; background-color: #fa8072;',
 			8 => 'color: #000000; background-color: #ba55d3;',
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			1 => 'color: #ff7f50; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000000;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #006400;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #000000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000000;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => 'http://www.lslwiki.net/lslwiki/wakka.php?wakka={FNAME}', // http://wiki.secondlife.com/wiki/{FNAME}
@@ -885,14 +882,11 @@ $language_data = array(
 		7 => 'http://www.lslwiki.net/lslwiki/wakka.php?wakka={FNAME}', // http://wiki.secondlife.com/wiki/{FNAME}
 		8 => 'http://www.lslwiki.net/lslwiki/wakka.php?wakka={FNAME}', // http://wiki.secondlife.com/wiki/{FNAME}
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

@@ -37,26 +37,26 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'GNU Gettext',
-	'COMMENT_SINGLE' => array('#:', '#.', '#,', '#|', '#'),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'GNU Gettext',
+	'COMMENT_SINGLE'         => array('#:', '#.', '#,', '#|', '#'),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array("'", '"'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array('msgctxt', 'msgid_plural', 'msgid', 'msgstr'),
 	),
-	'SYMBOLS' => array(),
-	'CASE_SENSITIVE' => array(
+	'SYMBOLS'                => array(),
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => true,
+		1              => true,
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;'
 		),
-		'COMMENTS' => array(
+		'COMMENTS'    => array(
 			0 => 'color: #000099;',
 			1 => 'color: #000099;',
 			2 => 'color: #000099;',
@@ -66,31 +66,29 @@ $language_data = array(
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'REGEXPS' => array(),
-		'SYMBOLS' => array(),
-		'NUMBERS' => array(
+		'REGEXPS'     => array(),
+		'SYMBOLS'     => array(),
+		'NUMBERS'     => array(
 			0 => 'color: #000099;'
 		),
-		'METHODS' => array(),
-		'SCRIPT' => array(),
-		'BRACKETS' => array(
+		'METHODS'     => array(),
+		'SCRIPT'      => array(),
+		'BRACKETS'    => array(
 			0 => 'color: #000099;'
 		),
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
 );
 ?>

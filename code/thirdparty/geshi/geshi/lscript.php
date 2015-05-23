@@ -30,13 +30,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'LScript',
-	'COMMENT_SINGLE' => array(1 => '//'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'LScript',
+	'COMMENT_SINGLE'         => array(1 => '//'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		//Yes, I'm aware these are out of order,
 		//I had to rearrange and couldn't be bothered changing the numbers...
 		7 => array(
@@ -304,21 +304,21 @@ $language_data = array(
 			'Light', 'Mesh', 'Scene', 'Surface', 'VMap'
 		),
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'(', ')', '{', '}', '[', ']', '=', '<', '>', '+', '-', '*', '/', '!', '%', '&', '@'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => true,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false,
-		6 => false,
-		7 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false,
+		6              => false,
+		7              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000000; font-weight: bold;',
 			2 => 'color: #FF6820; font-weight: bold;', //LS_COMMANDS
 			3 => 'color: #007F7F; font-weight: bold;', //LS_MEMBERS
@@ -327,32 +327,28 @@ $language_data = array(
 			6 => 'color: #416F85; font-weight: bold;', //LS_GENERAL
 			7 => 'color: #C92929; font-weight: bold;'  //LS_COMMANDS (cont)
 		),
-		'COMMENTS' => array(
-			1 => 'color: #7F7F7F;',
+		'COMMENTS'    => array(
+			1       => 'color: #7F7F7F;',
 			'MULTI' => 'color: #7F7F7F;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #0040A0;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #00C800;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #6953AC;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #0040A0;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		),
-		'ESCAPE_CHAR' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array(),
+		'ESCAPE_CHAR' => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
@@ -361,18 +357,14 @@ $language_data = array(
 		6 => '',
 		7 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4,
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			3 => array(
 				'DISALLOWED_BEFORE' => '(?<=\.)'

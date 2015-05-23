@@ -45,13 +45,13 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'Liberty BASIC',
-	'COMMENT_SINGLE' => array(1 => '\''),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'Liberty BASIC',
+	'COMMENT_SINGLE'         => array(1 => '\''),
+	'COMMENT_MULTI'          => array(),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		1 => array(
 			'and', 'append', 'as', 'beep', 'bmpbutton', 'bmpsave', 'boolean',
 			'button', 'byref', 'call', 'callback', 'calldll', 'callfn', 'case',
@@ -94,60 +94,60 @@ $language_data = array(
 			'WindowWidth', 'UpperLeftX', 'UpperLeftY'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		1 => array(
 			'(', ')', '[', ']', '+', '-', '*', '/', '%', '=', '<', '>', ':', ',', '#'
 		)
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => true
+		1              => false,
+		2              => false,
+		3              => true
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #0000FF;',
 			2 => 'color: #AD0080;',
 			3 => 'color: #008080;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #666666; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #666666; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #009900;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #008000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #FF0000;',
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			0 => 'color: #004000;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			1 => 'color: #339933;'
 		),
-		'REGEXPS' => array(),
-		'SCRIPT' => array()
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'REGEXPS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array(),
-	'PARSER_CONTROL' => array(
+	'PARSER_CONTROL'         => array(
 		'KEYWORDS' => array(
 			2 => array(
 				//In LB, the second keyword list is a list of built-in functions,

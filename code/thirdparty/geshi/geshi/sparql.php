@@ -38,17 +38,17 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'SPARQL',
-	'COMMENT_SINGLE' => array('#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'SPARQL',
+	'COMMENT_SINGLE'         => array('#'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		//IRI (it's not a comment ;)
 		1 => "/<[^> ]*>/i"
 	),
-	'CASE_KEYWORDS' => 1,
-	'QUOTEMARKS' => array("'", '"', '`'),
-	'ESCAPE_CHAR' => '\\',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => 1,
+	'QUOTEMARKS'             => array("'", '"', '`'),
+	'ESCAPE_CHAR'            => '\\',
+	'KEYWORDS'               => array(
 		1 => array(
 			'BASE', 'PREFIX', 'SELECT', 'DISTINCT', 'REDUCED', 'CONSTRUCT', 'DESCRIBE', 'ASK', 'FROM',
 			'NAMED', 'WHERE', 'ORDER', 'BY', 'ASC', 'DESC', 'LIMIT', 'OFFSET', 'OPTIONAL', 'GRAPH',
@@ -85,7 +85,7 @@ $language_data = array(
 			'IN', 'EXISTS', 'SEPARATOR'
 		)
 	),
-	'REGEXPS' => array(
+	'REGEXPS'                => array(
 		//Variables without braces
 		1 => "\\?[a-zA-Z_][a-zA-Z0-9_]*",
 		//prefix
@@ -93,7 +93,7 @@ $language_data = array(
 		//tag lang
 		3 => "@[^ .)}]*",
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		0 => array(
 			'{', '}', '.', ';'
 		),
@@ -105,50 +105,49 @@ $language_data = array(
 			'+', '-', '*', '!', '/'
 		),
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false
+		1              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #993333; font-weight: bold;'
 		),
-		'COMMENTS' => array(
-			0 => 'color: #808080; font-style: italic;',
-			1 => 'color: #000078;',
+		'COMMENTS'    => array(
+			0       => 'color: #808080; font-style: italic;',
+			1       => 'color: #000078;',
 			//2 => 'color: #808080; font-style: italic;',
 			'MULTI' => 'color: #808080; font-style: italic;',
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(),
-		'STRINGS' => array(
+		'BRACKETS'    => array(),
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #FF63C3;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #0000FF;',
 			1 => 'color: #FF8000; font-weight: bold;'
 		),
-		'SCRIPT' => array(),
-		'REGEXPS' => array(
+		'SCRIPT'      => array(),
+		'REGEXPS'     => array(
 			1 => 'color: #007800;',
 			2 => 'color: #780078;',
 			3 => 'color: #005078;'
 		)
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(),
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
 	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

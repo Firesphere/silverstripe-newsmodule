@@ -36,19 +36,19 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'COBOL',
-	'COMMENT_SINGLE' => array(),
-	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(1 => '/^\*.*?$/m'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"', "'"),
-	'ESCAPE_CHAR' => '\\',
-	'NUMBERS' =>
-	GESHI_NUMBER_INT_BASIC |
-	GESHI_NUMBER_FLT_NONSCI |
-	GESHI_NUMBER_FLT_SCI_SHORT |
-	GESHI_NUMBER_FLT_SCI_ZERO,
-	'KEYWORDS' => array(
+	'LANG_NAME'              => 'COBOL',
+	'COMMENT_SINGLE'         => array(),
+	'COMMENT_MULTI'          => array(),
+	'COMMENT_REGEXP'         => array(1 => '/^\*.*?$/m'),
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"', "'"),
+	'ESCAPE_CHAR'            => '\\',
+	'NUMBERS'                =>
+		GESHI_NUMBER_INT_BASIC |
+		GESHI_NUMBER_FLT_NONSCI |
+		GESHI_NUMBER_FLT_SCI_SHORT |
+		GESHI_NUMBER_FLT_SCI_ZERO,
+	'KEYWORDS'               => array(
 		1 => array(//Compiler Directives
 			'ANSI', 'BLANK', 'NOBLANK', 'CALL-SHARED', 'CANCEL', 'NOCANCEL',
 			'CHECK', 'CODE', 'NOCODE', 'COLUMNS', 'COMPACT', 'NOCOMPACT',
@@ -171,73 +171,67 @@ $language_data = array(
 			'PUTPARAMTEXT', 'PUTSTARTUPTEXT'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		//Avoid having - in identifiers marked as symbols
 		' + ', ' - ', ' * ', ' / ', ' ** ',
 		'.', ',',
 		'=',
 		'(', ')', '[', ']'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000080; font-weight: bold;',
 			2 => 'color: #000000; font-weight: bold;',
 			3 => 'color: #008000; font-weight: bold;',
 			4 => 'color: #000080;',
 			5 => 'color: #008000;',
 		),
-		'COMMENTS' => array(
-			1 => 'color: #a0a0a0; font-style: italic;',
+		'COMMENTS'    => array(
+			1       => 'color: #a0a0a0; font-style: italic;',
 			'MULTI' => 'color: #a0a0a0; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #339933;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #993399;'
 		),
-		'METHODS' => array(
+		'METHODS'     => array(
 			1 => 'color: #202020;'
 		),
-		'SYMBOLS' => array(
+		'SYMBOLS'     => array(
 			0 => 'color: #000066;'
 		),
-		'REGEXPS' => array(
-		),
-		'SCRIPT' => array(
-		)
+		'REGEXPS'     => array(),
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
-	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	),
-	'TAB_WIDTH' => 4
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(),
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array(),
+	'TAB_WIDTH'              => 4
 );
 ?>

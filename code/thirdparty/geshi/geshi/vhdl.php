@@ -48,19 +48,19 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME' => 'VHDL',
-	'COMMENT_SINGLE' => array(1 => '--'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
+	'LANG_NAME'              => 'VHDL',
+	'COMMENT_SINGLE'         => array(1 => '--'),
+	'COMMENT_MULTI'          => array('/*' => '*/'),
+	'COMMENT_REGEXP'         => array(
 		// PSL adds C-preprocessor support
 		1 => '/(?<=\s)#(?:\\\\\\\\|\\\\\\n|.)*$/m',
 		// PSL metacomments (single-line only for now)
 		2 => '/--\s*@?psl(?:.)*?;$/m',
 	),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array('"'),
-	'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
+	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS'             => array('"'),
+	'ESCAPE_CHAR'            => '',
+	'KEYWORDS'               => array(
 		/* keywords */
 		1 => array(
 			'access', 'after', 'alias', 'all', 'attribute', 'architecture', 'array', 'begin',
@@ -100,72 +100,69 @@ $language_data = array(
 			'next_event_e', 'next_event_e!', 'until!', 'until!_', 'until_', 'within'
 		)
 	),
-	'SYMBOLS' => array(
+	'SYMBOLS'                => array(
 		'[', ']', '(', ')',
 		';', ':',
 		'<', '>', '=', '+', '-', '*', '/', '&', '|', '?'
 	),
-	'CASE_SENSITIVE' => array(
+	'CASE_SENSITIVE'         => array(
 		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		4 => false,
-		5 => false
+		1              => false,
+		2              => false,
+		3              => false,
+		4              => false,
+		5              => false
 	),
-	'STYLES' => array(
-		'KEYWORDS' => array(
+	'STYLES'                 => array(
+		'KEYWORDS'    => array(
 			1 => 'color: #000080; font-weight: bold;',
 			2 => 'color: #0000ff;',
 			3 => 'color: #000066;',
 			4 => 'color: #000080; font-weight: bold;',
 			5 => 'color: #000066;'
 		),
-		'COMMENTS' => array(
-			1 => 'color: #008000; font-style: italic;',
-			2 => 'color: #ff0000; font-weight: bold;',
+		'COMMENTS'    => array(
+			1       => 'color: #008000; font-style: italic;',
+			2       => 'color: #ff0000; font-weight: bold;',
 			'MULTI' => 'color: #008000; font-style: italic;'
 		),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 		),
-		'BRACKETS' => array(
+		'BRACKETS'    => array(
 			0 => 'color: #000066;'
 		),
-		'STRINGS' => array(
+		'STRINGS'     => array(
 			0 => 'color: #7f007f;'
 		),
-		'NUMBERS' => array(
+		'NUMBERS'     => array(
 			0 => 'color: #ff0000;'
 		),
-		'METHODS' => array(
-		),
-		'SYMBOLS' => array(
+		'METHODS'     => array(),
+		'SYMBOLS'     => array(
 			0 => 'color: #000066;'
 		),
-		'REGEXPS' => array(
+		'REGEXPS'     => array(
 			0 => 'color: #ff0000;',
 			//1 => 'color: #ff0000;',
 			2 => 'color: #ee82ee;'
 		),
-		'SCRIPT' => array(
-		)
+		'SCRIPT'      => array()
 	),
-	'URLS' => array(
+	'URLS'                   => array(
 		1 => '',
 		2 => '',
 		3 => '',
 		4 => '',
 		5 => ''
 	),
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-	),
-	'REGEXPS' => array(
+	'OOLANG'                 => false,
+	'OBJECT_SPLITTERS'       => array(),
+	'REGEXPS'                => array(
 		//Based literals, scientific notation, and time units
 		0 => '(\b\d+#[[:xdigit:]_]+#)|' .
-		'(\b[\d_]+(\.[\d_]+)?[eE][+\-]?[\d_]+)|' .
-		'(\b(hr|min|sec|ms|us|ns|ps|fs)\b)',
+			'(\b[\d_]+(\.[\d_]+)?[eE][+\-]?[\d_]+)|' .
+			'(\b(hr|min|sec|ms|us|ns|ps|fs)\b)',
 		//Character literals
 		/* GeSHi won't match this pattern for some reason and QUOTEMARKS
 		 * can't be used because it interferes with attribute parsing */
@@ -173,10 +170,8 @@ $language_data = array(
 		//Attributes
 		2 => "'\w+(?!')"
 	),
-	'STRICT_MODE_APPLIES' => GESHI_NEVER,
-	'SCRIPT_DELIMITERS' => array(
-	),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-	)
+	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+	'SCRIPT_DELIMITERS'      => array(),
+	'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>
