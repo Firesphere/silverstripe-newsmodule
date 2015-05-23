@@ -42,8 +42,9 @@ en:
     ALLTAGS_PAGE: 'All tags - '
     ARCHIVE_PAGE: 'Items per period '
     AUTHOR: Author
-    AUTHOR_PAGE: 'Items by author - '
+    AUTHOR_PAGE: 'Items by '
     BASEHELPLABEL: Help
+    BUTTONUNPUBLISHDESC: 'Publish news item'
     COMMENTING: 'Allow comments on this item'
     COMMENTS: Comments
     CONTENT: Content
@@ -54,6 +55,8 @@ en:
     HELPTAB: Help
     IMAGES: 'Slideshow images'
     IMPRESSION: 'Impression image'
+    IsPublished: published
+    IsUnpublished: 'not published'
     LINKEDPAGES: 'Linked pages'
     NEWSITEMTYPE: Newsitem
     NEWSTYPE: 'Type of item'
@@ -69,9 +72,11 @@ en:
     PUBDATE: 'Publish from'
     PUBLISH: 'Publish from'
     PUSHLIVE: Published
+    PublishPermissionFailure: 'No permission to publish or unpublish news item'
     RSSFEED: 'News feed'
     SINGULARNAME: Nieuwsbericht
     SLIDE: Slideshow
+    STATUS: Status
     SUMMARY: Summary/Abstract
     TAGAFTERID: 'Tags can be added after the item has been saved'
     TAGS: Tags
@@ -84,7 +89,7 @@ en:
     ITEMS_BY_AUTHOR: 'All items by '
     JUMPTO_PAGE: 'Jump to page'
     NEXT_PAGE: Next
-    PLURALNAME: 'News Holder Pags'
+    PLURALNAME: 'News Holder Pages'
     PREVIOUS_PAGE: Previous
     READMORE: 'Read More &raquo;'
     SINGULARNAME: 'News Holder Page'
@@ -151,12 +156,14 @@ en:
     PLURALNAME: Renameds
     SINGULARNAME: Renamed
   SiteTree:
+    BUTTONSAVEPUBLISH: 'Save & Publish'
+    BUTTONUNPUBLISH: Unpublish
     PLURALNAME: Pages
     SINGULARNAME: Page
   SlideshowImage:
     DESCRIPTION: Description
     IMAGE: Image
-    PLURALNAME: 'Slideshow Imags'
+    PLURALNAME: 'Slideshow Images'
     SINGULARNAME: 'Slideshow Image'
     TITLE: Title
   Tag:

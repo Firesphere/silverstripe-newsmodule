@@ -1,7 +1,7 @@
 <?php
 /**
  * News page and controller.
- * 
+ *
  * NewsHolderPage
  *
  * @package News/blog module
@@ -129,7 +129,7 @@ class NewsHolderPage extends Page
 	 */
 	private function migrateOrphans()
 	{
-		
+
 	}
 
 	/**
@@ -351,7 +351,7 @@ class NewsHolderPage_Controller extends Page_Controller
 					$this->Title = _t('News.ALLTAGS_PAGE', 'All tags - ') . $this->Title;
 					break;
 				case 'author' :
-					$this->Title = _t('News.AUTHOR_PAGE', 'Items by author - ') . $this->Title;
+					$this->Title = _t('News.AUTHOR_PAGE', 'Items by ') . ucfirst($this->getRequest()->param('ID')) . ' - ' . $this->Title;
 					break;
 				case 'archive' :
 					$this->Title = _t('News.ARCHIVE_PAGE', 'Items per period ') . $this->Title;
@@ -394,12 +394,13 @@ class NewsHolderPage_Controller extends Page_Controller
 	 */
 	private function setupFilter($params)
 	{
-		// Default filter.
 		$filter = array(
 			'URLSegment' => Convert::raw2sql($params['ID']),
+			'Live'       => 1,
+			'PublishFrom:LessThan' => SS_Datetime::now()->Rfc2822()
 		);
 		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
-			$filter['Live'] = 1;
+			$filter['Live'] = 0;
 		}
 		return $filter;
 	}
