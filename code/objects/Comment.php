@@ -7,6 +7,15 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ * @property string Title
+ * @property string Name
+ * @property string Email
+ * @property string MD5Email
+ * @property string URL
+ * @property HTMLText Comment
+ * @property Boolean AkismetMarked
+ * @property Boolean Visible
+ * @property Boolean ShowGravatar
  * @method News News() The origin of the comment
  */
 class Comment extends DataObject implements PermissionProvider
@@ -21,8 +30,8 @@ class Comment extends DataObject implements PermissionProvider
 		'MD5Email'      => 'Varchar(255)',
 		'URL'           => 'Varchar(255)',
 		'Comment'       => 'HTMLText',
-		'AkismetMarked' => 'boolean(false)',
-		'Visible'       => 'boolean(true)',
+		'AkismetMarked' => 'Boolean(false)',
+		'Visible'       => 'Boolean(true)',
 		'ShowGravatar'  => 'Boolean(true)',
 	);
 	private static $has_one = array(
@@ -38,7 +47,7 @@ class Comment extends DataObject implements PermissionProvider
 
 	/**
 	 * Define singular name translatable
-	 * @return type Singular name
+	 * @return string Singular name
 	 */
 	public function singular_name()
 	{
@@ -51,7 +60,7 @@ class Comment extends DataObject implements PermissionProvider
 
 	/**
 	 * Define plural name translatable
-	 * @return type Plural name
+	 * @return string Plural name
 	 */
 	public function plural_name()
 	{

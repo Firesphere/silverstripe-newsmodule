@@ -5,6 +5,9 @@
  *
  * @package News/Blog module
  * @author Simon `Sphere`
+ * @property string Title
+ * @property HTMLText Description
+ * @property Int SortOrder
  * @method Image Image() Image for this group
  * @method News News() this image belongs to
  */

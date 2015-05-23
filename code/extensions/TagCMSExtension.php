@@ -11,7 +11,7 @@ class TagCMSExtension extends DataExtension
 
 	/**
 	 * @todo fix sortorder
-	 * @return FieldList $fields Fields that are editable.
+	 * @param FieldList $fields
 	 */
 	public function updateCMSFields(FieldList $fields)
 	{

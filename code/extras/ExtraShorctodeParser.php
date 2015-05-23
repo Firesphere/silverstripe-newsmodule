@@ -12,7 +12,7 @@ class ExtraShortcodeParser
 	/**
 	 * The following three functions are global once enabled!
 	 * @param array $arguments from Content.
-	 * @return HTML block with the parsed code.
+	 * @return String block with the parsed code.
 	 */
 	public static function TweetHandler($arguments)
 	{
@@ -31,7 +31,7 @@ class ExtraShortcodeParser
 	/**
 	 * @param string $arguments array with the type
 	 * @param array $code string of the code to parse
-	 * @return HTMLString of parsed code.
+	 * @return String of parsed code.
 	 */
 	public static function GeshiParser($arguments, $code)
 	{
@@ -47,7 +47,7 @@ class ExtraShortcodeParser
 	/**
 	 * @param array $arguments array of arguments from the content
 	 * @param string $caption text between the [] [/] brackets
-	 * @return type HTMLString of parsed youtube movie.
+	 * @return String of parsed youtube movie.
 	 */
 	public static function YouTubeHandler($arguments, $caption = null)
 	{
@@ -74,7 +74,7 @@ class ExtraShortcodeParser
 	 * Only works on a functional newsrecord!
 	 * This one isn't global, only works if controller is a NHP :D
 	 * @param array $arguments null
-	 * @return type HTML Parsed for template.
+	 * @return String Parsed for template.
 	 */
 	public static function createSlideshow($arguments)
 	{

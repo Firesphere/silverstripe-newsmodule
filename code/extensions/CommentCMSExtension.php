@@ -13,7 +13,7 @@ class CommentCMSExtension extends DataExtension
 
 	/**
 	 * Setup the fields for the CMS.
-	 * @return type FieldList
+	 * @param FieldList $fields
 	 */
 	public function updateCMSFields(FieldList $fields)
 	{

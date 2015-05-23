@@ -10,7 +10,7 @@ class SlideshowCMSExtension extends DataExtension
 
 	/**
 	 * Setup the CMSFields
-	 * @return FieldList $fields Fields to be shown in the admin.
+	 * @param FieldList $fields
 	 */
 	public function updateCMSFields(FieldList $fields)
 	{

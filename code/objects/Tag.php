@@ -8,7 +8,12 @@
  * @package News/Blog module
  * @todo implement translations?
  * @todo fix getCMSFields() function.
- * @method Impression Image() Impressionimage for this tag
+ * @property string Title
+ * @property HTMLText Description
+ * @property string URLSegment
+ * @property string Locale
+ * @property Int SortOrder
+ * @method Image Impression() Impressionimage for this tag
  * @method News News() NewsItems this tag belongs to.
  */
 class Tag extends DataObject

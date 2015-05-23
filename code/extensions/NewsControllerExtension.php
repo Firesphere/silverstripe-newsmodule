@@ -19,6 +19,7 @@ class NewsControllerExtension extends DataExtension
 	 * @param $related boolean Called from template. e.g. <% loop NewsArchive(5,0,1) %> to show just the latest 5 related items.
 	 *    Or, to show 5 random related items, use <% loop NewsArchive(5,1,1) %>. You're free to play with the settings :)
 	 *    To loop ALL items, set the first parameter (@param $limit ) to zero. As you can see.
+	 * @return DataList|News[]
 	 * @todo implement subsites
 	 * @todo clean this up. It's a mess. It's too long and too unreadable.
 	 */
