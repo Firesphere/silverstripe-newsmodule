@@ -2,7 +2,7 @@
 /**
  * Default admin for the newsmodule.
  * This way, it's less of a clutter in the sitetree.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  */
@@ -59,15 +59,15 @@ class NewsAdmin extends ModelAdmin
 	 */
 	public function getList()
 	{
+		/** @var DataList $list */
 		$list = parent::getList();
-		if ($this->modelClass == 'News' && class_exists('Subsite')) {
-			$filter = array();
-			foreach (NewsHolderPage::get()->filter(array('SubsiteID' => (int) Subsite::currentSubsiteID())) as $holderpage) {
-				array_push($filter, $holderpage->ID);
-			}
-			$list = $list->filter('NewsHolderPages.ID', $filter);
+		if ($this->modelClass == 'News' && class_exists('Subsite') && Subsite::currentSubsiteID() > 0) {
+			$pages = NewsHolderPage::get()->filter(array('SubsiteID' => (int)Subsite::currentSubsiteID()));
+			$filter = $pages->column('ID');
+			/* Manual join needed because otherwise no items are found. Unknown why. */
+			$list = $list->innerJoin('NewsHolderPage_Newsitems', 'NewsHolderPage_Newsitems.NewsID = News.ID')
+				->filter(array('NewsHolderPage_Newsitems.NewsHolderPageID' => $filter));
 		}
-
 		return $list;
 	}
 

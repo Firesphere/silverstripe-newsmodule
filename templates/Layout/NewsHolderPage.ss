@@ -1,4 +1,3 @@
-<% cached 'NewsHolderPage', List(News).max(LastEdited), List(News).count() %>
 <div class="container">
 	<div class="row col-xs-10">
 		<% if $allNews %>
@@ -45,4 +44,3 @@
 		<% include ArchiveOverview %>
 	</div>
 </div>
-<% end_cached %>

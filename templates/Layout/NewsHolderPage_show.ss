@@ -1,4 +1,3 @@
-<% cached current_item.URLSegment %>
 <div class="container">
 	<div id="newsitem" class="row">
 		<% with $current_item %>
@@ -56,5 +55,4 @@
 		<% end_with %>
 	</div>
 </div>
-<% end_cached %>
 <%-- If you want newsitems below this, include NewsItems.ss --%>
