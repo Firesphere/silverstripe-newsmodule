@@ -6,6 +6,8 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere' Erkelens
+ * @property string OriginalName
+ * @property string URLSegment
  * @method News NewsItems() The linked Newsitems to this author
  */
 class AuthorHelper extends DataObject
@@ -38,6 +40,7 @@ class AuthorHelper extends DataObject
 
 	/**
 	 * Free guess on what this button does.
+	 * @param string $action
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'author/')
@@ -56,9 +59,9 @@ class AuthorHelper extends DataObject
 	 * @param string $action The added URLSegment, the actual function that'll return the news.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink()
+	public function AbsoluteLink($action = 'author/')
 	{
-		if ($Page = $this->Link()) {
+		if ($Page = $this->Link($action)) {
 			return (Director::absoluteURL($Page));
 		}
 	}
