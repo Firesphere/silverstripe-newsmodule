@@ -19,6 +19,9 @@
  * @property Boolean Commenting
  * @property Enum Type
  * @property string External
+ * @property Int ImpressionID
+ * @property Int DownloadID
+ * @property Int AuthorHelperID
  * @method Image Impression() the Impression for this NewsItem
  * @method File Download() Get the downloadable file
  * @method AuthorHelper AuthorHelper() Get the author of this post
@@ -151,7 +154,7 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * Setup the fieldlabels and their translation.
-	 * @param type $includerelations
+	 * @param Boolean $includerelations
 	 * @return array $labels an array of the FieldLabels
 	 */
 	public function fieldLabels($includerelations = true)
@@ -181,6 +184,7 @@ class News extends DataObject implements PermissionProvider
 	/**
 	 * Free guess on what this button does.
 	 * @todo make this work on multilanguage sites.
+	 * @param string $action
 	 * @return string Link to this object.
 	 */
 	public function Link($action = 'show/')
@@ -208,12 +212,12 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * This is quite handy, for meta-tags and such.
-	 * @param string $action The added URLSegment, the actual function that'll return the news.
+	 * @param string $action
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
-	public function AbsoluteLink()
+	public function AbsoluteLink($action = '/show')
 	{
-		return (Director::absoluteURL($this->Link()));
+		return (Director::absoluteURL($this->Link($action)));
 	}
 
 	public function AllowComments()
@@ -251,6 +255,9 @@ class News extends DataObject implements PermissionProvider
 		$this->setAuthorData();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function onAfterWrite()
 	{
 		parent::onAfterWrite();
@@ -297,6 +304,7 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * test whether the URLSegment exists already on another Newsitem
+	 * @param string $URLSegment chosen URLSegment
 	 * @return boolean URLSegment already exists yes or no.
 	 */
 	private function LookForExistingURLSegment($URLSegment)
@@ -341,7 +349,7 @@ class News extends DataObject implements PermissionProvider
 
 	/**
 	 * Get the year this object is created.
-	 * @return string $yearItems String of 4 numbers representing the year
+	 * @return Int $yearItems String of 4 numbers representing the year
 	 */
 	public function getYearCreated()
 	{
@@ -360,6 +368,7 @@ class News extends DataObject implements PermissionProvider
 	/**
 	 * Create a date-string based on the locale. Looks better.
 	 * @return string
+	 * @todo this needs some work and improvement
 	 */
 	public function getPublished()
 	{
@@ -438,7 +447,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function isPublished()
 	{
-		return $this->Live ? true : false;
+		return $this->Live;
 	}
 
 	/**
@@ -449,7 +458,7 @@ class News extends DataObject implements PermissionProvider
 	public function getStatus()
 	{
 		$published = $this->isPublished() ? _t('News.IsPublished', 'published') : _t('News.IsUnpublished', 'not published');
-		if($this->PublishFrom > SS_Datetime::now()->Rfc2822()) {
+		if($this->PublishFrom > SS_Datetime::now()->Rfc2822() && $this->isPublished()) {
 			$published = _t('News.InQueue', 'Awaiting publishdate');
 		}
 		return $published;
