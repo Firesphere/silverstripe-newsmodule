@@ -3,7 +3,7 @@
  * To clean up and make the News object cleaner.
  * Also, easier reading for functions etc.
  * It has no super powers.
- * 
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  */
@@ -132,7 +132,7 @@ class NewsCMSExtension extends DataExtension
 		} else {
 			if (class_exists('MultiSelectField')) {
 				/** I like multiselectfield and needed a reason to commit something */
-				$this->field_list['Root.Main'][13] = MultiSelectField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
+				$this->field_list['Root.Main'][13] = MultiSelectField::create('Tags', $owner->fieldLabel('Tags'), $this->owner);
 			} else {
 				$this->field_list['Root.Main'][13] = CheckboxSetField::create('Tags', $owner->fieldLabel('Tags'), Tag::get()->map('ID', 'Title'));
 			}
