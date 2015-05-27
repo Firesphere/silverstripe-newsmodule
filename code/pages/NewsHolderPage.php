@@ -234,7 +234,10 @@ class NewsHolderPage_Controller extends Page_Controller
 		$Params = $this->getURLParams();
 		/** @var array $segmentFilter Array containing the filter for current or any item */
 		$segmentFilter = $this->setupFilter($Params);
-		$news = $this->Newsitems()->filter($segmentFilter)->first();
+		$news = $this->Newsitems()
+			->filter($segmentFilter)
+			->exclude(array('PublishFrom:GreaterThan' => SS_Datetime::now()->format('Y-m-d')))
+			->first();
 		$this->current_item = $news;
 	}
 
@@ -400,7 +403,6 @@ class NewsHolderPage_Controller extends Page_Controller
 		$filter = array(
 			'URLSegment'           => Convert::raw2sql($params['ID']),
 			'Live'                 => 1,
-			'PublishFrom:LessThan' => SS_Datetime::now()->Rfc2822()
 		);
 		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
 			$filter['Live'] = 0;
