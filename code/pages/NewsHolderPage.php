@@ -347,11 +347,17 @@ class NewsHolderPage_Controller extends Page_Controller
 			switch ($mapping[$action]) {
 				case 'show' :
 					$news = $this->getNews();
-					$this->Title = $news->Title . ' - ' . $this->Title;
+					if (isset($news))
+					{
+						$this->Title = $news->Title . ' - ' . $this->Title;
+					}
 					break;
 				case 'tag' :
 					$tags = $this->getTag();
-					$this->Title = $tags->Title . ' - ' . $this->Title;
+					if (isset($tags))
+					{
+						$this->Title = $tags->Title . ' - ' . $this->Title;	
+					}
 					break;
 				case 'tags' :
 					$this->Title = _t('News.ALLTAGS_PAGE', 'All tags - ') . $this->Title;

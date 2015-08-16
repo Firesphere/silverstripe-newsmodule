@@ -74,7 +74,7 @@ en:
     PUSHLIVE: Published
     PublishPermissionFailure: 'No permission to publish or unpublish news item'
     RSSFEED: 'News feed'
-    SINGULARNAME: Nieuwsbericht
+    SINGULARNAME: News
     SLIDE: Slideshow
     STATUS: Status
     SUMMARY: Summary/Abstract
