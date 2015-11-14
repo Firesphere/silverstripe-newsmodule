@@ -224,6 +224,7 @@ class NewsCMSExtension extends DataExtension
 			ksort($fieldlist);
 			$fields->addFieldsToTab($key, $fieldlist);
 		}
+
 		return $fields;
 	}
 

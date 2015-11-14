@@ -25,6 +25,7 @@ class ExtraShortcodeParser
 			$id = $arguments['id'];
 		}
 		$data = json_decode(file_get_contents('https://api.twitter.com/1/statuses/oembed.json?id=' . $id . '&omit_script=true&lang=en'), 1);
+
 		return ($data['html']);
 	}
 
@@ -41,6 +42,7 @@ class ExtraShortcodeParser
 		}
 		$geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $code)), $arguments['type']);
 		$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
+
 		return $geshi->parse_code();
 	}
 
@@ -67,6 +69,7 @@ class ExtraShortcodeParser
 		//overide the defaults with the arguments supplied
 		$customise = array_merge($defaults, $arguments);
 		$template = new SSViewer('YouTube');
+
 		return $template->process(new ArrayData($customise));
 	}
 
@@ -87,6 +90,7 @@ class ExtraShortcodeParser
 			}
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
 			$template = new SSViewer($template);
+
 			return ($template->process($record));
 		}
 	}

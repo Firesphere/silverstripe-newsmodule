@@ -55,6 +55,7 @@ class CommentReport extends SS_Report
 				}
 			}
 		}
+
 		return $returnSet;
 	}
 
@@ -106,6 +107,7 @@ class CommentReport extends SS_Report
 			)
 		)
 		);
+
 		return $return;
 	}
 

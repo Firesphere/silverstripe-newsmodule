@@ -15,29 +15,29 @@ if (class_exists('Widget')) {
 	{
 		/**
 		 * @var array
-         */
+		 */
 		private static $db = array(
 			'WidgetTitle' => 'Varchar(255)',
 			'Amount'      => 'Int'
 		);
 		/**
 		 * @var array
-         */
+		 */
 		private static $defaults = array(
 			'WidgetTitle' => 'Latest news',
 		);
 		/**
 		 * @var string
-         */
+		 */
 		private static $cmsTitle = 'News widget';
 		/**
 		 * @var string
-         */
+		 */
 		private static $description = 'Widget showing the latest newsitems';
 
 		/**
 		 * @return mixed
-         */
+		 */
 		public function getCMSFields()
 		{
 			$fields = FieldList::create();
@@ -49,7 +49,7 @@ if (class_exists('Widget')) {
 
 		/**
 		 * @return mixed
-         */
+		 */
 		public function latestNews()
 		{
 			return Controller::curr()->NewsArchive($this->Amount);
@@ -57,7 +57,7 @@ if (class_exists('Widget')) {
 
 		/**
 		 * @return mixed
-         */
+		 */
 		public function Title()
 		{
 			return $this->WidgetTitle;

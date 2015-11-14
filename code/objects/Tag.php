@@ -91,6 +91,7 @@ class Tag extends DataObject
 			'Description' => _t('Tag.DESCRIPTION', 'Description'),
 			'Impression'  => _t('Tag.IMPRESSION', 'Impression image'),
 		);
+
 		return array_merge($tagLabels, $labels);
 	}
 
@@ -136,6 +137,7 @@ class Tag extends DataObject
 		if ($Page = NewsHolderPage::get()->first()) {
 			return ($Page->Link($action . $this->URLSegment));
 		}
+
 		return false;
 	}
 
@@ -154,6 +156,7 @@ class Tag extends DataObject
 	public function activeNews()
 	{
 		$now = SS_DateTime::now()->Format('Y-m-d');
+
 		return $this->News()
 			->filter(array('Live' => true))
 			->exclude(array('PublishFrom:GreaterThan' => $now));

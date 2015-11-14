@@ -142,6 +142,7 @@ class NewsHolderPage extends Page
 	public function Children()
 	{
 		$now = SS_DateTime::now()->Format('Y-m-d');
+
 		return $this->Newsitems()
 			->filter(array('Live' => true))
 			->exclude(array('PublishFrom:GreaterThan' => $now));
@@ -186,6 +187,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		if (is_array($actions)) {
 			return array_merge($actions, self::$allowed_actions);
 		}
+
 		return self::$allowed_actions;
 	}
 
@@ -212,6 +214,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		}
 		self::$url_handlers = $handles;
 		$this->needsRedirect();
+
 		return parent::handleAction($request, $handles[$action]);
 	}
 
@@ -250,6 +253,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		if (!$this->current_item) {
 			$this->setNews();
 		}
+
 		return $this->current_item;
 	}
 
@@ -274,6 +278,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		if (!$this->current_tag) {
 			$this->setTag();
 		}
+
 		return $this->current_tag;
 	}
 
@@ -294,12 +299,14 @@ class NewsHolderPage_Controller extends Page_Controller
 		if (!$this->current_siteconfig) {
 			$this->setCurrentSiteConfig();
 		}
+
 		return $this->current_siteconfig;
 	}
 
 	public function getCurrentAuthor()
 	{
 		$id = $this->getRequest()->param('ID');
+
 		return AuthorHelper::get()->filter(array('URLSegment' => $id))->first();
 	}
 
@@ -347,16 +354,14 @@ class NewsHolderPage_Controller extends Page_Controller
 			switch ($mapping[$action]) {
 				case 'show' :
 					$news = $this->getNews();
-					if (isset($news))
-					{
+					if (isset($news)) {
 						$this->Title = $news->Title . ' - ' . $this->Title;
 					}
 					break;
 				case 'tag' :
 					$tags = $this->getTag();
-					if (isset($tags))
-					{
-						$this->Title = $tags->Title . ' - ' . $this->Title;	
+					if (isset($tags)) {
+						$this->Title = $tags->Title . ' - ' . $this->Title;
 					}
 					break;
 				case 'tags' :
@@ -383,6 +388,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		$rss = RSSFeed::create(
 			$list = $this->getRSSFeed(), $link = $this->Link('rss'), $title = _t('News.RSSFEED', 'News feed')
 		);
+
 		return $rss->outputToBrowser();
 	}
 
@@ -396,6 +402,7 @@ class NewsHolderPage_Controller extends Page_Controller
 			->filter(array('Live' => 1))
 			->exclude(array('PublishFrom:GreaterThan' => SS_Datetime::now()->Rfc2822()))
 			->limit(10);
+
 		return $return;
 	}
 
@@ -407,12 +414,13 @@ class NewsHolderPage_Controller extends Page_Controller
 	private function setupFilter($params)
 	{
 		$filter = array(
-			'URLSegment'           => Convert::raw2sql($params['ID']),
-			'Live'                 => 1,
+			'URLSegment' => Convert::raw2sql($params['ID']),
+			'Live'       => 1,
 		);
 		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
 			$filter['Live'] = 0;
 		}
+
 		return $filter;
 	}
 
@@ -434,8 +442,10 @@ class NewsHolderPage_Controller extends Page_Controller
 		if ($allEntries->count() > $siteConfig->PostsPerPage && $siteConfig->PostsPerPage > 0) {
 			$records = PaginatedList::create($allEntries, $this->getRequest());
 			$records->setPageLength($siteConfig->PostsPerPage);
+
 			return $records;
 		}
+
 		return $allEntries;
 	}
 
@@ -485,6 +495,7 @@ class NewsHolderPage_Controller extends Page_Controller
 					break;
 			}
 		}
+
 		return $filter;
 	}
 
@@ -496,6 +507,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	{
 		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
+
 		return (CommentForm::create($this, 'CommentForm', $siteconfig, $params));
 	}
 

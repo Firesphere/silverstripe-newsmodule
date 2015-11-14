@@ -169,6 +169,7 @@ if (!function_exists('stripos')) {
 			if (preg_match('/' . preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE)) {
 				return $match[0][1];
 			}
+
 			return false;
 		}
 
@@ -182,6 +183,7 @@ if (!function_exists('stripos')) {
 			if (preg_match('/' . preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE, $offset)) {
 				return $match[0][1];
 			}
+
 			return false;
 		}
 
@@ -641,6 +643,7 @@ class GeSHi
 
 			return "<br /><strong>GeSHi Error:</strong> $msg (code {$this->error})<br />";
 		}
+
 		return false;
 	}
 
@@ -656,6 +659,7 @@ class GeSHi
 		if (GESHI_ERROR_NO_SUCH_LANG == $this->error) {
 			return $this->language_data['LANG_NAME'] . ' (Unknown Language)';
 		}
+
 		return $this->language_data['LANG_NAME'];
 	}
 
@@ -706,6 +710,7 @@ class GeSHi
 		//Check if we can read the desired file
 		if (!is_readable($file_name)) {
 			$this->error = GESHI_ERROR_NO_SUCH_LANG;
+
 			return;
 		}
 
@@ -819,12 +824,14 @@ class GeSHi
 		// we need to get contents :S
 		if (false === ($data = file_get_contents($fullpath))) {
 			$this->error = sprintf('Geshi::get_lang_fullname() Unknown Language: %s', $language);
+
 			return false;
 		}
 
 		// match the langname
 		if (!preg_match('/\'LANG_NAME\'\s*=>\s*\'((?:[^\']|\\\')+?)\'/', $data, $matches)) {
 			$this->error = sprintf('Geshi::get_lang_fullname(%s): Regex can not detect language', $language);
+
 			return false;
 		}
 
@@ -853,6 +860,7 @@ class GeSHi
 			GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID, GESHI_HEADER_PRE_TABLE))
 		) {
 			$this->error = GESHI_ERROR_INVALID_HEADER_TYPE;
+
 			return;
 		}
 
@@ -2237,6 +2245,7 @@ class GeSHi
 			// Timing is irrelevant
 			$this->set_time($start_time, $start_time);
 			$this->finalise($result);
+
 			return $result;
 		}
 
@@ -3180,6 +3189,7 @@ class GeSHi
 		$this->set_time($start_time, microtime());
 
 		$this->finalise($endresult);
+
 		return $endresult;
 	}
 
@@ -3408,6 +3418,7 @@ class GeSHi
 		} else {
 			$replace = $matches[0];
 		}
+
 		return $before
 		. '<|!REG3XP' . $this->_hmr_key . '!>'
 		. str_replace("\n", "|>\n<|!REG3XP" . $this->_hmr_key . '!>', $replace)
@@ -3725,6 +3736,7 @@ class GeSHi
 
 		$stuff_to_parse = str_replace('<|', '<span', $stuff_to_parse);
 		$stuff_to_parse = str_replace('|>', '</span>', $stuff_to_parse);
+
 		return substr($stuff_to_parse, 1);
 	}
 
@@ -3771,6 +3783,7 @@ class GeSHi
 			if (!is_array($arrays[$i])) {
 				// also array_merge_recursive returns nothing in this case
 				trigger_error('Argument #' . ($i + 1) . ' is not an array - trying to merge array with scalar! Returning false!', E_USER_WARNING);
+
 				return false;
 			}
 		}
@@ -4203,6 +4216,7 @@ class GeSHi
 			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "$header<ol$attributes$ol_attributes>";
 			}
+
 			return $header . ($this->force_code_block ? '<div>' : '');
 		}
 
@@ -4264,18 +4278,21 @@ class GeSHi
 			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</ol>$footer</div>";
 			}
+
 			return ($this->force_code_block ? '</div>' : '') .
 			"$footer</div>";
 		} elseif ($this->header_type == GESHI_HEADER_PRE_TABLE) {
 			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</tr></tbody>$footer</table>";
 			}
+
 			return ($this->force_code_block ? '</div>' : '') .
 			"$footer</div>";
 		} else {
 			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</ol>$footer</pre>";
 			}
+
 			return ($this->force_code_block ? '</div>' : '') .
 			"$footer</pre>";
 		}
@@ -4766,6 +4783,7 @@ class GeSHi
 			}
 			$regexp_list[$list_key] .= $new_entry;
 		}
+
 		return $regexp_list;
 	}
 
@@ -4812,6 +4830,7 @@ class GeSHi
 			}
 			$list = preg_replace_callback('#\(\?\:((?:.\|)+.)\)#', $callback_2, $list);
 		}
+
 		// return $list without trailing pipe
 		return substr($list, 0, -1);
 	}
@@ -4848,6 +4867,7 @@ if (!function_exists('geshi_highlight')) {
 		if ($geshi->error()) {
 			return false;
 		}
+
 		return true;
 	}
 

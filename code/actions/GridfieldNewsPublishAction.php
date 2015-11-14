@@ -73,6 +73,7 @@ class GridfieldNewsPublishAction implements GridField_ColumnProvider, GridField_
 					)
 				);
 		}
+
 		return $field->Field();
 	}
 

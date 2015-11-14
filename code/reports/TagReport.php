@@ -44,6 +44,7 @@ class TagReport extends SS_Report
 				$record->Itemcount = $record->News()->count();
 				$returnSet->push($record);
 			}
+
 		return $returnSet;
 	}
 
@@ -81,6 +82,7 @@ class TagReport extends SS_Report
 				'Title', _t('TagReport.TAGTITLE', 'Search for tag')
 			)
 		);
+
 		return $return;
 	}
 

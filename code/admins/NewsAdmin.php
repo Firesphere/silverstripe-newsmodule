@@ -50,6 +50,7 @@ class NewsAdmin extends ModelAdmin
 					new GridfieldNewsPublishAction()
 				);
 		}
+
 		return $form;
 	}
 
@@ -69,6 +70,7 @@ class NewsAdmin extends ModelAdmin
 			$list = $list->innerJoin('NewsHolderPage_Newsitems', 'NewsHolderPage_Newsitems.NewsID = News.ID')
 				->filter(array('NewsHolderPage_Newsitems.NewsHolderPageID' => $filter));
 		}
+
 		return $list;
 	}
 
