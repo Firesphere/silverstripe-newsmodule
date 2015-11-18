@@ -80,7 +80,7 @@ class Comment extends DataObject implements PermissionProvider
 	{
 		$labels = parent::fieldLabels($includerelations);
 		$commentLabels = array(
-			'Title'         => _t('Comment.TITLE', 'Title'),
+			'Title'         => _t('Comment.TITLE', 'Subject'),
 			'Name'          => _t('Comment.NAME', 'Name'),
 			'Email'         => _t('Comment.EMAIL', 'Email'),
 			'URL'           => _t('Comment.URL', 'URL'),
@@ -158,8 +158,7 @@ class Comment extends DataObject implements PermissionProvider
 		if ($siteConfig->GravatarSize) {
 			$gravatarSize = $siteConfig->GravatarSize;
 		}
-
-		return 'http://www.gravatar.com/avatar/$MD5Email?default=' . $default . '&amp;s=' . $gravatarSize;
+		return 'http://www.gravatar.com/avatar/'.$this->MD5Email.'?default=' . $default . '&amp;s=' . $gravatarSize;
 	}
 
 	/**

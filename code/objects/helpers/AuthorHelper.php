@@ -33,7 +33,7 @@ class AuthorHelper extends DataObject
 			}
 		}
 		$this->OriginalName = implode(' ', $nameParts);
-		if (!$this->URLSegment && !AuthorHelper::get()->filter(array('OriginalName' => $this->OriginalName))) {
+		if (!$this->URLSegment && !AuthorHelper::get()->filter(array('OriginalName' => $this->OriginalName))->Count()) {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->OriginalName);
 		}
 	}
