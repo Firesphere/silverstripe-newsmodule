@@ -22,7 +22,7 @@ en:
     PERMISSION_VIEW_HELP: 'Permission required to view existing comments in the CMS.'
     PLURALNAME: Reacties
     SINGULARNAME: Reactie
-    TITLE: Title
+    TITLE: Subject
     URL: URL
     VISIBLE: Visible
   CommentForm:
