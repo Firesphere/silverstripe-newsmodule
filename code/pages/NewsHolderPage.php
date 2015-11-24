@@ -374,6 +374,8 @@ class NewsHolderPage_Controller extends Page_Controller
 					$this->Title = _t('News.ARCHIVE_PAGE', 'Items per period ') . $this->Title;
 					break;
 			}
+
+			return $this->Title;
 		}
 	}
 
