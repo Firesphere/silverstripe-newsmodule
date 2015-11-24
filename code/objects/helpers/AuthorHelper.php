@@ -6,9 +6,12 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere' Erkelens
+ *
+ * StartGeneratedWithDataObjectAnnotator
  * @property string OriginalName
  * @property string URLSegment
- * @method News NewsItems() The linked Newsitems to this author
+ * @method DataList|News[] NewsItems
+ * EndGeneratedWithDataObjectAnnotator
  */
 class AuthorHelper extends DataObject
 {

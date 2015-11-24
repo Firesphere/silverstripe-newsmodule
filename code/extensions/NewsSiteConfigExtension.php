@@ -5,11 +5,46 @@
  *
  * @package News/blog module
  * @author Sphere
- * @method Image DefaultImage() The default impression image.
- * @method Image DefaultGravatarImage() The default gravatar image.
- * @method Folder NewsRootFolder() Root folder for slideshow images.
  * @todo Work this out a bit better.
  * @todo fix the fieldlabels
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property SiteConfig|NewsSiteConfigExtension owner
+ * @property boolean UseAbstract
+ * @property int PostsPerPage
+ * @property boolean TweetOnPost
+ * @property boolean EnableSlideshow
+ * @property boolean SlideshowInitial
+ * @property string SlideshowSize
+ * @property boolean Comments
+ * @property string NewsEmail
+ * @property boolean MustApprove
+ * @property boolean Gravatar
+ * @property string DefaultGravatar
+ * @property int GravatarSize
+ * @property string AkismetKey
+ * @property boolean NoscriptSecurity
+ * @property boolean ExtraSecurity
+ * @property boolean AllowExternals
+ * @property boolean AllowDownloads
+ * @property boolean ReturnExternal
+ * @property boolean AllowAuthors
+ * @property boolean AllowTags
+ * @property boolean AllowExport
+ * @property boolean AllowSlideshow
+ * @property string TwitterAccount
+ * @property string TagAction
+ * @property string TagsAction
+ * @property string ShowAction
+ * @property string AuthorAction
+ * @property string ArchiveAction
+ * @property int NewsRootFolderID
+ * @property int DefaultImageID
+ * @property int DefaultGravatarImageID
+ * @method Folder NewsRootFolder
+ * @method Image DefaultImage
+ * @method Image DefaultGravatarImage
+ * EndGeneratedWithDataObjectAnnotator
  */
 class NewsSiteConfigExtension extends DataExtension
 {

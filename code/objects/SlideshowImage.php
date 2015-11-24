@@ -5,11 +5,17 @@
  *
  * @package News/Blog module
  * @author Simon `Sphere`
+ *
+ * StartGeneratedWithDataObjectAnnotator
  * @property string Title
- * @property HTMLText Description
- * @property Int SortOrder
- * @method Image Image() Image for this group
- * @method News News() this image belongs to
+ * @property string Description
+ * @property int SortOrder
+ * @property int ImageID
+ * @property int NewsID
+ * @method Image Image
+ * @method News News
+ * @mixin SlideshowCMSExtension
+ * EndGeneratedWithDataObjectAnnotator
  */
 class SlideshowImage extends DataObject
 {

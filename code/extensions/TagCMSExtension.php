@@ -5,6 +5,10 @@
  * This is pure for readability, it has no super powers.
  *
  * @author Simon 'Sphere' Erkelens
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property Tag|TagCMSExtension owner
+ * EndGeneratedWithDataObjectAnnotator
  */
 class TagCMSExtension extends DataExtension
 {

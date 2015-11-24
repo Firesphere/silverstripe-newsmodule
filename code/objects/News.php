@@ -7,29 +7,36 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ *
+ * StartGeneratedWithDataObjectAnnotator
  * @property string Title
  * @property string Author
  * @property string URLSegment
- * @property Text Synopsis
- * @property HTMLText Content
- * @property Date PublishFrom
- * @property Boolean Tweeted
- * @property Boolean FBPosted
- * @property Boolean Live
- * @property Boolean Commenting
- * @property Enum Type
+ * @property string Synopsis
+ * @property string Content
+ * @property string PublishFrom
+ * @property boolean Tweeted
+ * @property boolean FBPosted
+ * @property boolean Live
+ * @property boolean Commenting
+ * @property string Type
  * @property string External
- * @property Int ImpressionID
- * @property Int DownloadID
- * @property Int AuthorHelperID
- * @method Image Impression() the Impression for this NewsItem
- * @method File Download() Get the downloadable file
- * @method AuthorHelper AuthorHelper() Get the author of this post
- * @method Comment Comments() Comments on this NewsItem
- * @method Renamed Renamed() changed URLSegments
- * @method SlideshowImage SlideshowImages() for the slideshow-feature
- * @method Tag Tags() Added Tags for this Item
- * @method NewsHolderPage NewsHolderPages() The pages this item is linked to
+ * @property string FAIcon
+ * @property int ImpressionID
+ * @property int DownloadID
+ * @property int AuthorHelperID
+ * @method Image Impression
+ * @method File Download
+ * @method AuthorHelper AuthorHelper
+ * @method DataList|Comment[] Comments
+ * @method DataList|Renamed[] Renamed
+ * @method DataList|SlideshowImage[] SlideshowImages
+ * @method ManyManyList|Tag[] Tags
+ * @method ManyManyList|NewsHolderPage[] NewsHolderPages
+ * @mixin GoogleSitemapExtension
+ * @mixin NewsSystemExtension
+ * @mixin NewsCMSExtension
+ * EndGeneratedWithDataObjectAnnotator
  */
 class News extends DataObject implements PermissionProvider
 {

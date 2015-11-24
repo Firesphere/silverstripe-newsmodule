@@ -7,16 +7,21 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ *
+ * StartGeneratedWithDataObjectAnnotator
  * @property string Title
  * @property string Name
  * @property string Email
  * @property string MD5Email
  * @property string URL
- * @property HTMLText Comment
- * @property Boolean AkismetMarked
- * @property Boolean Visible
- * @property Boolean ShowGravatar
- * @method News News() The origin of the comment
+ * @property string Comment
+ * @property boolean AkismetMarked
+ * @property boolean Visible
+ * @property boolean ShowGravatar
+ * @property int NewsID
+ * @method News News
+ * @mixin CommentCMSExtension
+ * EndGeneratedWithDataObjectAnnotator
  */
 class Comment extends DataObject implements PermissionProvider
 {

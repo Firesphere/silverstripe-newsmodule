@@ -7,10 +7,13 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @property Boolean IsPrimary
- * @method News Newsitems() linked to this page (for Translatable)
  * @todo WHOAH! This thing is fat. Slim it down boy!
  * @todo besides the general getters, the news-functions should be in the model
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property boolean IsPrimary
+ * @method ManyManyList|News[] Newsitems
+ * EndGeneratedWithDataObjectAnnotator
  */
 class NewsHolderPage extends Page
 {

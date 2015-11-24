@@ -11,7 +11,12 @@
  *
  * @package News/Blog module
  * @author Simon `Sphere`
- * @method News News() Item this object belongs to
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property string OldLink
+ * @property int NewsID
+ * @method News News
+ * EndGeneratedWithDataObjectAnnotator
  */
 class Renamed extends DataObject
 {

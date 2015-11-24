@@ -8,13 +8,18 @@
  * @package News/Blog module
  * @todo implement translations?
  * @todo fix getCMSFields() function.
+ *
+ * StartGeneratedWithDataObjectAnnotator
  * @property string Title
- * @property HTMLText Description
+ * @property string Description
  * @property string URLSegment
  * @property string Locale
- * @property Int SortOrder
- * @method Image Impression() Impressionimage for this tag
- * @method News News() NewsItems this tag belongs to.
+ * @property int SortOrder
+ * @property int ImpressionID
+ * @method Image Impression
+ * @method ManyManyList|News[] News
+ * @mixin TagCMSExtension
+ * EndGeneratedWithDataObjectAnnotator
  */
 class Tag extends DataObject
 {

@@ -7,6 +7,10 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property News|NewsCMSExtension owner
+ * EndGeneratedWithDataObjectAnnotator
  */
 class NewsCMSExtension extends DataExtension
 {

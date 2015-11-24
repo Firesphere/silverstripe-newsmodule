@@ -7,6 +7,10 @@
  * @package Silverstripe
  * @subpackage Newsmodule
  * @author Simon 'Sphere' Erkelens
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property Comment|CommentCMSExtension owner
+ * EndGeneratedWithDataObjectAnnotator
  */
 class CommentCMSExtension extends DataExtension
 {

@@ -4,6 +4,10 @@
  * This extension sets up the fields for the Slideshow images.
  *
  * @author Simon 'Sphere' Erkelens
+ *
+ * StartGeneratedWithDataObjectAnnotator
+ * @property SlideshowImage|SlideshowCMSExtension owner
+ * EndGeneratedWithDataObjectAnnotator
  */
 class SlideshowCMSExtension extends DataExtension
 {
