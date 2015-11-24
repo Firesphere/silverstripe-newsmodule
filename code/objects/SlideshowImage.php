@@ -39,6 +39,7 @@ class SlideshowImage extends DataObject
 			'Description' => _t('SlideshowImage.DESCRIPTION', 'Description'),
 			'Image'       => _t('SlideshowImage.IMAGE', 'Image'),
 		);
+
 		return array_merge($slideshowImageLabels, $labels);
 	}
 

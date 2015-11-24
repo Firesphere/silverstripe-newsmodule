@@ -51,6 +51,7 @@ class AuthorHelper extends DataObject
 		if ($Page = NewsHolderPage::get()->first()) {
 			return ($Page->Link($action . $this->URLSegment));
 		}
+
 		return false;
 	}
 

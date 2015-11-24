@@ -90,6 +90,7 @@ class Comment extends DataObject implements PermissionProvider
 			'ShowGravatar'  => _t('Comment.GRAVATAR', 'Show Gravatar'),
 			'News'          => _t('Comment.NEWS', 'News'),
 		);
+
 		return array_merge($commentLabels, $labels);
 	}
 
@@ -113,6 +114,7 @@ class Comment extends DataObject implements PermissionProvider
 		$fields->fieldByName('Comment')
 			->setColumns(20)
 			->setRows(10);
+
 		return $fields;
 	}
 

@@ -85,6 +85,7 @@ class NewsControllerExtension extends DataExtension
 		if ($news->count() == 0) {
 			return null;
 		}
+
 		return ($news);
 	}
 
@@ -96,6 +97,7 @@ class NewsControllerExtension extends DataExtension
 	public function getArchiveList()
 	{
 		$NewsGroups = GroupedList::create(News::get());
+
 		return $NewsGroups;
 	}
 
