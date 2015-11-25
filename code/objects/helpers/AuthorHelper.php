@@ -70,4 +70,13 @@ class AuthorHelper extends DataObject
 		}
 	}
 
+	/**
+	 * @inheritdoc
+	 * @param null $member
+	 * @return bool
+	 */
+	public function canView($member = null) {
+		return true;
+	}
+
 }
