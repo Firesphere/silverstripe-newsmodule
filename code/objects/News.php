@@ -334,7 +334,7 @@ class News extends DataObject implements PermissionProvider
 		}
 		$this->Author = implode(' ', $nameParts);
 		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author))->first();
-		if (!$author->exists()) {
+		if (!$author) {
 			$author = AuthorHelper::create();
 			$author->OriginalName = trim($this->Author);
 			$author->write();
