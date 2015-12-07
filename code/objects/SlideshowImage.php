@@ -62,6 +62,7 @@ class SlideshowImage extends DataObject
 	/**
 	 * If there's a max-size set in the SiteConfig ({width}x{height}) for the image, resize the image.
 	 * This saves space on the hosting and prevents huge high-res images to stay online for no reason.
+	 * @todo Update to SilverStripe Image methods for file-resizing.
 	 * @param SiteConfig $siteConfig
 	 */
 	public function resizeImages(SiteConfig $siteConfig)
@@ -89,22 +90,22 @@ class SlideshowImage extends DataObject
 	 */
 	public function canCreate($member = null)
 	{
-		return (Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canEdit($member = null)
 	{
-		return (Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canDelete($member = null)
 	{
-		return (Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canView($member = null)
 	{
-		return (Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
+		return Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 }

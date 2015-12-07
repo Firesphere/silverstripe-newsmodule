@@ -21,9 +21,9 @@ class TagReport extends SS_Report
 
 	/**
 	 * Setup the list of records to show.
-	 * @param type $params array of filter-rules.
-	 * @param type $sort
-	 * @param type $limit
+	 * @param array $params of filter-rules.
+	 * @param string $sort
+	 * @param string $limit
 	 * @return \ArrayList with the records.
 	 */
 	public function sourceRecords($params, $sort, $limit)
@@ -37,8 +37,10 @@ class TagReport extends SS_Report
 		if (isset($params['Title']) && $params['Title'] != '') {
 			$where = 'Title LIKE \'%' . $params['Title'] . '%\'';
 		}
+		/** @var ArrayList|Tag[] $ret */
 		$ret = Tag::get()->where($where);
-		$returnSet = new ArrayList();
+		/** @var ArrayList $returnSet */
+		$returnSet = ArrayList::create();
 		if ($ret)
 			foreach ($ret as $record) {
 				$record->Itemcount = $record->News()->count();

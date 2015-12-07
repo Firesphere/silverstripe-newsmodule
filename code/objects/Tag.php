@@ -109,10 +109,9 @@ class Tag extends DataObject
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))) {
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if (strpos($this->URLSegment, 'page-') === false) { // It might occur, and we don't want page-0, page-1 etc. in the list!
-				$nr = 1;
 				$URLSegment = $this->URLSegment;
-				while ($this->LookForExistingURLSegment($URLSegment)) {
-					$URLSegment = $this->URLSegment . '-' . $nr++;
+				if ($this->LookForExistingURLSegment($URLSegment)) {
+					$URLSegment = $this->URLSegment . '-' . $this->ID;
 				}
 				$this->URLSegment = $URLSegment;
 			}
@@ -126,7 +125,7 @@ class Tag extends DataObject
 	 */
 	public function LookForExistingURLSegment($URLSegment)
 	{
-		return (Tag::get()->filter(array("URLSegment" => $URLSegment))->exclude(array("ID" => $this->ID))->count() != 0);
+		return (Tag::get()->filter(array('URLSegment' => $URLSegment))->exclude(array('ID' => $this->ID))->count() !== 0);
 	}
 
 	/**
@@ -139,8 +138,9 @@ class Tag extends DataObject
 		if ($config = SiteConfig::current_site_config()->TagAction) {
 			$action = $config . '/';
 		}
+		/** @var NewsHolderPage $Page */
 		if ($Page = NewsHolderPage::get()->first()) {
-			return ($Page->Link($action . $this->URLSegment));
+			return $Page->Link($action . $this->URLSegment);
 		}
 
 		return false;
@@ -148,13 +148,12 @@ class Tag extends DataObject
 
 	/**
 	 * This is quite handy, for meta-tags and such.
-	 * @param string $action The added URLSegment, the actual function that'll return the tag.
 	 * @return string Link. To the item. (Yeah, I'm super cereal here)
 	 */
 	public function AbsoluteLink()
 	{
 		if ($Page = $this->Link()) {
-			return (Director::absoluteURL($Page));
+			return Director::absoluteURL($Page);
 		}
 	}
 
@@ -198,22 +197,22 @@ class Tag extends DataObject
 
 	public function canCreate($member = null)
 	{
-		return (Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('CREATE_TAG', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canEdit($member = null)
 	{
-		return (Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('EDIT_TAG', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canDelete($member = null)
 	{
-		return (Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('DELETE_TAG', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	public function canView($member = null)
 	{
-		return (Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('VIEW_TAG', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 }

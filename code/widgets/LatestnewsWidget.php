@@ -40,6 +40,7 @@ if (class_exists('Widget')) {
 		 */
 		public function getCMSFields()
 		{
+			/** @var FieldList $fields */
 			$fields = FieldList::create();
 			$fields->push(TextField::create('WidgetTitle', 'Title of this widget'));
 			$fields->push(TextField::create('Amount', 'Amount of items to show'));

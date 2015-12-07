@@ -31,7 +31,7 @@ class NewsAdmin extends ModelAdmin
 		/**
 		 * SortOrder is ignored unless sortable is enabled.
 		 */
-		if ($this->modelClass == "Tag" && $siteConfig->AllowTags) {
+		if ($this->modelClass === "Tag" && $siteConfig->AllowTags) {
 			$form->Fields()
 				->fieldByName('Tag')
 				->getConfig()
@@ -41,7 +41,7 @@ class NewsAdmin extends ModelAdmin
 					)
 				);
 		}
-		if ($this->modelClass == "News" && !$siteConfig->AllowExport) {
+		if ($this->modelClass === "News" && !$siteConfig->AllowExport) {
 			$form->Fields()
 				->fieldByName("News")
 				->getConfig()
@@ -63,7 +63,7 @@ class NewsAdmin extends ModelAdmin
 	{
 		/** @var DataList $list */
 		$list = parent::getList();
-		if ($this->modelClass == 'News' && class_exists('Subsite') && Subsite::currentSubsiteID() > 0) {
+		if ($this->modelClass === 'News' && class_exists('Subsite') && Subsite::currentSubsiteID() > 0) {
 			$pages = NewsHolderPage::get()->filter(array('SubsiteID' => (int)Subsite::currentSubsiteID()));
 			$filter = $pages->column('ID');
 			/* Manual join needed because otherwise no items are found. Unknown why. */

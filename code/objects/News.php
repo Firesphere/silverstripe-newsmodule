@@ -202,8 +202,9 @@ class News extends DataObject implements PermissionProvider
 		if ($config = SiteConfig::current_site_config()->ShowAction) {
 			$action = $config . '/';
 		}
+		/** @var NewsHolderPage $Page */
 		if ($Page = $this->NewsHolderPages()->first()) {
-			return ($Page->Link($action . $this->URLSegment));
+			return $Page->Link($action . $this->URLSegment);
 		}
 
 		return false;
@@ -229,9 +230,13 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function AbsoluteLink($action = 'show/')
 	{
-		return (Director::absoluteURL($this->Link($action)));
+		return Director::absoluteURL($this->Link($action));
 	}
 
+	/**
+	 * Check if commenting on this item is allowed
+	 * @return bool
+	 */
 	public function AllowComments()
 	{
 		return (SiteConfig::current_site_config()->Comments && $this->Commenting);
@@ -250,7 +255,7 @@ class News extends DataObject implements PermissionProvider
 				$this->NewsHolderPages()->add($page);
 			}
 		}
-		if (!$this->Type || $this->Type == '') {
+		if (!$this->Type || $this->Type === '') {
 			$this->Type = 'news';
 		}
 		/** Set PublishFrom to today to prevent errors with sorting. New since 2.0, backward compatible. */
@@ -260,7 +265,7 @@ class News extends DataObject implements PermissionProvider
 		/**
 		 * Make sure the link is valid.
 		 */
-		if (substr($this->External, 0, 4) != 'http' && $this->External != '') {
+		if (substr($this->External, 0, 4) !== 'http' && $this->External != '') {
 			$this->External = 'http://' . $this->External;
 		}
 		$this->setURLValue();
@@ -304,10 +309,9 @@ class News extends DataObject implements PermissionProvider
 			}
 			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
 			if (strpos($this->URLSegment, 'page-') === false) {
-				$nr = 1;
 				$URLSegment = $this->URLSegment;
-				while ($this->LookForExistingURLSegment($URLSegment)) {
-					$URLSegment = $this->URLSegment . '-' . $nr++;
+				if ($this->LookForExistingURLSegment($URLSegment)) {
+					$URLSegment = $this->URLSegment . '-' . $this->ID;
 				}
 				$this->URLSegment = $URLSegment;
 			}
@@ -322,9 +326,22 @@ class News extends DataObject implements PermissionProvider
 	private function LookForExistingURLSegment($URLSegment)
 	{
 		return (News::get()
-				->filter(array("URLSegment" => $URLSegment))
-				->exclude(array("ID" => $this->ID))
-				->count() != 0);
+				->filter(array('URLSegment' => $URLSegment))
+				->exclude(array('ID' => $this->ID))
+				->count() !== 0);
+	}
+
+	/**
+	 * Setup the LinkingMode for menu-items.
+	 * @return string
+	 */
+	public function LinkingMode()
+	{
+		/** @var Page_Controller $controller */
+		$controller = Controller::curr();
+		$params = $controller->getURLParams();
+
+		return $params['ID'] === $this->URLSegment ? 'current' : 'link';
 	}
 
 	/**
@@ -335,11 +352,12 @@ class News extends DataObject implements PermissionProvider
 		$this->Author = trim($this->Author);
 		$nameParts = explode(' ', $this->Author);
 		foreach ($nameParts as $key => $namePart) {
-			if ($namePart == '') {
+			if ($namePart === '') {
 				unset($nameParts[$key]);
 			}
 		}
 		$this->Author = implode(' ', $nameParts);
+		/** @var AuthorHelper $author */
 		$author = AuthorHelper::get()->filter('OriginalName', trim($this->Author));
 		if (!$author->Count()) {
 			$author = AuthorHelper::create();
@@ -427,7 +445,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canCreate($member = null)
 	{
-		return (Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('CREATE_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	/**
@@ -435,7 +453,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canEdit($member = null)
 	{
-		return (Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('EDIT_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	/**
@@ -443,7 +461,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canDelete($member = null)
 	{
-		return (Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin')));
+		return Permission::checkMember($member, array('DELETE_NEWS', 'CMS_ACCESS_NewsAdmin'));
 	}
 
 	/**
@@ -451,7 +469,7 @@ class News extends DataObject implements PermissionProvider
 	 */
 	public function canView($member = null)
 	{
-		return (Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live == 1);
+		return (Permission::checkMember($member, array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin')) || $this->Live === 1);
 	}
 
 	/**
@@ -472,7 +490,7 @@ class News extends DataObject implements PermissionProvider
 	public function getStatus()
 	{
 		$published = $this->isPublished() ? _t('News.IsPublished', 'published') : _t('News.IsUnpublished', 'not published');
-		if ($this->PublishFrom > SS_Datetime::now()->Rfc2822() && $this->isPublished()) {
+		if ($this->isPublished() && $this->PublishFrom > SS_Datetime::now()->Rfc2822()) {
 			$published = _t('News.InQueue', 'Awaiting publishdate');
 		}
 
