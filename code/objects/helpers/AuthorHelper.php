@@ -51,6 +51,7 @@ class AuthorHelper extends DataObject
 		if ($siteConfigAction = SiteConfig::current_site_config()->AuthorAction) {
 			$action = $siteConfigAction . '/';
 		}
+		/** @var NewsHolderPage $Page */
 		if ($Page = NewsHolderPage::get()->first()) {
 			return ($Page->Link($action . $this->URLSegment));
 		}
@@ -66,7 +67,7 @@ class AuthorHelper extends DataObject
 	public function AbsoluteLink($action = 'author/')
 	{
 		if ($Page = $this->Link($action)) {
-			return (Director::absoluteURL($Page));
+			return Director::absoluteURL($Page);
 		}
 	}
 

@@ -173,6 +173,7 @@ class Comment extends DataObject implements PermissionProvider
 	{
 		$SiteConfig = SiteConfig::current_site_config();
 		/** No, really, I mean it. Change this. When spambots find your site, 30 e-mails an hour is NORMAL! */
+		/** @var Email $mail */
 		$mail = Email::create();
 		$mail->setTo($SiteConfig->NewsEmail);
 		$mail->setSubject(_t('Comment.COMMENTMAILSUBJECT2', 'New post titled: {title} ', array('title' => $this->Title)));

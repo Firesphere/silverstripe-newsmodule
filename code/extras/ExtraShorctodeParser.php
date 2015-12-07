@@ -19,14 +19,14 @@ class ExtraShortcodeParser
 		if (!isset($arguments['id'])) {
 			return null;
 		}
-		if (substr($arguments['id'], 0, 4) == 'http') {
+		if (substr($arguments['id'], 0, 4) === 'http') {
 			list($unneeded, $id) = explode('/status/', $arguments['id']);
 		} else {
 			$id = $arguments['id'];
 		}
 		$data = json_decode(file_get_contents('https://api.twitter.com/1/statuses/oembed.json?id=' . $id . '&omit_script=true&lang=en'), 1);
 
-		return ($data['html']);
+		return $data['html'];
 	}
 
 	/**
@@ -55,7 +55,7 @@ class ExtraShortcodeParser
 	{
 		// If there's no ID, just stop.
 		if (empty($arguments['id'])) {
-			return;
+			return null;
 		}
 		/*		 * * SET DEFAULTS ** */
 		$defaults = array(
@@ -81,6 +81,7 @@ class ExtraShortcodeParser
 	 */
 	public static function createSlideshow($arguments)
 	{
+		/** @var News $record */
 		if (Controller::curr() instanceof NewsHolderPage_Controller && ($record = Controller::curr()->getNews())) {
 			$SiteConfig = SiteConfig::current_site_config();
 			if ($SiteConfig->SlideshowInitial) {
@@ -91,7 +92,7 @@ class ExtraShortcodeParser
 			$record->Image = $record->SlideshowImages()->sort('SortOrder ASC');
 			$template = new SSViewer($template);
 
-			return ($template->process($record));
+			return $template->process($record);
 		}
 	}
 

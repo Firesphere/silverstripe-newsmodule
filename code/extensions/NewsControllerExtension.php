@@ -25,7 +25,7 @@ class NewsControllerExtension extends DataExtension
 	 */
 	public function NewsArchive($limit = 5, $random = null, $related = null)
 	{
-		if ($limit == 0) {
+		if ($limit === 0) {
 			$limit = null;
 		}
 		$Params = $this->owner->getURLParams();
@@ -39,7 +39,8 @@ class NewsControllerExtension extends DataExtension
 		 * It's too bad chaining doesn't work :/ Therefor, we have a bunch of extended if's
 		 * @todo rewrite to the filter/exclude coming from a separate function. Should be more readable.
 		 */
-		if ($Params['Action'] == 'show' && $related) {
+		if ($Params['Action'] === 'show' && $related) {
+			/** @var News $otherNews */
 			$otherNews = News::get()
 				->filter(
 					array('URLSegment' => $Params['ID'])
@@ -82,11 +83,11 @@ class NewsControllerExtension extends DataExtension
 					->limit($limit);
 			}
 		}
-		if ($news->count() == 0) {
+		if ($news->count() === 0) {
 			return null;
 		}
 
-		return ($news);
+		return $news;
 	}
 
 	/**
@@ -104,7 +105,7 @@ class NewsControllerExtension extends DataExtension
 	/**
 	 * Just get all tags.
 	 * @todo support translatable?
-	 * @return type Datalist of all tags
+	 * @return ArrayList|Tag[] of all tags
 	 */
 	public function allTags()
 	{
@@ -117,6 +118,7 @@ class NewsControllerExtension extends DataExtension
 	 * @todo many things, isn't finished
 	 * @fixed I refactored a bit. Only makes for a smaller function.
 	 * @author Marcio Barrientos
+	 * @return ArrayList|News[]
 	 */
 	public function NewsArchiveByHolderID($holderID = null, $limit = 5)
 	{
@@ -124,7 +126,7 @@ class NewsControllerExtension extends DataExtension
 			'Live'             => 1,
 			'NewsHolderPageID' => $holderID,
 		);
-		if ($limit == 0) {
+		if ($limit === 0) {
 			$limit = null;
 		}
 		if (class_exists('Translatable')) {
@@ -138,7 +140,7 @@ class NewsControllerExtension extends DataExtension
 			->exclude($exclude)
 			->limit($limit);
 
-		if ($news->count() == 0) {
+		if ($news->count() === 0) {
 			return null;
 		}
 

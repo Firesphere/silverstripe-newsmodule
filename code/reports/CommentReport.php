@@ -38,8 +38,10 @@ class CommentReport extends SS_Report
 		if (count($params) > 0 && isset($params['Title'])) {
 			$filter['News.Title:PartialMatch'] = $params['Title'];
 		}
+		/** @var ArrayList|News[] $ret */
 		$ret = News::get()->filter($filter);
-		$returnSet = new ArrayList();
+		/** @var ArrayList $returnSet */
+		$returnSet = ArrayList::create();
 		if ($ret) {
 			foreach ($ret as $record) {
 				$record->Commentcount = $record->Comments()->count();

@@ -7,7 +7,6 @@
  *
  * @package News/blog module
  * @author Simon 'Sphere'
- * @todo WHOAH! This thing is fat. Slim it down boy!
  * @todo besides the general getters, the news-functions should be in the model
  *
  * StartGeneratedWithDataObjectAnnotator
@@ -39,7 +38,8 @@ class NewsHolderPage extends Page
 	public function requireDefaultRecords()
 	{
 		parent::requireDefaultRecords();
-		if (NewsHolderPage::get()->count() == 0) {
+		if (NewsHolderPage::get()->count() === 0) {
+			/** @var NewsHolderPage $page */
 			$page = NewsHolderPage::create();
 			$page->Title = _t('NewsHolderPage.DEFAULTPAGETITLE', 'Newspage');
 			$page->Content = '';
@@ -82,8 +82,8 @@ class NewsHolderPage extends Page
 	 */
 	private function migrateAuthors()
 	{
-		/** @var SQLQuery $query */
-		$query = new SQLQuery();
+		/** @var SQLSelect $query */
+		$query = SQLSelect::create();
 		$query->setSelect('Author')
 			->setFrom('News')
 			->setDistinct(true);
@@ -140,7 +140,7 @@ class NewsHolderPage extends Page
 	/**
 	 * Support for children.
 	 * Just call <% loop Children.Limit(x) %>$Title<% end_loop %> from your template to get the news-children.
-	 * @return DataObjectSet NewsItems belonging to this page
+	 * @return ArrayList NewsItems belonging to this page
 	 */
 	public function Children()
 	{
@@ -211,7 +211,7 @@ class NewsHolderPage_Controller extends Page_Controller
 			if ($siteConfig->$map) {
 				$handles[$siteConfig->$map] = $key;
 			}
-			if (!isset($handles[$key])) {
+			if (!array_key_exists($key, $handles)) {
 				$handles[$key] = $key;
 			}
 		}
@@ -326,7 +326,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		$action = $this->getRequest()->param('Action');
 		/** @var array $handlers */
 		$handlers = self::$url_handlers;
-		if (isset($handlers[$action]) && $handlers[$action] == 'show' && !$news = $this->getNews()) {
+		if (array_key_exists($action, $handlers) && $handlers[$action] === 'show' && !$news = $this->getNews()) {
 			if ($id && is_numeric($id)) {
 				/** @var News $redirect */
 				$redirect = $this->Newsitems()->byId($id);
@@ -390,6 +390,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	 */
 	public function rss()
 	{
+		/** @var RSSFeed $rss */
 		$rss = RSSFeed::create(
 			$list = $this->getRSSFeed(), $link = $this->Link('rss'), $title = _t('News.RSSFEED', 'News feed')
 		);
@@ -422,7 +423,7 @@ class NewsHolderPage_Controller extends Page_Controller
 			'URLSegment' => Convert::raw2sql($params['ID']),
 			'Live'       => 1,
 		);
-		if (Member::currentUserID() != 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
+		if (Member::currentUserID() !== 0 && !Permission::checkMember(Member::currentUserID(), array('VIEW_NEWS', 'CMS_ACCESS_NewsAdmin'))) {
 			$filter['Live'] = 0;
 		}
 
@@ -445,6 +446,7 @@ class NewsHolderPage_Controller extends Page_Controller
 			->exclude($exclude);
 		/** Pagination pagination pagination. */
 		if ($allEntries->count() > $siteConfig->PostsPerPage && $siteConfig->PostsPerPage > 0) {
+			/** @var PaginatedList $records */
 			$records = PaginatedList::create($allEntries, $this->getRequest());
 			$records->setPageLength($siteConfig->PostsPerPage);
 
@@ -477,14 +479,14 @@ class NewsHolderPage_Controller extends Page_Controller
 		$filter = array(
 			'Live' => 1,
 		);
-		if (isset($params['Action'])) {
+		if (array_key_exists('Action', $params)) {
 			switch ($mapping[$params['Action']]) {
 				/** Archive */
 				case 'archive':
-					if (!isset($params['ID'])) {
+					if (!array_key_exists('ID', $params)) {
 						$month = SS_DateTime::now()->Format('m');
 						$year = SS_DateTime::now()->Format('Y');
-					} elseif (!isset($params['OtherID']) && isset($params['ID'])) {
+					} elseif (!array_key_exists('OtherID', $params) && array_key_exists('ID', $params)) {
 						$year = $params['ID'];
 						$month = '';
 					} else {
@@ -513,7 +515,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		$siteconfig = $this->getCurrentSiteConfig();
 		$params = $this->getURLParams();
 
-		return (CommentForm::create($this, 'CommentForm', $siteconfig, $params));
+		return CommentForm::create($this, 'CommentForm', $siteconfig, $params);
 	}
 
 }
