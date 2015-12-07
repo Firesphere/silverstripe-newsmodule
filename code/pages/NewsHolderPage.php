@@ -479,14 +479,15 @@ class NewsHolderPage_Controller extends Page_Controller
 		$filter = array(
 			'Live' => 1,
 		);
-		if (array_key_exists('Action', $params)) {
+		if (array_key_exists('Action', $params) && $params['Action'] !== null) {
 			switch ($mapping[$params['Action']]) {
 				/** Archive */
 				case 'archive':
-					if (!array_key_exists('ID', $params)) {
+					if (!array_key_exists('ID', $params) || $params['ID'] === null) {
 						$month = SS_DateTime::now()->Format('m');
 						$year = SS_DateTime::now()->Format('Y');
-					} elseif (!array_key_exists('OtherID', $params) && array_key_exists('ID', $params)) {
+					} elseif ((!array_key_exists('OtherID', $params) || $params['OtherID'] === null)
+						&& (array_key_exists('ID', $params) && $params['ID'] !== null)) {
 						$year = $params['ID'];
 						$month = '';
 					} else {
