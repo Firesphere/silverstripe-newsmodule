@@ -51,234 +51,233 @@
  */
 class Akismet
 {
-	private $version = '0.2';
-	private $wordPressAPIKey;
-	private $blogURL;
-	private $comment;
-	private $apiPort;
-	private $akismetServer;
-	private $akismetVersion;
-	// This prevents some potentially sensitive information from being sent accross the wire.
-	private $ignore = array('HTTP_COOKIE',
-		'HTTP_X_FORWARDED_FOR',
-		'HTTP_X_FORWARDED_HOST',
-		'HTTP_MAX_FORWARDS',
-		'HTTP_X_FORWARDED_SERVER',
-		'REDIRECT_STATUS',
-		'SERVER_PORT',
-		'PATH',
-		'DOCUMENT_ROOT',
-		'SERVER_ADMIN',
-		'QUERY_STRING',
-		'PHP_SELF');
+    private $version = '0.2';
+    private $wordPressAPIKey;
+    private $blogURL;
+    private $comment;
+    private $apiPort;
+    private $akismetServer;
+    private $akismetVersion;
+    // This prevents some potentially sensitive information from being sent accross the wire.
+    private $ignore = array('HTTP_COOKIE',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED_HOST',
+        'HTTP_MAX_FORWARDS',
+        'HTTP_X_FORWARDED_SERVER',
+        'REDIRECT_STATUS',
+        'SERVER_PORT',
+        'PATH',
+        'DOCUMENT_ROOT',
+        'SERVER_ADMIN',
+        'QUERY_STRING',
+        'PHP_SELF');
 
-	/**
-	 * @throws    Exception    An exception is thrown if your API key is invalid.
-	 * @param    string    Your WordPress API key.
-	 * @param    string $blogURL The URL of your blog.
-	 */
-	public function __construct($blogURL, $wordPressAPIKey)
-	{
-		$this->blogURL = $blogURL;
-		$this->wordPressAPIKey = $wordPressAPIKey;
+    /**
+     * @throws    Exception    An exception is thrown if your API key is invalid.
+     * @param    string    Your WordPress API key.
+     * @param    string $blogURL The URL of your blog.
+     */
+    public function __construct($blogURL, $wordPressAPIKey)
+    {
+        $this->blogURL = $blogURL;
+        $this->wordPressAPIKey = $wordPressAPIKey;
 
-		// Set some default values
-		$this->apiPort = 80;
-		$this->akismetServer = 'rest.akismet.com';
-		$this->akismetVersion = '1.1';
+        // Set some default values
+        $this->apiPort = 80;
+        $this->akismetServer = 'rest.akismet.com';
+        $this->akismetVersion = '1.1';
 
-		// Start to populate the comment data
-		$this->comment['blog'] = $blogURL;
-		$this->comment['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-		$this->comment['referrer'] = $_SERVER['HTTP_REFERER'];
+        // Start to populate the comment data
+        $this->comment['blog'] = $blogURL;
+        $this->comment['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+        $this->comment['referrer'] = $_SERVER['HTTP_REFERER'];
 
-		// This is necessary if the server PHP5 is running on has been set up to run PHP4 and
-		// PHP5 concurently and is actually running through a separate proxy al a these instructions:
-		// http://www.schlitt.info/applications/blog/archives/83_How_to_run_PHP4_and_PHP_5_parallel.html
-		// and http://wiki.coggeshall.org/37.html
-		// Otherwise the user_ip appears as the IP address of the PHP4 server passing the requests to the
-		// PHP5 one...
-		$this->comment['user_ip'] = $_SERVER['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $_SERVER['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
+        // This is necessary if the server PHP5 is running on has been set up to run PHP4 and
+        // PHP5 concurently and is actually running through a separate proxy al a these instructions:
+        // http://www.schlitt.info/applications/blog/archives/83_How_to_run_PHP4_and_PHP_5_parallel.html
+        // and http://wiki.coggeshall.org/37.html
+        // Otherwise the user_ip appears as the IP address of the PHP4 server passing the requests to the
+        // PHP5 one...
+        $this->comment['user_ip'] = $_SERVER['REMOTE_ADDR'] != getenv('SERVER_ADDR') ? $_SERVER['REMOTE_ADDR'] : getenv('HTTP_X_FORWARDED_FOR');
 
-		// Check to see if the key is valid
-		$response = $this->http_post('key=' . $this->wordPressAPIKey . '&blog=' . $this->blogURL, $this->akismetServer, '/' . $this->akismetVersion . '/verify-key');
+        // Check to see if the key is valid
+        $response = $this->http_post('key=' . $this->wordPressAPIKey . '&blog=' . $this->blogURL, $this->akismetServer, '/' . $this->akismetVersion . '/verify-key');
 
-		if ($response[1] != 'valid') {
-			// Whoops, no it's not.  Throw an exception as we can't proceed without a valid API key.
-			throw new Exception('Invalid API key.  Please obtain one from http://wordpress.com/api-keys/');
-		}
-	}
+        if ($response[1] != 'valid') {
+            // Whoops, no it's not.  Throw an exception as we can't proceed without a valid API key.
+            throw new Exception('Invalid API key.  Please obtain one from http://wordpress.com/api-keys/');
+        }
+    }
 
-	private function http_post($request, $host, $path)
-	{
-		$http_request = "POST " . $path . " HTTP/1.1\r\n";
-		$http_request .= "Host: " . $host . "\r\n";
-		$http_request .= "Content-Type: application/x-www-form-urlencoded; charset=utf-8\r\n";
-		$http_request .= "Content-Length: " . strlen($request) . "\r\n";
-		$http_request .= "User-Agent: Akismet PHP5 Class " . $this->version . " | Akismet/1.11\r\n";
-		$http_request .= "\r\n";
-		$http_request .= $request;
+    private function http_post($request, $host, $path)
+    {
+        $http_request = "POST " . $path . " HTTP/1.1\r\n";
+        $http_request .= "Host: " . $host . "\r\n";
+        $http_request .= "Content-Type: application/x-www-form-urlencoded; charset=utf-8\r\n";
+        $http_request .= "Content-Length: " . strlen($request) . "\r\n";
+        $http_request .= "User-Agent: Akismet PHP5 Class " . $this->version . " | Akismet/1.11\r\n";
+        $http_request .= "\r\n";
+        $http_request .= $request;
 
-		$socketWriteRead = new SocketWriteRead($host, $this->apiPort, $http_request);
-		$socketWriteRead->send();
+        $socketWriteRead = new SocketWriteRead($host, $this->apiPort, $http_request);
+        $socketWriteRead->send();
 
-		return explode("\r\n\r\n", $socketWriteRead->getResponse(), 2);
-	}
+        return explode("\r\n\r\n", $socketWriteRead->getResponse(), 2);
+    }
 
-	// Formats the data for transmission	echo $sql;
-	private function getQueryString()
-	{
-		foreach ($_SERVER as $key => $value) {
-			if (!in_array($key, $this->ignore)) {
-				if ($key == 'REMOTE_ADDR') {
-					$this->comment[$key] = $this->comment['user_ip'];
-				} else {
-					$this->comment[$key] = $value;
-				}
-			}
-		}
+    // Formats the data for transmission	echo $sql;
+    private function getQueryString()
+    {
+        foreach ($_SERVER as $key => $value) {
+            if (!in_array($key, $this->ignore)) {
+                if ($key == 'REMOTE_ADDR') {
+                    $this->comment[$key] = $this->comment['user_ip'];
+                } else {
+                    $this->comment[$key] = $value;
+                }
+            }
+        }
 
-		$query_string = '';
+        $query_string = '';
 
-		foreach ($this->comment as $key => $data) {
-			@$query_string .= $key . '=' . urlencode(stripslashes($data)) . '&';
-		}
+        foreach ($this->comment as $key => $data) {
+            @$query_string .= $key . '=' . urlencode(stripslashes($data)) . '&';
+        }
 
-		return $query_string;
-	}
+        return $query_string;
+    }
 
-	/**
-	 *    Tests for spam.
-	 *
-	 *    Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
-	 *
-	 * @return        bool    True if the comment is spam, false if not
-	 */
-	public function isCommentSpam()
-	{
-		$response = $this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.rest.akismet.com', '/' . $this->akismetVersion . '/comment-check');
+    /**
+     *    Tests for spam.
+     *
+     *    Uses the web service provided by {@link http://www.akismet.com Akismet} to see whether or not the submitted comment is spam.  Returns a boolean value.
+     *
+     * @return        bool    True if the comment is spam, false if not
+     */
+    public function isCommentSpam()
+    {
+        $response = $this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.rest.akismet.com', '/' . $this->akismetVersion . '/comment-check');
 
-		return ($response[1] == 'true');
-	}
+        return ($response[1] == 'true');
+    }
 
-	/**
-	 *    Submit spam that is incorrectly tagged as ham.
-	 *
-	 *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
-	 */
-	public function submitSpam()
-	{
-		$this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.' . $this->akismetServer, '/' . $this->akismetVersion . '/submit-spam');
-	}
+    /**
+     *    Submit spam that is incorrectly tagged as ham.
+     *
+     *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
+     */
+    public function submitSpam()
+    {
+        $this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.' . $this->akismetServer, '/' . $this->akismetVersion . '/submit-spam');
+    }
 
-	/**
-	 *    Submit ham that is incorrectly tagged as spam.
-	 *
-	 *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
-	 */
-	public function submitHam()
-	{
-		$this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.' . $this->akismetServer, '/' . $this->akismetVersion . '/submit-ham');
-	}
+    /**
+     *    Submit ham that is incorrectly tagged as spam.
+     *
+     *    Using this function will make you a good citizen as it helps Akismet to learn from its mistakes.  This will improve the service for everybody.
+     */
+    public function submitHam()
+    {
+        $this->http_post($this->getQueryString(), $this->wordPressAPIKey . '.' . $this->akismetServer, '/' . $this->akismetVersion . '/submit-ham');
+    }
 
-	/**
-	 *    To override the user IP address when submitting spam/ham later on
-	 *
-	 * @param string $userip An IP address.  Optional.
-	 */
-	public function setUserIP($userip)
-	{
-		$this->comment['user_ip'] = $userip;
-	}
+    /**
+     *    To override the user IP address when submitting spam/ham later on
+     *
+     * @param string $userip An IP address.  Optional.
+     */
+    public function setUserIP($userip)
+    {
+        $this->comment['user_ip'] = $userip;
+    }
 
-	/**
-	 *    To override the referring page when submitting spam/ham later on
-	 *
-	 * @param string $referrer The referring page.  Optional.
-	 */
-	public function setReferrer($referrer)
-	{
-		$this->comment['referrer'] = $referrer;
-	}
+    /**
+     *    To override the referring page when submitting spam/ham later on
+     *
+     * @param string $referrer The referring page.  Optional.
+     */
+    public function setReferrer($referrer)
+    {
+        $this->comment['referrer'] = $referrer;
+    }
 
-	/**
-	 *    A permanent URL referencing the blog post the comment was submitted to.
-	 *
-	 * @param string $permalink The URL.  Optional.
-	 */
-	public function setPermalink($permalink)
-	{
-		$this->comment['permalink'] = $permalink;
-	}
+    /**
+     *    A permanent URL referencing the blog post the comment was submitted to.
+     *
+     * @param string $permalink The URL.  Optional.
+     */
+    public function setPermalink($permalink)
+    {
+        $this->comment['permalink'] = $permalink;
+    }
 
-	/**
-	 *    The type of comment being submitted.
-	 *
-	 *    May be blank, comment, trackback, pingback, or a made up value like "registration" or "wiki".
-	 */
-	public function setCommentType($commentType)
-	{
-		$this->comment['comment_type'] = $commentType;
-	}
+    /**
+     *    The type of comment being submitted.
+     *
+     *    May be blank, comment, trackback, pingback, or a made up value like "registration" or "wiki".
+     */
+    public function setCommentType($commentType)
+    {
+        $this->comment['comment_type'] = $commentType;
+    }
 
-	/**
-	 *    The name that the author submitted with the comment.
-	 */
-	public function setCommentAuthor($commentAuthor)
-	{
-		$this->comment['comment_author'] = $commentAuthor;
-	}
+    /**
+     *    The name that the author submitted with the comment.
+     */
+    public function setCommentAuthor($commentAuthor)
+    {
+        $this->comment['comment_author'] = $commentAuthor;
+    }
 
-	/**
-	 *    The email address that the author submitted with the comment.
-	 *
-	 *    The address is assumed to be valid.
-	 */
-	public function setCommentAuthorEmail($authorEmail)
-	{
-		$this->comment['comment_author_email'] = $authorEmail;
-	}
+    /**
+     *    The email address that the author submitted with the comment.
+     *
+     *    The address is assumed to be valid.
+     */
+    public function setCommentAuthorEmail($authorEmail)
+    {
+        $this->comment['comment_author_email'] = $authorEmail;
+    }
 
-	/**
-	 *    The URL that the author submitted with the comment.
-	 */
-	public function setCommentAuthorURL($authorURL)
-	{
-		$this->comment['comment_author_url'] = $authorURL;
-	}
+    /**
+     *    The URL that the author submitted with the comment.
+     */
+    public function setCommentAuthorURL($authorURL)
+    {
+        $this->comment['comment_author_url'] = $authorURL;
+    }
 
-	/**
-	 *    The comment's body text.
-	 */
-	public function setCommentContent($commentBody)
-	{
-		$this->comment['comment_content'] = $commentBody;
-	}
+    /**
+     *    The comment's body text.
+     */
+    public function setCommentContent($commentBody)
+    {
+        $this->comment['comment_content'] = $commentBody;
+    }
 
-	/**
-	 *    Defaults to 80
-	 */
-	public function setAPIPort($apiPort)
-	{
-		$this->apiPort = $apiPort;
-	}
+    /**
+     *    Defaults to 80
+     */
+    public function setAPIPort($apiPort)
+    {
+        $this->apiPort = $apiPort;
+    }
 
-	/**
-	 *    Defaults to rest.akismet.com
-	 */
-	public function setAkismetServer($akismetServer)
-	{
-		$this->akismetServer = $akismetServer;
-	}
+    /**
+     *    Defaults to rest.akismet.com
+     */
+    public function setAkismetServer($akismetServer)
+    {
+        $this->akismetServer = $akismetServer;
+    }
 
-	/**
-	 *    Defaults to '1.1'
-	 */
-	public function setAkismetVersion($akismetVersion)
-	{
-		$this->akismetVersion = $akismetVersion;
-	}
-
+    /**
+     *    Defaults to '1.1'
+     */
+    public function setAkismetVersion($akismetVersion)
+    {
+        $this->akismetVersion = $akismetVersion;
+    }
 }
 
 /**
@@ -299,90 +298,87 @@ class Akismet
  */
 class SocketWriteRead
 {
-	private $host;
-	private $port;
-	private $request;
-	private $response;
-	private $responseLength;
-	private $errorNumber;
-	private $errorString;
+    private $host;
+    private $port;
+    private $request;
+    private $response;
+    private $responseLength;
+    private $errorNumber;
+    private $errorString;
 
-	/**
-	 * @param    string $host The host to send/receive data.
-	 * @param    int $port The port on the remote host.
-	 * @param    string $request The data to send.
-	 * @param    int $responseLength The amount of data to read.  Defaults to 1160 bytes.
-	 */
-	public function __construct($host, $port, $request, $responseLength = 1160)
-	{
-		$this->host = $host;
-		$this->port = $port;
-		$this->request = $request;
-		$this->responseLength = $responseLength;
-		$this->errorNumber = 0;
-		$this->errorString = '';
-	}
+    /**
+     * @param    string $host The host to send/receive data.
+     * @param    int $port The port on the remote host.
+     * @param    string $request The data to send.
+     * @param    int $responseLength The amount of data to read.  Defaults to 1160 bytes.
+     */
+    public function __construct($host, $port, $request, $responseLength = 1160)
+    {
+        $this->host = $host;
+        $this->port = $port;
+        $this->request = $request;
+        $this->responseLength = $responseLength;
+        $this->errorNumber = 0;
+        $this->errorString = '';
+    }
 
-	/**
-	 *  Sends the data to the remote host.
-	 *
-	 * @throws    An exception is thrown if a connection cannot be made to the remote host.
-	 */
-	public function send()
-	{
-		$this->response = '';
+    /**
+     *  Sends the data to the remote host.
+     *
+     * @throws    An exception is thrown if a connection cannot be made to the remote host.
+     */
+    public function send()
+    {
+        $this->response = '';
 
-		$fs = fsockopen($this->host, $this->port, $this->errorNumber, $this->errorString, 3);
+        $fs = fsockopen($this->host, $this->port, $this->errorNumber, $this->errorString, 3);
 
-		if ($this->errorNumber != 0) {
-			throw new Exception('Error connecting to host: ' . $this->host . ' Error number: ' . $this->errorNumber . ' Error message: ' . $this->errorString);
-		}
+        if ($this->errorNumber != 0) {
+            throw new Exception('Error connecting to host: ' . $this->host . ' Error number: ' . $this->errorNumber . ' Error message: ' . $this->errorString);
+        }
 
-		if ($fs !== false) {
-			@fwrite($fs, $this->request);
+        if ($fs !== false) {
+            @fwrite($fs, $this->request);
 
-			while (!feof($fs)) {
-				$this->response .= fgets($fs, $this->responseLength);
-			}
+            while (!feof($fs)) {
+                $this->response .= fgets($fs, $this->responseLength);
+            }
 
-			fclose($fs);
-		}
-	}
+            fclose($fs);
+        }
+    }
 
-	/**
-	 *  Returns the server response text
-	 *
-	 * @return    string
-	 */
-	public function getResponse()
-	{
-		return $this->response;
-	}
+    /**
+     *  Returns the server response text
+     *
+     * @return    string
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
 
-	/**
-	 *    Returns the error number
-	 *
-	 *    If there was no error, 0 will be returned.
-	 *
-	 * @return int
-	 */
-	public function getErrorNumner()
-	{
-		return $this->errorNumber;
-	}
+    /**
+     *    Returns the error number
+     *
+     *    If there was no error, 0 will be returned.
+     *
+     * @return int
+     */
+    public function getErrorNumner()
+    {
+        return $this->errorNumber;
+    }
 
-	/**
-	 *    Returns the error string
-	 *
-	 *    If there was no error, an empty string will be returned.
-	 *
-	 * @return string
-	 */
-	public function getErrorString()
-	{
-		return $this->errorString;
-	}
-
+    /**
+     *    Returns the error string
+     *
+     *    If there was no error, an empty string will be returned.
+     *
+     * @return string
+     */
+    public function getErrorString()
+    {
+        return $this->errorString;
+    }
 }
-
-?>
