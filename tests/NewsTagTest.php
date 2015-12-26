@@ -44,8 +44,8 @@ class NewsTagTest extends SapphireTest
 		$tag1 = $this->objFromFixture('Tag', 'tag1');
 		$tag2 = $this->objFromFixture('Tag', 'tag2');
 
-		$this->assertEquals('testtag-1', $tag1->URLSegment);
-		$this->assertEquals('testtag-2', $tag2->URLSegment);
+		$this->assertEquals('testtag-'.$tag1->ID, $tag1->URLSegment);
+		$this->assertEquals('testtag-'.$tag2->ID, $tag2->URLSegment);
 	}
 
 }

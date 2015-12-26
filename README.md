@@ -1,6 +1,13 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
+## Build
+
+[![Build Status](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule.svg)](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule)
+
+
+I am aware of the build failing. I'm not going to fix this soon, because I don't have time.
+
 # WARNING
 
 This latest version has a different multiselectfield! If you have the old multiselectfield, manually delete it and then run composer update.
@@ -47,10 +54,6 @@ E-mail me your twitter contact if you added something and like to be mentioned!
 * [`Silverstripe 3.1.* CMS`](https://github.com/silverstripe/cms)
 * [`GridFieldBulkEditingTools`](https://github.com/colymba/GridFieldBulkEditingTools)
 * [`Gridfield Extensions`](https://github.com/ajshort/silverstripe-gridfieldextensions)
-
-### Child grouping support
-
-* Requires [`ENHANCEMENT issue #2501`](https://github.com/silverstripe/silverstripe-framework/pull/2105) for child grouping support
 
 ## Highly recommended
 

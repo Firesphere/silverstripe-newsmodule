@@ -36,6 +36,7 @@ News:
     PublishFrom: '2015-01-01'
     Tags: =>Tag.tag1
   urlcollisionitem:
+    ID: 15
     Title: 'First Newsitem'
     PublishFrom: '2013-10-02'
     Live: 1
