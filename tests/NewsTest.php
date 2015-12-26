@@ -75,7 +75,7 @@ class NewsTest extends SapphireTest
 		$entry1 = $this->objFromFixture('News', 'item1');
 		$entry2 = $this->objFromFixture('News', 'urlcollisionitem');
 
-		$this->assertEquals('first-newsitem', $entry1->URLSegment, 'Item1 has a URLSegment');
+		$this->assertEquals('first-newsitem-'.$entry1->ID, $entry1->URLSegment, 'Item1 has a URLSegment');
 		$this->assertEquals('first-newsitem-'.$entry2->ID, $entry2->URLSegment, 'Item2 has a unique URLSegment generated, despite having the same title.');
 		$this->assertNotEquals($entry2->URLSegment, $entry1->URLSegment, 'Item1 and Item2 do not share the URLSegment');
 	}
