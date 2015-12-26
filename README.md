@@ -1,6 +1,11 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
 =======================
 
+## Build
+
+[![Build Status](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule.svg)](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule)
+
+
 I am aware of the build failing. I'm not going to fix this soon, because I don't have time.
 
 # WARNING
