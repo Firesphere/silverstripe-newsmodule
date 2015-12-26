@@ -1,6 +1,8 @@
 ---
 Name: silverstripe-newsmodule
-After: 'framework/*','cms/*'
+After:
+- 'framework/*'
+- 'cms/*'
 ---
 
 News:
