@@ -278,8 +278,8 @@ class NewsSiteConfigExtension extends DataExtension
 	public function populateDefaults()
 	{
 		// create a news folder
-		$newsFolder = Folder::find_or_make(Config::inst()->get($this->class, 'uploads_folder'));
-		$this->owner->NewsRootFolderID = $newsFolder->ID;
+//		$newsFolder = Folder::find_or_make(Config::inst()->get($this->class, 'uploads_folder'));
+//		$this->owner->NewsRootFolderID = $newsFolder->ID;
 	}
 
 }
