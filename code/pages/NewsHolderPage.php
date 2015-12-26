@@ -169,7 +169,6 @@ class NewsHolderPage_Controller extends Page_Controller
 	private static $url_handlers = array();
 	protected $current_item;
 	protected $current_tag;
-	protected $current_siteconfig;
 
 	/**
 	 * Setup the allowed actions to work with the SiteConfig settings.
@@ -180,7 +179,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	{
 		$actions = parent::allowedActions($limitToClass);
 		$defaultMapping = $this->stat('allowed_actions');
-		$siteConfig = $this->getCurrentSiteConfig();
+		$siteConfig = SiteConfig::current_site_config();
 		foreach ($defaultMapping as $map) {
 			$key = ucfirst($map . 'Action');
 			if ($siteConfig->$key) {
@@ -205,7 +204,7 @@ class NewsHolderPage_Controller extends Page_Controller
 		$handles = parent::allowedActions(false);
 		$defaultMapping = $this->stat('allowed_actions');
 		$handles['index'] = 'handleIndex';
-		$siteConfig = $this->getCurrentSiteConfig();
+		$siteConfig = SiteConfig::current_site_config();
 		foreach ($defaultMapping as $key) {
 			$map = ucfirst($key . 'Action');
 			if ($siteConfig->$map) {
@@ -283,27 +282,6 @@ class NewsHolderPage_Controller extends Page_Controller
 		}
 
 		return $this->current_tag;
-	}
-
-	/**
-	 * Set the current SiteConfig
-	 */
-	private function setCurrentSiteConfig()
-	{
-		$this->current_siteconfig = SiteConfig::current_site_config();
-	}
-
-	/**
-	 * Get the current SiteConfig
-	 * @return SiteConfig
-	 */
-	public function getCurrentSiteConfig()
-	{
-		if (!$this->current_siteconfig) {
-			$this->setCurrentSiteConfig();
-		}
-
-		return $this->current_siteconfig;
 	}
 
 	public function getCurrentAuthor()
@@ -415,7 +393,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	/**
 	 * Setup the filter for the getters. This keeps in mind if the user is allowed to view this item.
 	 * @param String $params returntype setting.
-	 * @return Array $filter filter for general getter.
+	 * @return array $filter filter for general getter.
 	 */
 	private function setupFilter($params)
 	{
@@ -436,7 +414,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	 */
 	public function allNews()
 	{
-		$siteConfig = $this->getCurrentSiteConfig();
+		$siteConfig = SiteConfig::current_site_config();
 		$exclude = array(
 			'PublishFrom:GreaterThan' => SS_Datetime::now()->Format('Y-m-d'),
 		);
@@ -513,7 +491,7 @@ class NewsHolderPage_Controller extends Page_Controller
 	 */
 	public function CommentForm()
 	{
-		$siteconfig = $this->getCurrentSiteConfig();
+		$siteconfig = SiteConfig::current_site_config();
 		$params = $this->getURLParams();
 
 		return CommentForm::create($this, 'CommentForm', $siteconfig, $params);

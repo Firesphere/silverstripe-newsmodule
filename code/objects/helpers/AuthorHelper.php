@@ -11,6 +11,7 @@
  * @property string OriginalName
  * @property string URLSegment
  * @method DataList|News[] NewsItems
+ * @mixin GoogleSitemapExtension
  * EndGeneratedWithDataObjectAnnotator
  */
 class AuthorHelper extends DataObject
