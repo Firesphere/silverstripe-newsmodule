@@ -306,14 +306,15 @@ class News extends DataObject implements PermissionProvider
 				$Renamed->OldLink = $this->URLSegment;
 				$Renamed->NewsID = $this->ID;
 				$Renamed->write();
-			}
-			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
-			if (strpos($this->URLSegment, 'page-') === false) {
-				$URLSegment = $this->URLSegment;
-				if ($this->LookForExistingURLSegment($URLSegment)) {
-					$URLSegment = $this->URLSegment . '-' . $this->ID;
+
+				$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
+				if (strpos($this->URLSegment, 'page-') === false) {
+					$URLSegment = $this->URLSegment;
+					if ($this->LookForExistingURLSegment($URLSegment)) {
+						$URLSegment = $this->URLSegment . '-' . $this->ID;
+					}
+					$this->URLSegment = $URLSegment;
 				}
-				$this->URLSegment = $URLSegment;
 			}
 		}
 	}

@@ -107,13 +107,15 @@ class Tag extends DataObject
 	{
 		parent::onBeforeWrite();
 		if (!$this->URLSegment || ($this->isChanged('Title') && !$this->isChanged('URLSegment'))) {
-			$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
-			if (strpos($this->URLSegment, 'page-') === false) { // It might occur, and we don't want page-0, page-1 etc. in the list!
-				$URLSegment = $this->URLSegment;
-				if ($this->LookForExistingURLSegment($URLSegment)) {
-					$URLSegment = $this->URLSegment . '-' . $this->ID;
+			if($this->ID > 0) {
+				$this->URLSegment = singleton('SiteTree')->generateURLSegment($this->Title);
+				if (strpos($this->URLSegment, 'page-') === false) { // It might occur, and we don't want page-0, page-1 etc. in the list!
+					$URLSegment = $this->URLSegment;
+					if ($this->LookForExistingURLSegment($URLSegment)) {
+						$URLSegment = $this->URLSegment . '-' . $this->ID;
+					}
+					$this->URLSegment = $URLSegment;
 				}
-				$this->URLSegment = $URLSegment;
 			}
 		}
 	}
