@@ -25,9 +25,9 @@ class NewsControllerExtension extends DataExtension
      * @return DataList|News[]
      * @todo implement subsites
      */
-    public function NewsArchive($limit = 5, $random = false, $related = false)
+    public function NewsArchive($limit = 5, $random = null, $related = null)
     {
-        if ($limit) {
+        if ($limit === 0) {
             $limit = null;
         }
         $params = $this->owner->getURLParams();
