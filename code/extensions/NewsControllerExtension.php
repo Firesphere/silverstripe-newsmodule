@@ -25,9 +25,9 @@ class NewsControllerExtension extends DataExtension
      * @return DataList|News[]
      * @todo implement subsites
      */
-    public function NewsArchive($limit = 5, $random = null, $related = null)
+    public function NewsArchive($limit = 5, $random = false, $related = false)
     {
-        if ($limit === 0) {
+        if ($limit) {
             $limit = null;
         }
         $params = $this->owner->getURLParams();
@@ -109,13 +109,15 @@ class NewsControllerExtension extends DataExtension
     private function getArchiveItems($otherNews, $limit, $sort, $related, $params)
     {
         $filter = array(
-            'Live'                 => 1, // only work on live items
-            'PublishFrom:LessThan' => SS_Datetime::now()->Rfc2822(), // same as above
+            'Live' => 1, // only work on live items
         );
         if (class_exists('Translatable')) {
             $filter['Locale'] = Translatable::get_current_locale();
         }
-        $exclude = array();
+        $exclude = array(
+            'PublishFrom:GreaterThan' => SS_Datetime::now()->Rfc2822(), // same as above
+
+        );
 
         if ($related && $params['Action'] === 'show') { // @todo This only works with the default action, not allowed actions
             $filter = array_merge(
