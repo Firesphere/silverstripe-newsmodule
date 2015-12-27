@@ -36,7 +36,7 @@ class NewsControllerExtension extends DataExtension
         if ($related) {
             $otherNews = $this->owner->getNews();
         }
-        if ($otherNews || !$related) {
+        if (($otherNews && $otherNews->Tags()->count()) || !$related) {
             return $this->getArchiveItems($otherNews, $limit, $random, $related, $params);
         }
     }
