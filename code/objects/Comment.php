@@ -163,7 +163,7 @@ class Comment extends DataObject implements PermissionProvider
 		if ($siteConfig->GravatarSize) {
 			$gravatarSize = $siteConfig->GravatarSize;
 		}
-		return 'http://www.gravatar.com/avatar/'.$this->MD5Email.'?default=' . $default . '&amp;s=' . $gravatarSize;
+		return '//www.gravatar.com/avatar/'.$this->MD5Email.'?default=' . $default . '&amp;s=' . $gravatarSize;
 	}
 
 	/**
