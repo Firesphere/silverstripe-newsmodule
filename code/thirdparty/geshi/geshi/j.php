@@ -55,130 +55,130 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME'              => 'J',
-	'COMMENT_SINGLE'         => array(),
-	'COMMENT_MULTI'          => array(),
-	'COMMENT_REGEXP'         => array(
-		1 => '/(?<!\w)NB\..*?$/m', //singleline comments NB.
-		2 => '/(?<=\bNote\b).*?$\s+\)(?:(?!\n)\s)*$/sm', //multiline comments in Note
-		3 => "/'[^']*?$/m"   //incomplete strings/open quotes
-	),
-	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS'             => array(),
-	'ESCAPE_CHAR'            => '',
-	'HARDQUOTE'              => array("'", "'"),
-	'HARDESCAPE'             => array("'"),
-	'HARDCHAR'               => "'",
-	'NUMBERS'                => array(
-		0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?|__?)(?![\w\.\:])',
-	),
-	'KEYWORDS'               => array(
-		//Control words
-		1 => array(
-			'assert.', 'break.', 'case.', 'catch.', 'catcht.', 'continue.', 'do.',
-			'else.', 'elseif.', 'end.', 'fcase.', 'for.', 'goto.', 'if.', 'label.',
-			'return.', 'select.', 'throw.', 'trap.', 'try.', 'while.', 'whilst.'
-		),
-		//Arguments
-		2 => array(
-			'm', 'n', 'u', 'v', 'x', 'y'
-		),
-	),
-	'SYMBOLS'                => array(
-		//Punctuation
-		0 => array(
-			'(', ')'
-		)
-	),
-	'CASE_SENSITIVE'         => array(
-		GESHI_COMMENTS => false,
-		1              => true,
-		2              => true,
-		//6 => true,
-		//7 => true,
-		//8 => true,
-	),
-	'STYLES'                 => array(
-		'KEYWORDS'    => array(
-			1 => 'color: #0000ff; font-weight: bold;',
-			2 => 'color: #0000cc; font-weight: bold;',
-			//6 => 'color: #000000; font-weight: bold;',
-			//7 => 'color: #000000; font-weight: bold;',
-			//8 => 'color: #000000; font-weight: bold;',
-		),
-		'COMMENTS'    => array(
-			1       => 'color: #666666; font-style: italic;',
-			2       => 'color: #666666; font-style: italic; font-weight: bold;',
-			3       => 'color: #ff00ff; ', //open quote
-			'MULTI' => 'color: #666666; font-style: italic;'
-		),
-		'ESCAPE_CHAR' => array(
-			'HARD' => 'font-weight: bold;',
-			0      => '',
-		),
-		'BRACKETS'    => array(
-			0 => 'color: #009900;'
-		),
-		'STRINGS'     => array(
-			'HARD' => 'color: #ff0000;',
-			0      => 'color: #ff0000;',
-		),
-		'NUMBERS'     => array(
-			0 => 'color: #009999; font-weight: bold;'
-		),
-		'METHODS'     => array(),
-		'SYMBOLS'     => array(
-			0 => 'color: #009900; font-weight: bold;'
-		),
-		'REGEXPS'     => array(
-			0 => 'color: #0000ff; font-weight: bold;', //for_xyz. - same as kw1
-		),
-		'SCRIPT'      => array()
-	),
-	'URLS'                   => array(
-		1 => '', //'http://www.jsoftware.com/help/dictionary/ctrl.htm',
-		2 => '',
-		//6 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
-		//7 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
-		//8 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
-	),
-	'OOLANG'                 => false,
-	'OBJECT_SPLITTERS'       => array(),
-	'REGEXPS'                => array(
-		0 => '\b(for|goto|label)_[a-zA-Z]\w*\.', //for_xyz. - should be kw1
-	),
-	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
-	'SCRIPT_DELIMITERS'      => array(),
-	'HIGHLIGHT_STRICT_BLOCK' => array(),
-	'PARSER_CONTROL'         => array(
-		'ENABLE_FLAGS' => array(
-			'BRACKETS' => GESHI_NEVER,
-		),
-		'NUMBERS'      => array(
-			'PRECHECK_RX' => '#[\d_]#', // underscore is valid number
-		),
-		'KEYWORDS'     => array(
-			//Control words
-			2 => array(
-				'DISALLOWED_BEFORE' => '(?<!\w)',
-				'DISALLOWED_AFTER'  => '(?![\w\.\:])',
-			),
-			//Primtives starting with a symbol (except . or :)
-			6 => array(
-				'DISALLOWED_BEFORE' => '(?!K)', // effect should be to allow anything
-				'DISALLOWED_AFTER'  => '(?=.*)',
-			),
-			//Primtives starting with a letter
-			7 => array(
-				'DISALLOWED_BEFORE' => '(?<!\w)',
-				'DISALLOWED_AFTER'  => '(?=.*)',
-			),
-			//Primtives starting with symbol . or :
-			8 => array(
-				'DISALLOWED_BEFORE' => '(?<=\s)',
-				'DISALLOWED_AFTER'  => '(?=.*)',
-			),
-		)
-	)
+    'LANG_NAME'              => 'J',
+    'COMMENT_SINGLE'         => array(),
+    'COMMENT_MULTI'          => array(),
+    'COMMENT_REGEXP'         => array(
+        1 => '/(?<!\w)NB\..*?$/m', //singleline comments NB.
+        2 => '/(?<=\bNote\b).*?$\s+\)(?:(?!\n)\s)*$/sm', //multiline comments in Note
+        3 => "/'[^']*?$/m"   //incomplete strings/open quotes
+    ),
+    'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+    'QUOTEMARKS'             => array(),
+    'ESCAPE_CHAR'            => '',
+    'HARDQUOTE'              => array("'", "'"),
+    'HARDESCAPE'             => array("'"),
+    'HARDCHAR'               => "'",
+    'NUMBERS'                => array(
+        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?|__?)(?![\w\.\:])',
+    ),
+    'KEYWORDS'               => array(
+        //Control words
+        1 => array(
+            'assert.', 'break.', 'case.', 'catch.', 'catcht.', 'continue.', 'do.',
+            'else.', 'elseif.', 'end.', 'fcase.', 'for.', 'goto.', 'if.', 'label.',
+            'return.', 'select.', 'throw.', 'trap.', 'try.', 'while.', 'whilst.'
+        ),
+        //Arguments
+        2 => array(
+            'm', 'n', 'u', 'v', 'x', 'y'
+        ),
+    ),
+    'SYMBOLS'                => array(
+        //Punctuation
+        0 => array(
+            '(', ')'
+        )
+    ),
+    'CASE_SENSITIVE'         => array(
+        GESHI_COMMENTS => false,
+        1              => true,
+        2              => true,
+        //6 => true,
+        //7 => true,
+        //8 => true,
+    ),
+    'STYLES'                 => array(
+        'KEYWORDS'    => array(
+            1 => 'color: #0000ff; font-weight: bold;',
+            2 => 'color: #0000cc; font-weight: bold;',
+            //6 => 'color: #000000; font-weight: bold;',
+            //7 => 'color: #000000; font-weight: bold;',
+            //8 => 'color: #000000; font-weight: bold;',
+        ),
+        'COMMENTS'    => array(
+            1       => 'color: #666666; font-style: italic;',
+            2       => 'color: #666666; font-style: italic; font-weight: bold;',
+            3       => 'color: #ff00ff; ', //open quote
+            'MULTI' => 'color: #666666; font-style: italic;'
+        ),
+        'ESCAPE_CHAR' => array(
+            'HARD' => 'font-weight: bold;',
+            0      => '',
+        ),
+        'BRACKETS'    => array(
+            0 => 'color: #009900;'
+        ),
+        'STRINGS'     => array(
+            'HARD' => 'color: #ff0000;',
+            0      => 'color: #ff0000;',
+        ),
+        'NUMBERS'     => array(
+            0 => 'color: #009999; font-weight: bold;'
+        ),
+        'METHODS'     => array(),
+        'SYMBOLS'     => array(
+            0 => 'color: #009900; font-weight: bold;'
+        ),
+        'REGEXPS'     => array(
+            0 => 'color: #0000ff; font-weight: bold;', //for_xyz. - same as kw1
+        ),
+        'SCRIPT'      => array()
+    ),
+    'URLS'                   => array(
+        1 => '', //'http://www.jsoftware.com/help/dictionary/ctrl.htm',
+        2 => '',
+        //6 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+        //7 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+        //8 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+    ),
+    'OOLANG'                 => false,
+    'OBJECT_SPLITTERS'       => array(),
+    'REGEXPS'                => array(
+        0 => '\b(for|goto|label)_[a-zA-Z]\w*\.', //for_xyz. - should be kw1
+    ),
+    'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+    'SCRIPT_DELIMITERS'      => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
+    'PARSER_CONTROL'         => array(
+        'ENABLE_FLAGS' => array(
+            'BRACKETS' => GESHI_NEVER,
+        ),
+        'NUMBERS'      => array(
+            'PRECHECK_RX' => '#[\d_]#', // underscore is valid number
+        ),
+        'KEYWORDS'     => array(
+            //Control words
+            2 => array(
+                'DISALLOWED_BEFORE' => '(?<!\w)',
+                'DISALLOWED_AFTER'  => '(?![\w\.\:])',
+            ),
+            //Primtives starting with a symbol (except . or :)
+            6 => array(
+                'DISALLOWED_BEFORE' => '(?!K)', // effect should be to allow anything
+                'DISALLOWED_AFTER'  => '(?=.*)',
+            ),
+            //Primtives starting with a letter
+            7 => array(
+                'DISALLOWED_BEFORE' => '(?<!\w)',
+                'DISALLOWED_AFTER'  => '(?=.*)',
+            ),
+            //Primtives starting with symbol . or :
+            8 => array(
+                'DISALLOWED_BEFORE' => '(?<=\s)',
+                'DISALLOWED_AFTER'  => '(?=.*)',
+            ),
+        )
+    )
 );
 ?>

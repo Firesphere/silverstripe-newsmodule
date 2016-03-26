@@ -2,9 +2,9 @@
     <section id="shout" class="clear">
         <div class="cloud">
             <div class="tagCloud">
-				<% loop Tags %>
+                <% loop Tags %>
                     <a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()">$Title</a>
-				<% end_loop %>
+                <% end_loop %>
             </div>
             <a href="https://twitter.com/share" class="twitter-share-button" data-via="{YOUR TWITTER ACCOUNT}"
                data-dnt="true">Tweet</a>

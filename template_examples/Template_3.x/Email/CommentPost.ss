@@ -5,6 +5,6 @@ Hi,<br/>
 Here's a new comment on $News.Title<br/>
 Title: $Title<br/>
 Akismet: $AkismetMarked<br/>
-	$Comment
+    $Comment
 </body>
 </html>

@@ -64,82 +64,82 @@
  * ********************************************************************************** */
 
 $language_data = array(
-	'LANG_NAME'              => 'YAML',
-	'COMMENT_SINGLE'         => array(),
-	'COMMENT_MULTI'          => array(),
-	//Keys
-	'COMMENT_REGEXP'         => array(// ENTRY ZERO  SHOULD CHECK FOR (\n(\s*)([^#%]+?):(\s+)(!!(\w+)(\s+))?) AS A LOOKBEHIND, BUT IT CAN'T.
-		0 => '/(?<=\s[\|>]\n)(\s+)(.*)((?=[\n$])(([\n^](\1(.*)|(?=[\n$])))*)|$)/', // Pipe blocks and > blocks.
-		1 => '/#(.*)/', // Blue # comments
-		2 => '/%(.*)/', // Red % comments
-		3 => '/(^|\n)([^#%^\n]+?)(?=: )/', // Key-value names
-		4 => '/(^|\n)([^#%^\n]+?)(?=:\n)/', // Key-group names
-		5 => '/(?<=^---)(\s*)!(\S+)/', // Comments after ---
-		6 => '/(?<=: )(\s*)\&(\S+)/', // References
-		7 => '/(?<=: )(\s*)\*(\S+)/', // Dereferences
-		8 => '/!!(\w+)/', // Types
-		//9 => '/(?<=\n)(\s*)-(?!-)/',       // List items: This needs to search within comments 3 and 4, but I don't know how.
-	),
-	'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS'             => array('"'),
-	'ESCAPE_CHAR'            => '',
-	'KEYWORDS'               => array(
-		1 => array(
-			'all', 'any', 'none', "yes", "no"
-		),
-	),
-	'SYMBOLS'                => array(
-		1 => array('---', '...'),
-		2 => array(': ', ">\n", "|\n", '<<:', ":\n") // It'd be nice if I could specify that the colon must
-		//                                              follow comment 3 or 4 to be considered, and the > and |
-		//                                              must follow such a colon.
-	),
-	'CASE_SENSITIVE'         => array(
-		GESHI_COMMENTS => false,
-		1              => false,
-	),
-	'STYLES'                 => array(
-		'KEYWORDS'    => array(
-			1 => 'font-weight: bold;'
-		),
-		'COMMENTS'    => array(
-			0 => 'color: #303050;background-color: #F5F5F5',
-			1 => 'color: blue;',
-			2 => 'font-weight: bold; color: red;',
-			3 => 'color: green;',
-			4 => 'color: #007F45;',
-			5 => 'color: #7f7fFF;',
-			6 => 'color: #FF7000;',
-			7 => 'color: #FF45C0;',
-			8 => 'font-weight: bold; color: #005F5F;',
-			//9 => 'font-weight: bold; color: #000000;',
-		),
-		'ESCAPE_CHAR' => array(),
-		'BRACKETS'    => array(),
-		'STRINGS'     => array(
-			0 => 'color: #CF00CF;'
-		),
-		'NUMBERS'     => array(// 0 => 'color: #33f;' // Don't highlight numbers, really...
-		),
-		'METHODS'     => array(
-			1 => '',
-			2 => ''
-		),
-		'SYMBOLS'     => array(
-			1 => 'color: cyan;',
-			2 => 'font-weight: bold; color: brown;'
-		),
-		'REGEXPS'     => array(),
-		'SCRIPT'      => array(
-			0 => ''
-		)
-	),
-	'URLS'                   => array(1 => ''),
-	'OOLANG'                 => false,
-	'OBJECT_SPLITTERS'       => array(),
-	'REGEXPS'                => array(),
-	'STRICT_MODE_APPLIES'    => GESHI_NEVER,
-	'SCRIPT_DELIMITERS'      => array(),
-	'HIGHLIGHT_STRICT_BLOCK' => array()
+    'LANG_NAME'              => 'YAML',
+    'COMMENT_SINGLE'         => array(),
+    'COMMENT_MULTI'          => array(),
+    //Keys
+    'COMMENT_REGEXP'         => array(// ENTRY ZERO  SHOULD CHECK FOR (\n(\s*)([^#%]+?):(\s+)(!!(\w+)(\s+))?) AS A LOOKBEHIND, BUT IT CAN'T.
+        0 => '/(?<=\s[\|>]\n)(\s+)(.*)((?=[\n$])(([\n^](\1(.*)|(?=[\n$])))*)|$)/', // Pipe blocks and > blocks.
+        1 => '/#(.*)/', // Blue # comments
+        2 => '/%(.*)/', // Red % comments
+        3 => '/(^|\n)([^#%^\n]+?)(?=: )/', // Key-value names
+        4 => '/(^|\n)([^#%^\n]+?)(?=:\n)/', // Key-group names
+        5 => '/(?<=^---)(\s*)!(\S+)/', // Comments after ---
+        6 => '/(?<=: )(\s*)\&(\S+)/', // References
+        7 => '/(?<=: )(\s*)\*(\S+)/', // Dereferences
+        8 => '/!!(\w+)/', // Types
+        //9 => '/(?<=\n)(\s*)-(?!-)/',       // List items: This needs to search within comments 3 and 4, but I don't know how.
+    ),
+    'CASE_KEYWORDS'          => GESHI_CAPS_NO_CHANGE,
+    'QUOTEMARKS'             => array('"'),
+    'ESCAPE_CHAR'            => '',
+    'KEYWORDS'               => array(
+        1 => array(
+            'all', 'any', 'none', "yes", "no"
+        ),
+    ),
+    'SYMBOLS'                => array(
+        1 => array('---', '...'),
+        2 => array(': ', ">\n", "|\n", '<<:', ":\n") // It'd be nice if I could specify that the colon must
+        //                                              follow comment 3 or 4 to be considered, and the > and |
+        //                                              must follow such a colon.
+    ),
+    'CASE_SENSITIVE'         => array(
+        GESHI_COMMENTS => false,
+        1              => false,
+    ),
+    'STYLES'                 => array(
+        'KEYWORDS'    => array(
+            1 => 'font-weight: bold;'
+        ),
+        'COMMENTS'    => array(
+            0 => 'color: #303050;background-color: #F5F5F5',
+            1 => 'color: blue;',
+            2 => 'font-weight: bold; color: red;',
+            3 => 'color: green;',
+            4 => 'color: #007F45;',
+            5 => 'color: #7f7fFF;',
+            6 => 'color: #FF7000;',
+            7 => 'color: #FF45C0;',
+            8 => 'font-weight: bold; color: #005F5F;',
+            //9 => 'font-weight: bold; color: #000000;',
+        ),
+        'ESCAPE_CHAR' => array(),
+        'BRACKETS'    => array(),
+        'STRINGS'     => array(
+            0 => 'color: #CF00CF;'
+        ),
+        'NUMBERS'     => array(// 0 => 'color: #33f;' // Don't highlight numbers, really...
+        ),
+        'METHODS'     => array(
+            1 => '',
+            2 => ''
+        ),
+        'SYMBOLS'     => array(
+            1 => 'color: cyan;',
+            2 => 'font-weight: bold; color: brown;'
+        ),
+        'REGEXPS'     => array(),
+        'SCRIPT'      => array(
+            0 => ''
+        )
+    ),
+    'URLS'                   => array(1 => ''),
+    'OOLANG'                 => false,
+    'OBJECT_SPLITTERS'       => array(),
+    'REGEXPS'                => array(),
+    'STRICT_MODE_APPLIES'    => GESHI_NEVER,
+    'SCRIPT_DELIMITERS'      => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );
 ?>

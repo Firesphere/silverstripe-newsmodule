@@ -2,9 +2,9 @@
     <div id="tags" class="row">
         <div class="col-xs-12 cloud">
             <div class="tagCloud">
-				<% loop allTags %>
+                <% loop allTags %>
                     <a href="{$Top.URLSegment}/tag/$URLSegment" rel="$News.count()">$Title</a>
-				<% end_loop %>
+                <% end_loop %>
             </div>
             <div class="clearfix"></div>
             <div class="news-socialbuttons"

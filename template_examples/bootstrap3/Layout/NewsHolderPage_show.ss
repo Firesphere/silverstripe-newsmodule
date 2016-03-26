@@ -1,19 +1,19 @@
 <% cached current_item.URLSegment %>
     <div class="container">
         <div id="newsitem" class="row">
-			<% with $current_item %>
+            <% with $current_item %>
                 <div class="col-xs-12">
-					<% if $Impression %>
+                    <% if $Impression %>
                         <div class="col-xs-2">
                             <a href="$Link"
                                class="impressionLink"><% with Impression %>$SetSize(50,50)<% end_with %></a>
                         </div>
-					<% else_if $Top.SiteConfig.DefaultImage %>
+                    <% else_if $Top.SiteConfig.DefaultImage %>
                         <div class="col-xs-2">
                             <a href="$Link"
                                class="impressionLink col-xs-2">$Top.SiteConfig.DefaultImage.SetSize(50,50)</a>
                         </div>
-					<% end_if %>
+                    <% end_if %>
                     <h1>$Title</h1>
 
                     <h3><%t NewsHolderPage.DATEPUBLISH "{date} by " date=$Published %><a href='$AuthorHelper.Link'
@@ -22,24 +22,24 @@
                     <br/>
 
                     <div class="content col-xs-12">
-						<% if $Content %>
-							$Content
-						<% else %>
-							$Synopsis
-						<% end_if %>
-						<% if $Type == External %>
+                        <% if $Content %>
+                            $Content
+                        <% else %>
+                            $Synopsis
+                        <% end_if %>
+                        <% if $Type == External %>
                             <a href="$External" target="_blank">$Title</a>
-						<% else_if $Type == Download %>
+                        <% else_if $Type == Download %>
                             <a href="$Download.Link">$Title</a>
-						<% end_if %>
+                        <% end_if %>
                     </div>
-					<% if $Tags.Count > 0 %>
+                    <% if $Tags.Count > 0 %>
                         <div class="col-xs-12">
-							<% loop Tags %>
+                            <% loop Tags %>
                                 <a href="$Link">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
-							<% end_loop %>
+                            <% end_loop %>
                         </div>
-					<% end_if %>
+                    <% end_if %>
                     <!--Example sharing buttons!-->
                     <div class="col-xs-12 newsitem-socialbuttons">
                         <br/>
@@ -52,17 +52,17 @@
                         <br/>
                     </div>
 
-					<% if $AllowComments %>
+                    <% if $AllowComments %>
                         <hr/>
-						<% if $getAllowedComments %>
-							<% include CommentList %>
-						<% end_if %>
+                        <% if $getAllowedComments %>
+                            <% include CommentList %>
+                        <% end_if %>
                         <div class="col-xs-12">
-							$Top.CommentForm
+                            $Top.CommentForm
                         </div>
-					<% end_if %>
+                    <% end_if %>
                 </div>
-			<% end_with %>
+            <% end_with %>
         </div>
     </div>
 <% end_cached %>

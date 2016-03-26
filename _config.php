@@ -4,6 +4,7 @@
  * You can register the YouTube feature to other shortcodes, but I prefer shorter bb-code.
  *
  * To enable, just add a / directly after the star below this line. To disable, remove the /
+ *
  * @package News/blog module
  * @author Simon 'Sphere'
  */
