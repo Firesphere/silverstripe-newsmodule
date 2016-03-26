@@ -254,6 +254,12 @@ class News extends DataObject implements PermissionProvider
 			if (!class_exists('Translatable') && $page = NewsHolderPage::get()->first()) {
 				$this->NewsHolderPages()->add($page);
 			}
+			elseif(class_exists('Translatable')) {
+				Translatable::disable_locale_filter();
+				$page = NewsHolderPage::get()->first();
+				$this->NewsHolderPages()->add($page);
+				Translatable::enable_locale_filter();
+			}
 		}
 		if (!$this->Type || $this->Type === '') {
 			$this->Type = 'news';
