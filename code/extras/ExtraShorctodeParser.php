@@ -32,24 +32,6 @@ class ExtraShortcodeParser
     }
 
     /**
-     * @param string $arguments array with the type
-     * @param array $code string of the code to parse
-     *
-     * @return String of parsed code.
-     */
-    public static function GeshiParser($arguments, $code)
-    {
-        if (!isset($arguments['type'])) {
-            /** Assuming most code is PHP. Feel free to update. Should this be a configurable? */
-            $arguments['type'] = 'php';
-        }
-        $geshi = new GeSHi(html_entity_decode(str_replace('<br>', "\n", $code)), $arguments['type']);
-        $geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
-
-        return $geshi->parse_code();
-    }
-
-    /**
      * @param array $arguments array of arguments from the content
      * @param string $caption text between the [] [/] brackets
      *
