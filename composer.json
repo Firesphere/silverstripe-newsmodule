@@ -37,7 +37,7 @@
     "firesphere/silverstripe-geshiparser": "To be able to use parse bb-code style code examples."
   },
   "extra": {
-    "installer-name": "silverstripe-newsmodule"
+    "installer-name": "newsmodule"
   },
   "target-dir": "newsmodule"
 
