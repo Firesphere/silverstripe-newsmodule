@@ -33,9 +33,12 @@
     "colymba/gridfield-gallery-theme": "Wanna see the images in slideshow gridfield?",
     "undefinedoffset/sortablegridfield": "Unfortunately you'll need this to get slideshow sortable with gallery theme.",
     "wernerkrauss/folderperpage": "create a seperate folder for each news item.",
-    "kinglozzer/silverstripe-multiselectfield": "To use a multiselect-field instead of a checkboxset."
+    "kinglozzer/silverstripe-multiselectfield": "To use a multiselect-field instead of a checkboxset.",
+    "firesphere/silverstripe-geshiparser": "To be able to use parse bb-code style code examples."
   },
   "extra": {
     "installer-name": "silverstripe-newsmodule"
-  }
+  },
+  "target-dir": "newsmodule"
+
 }

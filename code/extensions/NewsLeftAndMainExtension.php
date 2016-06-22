@@ -16,7 +16,7 @@ class NewsLeftAndMainExtension extends Extension
      */
     public function onAfterInit()
     {
-        Requirements::css('silverstripe-newsmodule/css/news_icon.css');
+        Requirements::css('newsmodule/css/news_icon.css');
     }
 
 }

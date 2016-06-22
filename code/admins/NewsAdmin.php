@@ -15,7 +15,7 @@ class NewsAdmin extends ModelAdmin
     );
     private static $url_segment = 'news';
     private static $menu_title = 'News';
-    private static $menu_icon = '/silverstripe-newsmodule/images/newspaper.png';
+    private static $menu_icon = '/newsmodule/images/newspaper.png';
     public $showImportForm = false;
 
     /**

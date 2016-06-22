@@ -234,8 +234,8 @@ class NewsHolderPage_Controller extends Page_Controller
     {
         parent::init();
         // I would advice to put these in a combined file, but it works this way too.
-        Requirements::javascript('silverstripe-newsmodule/javascript/jquery.tagcloud.js');
-        Requirements::javascript('silverstripe-newsmodule/javascript/newsmodule.js');
+        Requirements::javascript('newsmodule/javascript/jquery.tagcloud.js');
+        Requirements::javascript('newsmodule/javascript/newsmodule.js');
     }
 
     /**
