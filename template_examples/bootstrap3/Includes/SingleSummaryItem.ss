@@ -25,8 +25,8 @@
 <div class="more"><a href="$Link"><%t NewsHolderPage.READMORE "Read More &raquo;" %></a></div>
 <% if $Tags.Count > 0 %>
     <div class="col-xs-12">
-		<% loop Tags %>
+        <% loop Tags %>
             <a href="$Link">$Title</a><% if Last %><% else %>&nbsp;|&nbsp;<% end_if %>
-		<% end_loop %>
+        <% end_loop %>
     </div>
 <% end_if %>

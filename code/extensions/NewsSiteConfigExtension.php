@@ -10,37 +10,37 @@
  *
  * StartGeneratedWithDataObjectAnnotator
  * @property SiteConfig|NewsSiteConfigExtension owner
- * @property boolean                            UseAbstract
- * @property int                                PostsPerPage
- * @property boolean                            TweetOnPost
- * @property boolean                            EnableSlideshow
- * @property boolean                            SlideshowInitial
- * @property string                             SlideshowSize
- * @property boolean                            Comments
- * @property string                             NewsEmail
- * @property boolean                            MustApprove
- * @property boolean                            Gravatar
- * @property string                             DefaultGravatar
- * @property int                                GravatarSize
- * @property string                             AkismetKey
- * @property boolean                            NoscriptSecurity
- * @property boolean                            ExtraSecurity
- * @property boolean                            AllowExternals
- * @property boolean                            AllowDownloads
- * @property boolean                            ReturnExternal
- * @property boolean                            AllowAuthors
- * @property boolean                            AllowTags
- * @property boolean                            AllowExport
- * @property boolean                            AllowSlideshow
- * @property string                             TwitterAccount
- * @property string                             TagAction
- * @property string                             TagsAction
- * @property string                             ShowAction
- * @property string                             AuthorAction
- * @property string                             ArchiveAction
- * @property int                                NewsRootFolderID
- * @property int                                DefaultImageID
- * @property int                                DefaultGravatarImageID
+ * @property boolean UseAbstract
+ * @property int PostsPerPage
+ * @property boolean TweetOnPost
+ * @property boolean EnableSlideshow
+ * @property boolean SlideshowInitial
+ * @property string SlideshowSize
+ * @property boolean Comments
+ * @property string NewsEmail
+ * @property boolean MustApprove
+ * @property boolean Gravatar
+ * @property string DefaultGravatar
+ * @property int GravatarSize
+ * @property string AkismetKey
+ * @property boolean NoscriptSecurity
+ * @property boolean ExtraSecurity
+ * @property boolean AllowExternals
+ * @property boolean AllowDownloads
+ * @property boolean ReturnExternal
+ * @property boolean AllowAuthors
+ * @property boolean AllowTags
+ * @property boolean AllowExport
+ * @property boolean AllowSlideshow
+ * @property string TwitterAccount
+ * @property string TagAction
+ * @property string TagsAction
+ * @property string ShowAction
+ * @property string AuthorAction
+ * @property string ArchiveAction
+ * @property int NewsRootFolderID
+ * @property int DefaultImageID
+ * @property int DefaultGravatarImageID
  * @method Folder NewsRootFolder
  * @method Image DefaultImage
  * @method Image DefaultGravatarImage
@@ -126,7 +126,7 @@ class NewsSiteConfigExtension extends DataExtension
      * @config
      * @var string
      */
-    private static $uploads_folder = "news";
+    private static $uploads_folder = 'news';
 
     /**
      * Update the SiteConfig with the news-settings.
@@ -200,7 +200,7 @@ class NewsSiteConfigExtension extends DataExtension
                 ?: _t('NewsSiteConfigExtension.SLIDESHOWFOLDERNOTSET', 'not set');
             $folderTree = LiteralField::create("NewsRootFolderDisabled", _t('NewsSiteConfigExtension.SLIDESHOWFOLDERCONFIG', '<strong>Found folder per root extension</strong><br />This will automatically create an upload folder per news item.<br />Current root folder: "<strong>{rootFolderName}</strong>"<br />Set News.folder_root your config.yml to change this', '', array('rootFolderName' => $rootFolderName)));
         } else {
-            //get a tree listing with only folder, no files
+            /** @var TreeDropdownField $folderTree get a tree listing with only folder, no files */
             $folderTree = TreeDropdownField::create("NewsRootFolderID", _t('NewsSiteConfigExtension.SLIDESHOWFOLDER', 'Folder where images are saved to; defaults to "news"'), 'Folder');
             $folderTree->setChildrenMethod('ChildFolders');
         }

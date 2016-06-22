@@ -43,6 +43,7 @@ class NewsControllerExtension extends DataExtension
 
     /**
      * Get the NewsItems as groupedList for global archive-listing.
+     *
      * @todo obey translatable maybe? I think it's supported by default, but I could be wrong
      * @return GroupedList of NewsItems.
      */
@@ -53,6 +54,7 @@ class NewsControllerExtension extends DataExtension
 
     /**
      * Just get all tags.
+     *
      * @todo support translatable?
      * @return ArrayList|Tag[] of all tags
      */
@@ -98,11 +100,11 @@ class NewsControllerExtension extends DataExtension
     }
 
     /**
-     * @param News        $otherNews
-     * @param int         $limit
+     * @param News $otherNews
+     * @param int $limit
      * @param bool|string $sort
-     * @param bool        $related
-     * @param array       $params
+     * @param bool $related
+     * @param array $params
      *
      * @return DataList|null|SS_Limitable
      */

@@ -1,5 +1,5 @@
 ---
-Name: silverstripe-newsmodule
+Name: newsmodule
 After:
 - 'framework/*'
 - 'cms/*'

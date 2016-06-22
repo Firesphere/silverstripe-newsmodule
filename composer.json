@@ -1,41 +1,44 @@
 {
-	"name": "firesphere/newsmodule",
-	"description": "A ModelAdmin based newsmodule to prevent clutter in the SiteTree",
-	"type": "silverstripe-module",
-	"keywords": [
-		"silverstripe",
-		"news",
-		"blog",
-		"slideshow"
-	],
-	"license": "BSD-2-Clause",
-	"authors": [
-		{
-			"name": "Simon 'Sphere' Erkelens",
-			"email": "github@casa-laguna.net",
-			"homepage": "http://casa-laguna.net",
-			"role": "Developer"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
-	},
-	"require": {
-		"silverstripe/framework": "3.*",
-		"silverstripe/cms": "3.*",
-		"composer/installers": "*",
-		"colymba/gridField-bulk-editing-tools": "*",
-		"silverstripe-australia/gridfieldextensions": "*"
-	},
-	"suggest": {
-		"silverstripe/translatable": "If you need your stuff translated.",
-		"unclecheese/display-logic": "Hide some fields and show only if required.",
-		"colymba/gridfield-gallery-theme": "Wanna see the images in slideshow gridfield?",
-		"undefinedoffset/sortablegridfield": "Unfortunately you'll need this to get slideshow sortable with gallery theme.",
-		"wernerkrauss/folderperpage": "create a seperate folder for each news item.",
-		"kinglozzer/silverstripe-multiselectfield": "To use a multiselect-field instead of a checkboxset."
-	},
-	"extra": {
-		"installer-name": "silverstripe-newsmodule"
-	}
+  "name": "firesphere/newsmodule",
+  "description": "A ModelAdmin based newsmodule to prevent clutter in the SiteTree",
+  "type": "silverstripe-module",
+  "keywords": [
+    "silverstripe",
+    "news",
+    "blog",
+    "slideshow"
+  ],
+  "license": "BSD-2-Clause",
+  "authors": [
+    {
+      "name": "Simon 'Sphere' Erkelens",
+      "email": "github@casa-laguna.net",
+      "homepage": "http://casa-laguna.net",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/Firesphere/silverstripe-newsmodule/issues"
+  },
+  "require": {
+    "silverstripe/framework": "3.*",
+    "silverstripe/cms": "3.*",
+    "composer/installers": "*",
+    "colymba/gridField-bulk-editing-tools": "*",
+    "silverstripe-australia/gridfieldextensions": "*"
+  },
+  "suggest": {
+    "silverstripe/translatable": "If you need your stuff translated.",
+    "unclecheese/display-logic": "Hide some fields and show only if required.",
+    "colymba/gridfield-gallery-theme": "Wanna see the images in slideshow gridfield?",
+    "undefinedoffset/sortablegridfield": "Unfortunately you'll need this to get slideshow sortable with gallery theme.",
+    "wernerkrauss/folderperpage": "create a seperate folder for each news item.",
+    "kinglozzer/silverstripe-multiselectfield": "To use a multiselect-field instead of a checkboxset.",
+    "firesphere/silverstripe-geshiparser": "To be able to use parse bb-code style code examples."
+  },
+  "extra": {
+    "installer-name": "silverstripe-newsmodule"
+  },
+  "target-dir": "newsmodule"
+
 }

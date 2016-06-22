@@ -1,15 +1,15 @@
 <div class="wrapper row1">
 <section id="shout" class="clear">
 <% with currentTag %>
-	<% if Impression %>
+    <% if Impression %>
         <figure>
         <figcaption>
-	<% else %>
+    <% else %>
         <div class="noImage">
-	<% end_if %>
+    <% end_if %>
         <h1><%t NewsHolderPage_tag.TAG "Tag" %>: <a href="{$Top.URLSegment}/tags">$Title</a></h1>
         <br/>
-	$Description
+    $Description
         <br/>
         <a href="{$Top.URLSegment}/tags"><%t NewsHolderPage_tag.ALLTAGS "All tags" %>.</a>
         <br/>&nbsp;<br/>
@@ -20,22 +20,22 @@
              data-layout="button_count" data-width="100" data-show-faces="false" data-font="segoe ui"></div>
         <br/>
 
-	<% if Impression %>
+    <% if Impression %>
         </figcaption>
-		<% with Impression %>
+        <% with Impression %>
                 <div>$SetSize(410,440)</div>
-		<% end_with %>
+        <% end_with %>
         </figure>
-	<% else %>
+    <% else %>
         </div>
-	<% end_if %>
+    <% end_if %>
 <% end_with %>
 </section>
 </div>
 <div class="wrapper row2">
     <div id="container">
         <div id="homepage">
-			<% include TaggedItems  Top=$Top %>
+            <% include TaggedItems  Top=$Top %>
         </div>
         <div class="clear"></div>
     </div>

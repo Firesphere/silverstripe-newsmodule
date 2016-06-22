@@ -48,6 +48,10 @@ All new features or fixes are backwards compatible unless stated in the commit-m
 
 E-mail me your twitter contact if you added something and like to be mentioned!
 
+## PHP 7
+
+Yes, works fine.
+
 ## Requirements
 
 * [`Silverstripe 3.1.* framework`](https://github.com/silverstripe/Sapphire)
