@@ -1,12 +1,8 @@
 # On to the news. From ModelAdmin. Silverstripe Newsmodule.
-=======================
 
 ## Build
 
 [![Build Status](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule.svg)](https://api.travis-ci.org/Firesphere/silverstripe-newsmodule)
-
-
-I am aware of the build failing. I'm not going to fix this soon, because I don't have time.
 
 # WARNING
 
@@ -15,6 +11,10 @@ This latest version has a different multiselectfield! If you have the old multis
 This new field is prettier and a bit more userfriendly.
 
 Apologies for any inconvenience.
+
+## SilverStripe 4
+
+Not as far as I'm concerned. There are by now modules that do a way better job and are better maintained.
 
 ### REQUEST
 
